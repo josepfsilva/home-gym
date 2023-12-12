@@ -1,0 +1,7 @@
+CREATE TABLE Friendship (
+    FriendshipID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    FriendID INT NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (FriendID) REFERENCES User(UserID)
+);

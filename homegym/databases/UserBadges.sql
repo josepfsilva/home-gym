@@ -1,0 +1,8 @@
+CREATE TABLE UserBadges (
+    UserBadgesID INT PRIMARY KEY AUTO_INCREMENT,
+    DateAwarded DATETIME NOT NULL,
+    UserID INT NOT NULL,
+    BadgeID INT NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (BadgeID) REFERENCES BadgeType(BadgeID)
+)
