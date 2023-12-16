@@ -1,5 +1,5 @@
 CREATE TABLE Food(
     FoodID INT PRIMARY KEY AUTO_INCREMENT,
     Name TEXT UNIQUE NOT NULL,
-    Calories INT NOT NULL,
+    Calories INT NOT NULL
 );

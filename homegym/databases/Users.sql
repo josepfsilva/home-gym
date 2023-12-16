@@ -6,8 +6,12 @@ CREATE TABLE Users (
     BirthDate DATE NOT NULL,
     RegistrationDate DATE NOT NULL,
     Role ENUM('Admin', 'User', 'UserHelper') NOT NULL DEFAULT 'User',
-    Status ENUM('Online', 'Offline') NOT NULL DEFAULT 'Online'
+    Status ENUM('Online', 'Offline') NOT NULL DEFAULT 'Online',
     MeasurementsID INT UNIQUE,
-    FOREIGN KEY (MeasurementsID) REFERENCES Measurements(MeasurementsID)
+    FriendshipID INT UNIQUE,
+    BadgeID INT UNIQUE,
+    FOREIGN KEY (BadgeID) REFERENCES UserBadgesID(BadgeID),
+    FOREIGN KEY (MeasurementsID) REFERENCES Measurements(MeasurementsID),
+    FOREIGN KEY (FriendshipID) REFERENCES Friendship(FriendshipID)
 );
 
