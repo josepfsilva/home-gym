@@ -3,5 +3,6 @@ CREATE TABLE BadgeType (
     Nome TEXT UNIQUE NOT NULL,
     Descricao TEXT NOT NULL,
     Type TEXT NOT NULL, 
-    Image BLOB NOT NULL
+    Image BLOB NOT NULL,
+    Requirements TEXT NOT NULL
 );
