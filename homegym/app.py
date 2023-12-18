@@ -2,7 +2,7 @@ from datetime import date
 from flask import Flask, render_template
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db
+from models import init_db,clear_db,add_exercises,add_user
 
 app = Flask(__name__)
 #app.config.from_object('config.py')
@@ -51,18 +51,14 @@ def add_plan():
 with app.app_context():
     init_db()
     #clear_db()
-    add_exercises()
-    add_user()
-    add_plan()
+    #add_exercises()
+    #add_user()
     
+ 
 
-    
-    
+@app.route("/menu" , methods=['GET', 'POST'])
+def menu():
 
-
-
-@app.route("/" , methods=['GET', 'POST'])
-def open():
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
     cursor.execute("""SELECT Username
@@ -71,8 +67,6 @@ def open():
                    """)
     user = cursor.fetchone()[0]
     db.close()
-    
-    
     
     db = sqlite3.connect('database.db')
     cursor = db.cursor() 
@@ -92,12 +86,9 @@ def open():
     
     exercises = [exercise_data[i:i+4] for i in range(0,len(exercise_data),4)]
     
-    return render_template('index.html', exercises = exercises, user = user)
+    return render_template('menuInicial.html', exercises = exercises, user = user)
     
-def convert_to_embed_url(url):
-    video_id = url.split('v=')[1]
-    embed_url = 'https://www.youtube.com/embed/' + video_id
-    return embed_url
+
 
 @app.route("/exercise")
 def exercise():
@@ -111,7 +102,7 @@ def exercise():
     """,)
 
     url = cursor.fetchone()[0]
-    embed_url = convert_to_embed_url(url)
+    embed_url = mgvideos.convert_to_embed_url(url)
     db.close()
 
     return render_template('exercise.html', url=embed_url)
