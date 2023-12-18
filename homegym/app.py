@@ -2,58 +2,19 @@ from datetime import date
 from flask import Flask, render_template
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user
+from models import init_db,clear_db,add_exercises,add_user,add_plan
 
 app = Flask(__name__)
 #app.config.from_object('config.py')
 
 
-def add_user():
-    # Connect to the SQLite database
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-
-    # Insert a new row of data into the Users table
-    c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Email, BirthDate, RegistrationDate, Role, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, ('João', 'testpassword', 'testuser@example.com', '2000-01-01', date.today(), 'User', 'Online'))
-
-    # Commit the changes and close the connection
-    conn.commit()
-    conn.close()
-
-def add_exercises():
-    # Connect to the SQLite database
-    db = sqlite3.connect('database.db')
-    cursor = db.cursor()
-
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Push-ups', 'A basic exercise for upper body strength.', 'https://www.youtube.com/watch?v=euPXf2hqU3s', 'Musculacao', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Sit-ups', 'An exercise for strengthening the abdominal muscles.', 'http://example.com/sit-ups', 'Musculacao', 'Medium');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Squats', 'A lower body exercise targeting the thighs and buttocks.', 'http://example.com/squats', 'Musculacao', 'Hard');")
-    
-    db.commit()
-    db.close()
-
-def add_plan():
-    # Connect to the SQLite database
-    db = sqlite3.connect('database.db')
-    cursor = db.cursor()
-
-    cursor.execute("INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (1, 2, 3);")
-    
-    db.commit()
-    db.close()
-
-
-
-
 with app.app_context():
     init_db()
     #clear_db()
-    #add_exercises()
-    #add_user()
-    
+    add_exercises()
+    add_user()
+    add_plan()
+   
  
 
 @app.route("/menu" , methods=['GET', 'POST'])
