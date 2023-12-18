@@ -17,7 +17,7 @@ with app.app_context():
    
  
 
-@app.route("/menu" , methods=['GET', 'POST'])
+@app.route("/" , methods=['GET', 'POST'])
 def menu():
 
     db = sqlite3.connect('database.db')
@@ -47,7 +47,7 @@ def menu():
     
     exercises = [exercise_data[i:i+4] for i in range(0,len(exercise_data),4)]
     
-    return render_template('menuInicial.html', exercises = exercises, user = user)
+    return render_template('index.html', exercises = exercises, user = user)
     
 
 
@@ -67,6 +67,7 @@ def exercise():
     db.close()
 
     return render_template('exercise.html', url=embed_url)
+
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug = True)

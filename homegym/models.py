@@ -1,4 +1,6 @@
 import sqlite3
+from datetime import date
+from flask import Flask
 
     
 def init_db():
@@ -34,9 +36,9 @@ def add_user():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
 
-    # Insert a new row of data into the Users table
+    # INSERT OR IGNORE a new row of data into the Users table
     c.execute("""
-        INSERT INTO Users (Username, Password, Email, BirthDate, RegistrationDate, Role, Status)
+        INSERT OR IGNORE INTO Users (Username, Password, Email, BirthDate, RegistrationDate, Role, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     """, ('João', 'testpassword', 'testuser@example.com', '2000-01-01', date.today(), 'User', 'Online'))
 
@@ -50,10 +52,10 @@ def add_exercises():
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
 
-    cursor.execute("INSERT INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Push-ups', 'A basic exercise for upper body strength.', 'https://www.youtube.com/watch?v=euPXf2hqU3s', 'Musculacao', 'Easy');")
-    cursor.execute("INSERT INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Sit-ups', 'An exercise for strengthening the abdominal muscles.', 'http://example.com/sit-ups', 'Musculacao', 'Medium');")
-    cursor.execute("INSERT INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Squats', 'A lower body exercise targeting the thighs and buttocks.', 'http://example.com/squats', 'Musculacao', 'Hard');")
-    cursor.execute("INSERT INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (1, 2, 3);")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Push-ups', 'A basic exercise for upper body strength.', 'https://www.youtube.com/watch?v=euPXf2hqU3s', 'Musculacao', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Sit-ups', 'An exercise for strengthening the abdominal muscles.', 'http://example.com/sit-ups', 'Musculacao', 'Medium');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Squats', 'A lower body exercise targeting the thighs and buttocks.', 'http://example.com/squats', 'Musculacao', 'Hard');")
+    cursor.execute("INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (1, 2, 3);")
     
     db.commit()
     db.close()
