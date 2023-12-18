@@ -1,0 +1,21 @@
+
+body{
+    background-color: #e3d9d9;
+    text-align: center;
+    font-size: 18px; /* Add this line */
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-size: 32px; /* Add this line */
+}
+
+
+.container1{
+    height: 300px;
+    width: 400px;
+    background-color: #6d7d79;
+    color: white;
+    border-radius: ;
+}
