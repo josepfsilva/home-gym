@@ -53,6 +53,7 @@ with app.app_context():
     #clear_db()
     add_exercises()
     add_user()
+    add_plan()
     
 
     
