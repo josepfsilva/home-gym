@@ -33,7 +33,9 @@ CREATE TABLE IF NOT EXISTS FinishTraining (
     FinishTrainingID INTEGER PRIMARY KEY AUTOINCREMENT,
     FinishTime Timestamp,
     TrainingDuration TIME,
-    Rating INTEGER
+    Rating INTEGER,
+    TrainingPlanID INTEGER NOT NULL,
+    FOREIGN KEY (TrainingPlanID) REFERENCES TrainingPlan (TrainingPlanID)
     
 );
 
@@ -80,10 +82,8 @@ CREATE TABLE IF NOT EXISTS TrainingPlan (
     Description TEXT NOT NULL,
     Type TEXT CHECK( Type IN('Cardio', 'Musculacao')) NOT NULL DEFAULT 'Musculacao',
     ExercisePlanID INTEGER NOT NULL,
-    FinishTrainingID INTEGER NOT NULL,
     UserID INTEGER NOT NULL,
     FOREIGN KEY (ExercisePlanID) REFERENCES ExercisePlan(ExercisePlanID),
-    FOREIGN KEY (FinishTrainingID) REFERENCES FinishTraining(FinishTrainingID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 

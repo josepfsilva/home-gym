@@ -2,7 +2,7 @@ from datetime import date
 from flask import Flask, render_template
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user,add_plan
+from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan
 
 app = Flask(__name__)
 #app.config.from_object('config.py')
@@ -13,7 +13,8 @@ with app.app_context():
     #clear_db()
     add_exercises()
     add_user()
-    add_plan()
+    add_exercise_plan()
+    add_training_plan()
    
  
 
