@@ -47,7 +47,6 @@ def login():
             session['UserID'] = validLogin[0]
             session.permanent = True
             app.permanent_session_lifetime = timedelta(minutes=20)   #tempo da sessão ativa
-            print(session)
             return redirect('/')
 
     return render_template('login.html')
@@ -55,7 +54,6 @@ def login():
 
 
 @app.route("/" , methods=['GET', 'POST'])
-
 def menu():
     if 'UserID' not in session:
         return redirect(url_for('login'))
@@ -75,9 +73,10 @@ def show_all_trainingPlans_from_user():
     training_plans_ID = mgtreinos.getUserTrainingPlans(userID)
 
     for id in training_plans_ID:
-        training_plan_data = mgtreinos.getTrainingPlanData(id)
-        training_plans_data[id] = training_plan_data                #{id: [name, description, type]}
-        
+        id = id[0]
+        training_plan = mgtreinos.getTrainingPlanData(id)
+        training_plans_data[id] = training_plan              #{id: [name, description, type]}
+
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
     cursor.execute("""SELECT Username
