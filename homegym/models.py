@@ -40,7 +40,7 @@ def add_user():
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Email, BirthDate, RegistrationDate, Role, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, ('João', 'testpassword', 'testuser@example.com', '2000-01-01', date.today(), 'User', 'Online'))
+    """, ('Maria', '1234', 'testuser@example.com', '1960-01-01', date.today(), 'User', 'Online'))
 
     # Commit the changes and close the connection
     conn.commit()
@@ -52,11 +52,21 @@ def add_exercises():
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
 
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Push-ups', 'A basic exercise for upper body strength.', 'https://www.youtube.com/watch?v=euPXf2hqU3s', 'Musculacao', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Sit-ups', 'An exercise for strengthening the abdominal muscles.', 'http://example.com/sit-ups', 'Musculacao', 'Medium');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Squats', 'A lower body exercise targeting the thighs and buttocks.', 'http://example.com/squats', 'Musculacao', 'Hard');")
+    #upper body
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/push-ups', 'Musculacao', 'Medio');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões em diamante', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/diamond-push-ups', 'Musculacao', 'Dificil');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Abdominais', 'Um exercício de corpo inteiro que trabalha o core.', 'http://example.com/crunches', 'Musculacao', 'Facil');")
     
+    #lower body
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Agachamentos', 'Um exercício composto que trabalha os quadríceps, isquiotibiais e glúteos.', 'http://example.com/squats', 'Musculacao', 'Medio');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Lunges', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'http://example.com/lunges', 'Musculacao', 'Facil');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Agachamentos com salto', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'http://example.com/jump-squats', 'Musculacao', 'Dificil');")
     
+    #cardio
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Polichinelos', 'Um exercício de cardio de corpo inteiro que pode ser feito em casa.', 'http://example.com/jumping-jacks', 'Cardio', 'Facil');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Burpees', 'Um exercício de cardio de corpo inteiro que combina agachamentos, saltos e flexões.', 'http://example.com/burpees', 'Cardio', 'Dificil');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Mountain Climbers', 'Um exercício de cardio que também trabalha o core.', 'http://example.com/mountain-climbers', 'Cardio', 'Medio');")
+        
     db.commit()
     db.close()
 
@@ -66,6 +76,9 @@ def add_exercise_plan():
     cursor = db.cursor()
 
     cursor.execute("INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (1, 2, 3);")
+    cursor.execute("INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (4, 5, 6);")
+    cursor.execute("INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (7, 8, 9);")
+    
     
     db.commit()
     db.close()
@@ -74,7 +87,9 @@ def add_training_plan():
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
     
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino completo', 'Treino corpo todo', 'Musculacao', 1, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Treino de ombros', 'Musculacao', 1, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte inferior', 'Treino de pernas', 'Musculacao', 2, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de cardio', 'Treino de cardio', 'Cardio', 3, 1);")
     
     db.commit()
     db.close()
