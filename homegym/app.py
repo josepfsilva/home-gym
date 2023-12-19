@@ -17,10 +17,14 @@ with app.app_context():
     add_training_plan()
    
  
-
 @app.route("/" , methods=['GET', 'POST'])
 def menu():
+    return render_template('index.html')
 
+
+
+@app.route("/planos" , methods=['GET', 'POST'])
+def planos():
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
     cursor.execute("""SELECT Username
@@ -48,11 +52,11 @@ def menu():
     
     exercises = [exercise_data[i:i+4] for i in range(0,len(exercise_data),4)]
     
-    return render_template('index.html', exercises = exercises, user = user)
+    return render_template('planos.html', exercises = exercises, user = user)
     
 
 
-@app.route("/exercise")
+@app.route("/exercise", methods=['GET', 'POST'])
 def exercise():
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
