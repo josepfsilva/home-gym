@@ -40,7 +40,7 @@ def add_user():
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Email, BirthDate, RegistrationDate, Role, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, ('João', 'testpassword', 'testuser@example.com', '2000-01-01', date.today(), 'User', 'Online'))
+    """, ('Maria', '1234', 'testuser@example.com', '1960-01-01', date.today(), 'User', 'Online'))
 
     # Commit the changes and close the connection
     conn.commit()
