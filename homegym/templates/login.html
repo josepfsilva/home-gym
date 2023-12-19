@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>DetiStore</title>
+    <!-- STYLES.CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/registerPage.css')}}">
+     <!-- ICONS -->
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+
+    </header>
+    
+    <!-- register section -->
+        <div class="register-container">
+            <div class="wrapper">
+              <div class="title"><span> Login </span></div> 
+              <form action="/login" method="POST">
+                <div class="row">
+                  <i class="fas fa-lock"></i>
+                  <input type="text" placeholder="Username" name="Username" required>
+                </div>
+                <div class="row">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" placeholder="Password" name="Password" required>
+                </div>
+                  <div class="row button">
+                  <input type="submit" value="Log in ">
+                </div>
+              </form>
+            </div>
+          </div>
+</body>
