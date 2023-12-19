@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PHP</title>
+    <title>Home Gym</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/menu.css')}}">
     <style>
         @font-face {
@@ -24,7 +24,11 @@
     
     <div class="menu">
         <div class="container"><p>Pefil</p></div>
-        <div class="container"><p>Planos de Treino</p></div>
+        <div class="container"><p>Planos de Treino</p>
+        <form action="/planos" method="POST">
+            <button type="submit">GO</button>
+        </form> 
+        </div>
         <div class="container"><p>Nova Sessão</p></div>
     </div>
 </body>
