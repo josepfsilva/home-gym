@@ -4,32 +4,43 @@
     <meta charset="UTF-8">
     <title>Home Gym</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/menu.css')}}">
-    <style>
-        @font-face {
-            font-family: 'MyFont';
-            src: url('homegym\static\fonts\GlacialIndifference-Bold.otf');
-        }
-        body {
-            font-family: 'MyFont', sans-serif;
-        }
-    </style>
 </head>
 <body>
-    <div class = "profile">
+    <div class="profile">
         <h1>Bem vindo,</h1>
-        <h2>{{nome}}</h2>
+        <h2>MARIA</h2>
         <div class="container2"></div>
+        <p id="datetime" class="datetime-container">
+            <span class="time"></span>
+            <span class="date"></span>
+        </p>
+        
     </div>
-
-    
     <div class="menu">
-        <div class="container"><p>Pefil</p></div>
-        <div class="container"><p>Planos de Treino</p>
-        <form action="/planos" method="POST">
-            <button type="submit">GO</button>
-        </form> 
+        <div class="container">
+            <div class="content">
+                <p>Perfil</p>
+            </div>
         </div>
-        <div class="container"><p>Nova Sessão</p></div>
+        <div class="container">
+            <div class="content">
+                <img src="{{url_for('static', filename='img/haltere1.png')}}" alt="" class="haltere">
+                <div class="text-overlay">
+                    <p>Planos de Treino</p>
+                    <form action="/planos" method="POST">
+                        <button type="submit">GO</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <p>Nova Sessão</p>
+            </div>
+        </div>
     </div>
+    
+    
+    <script src="{{url_for('static', filename='js/datetime.js')}}"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
 * {
+    font-family: "Sans-serif", "Poppins", "Montserrat", "Josefin Sans", sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -7,40 +9,109 @@ body {
     background-color: white;
     text-align: center;
     font-size: 18px;
-    /* Add this line */
 }
 
 h1 {
     color: black;
     text-align: center;
     font-size: 32px;
-    /* Add this line */
+}
+
+p {
+    color: black;
+    z-index: 2;
+    font-weight: bold;
 }
 
 .menu {
     display: flex;
     flex-direction: row;
-    /* Change flex-direction to row */
     justify-content: center;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
     padding: 0px 20px;
 }
 
 .container {
     height: 300px;
     width: 400px;
-    background-color: #aeaeae;
+    background-color: #D9D9D9;
     color: white;
     border-radius: 30px;
     margin: 0 20px;
+    display: flex;
+    position: relative; /* Establish positioning context */
 }
 
+.container .content {
+    margin-top: auto;
+    text-align: center;
+    width: 100%;
+    position: relative; /* Establish positioning context */
+}
+
+.haltere {
+    width: 300px;
+    height: 270px;
+    margin-left: 90px;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 90%; /* Adjust vertically */
+    left: 50%; /* Adjust horizontally */
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Place it on top of the image */
+    text-align: center;
+}
+
+
+
 .container2 {
-    height: 200px;
-    width: 200px;
-    background-color: #aeaeae;
+    height: 100px;
+    width: 100px;
+    background-color: #D9D9D9;
     color: white;
     border-radius: 30px;
-    margin: 0 20px;
+    margin: 40px 50px 80px;
 }
+
+.profile {
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.profile h1 {
+    padding: 20px;
+    color: black;
+    margin-left:-5%;
+    margin-top: -5%; 
+    order: 1; 
+}
+
+.profile h2{
+    padding:20px;
+    margin-left: -16%;
+    margin-top: 0%;
+    order:2;
+}
+
+
+
+.datetime-container {
+    margin-left: 60%;
+    margin-top: 0%;
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 30px; 
+}
+
+.bold {
+    font-weight: bold;
+    margin-left: 140px; 
+}
+
+
+
