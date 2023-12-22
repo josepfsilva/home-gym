@@ -1,8 +1,0 @@
-CREATE TABLE BadgeType (
-    BadgeID INT PRIMARY KEY AUTO_INCREMENT,
-    Nome TEXT UNIQUE NOT NULL,
-    Descricao TEXT NOT NULL,
-    Type TEXT NOT NULL, 
-    Image BLOB NOT NULL,
-    Requirements TEXT NOT NULL
-);

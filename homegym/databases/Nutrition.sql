@@ -1,6 +1,0 @@
-CREATE TABLE Nutrition (
-    NutritionID INT PRIMARY KEY AUTO_INCREMENT,
-    FoodID INT NOT NULL,
-    FOREIGN KEY (FoodID) REFERENCES Food(FoodID),
-    Description TEXT UNIQUE NOT NULL
-)

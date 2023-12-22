@@ -89,6 +89,16 @@ def show_all_trainingPlans_from_user():
     return render_template('MenuPlanos.html', training_plans_data = training_plans_data, username = username)
     
 
+@app.route("/planos/<int:trainingPlanID>", methods=['GET', 'POST'])
+def show_trainingPlan(trainingPlanID):
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    training_plan_data = mgtreinos.getTrainingPlanData(trainingPlanID)
+    print(training_plan_data)
+    
+    return render_template('menuPlanos.html', training_plan_data = training_plan_data)
+
 
 @app.route("/exercise", methods=['GET', 'POST'])
 def exercise():
