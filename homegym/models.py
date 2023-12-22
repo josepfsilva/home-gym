@@ -93,3 +93,11 @@ def add_training_plan():
     
     db.commit()
     db.close()
+
+def get_username(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT Username FROM Users WHERE UserID = ?", (userID,))
+    username = cursor.fetchone()
+    db.close()
+    return username[0]

@@ -2,7 +2,7 @@ from datetime import date, timedelta
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan
+from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username
 import secrets
 
 app = Flask(__name__)
@@ -58,7 +58,9 @@ def menu():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    return render_template('index.html')
+    username = get_username(session['UserID'])
+    
+    return render_template('index.html', username = username)
 
 
 
