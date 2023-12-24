@@ -7,9 +7,17 @@
 </head>
 <body>
     <div class="profile">
-        <h1>Bem vindo,</h1>
-        <h2>Maria</h2>
-        <div class="container2"></div>
+        <div class = "welcome">
+            <div class="container2"></div>
+            <div class="text">
+            <h1>Bem vindo,</h1>
+            <h2>Maria</h2>
+            
+            <!-- {%for user in users%}
+                    <h2>Maria</h2>
+            {%endfor%} -->
+            </div>
+        </div>
         <p id="datetime" class="datetime-container">
             <span class="time"></span>
             <span class="date"></span>
@@ -22,17 +30,20 @@
                 <p>Perfil</p>
             </div>
         </div>
+
+        <a href="/homegym/templates/exercise.html">
         <div class="container">
             <div class="content">
                 <img src="{{url_for('static', filename='img/haltere1.png')}}" alt="" class="haltere">
                 <div class="text-overlay">
                     <p>Planos de Treino</p>
                     <form action="/planos" method="POST">
-                        <button type="submit">GO</button>
                     </form>
                 </div>
             </div>
         </div>
+        </a>
+        
         <div class="container">
             <div class="content">
                 <p>Nova Sessão</p>

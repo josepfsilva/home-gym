@@ -7,14 +7,13 @@
 }
 
 body {
+    padding: 0 7em;
     background-color: white;
-    text-align: center;
     font-size: 18px;
 }
 
 h1 {
     color: black;
-    text-align: center;
     font-size: 28px;
     font-weight: 100;
 }
@@ -27,15 +26,14 @@ h2 {
 p {
     color: black;
     z-index: 2;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .menu {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-end;
-    padding: 0px 20px;
 }
 
 .container {
@@ -44,7 +42,6 @@ p {
     background-color: #D9D9D9;
     color: white;
     border-radius: 30px;
-    margin: 0 20px;
     display: flex;
     position: relative;
     /* Establish positioning context */
@@ -76,47 +73,34 @@ p {
     text-align: center;
 }
 
-
-
 .container2 {
+    aspect-ratio: 1/1;
     height: 100px;
     width: 100px;
     background-color: #D9D9D9;
     color: white;
     border-radius: 30px;
-    margin: 40px 50px 80px;
+    margin-right: 20px;
 }
 
 .profile {
+    margin: 50px 0;
+    justify-content: space-between;
     display: flex;
     align-items: center;
     color: black;
 }
 
-.profile h1 {
-    padding: 20px;
-    color: black;
-    margin-left: -5%;
-    margin-top: -5%;
-    order: 1;
+.profile .welcome {
+    display: flex;
 }
-
-.profile h2 {
-    padding: 20px;
-    margin-left: -16%;
-    margin-top: 0%;
-    order: 2;
-}
-
-
 
 .datetime-container {
-    margin-left: 60%;
-    margin-top: 0%;
     order: 3;
     flex-direction: column;
     align-items: flex-start;
     font-size: 30px;
+    font-weight: 100;
 }
 
 .bold {
