@@ -10,10 +10,13 @@ def getUserTrainingPlans(userID):
                    FROM TrainingPlan
                    WHERE UserID = ?
                    """, (userID,))
-    training_plans = cursor.fetchall()
+    training_plans_id = cursor.fetchall()
     db.close()
 
-    return training_plans
+    if training_plans_id is None:
+        return None
+    
+    return training_plans_id
 
 def getTrainingPlanData(trainingPlanID):
     db = sqlite3.connect('database.db')
@@ -22,8 +25,13 @@ def getTrainingPlanData(trainingPlanID):
                    FROM TrainingPlan
                    WHERE TrainingPlanID = ?
                    """, (trainingPlanID,))
+
     training_plan_data = cursor.fetchone()
     db.close()
+
+    if training_plan_data is None:
+        return None
+    
     return training_plan_data
 
 

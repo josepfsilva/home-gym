@@ -53,19 +53,19 @@ def add_exercises():
     cursor = db.cursor()
 
     #upper body
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/push-ups', 'Musculacao', 'Medio');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões em diamante', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/diamond-push-ups', 'Musculacao', 'Dificil');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Abdominais', 'Um exercício de corpo inteiro que trabalha o core.', 'http://example.com/crunches', 'Musculacao', 'Facil');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/push-ups', 'Musculacao', 'Medium');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões em diamante', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/diamond-push-ups', 'Musculacao', 'Hard');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Abdominais', 'Um exercício de corpo inteiro que trabalha o core.', 'http://example.com/crunches', 'Musculacao', 'Easy');")
     
     #lower body
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Agachamentos', 'Um exercício composto que trabalha os quadríceps, isquiotibiais e glúteos.', 'http://example.com/squats', 'Musculacao', 'Medio');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Lunges', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'http://example.com/lunges', 'Musculacao', 'Facil');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Agachamentos com salto', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'http://example.com/jump-squats', 'Musculacao', 'Dificil');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Agachamentos', 'Um exercício composto que trabalha os quadríceps, isquiotibiais e glúteos.', 'http://example.com/squats', 'Musculacao', 'Medium');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Lunges', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'http://example.com/lunges', 'Musculacao', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Agachamentos com salto', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'http://example.com/jump-squats', 'Musculacao', 'Hard');")
     
     #cardio
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Polichinelos', 'Um exercício de cardio de corpo inteiro que pode ser feito em casa.', 'http://example.com/jumping-jacks', 'Cardio', 'Facil');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Burpees', 'Um exercício de cardio de corpo inteiro que combina agachamentos, saltos e flexões.', 'http://example.com/burpees', 'Cardio', 'Dificil');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Mountain Climbers', 'Um exercício de cardio que também trabalha o core.', 'http://example.com/mountain-climbers', 'Cardio', 'Medio');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Polichinelos', 'Um exercício de cardio de corpo inteiro que pode ser feito em casa.', 'http://example.com/jumping-jacks', 'Cardio', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Burpees', 'Um exercício de cardio de corpo inteiro que combina agachamentos, saltos e flexões.', 'http://example.com/burpees', 'Cardio', 'Hard');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Mountain Climbers', 'Um exercício de cardio que também trabalha o core.', 'http://example.com/mountain-climbers', 'Cardio', 'Medium');")
         
     db.commit()
     db.close()

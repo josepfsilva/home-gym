@@ -1,9 +1,10 @@
 from datetime import date, timedelta
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
 from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username
 import secrets
+
 
 app = Flask(__name__)
 #app.config.from_object('config.py')
@@ -74,6 +75,9 @@ def show_all_trainingPlans_from_user():
     training_plans_data = {}
     training_plans_ID = mgtreinos.getUserTrainingPlans(userID)
 
+    if training_plans_ID is None:
+        return jsonify({'Error': 'No training plans!'}), 404
+    
     for id in training_plans_ID:
         id = id[0]
         training_plan = mgtreinos.getTrainingPlanData(id)
@@ -88,18 +92,23 @@ def show_all_trainingPlans_from_user():
     username = cursor.fetchone()[0]
     db.close()
     
-    return render_template('MenuPlanos.html', training_plans_data = training_plans_data, username = username)
+    return training_plans_data
     
 
-@app.route("/planos/<int:trainingPlanID>", methods=['GET', 'POST'])
+@app.route("/planotreino/<trainingPlanID>", methods=['GET', 'POST']) 
 def show_trainingPlan(trainingPlanID):
+   
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
+    print(trainingPlanID)
     training_plan_data = mgtreinos.getTrainingPlanData(trainingPlanID)
     print(training_plan_data)
+    if training_plan_data is None:
+        return jsonify({'Error': 'Training plan not found'}), 404
+
     
-    return render_template('menuPlanos.html', training_plan_data = training_plan_data)
+    return jsonify(training_plan_data), 200  
 
 
 @app.route("/exercise", methods=['GET', 'POST'])
@@ -117,7 +126,7 @@ def exercise():
     embed_url = mgvideos.convert_to_embed_url(url)
     db.close()
 
-    return render_template('exercise.html', url=embed_url)
+    return embed_url
 
 
 
