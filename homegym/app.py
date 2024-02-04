@@ -1,9 +1,10 @@
 from datetime import date, timedelta
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
 from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username
 import secrets
+import os
 
 
 app = Flask(__name__)
@@ -19,6 +20,9 @@ with app.app_context():
     add_exercise_plan()
     add_training_plan()
    
+@app.route('/templates/<path:filename>')
+def serve_html(filename):
+    return send_from_directory(os.path.join(app.root_path, 'templates'), filename)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -53,7 +57,7 @@ def login():
     return render_template('login.html')
 
 
-
+#paginas base
 @app.route("/" , methods=['GET', 'POST'])
 def menu():
     if 'UserID' not in session:
@@ -63,7 +67,31 @@ def menu():
     
     return render_template('index.html', username = username)
 
+@app.route("/meusplanos" , methods=['GET', 'POST'])
+def pagina_planos():
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    return render_template('MenuPlanos.html')
 
+@app.route("/meuperfil" , methods=['GET', 'POST'])
+def pagina_perfil():
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    return render_template('Perfil.html')
+
+@app.route("/novasessao" , methods=['GET', 'POST'])
+def pagina_novasessao():
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    return render_template('NovaSessao.html')
+
+#fim paginas base
+
+
+#funções para a API	
 
 @app.route("/planos" , methods=['GET', 'POST'])
 def show_all_trainingPlans_from_user():
@@ -92,7 +120,7 @@ def show_all_trainingPlans_from_user():
     username = cursor.fetchone()[0]
     db.close()
     
-    return training_plans_data
+    return jsonify(training_plans_data),200
     
 
 @app.route("/planotreino/<trainingPlanID>", methods=['GET', 'POST']) 
