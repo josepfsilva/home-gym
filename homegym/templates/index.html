@@ -11,6 +11,7 @@
     <script src="static/js/globals.js"></script>
     <script src="static/js/jquery-3.6.4.min.js"></script>
     <script src="static/js/webtoolkit.utf8.js"></script>
+    <script src='static/js/datetime.js'></script>
 
     <script type="module">
 
@@ -52,15 +53,15 @@
                 else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_newsession') {
                     window.location.href = '/novasessao';
                 }
-                
             }
             catch (e) { console.log(e); }
             }
         }
-         else {
-            loadContent('templates/MenuInicial.html');
+        else {
+                loadContent('templates/MenuInicial.html');
+            }
         }
-}
+         
         function loadContent(htmlFilePath) {
             
             var xhr = new XMLHttpRequest();
@@ -83,6 +84,24 @@
 
     </script>
 
+<div class="profile">
+    <div class = "welcome">
+        <div class="container2"></div>
+        <div class="text">
+        <h1>Bem vindo,</h1>
+        <h2>{{username}}</h2>
+        
+        <!-- {%for user in users%}
+                <h2>Maria</h2>
+        {%endfor%} -->
+        </div>
+    </div>
+    <p id="datetime" class="datetime-container">
+        <span class="time"></span>
+        <span class="date"></span>
+    </p>
+    
+</div>
 <div  id="content">
     <!-- Content will be loaded here -->
 </div>

@@ -79,7 +79,9 @@ def pagina_perfil():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    return render_template('Perfil.html')
+    username = get_username(session['UserID'])
+    
+    return render_template('Perfil.html', username = username)
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():
