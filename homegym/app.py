@@ -91,6 +91,9 @@ def pagina_novasessao():
 #fim paginas base
 
 
+
+
+
 #funções para a API	
 
 @app.route("/planos" , methods=['GET', 'POST'])
@@ -111,6 +114,7 @@ def show_all_trainingPlans_from_user():
         training_plan = mgtreinos.getTrainingPlanData(id)
         training_plans_data[id] = training_plan              #{id: [name, description, type]}
 
+    #inutil
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
     cursor.execute("""SELECT Username
@@ -119,6 +123,7 @@ def show_all_trainingPlans_from_user():
                    """,(userID,))
     username = cursor.fetchone()[0]
     db.close()
+    ##
     
     return jsonify(training_plans_data),200
     

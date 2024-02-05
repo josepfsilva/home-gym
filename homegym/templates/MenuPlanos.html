@@ -44,10 +44,14 @@
                 console.log(content);
                 let message = JSON.parse(content);
                 if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
-                    window.location.href = 'http://127.0.0.1:5000/meusplanos';
+                    window.location.href = '/meusplanos';
                 }
-                else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
-                    window.location.href = 'http://127.0.0.1:5000/meuperfil';
+                else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
+                    window.location.href = '/';
+                }
+                else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'choose_training_plan') {
+                    //switch case?? pop up window para cada plano??
+
                 }
             }
             catch (e) { console.log(e); }

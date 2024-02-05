@@ -44,13 +44,13 @@
                 console.log(content);
                 let message = JSON.parse(content);
                 if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
-                    window.location.href = 'http://127.0.0.1:5000/meusplanos';
+                    window.location.href = '/meusplanos';
                 }
                 else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
-                    window.location.href = 'http://127.0.0.1:5000/meuperfil';
+                    window.location.href = '/meuperfil';
                 }
                 else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_newsession') {
-                    window.location.href = 'http://127.0.0.1:5000/novasessao';
+                    window.location.href = '/novasessao';
                 }
                 
             }
@@ -83,7 +83,7 @@
 
     </script>
 
-<div id="content">
+<div  id="content">
     <!-- Content will be loaded here -->
 </div>
 

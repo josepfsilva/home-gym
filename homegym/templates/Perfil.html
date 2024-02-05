@@ -43,7 +43,12 @@
                         // Try to parse XML
                         console.log(content);
                         let message = JSON.parse(content);
-                        //ir para a pagina inicial
+                        if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
+                            window.location.href = '/meuperfil';
+                        }
+                        else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
+                            window.location.href = '/';
+                        }
                         
                         
                     }
