@@ -1,0 +1,164 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - Oi Jim
+    - Bom dia, Jim
+    - Boa tarde, Jim
+    - Boa noite, Jim
+    - Olá Jim
+    - Olá Jim
+
+    
+- intent: goodbye
+  examples: |
+    - Xau, Jim
+    - Adeus, Jim
+    - Até logo, Jim
+    - Boa noite, Jim
+    - Até amanhã, Jim
+
+- intent: affirm
+  examples: |
+    - Sim
+    - Claro
+    - Parece-me bem
+    - Correto
+    - Okay
+    - Ok
+    - sim
+
+- intent: deny
+  examples: |
+    - Não
+    - Nope
+    - Nunca
+    - Acho que não
+    - Não gosto assim
+    - Nem por isso
+
+- intent: go_to_training_plans  
+  examples: |
+    - Vai para os planos de treino, por favor
+    - Podes ir para os planos de treino
+    - Mostra-me os planos de treino
+    - Abre os planos de treino
+
+- intent: go_to_profile  
+  examples: |
+    - Vai para o perfil, por favor
+    - Podes ir para o perfil?
+    - Mostra-me o perfil
+    - Abre o perfil
+    - Ir para o perfil
+
+- intent: go_to_newsession
+  examples: |
+    - Vai para nova sessão, por favor
+    - Podes ir para nova sessão?
+    - Mostra-me a página nova sessão
+    - Abre uma nova sessão
+    - Começa nova sessão
+
+- intent: go_to_mainpage  
+  examples: |
+    - Vai para o menu inicial, por favor
+    - Vai para o menu inicial
+    - Podes ir para o menu?
+    - Mostra-me o menu inicial
+    - Abre o menu inicial
+    - Ir para o menu inicial
+    - Volta para o menu
+    - Volta para o menu inicial
+    - Menu inicial
+    - Menu
+    
+    
+- intent: choose_training_plan  
+  examples: |
+    - Vai para o [plano 1](nome_plano), por favor
+    - Podes ir para o [plano 1](nome_plano)?
+    - Mostra-me o [plano 1](nome_plano)
+    - Abre o [plano 1](nome_plano)
+    - Ir para o [plano 1](nome_plano)
+    - Selecionar [plano 1](nome_plano)
+    - [plano 1](nome_plano)
+    - Vai para o [plano 2](nome_plano), por favor
+    - Podes ir para o [plano 2](nome_plano)?
+    - Mostra-me o [plano 2](nome_plano)
+    - Abre o [plano 2](nome_plano)
+    - Ir para o [plano 2](nome_plano)
+    - Selecionar [plano 2](nome_plano)
+    - [plano 2](nome_plano)
+    - Vai para o [plano 3](nome_plano), por favor
+    - Podes ir para o [plano 3](nome_plano)?
+    - Mostra-me o [plano 3](nome_plano)
+    - Abre o [plano 3](nome_plano)
+    - Ir para o [plano 3](nome_plano)
+    - Selecionar [plano 3](nome_plano)
+    - [plano 3](nome_plano)
+    - Vai para o [plano 4](nome_plano), por favor
+    - Podes ir para o [plano 4](nome_plano)?
+    - Mostra-me o [plano 4](nome_plano)
+    - Abre o [plano 4](nome_plano)
+    - Ir para o [plano 4](nome_plano)
+    - Selecionar [plano 4](nome_plano)
+    - [plano 4](nome_plano)
+    - Vai para o [plano 5](nome_plano), por favor
+    - Podes ir para o [plano 5](nome_plano)?
+    - Mostra-me o [plano 5](nome_plano)
+    - Abre o [plano 5](nome_plano)
+    - Ir para o [plano 5](nome_plano)
+    - Selecionar [plano 5](nome_plano)
+    - [plano 5](nome_plano)
+    - Vai para o [plano 6](nome_plano), por favor
+    - Podes ir para o [plano 6](nome_plano)?
+    - Mostra-me o [plano 6](nome_plano)
+    - Abre o [plano 6](nome_plano)
+    - Ir para o [plano 6](nome_plano)
+    - Selecionar [plano 6](nome_plano)
+    - [plano 6](nome_plano)
+
+
+
+- intent: start_plan
+  examples: |
+    - Inicia o treino 
+    - Inicia
+    - Inicia o plano de treino
+    - Inicia o vídeo
+    - Começa o plano
+    - Começa o treino
+    - Começa o vídeo
+    - Começa
+    - Continua o plano
+    - Continua o treino
+    - Continua o plano de treino
+    - Continua
+    - Continua o vídeo
+    - Iniciar treino
+    - Iniciar plano 
+    - Iniciar plano de treino
+    - Iniciar vídeo
+    
+     
+- intent: stop_plan
+  examples: |
+    - Para o treino 
+    - Para
+    - Para o plano
+    - Para o plano de treino
+    - Para o vídeo
+    - Pausa o treino
+    - Pausa o vídeo
+    - Pausa o plano
+    - Pausa
+    
+- intent: finish_plan
+  examples: |
+    - Termina o treino 
+    - Acabar treino
+    - Terminar
+    - Fechar 
+    
+     

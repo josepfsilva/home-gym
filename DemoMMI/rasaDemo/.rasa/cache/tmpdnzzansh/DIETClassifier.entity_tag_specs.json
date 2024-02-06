@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-color",
+      "2": "I-color",
+      "3": "L-color",
+      "4": "U-color",
+      "5": "B-menu",
+      "6": "I-menu",
+      "7": "L-menu",
+      "8": "U-menu",
+      "9": "B-place",
+      "10": "I-place",
+      "11": "L-place",
+      "12": "U-place",
+      "13": "B-shape",
+      "14": "I-shape",
+      "15": "L-shape",
+      "16": "U-shape",
+      "17": "B-switch",
+      "18": "I-switch",
+      "19": "L-switch",
+      "20": "U-switch",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-color": 1,
+      "I-color": 2,
+      "L-color": 3,
+      "U-color": 4,
+      "B-menu": 5,
+      "I-menu": 6,
+      "L-menu": 7,
+      "U-menu": 8,
+      "B-place": 9,
+      "I-place": 10,
+      "L-place": 11,
+      "U-place": 12,
+      "B-shape": 13,
+      "I-shape": 14,
+      "L-shape": 15,
+      "U-shape": 16,
+      "B-switch": 17,
+      "I-switch": 18,
+      "L-switch": 19,
+      "U-switch": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]

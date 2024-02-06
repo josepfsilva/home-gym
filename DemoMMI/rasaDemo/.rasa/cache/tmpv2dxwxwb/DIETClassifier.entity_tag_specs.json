@@ -1,0 +1,36 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-menu",
+      "2": "I-menu",
+      "3": "L-menu",
+      "4": "U-menu",
+      "5": "B-nome_plano",
+      "6": "I-nome_plano",
+      "7": "L-nome_plano",
+      "8": "U-nome_plano",
+      "9": "B-status_plano",
+      "10": "I-status_plano",
+      "11": "L-status_plano",
+      "12": "U-status_plano",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-menu": 1,
+      "I-menu": 2,
+      "L-menu": 3,
+      "U-menu": 4,
+      "B-nome_plano": 5,
+      "I-nome_plano": 6,
+      "L-nome_plano": 7,
+      "U-nome_plano": 8,
+      "B-status_plano": 9,
+      "I-status_plano": 10,
+      "L-status_plano": 11,
+      "U-status_plano": 12,
+      "O": 0
+    },
+    "num_tags": 13
+  }
+]
