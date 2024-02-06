@@ -72,7 +72,9 @@ def pagina_planos():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    return render_template('MenuPlanos.html')
+    username = get_username(session['UserID'])
+    
+    return render_template('MenuPlanos.html', username = username)
 
 @app.route("/meuperfil" , methods=['GET', 'POST'])
 def pagina_perfil():
@@ -114,7 +116,7 @@ def show_all_trainingPlans_from_user():
     for id in training_plans_ID:
         id = id[0]
         training_plan = mgtreinos.getTrainingPlanData(id)
-        training_plans_data[id] = training_plan              #{id: [name, description, type]}
+        training_plans_data[id] = training_plan             #{id: [name, description, type]}
 
     #inutil
     db = sqlite3.connect('database.db')
