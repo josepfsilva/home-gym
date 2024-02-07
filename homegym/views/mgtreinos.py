@@ -53,3 +53,4 @@ def get_exercise_data(exercisePlanID):
     db.close()
         
     exercises = [exercise_data[i:i+4] for i in range(0,len(exercise_data),4)]
+    return exercises

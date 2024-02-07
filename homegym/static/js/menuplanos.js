@@ -77,12 +77,18 @@ function loadPlanInfo(planNumber) {
                     //document.getElementById('content').innerText = data.message;
                     var container = $('#content');
                     container.empty();
-                    var planDetails = data
+                    var planDetails = data[0]
+                    var exercises = data[1]
                     var html = '<div>';
                     html += '<h3>Name: ' + planDetails[0] + '</h3>';
                     html += '<p>Description: ' + planDetails[1] + '</p>';
                     html += '<p>Type: ' + planDetails[2] + '</p>';
-                    html += '</div>';
+                    html += '</div> <h3>Exercises</h3>';
+                    html += '<div class="menu"> ';  
+                    for (var exerciseId in exercises) {
+                        var exerciseDetails = exercises[exerciseId];
+                        html += '<div class="container"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[2] +'</p> <p>'+ exerciseDetails[3] +'</p></div> </div>'
+                    }
                     
                     container.append(html);
                 })

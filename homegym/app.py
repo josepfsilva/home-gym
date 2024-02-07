@@ -124,10 +124,10 @@ def show_all_trainingPlans_from_user():
         training_plans_data[id] = training_plan             #{id: [name, description, type]}
         count += 1
     
-    
     combined = [training_plans_data, order]
     print(combined)
     return jsonify(combined),200
+
     
 @app.route("/planosOrder" , methods=['GET', 'POST'])
 def planosOrder():
@@ -152,20 +152,30 @@ def planosOrder():
     
     return jsonify(order),200
 
+
+
 @app.route("/planotreino/<trainingPlanID>", methods=['GET', 'POST']) 
 def show_trainingPlan(trainingPlanID):
    
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    print(trainingPlanID)
     training_plan_data = mgtreinos.getTrainingPlanData(trainingPlanID)
-    print(training_plan_data)
     if training_plan_data is None:
         return jsonify({'Error': 'Training plan not found'}), 404
-
     
-    return jsonify(training_plan_data), 200  
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT ExercisePlanID FROM TrainingPlan WHERE TrainingPlanID = ?", (trainingPlanID,))
+    exercisePlanId = cursor.fetchone()
+    print(exercisePlanId)
+    cursor.close()
+    db.close()
+
+    exercise_data = mgtreinos.get_exercise_data(exercisePlanId[0])
+    print(exercise_data)
+    
+    return jsonify([training_plan_data, exercise_data]), 200  
 
 
 @app.route("/exercise", methods=['GET', 'POST'])
