@@ -27,56 +27,72 @@
       
 
         function socketOpenHandler(event) {
-          console.log("---------------openSocketHandler---------------")
-      
-          if(mmiCli_Out.socket.readyState !== WebSocket.OPEN)
-          {
-              return;
-          }
+            console.log("---------------openSocketHandler---------------")
+        
+            if(mmiCli_Out.socket.readyState !== WebSocket.OPEN)
+            {
+                return;
+            }
         }
+
+
         function im1MessageHandler(data) {
+            console.log("--------------im1MessageHandler---------------");
 
-    console.log("--------------im1MessageHandler---------------");
-
-        if(data != null && data!="RENEW" && data!="OK") {
-            console.log(data);
-            var content = $(data).find("emma\\:interpretation").first().text().trim();
-            if (typeof content == 'string') {
-            try {
-                // Try to parse XML
-                console.log(content);
-                let message = JSON.parse(content);
-                if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
-                    window.location.href = '/meusplanos';
-                }
-                else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
-                    window.location.href = '/';
-                }
-                else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'choose_training_plan') {
-                    switch(message.nlu.nome_plano.toLowerCase()) {
-                        case 'plano 1':
-                            console.log('Plano 1');
-                            loadPlanInfo("1");    //tratar dos ids dos planos reais
-                            break;
-
-                        case 'plano 2':
-                            console.log('Plano 2');
-                            loadPlanInfo("2");
-                            break;
+            if(data != null && data!="RENEW" && data!="OK") {
+                console.log(data);
+                var content = $(data).find("emma\\:interpretation").first().text().trim();
+                if (typeof content == 'string') {
+                try {
+                    // Try to parse XML
+                    console.log(content);
+                    let message = JSON.parse(content);
+                    if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
+                        window.location.href = '/meusplanos';
                     }
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
+                        window.location.href = '/';
+                    }
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'choose_training_plan') {
+                        switch(message.nlu.nome_plano.toLowerCase()) {
+                            case 'plano 1':                 //can be more generic
+                                console.log('Plano 1');
+                                loadPlanInfo(1);
+                                break;
+                            case 'plano 2':
+                                console.log('Plano 2');
+                                loadPlanInfo(2);
+                                break;
+                            case 'plano 3':
+                                console.log('Plano 3');
+                                loadPlanInfo(3);
+                                break;
+                            case 'plano 4':
+                                console.log('Plano 4');
+                                loadPlanInfo(4);
+                                break;
+                            case 'plano 5':
+                                console.log('Plano 5');
+                                loadPlanInfo(5);
+                                break;
+                            case 'plano 6':
+                                console.log('Plano 6');
+                                loadPlanInfo(6);
+                                break;
+                        }
 
+                    }
+                }
+                catch (e) { console.log(e); }
                 }
             }
-            catch (e) { console.log(e); }
-            }
-        }
-        else {
-                loadPlans();
-            }
+            else {
+                    loadPlans();
+                }
         }
         
-            function loadContent(htmlFilePath) {
-            
+        function loadContent(htmlFilePath) {
+        
             var xhr = new XMLHttpRequest();
             xhr.open('GET', htmlFilePath, true);
 

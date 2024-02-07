@@ -6,14 +6,20 @@ function loadPlans() {
                     }
                     return response.json();
                 })
-                .then(data => {
+                .then(data => { 
+                    console.log(data);
                     // Process the data and update the HTML content
                     var container = $('#content');
                     container.empty();
+
+                    plans = data[0];
+                    order = data[1];
                     var html='<div class="menu"> '
-                    for (var planId in data) {
-                        var planDetails = data[planId];
-                        html += '<div class="container"> <div class="content"> <h3>'+ planDetails[1]+'</h3> <p>'+ planDetails[2]+'</p> <p> Plano 1 </p></div> </div>'
+                    for (var planId in plans) {
+                        var planDetails = plans[planId];
+                        var planOrder = order[planId];
+
+                        html += '<div class="container"> <div class="content"> <h3>'+ planDetails[0]+'</h3> <p> Plano '+ planOrder +' </p></div> </div>'
                         
                     }
                     html += '</div>'
@@ -24,8 +30,41 @@ function loadPlans() {
                 });
             }
 
-  function loadPlanInfo(planNumber) {
-    fetch('http://127.0.0.1:5000/planotreino/'+planNumber) 
+function PlanIdOrder(planNumber){ // returns planid using order
+    fetch('http://127.0.0.1:5000//planosOrder')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(type(data));
+            console.log(data[planNumber].toString());
+            // Process the data and update the HTML content
+            return data[planNumber];
+            
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+
+function loadPlanInfo(planNumber) {
+    fetch('http://127.0.0.1:5000//planosOrder')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Process the data and update the HTML content
+            let planId = data[planNumber];
+            console.log(planId);
+
+            fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -50,7 +89,13 @@ function loadPlans() {
                 .catch(error => {
                     console.error('Fetch error:', error);
                 });
-  }
+            
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+
+}
 
 
 

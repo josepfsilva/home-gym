@@ -108,29 +108,49 @@ def show_all_trainingPlans_from_user():
     
     userID = session['UserID']
     training_plans_data = {}
+    order = {}
     training_plans_ID = mgtreinos.getUserTrainingPlans(userID)
 
     if training_plans_ID is None:
         return jsonify({'Error': 'No training plans!'}), 404
     
+    count = 1
     for id in training_plans_ID:
+        if count > 6: #max 6 planos
+            break
         id = id[0]
+        order[id] = count                                   #{id: order}
         training_plan = mgtreinos.getTrainingPlanData(id)
         training_plans_data[id] = training_plan             #{id: [name, description, type]}
+        count += 1
+    
+    
+    combined = [training_plans_data, order]
+    print(combined)
+    return jsonify(combined),200
+    
+@app.route("/planosOrder" , methods=['GET', 'POST'])
+def planosOrder():
 
-    #inutil
-    db = sqlite3.connect('database.db')
-    cursor = db.cursor()
-    cursor.execute("""SELECT Username
-                   FROM Users
-                   where UserID = ?
-                   """,(userID,))
-    username = cursor.fetchone()[0]
-    db.close()
-    ##
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
     
-    return jsonify(training_plans_data),200
+    userID = session['UserID']
+    order = {}
+    training_plans_ID = mgtreinos.getUserTrainingPlans(userID)
+
+    if training_plans_ID is None:
+        return jsonify({'Error': 'No training plans!'}), 404
     
+    count = 1
+    for id in training_plans_ID:
+        if count > 6: #max 6 planos
+            break
+        id = id[0]
+        order[count] = id                                   #{id: order}
+        count += 1
+    
+    return jsonify(order),200
 
 @app.route("/planotreino/<trainingPlanID>", methods=['GET', 'POST']) 
 def show_trainingPlan(trainingPlanID):

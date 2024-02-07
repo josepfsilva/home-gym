@@ -89,7 +89,10 @@ def add_training_plan():
     
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Treino de ombros', 'Musculacao', 1, 1);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte inferior', 'Treino de pernas', 'Musculacao', 2, 1);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de cardio', 'Treino de cardio', 'Cardio', 3, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de cardio', 'Treino de cardio', 'Cardio', 3, 2);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino a2', 'Treino de ombros', 'Musculacao', 1, 2);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino 26', 'Treino de pernas', 'Musculacao', 2, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino d8', 'Treino de cardio', 'Cardio', 3, 1);")
     
     db.commit()
     db.close()
