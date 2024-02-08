@@ -102,7 +102,7 @@ function loadPlanInfo(planNumber) {
 }
 
 function checkIfPlanExists(PlanN){
-    fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -110,18 +110,34 @@ function checkIfPlanExists(PlanN){
             return response.json();
         })
         .then(data => {
-
-            
-            
-            
-            
+            return data[PlanN] != undefined;
         })
         .catch(error => {
             console.error('Fetch error:', error);
+            return false;
         });
 }
 
+function loadContent(htmlFilePath) { //not used
+        
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', htmlFilePath, true);
 
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            document.getElementById('content').innerHTML = xhr.responseText;
+        } else {
+            console.error('Failed to load content');
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error('Network error occurred');
+    };
+
+    xhr.send();
+
+}       
 
 
 function sendToVoice(texto){

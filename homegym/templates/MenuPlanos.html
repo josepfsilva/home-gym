@@ -37,7 +37,6 @@
             }
         }
 
-
         function im1MessageHandler(data) {
             console.log("--------------im1MessageHandler---------------");
 
@@ -48,7 +47,7 @@
                 try {
                     // Try to parse XML
                     let message = JSON.parse(content);
-                    console.log(selectedPlan);
+                    console.log(    selectedPlan);
                     if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
                         window.location.href = '/meusplanos';
                         
@@ -57,49 +56,9 @@
                         window.location.href = '/';
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'choose_training_plan') {
-                        switch(message.nlu.nome_plano.toLowerCase()) {
-                            case 'plano 1':                 //can be more generic (lol)
-                                console.log('Plano 1');
-                                loadPlanInfo(1);
-                                if(PlanIdOrder(1)){
-                                    selectedPlan = 1;
-                                }
-                                break;
-                            case 'plano 2':
-                                console.log('Plano 2');
-                                loadPlanInfo(2);
-                                if(PlanIdOrder(2)){
-                                    selectedPlan = 2;
-                                }
-                                break;
-                            case 'plano 3':
-                                console.log('Plano 3');
-                                loadPlanInfo(3);
-                                if(PlanIdOrder(3)){
-                                    selectedPlan = 3;
-                                }
-                                break;
-                            case 'plano 4':
-                                console.log('Plano 4');
-                                loadPlanInfo(4);
-                                if(PlanIdOrder(4)){
-                                    selectedPlan = 4;
-                                }
-                                break;
-                            case 'plano 5':
-                                console.log('Plano 5');
-                                loadPlanInfo(5);
-                                if(checkIfPlanExists(5)){
-                                    selectedPlan = 5;
-                                }
-                                break;
-                            case 'plano 6':
-                                console.log('Plano 6');
-                                loadPlanInfo(6);
-                                if(checkIfPlanExists(6)){
-                                    selectedPlan = 6;
-                                }
-                                break;
+                        const planNumber = parseInt(message.nlu.nome_plano.toLowerCase().split(' ')[1]);
+                        if (!isNaN(planNumber)) {
+                            handlePlanSelection(planNumber);
                         }
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && selectedPlan != 0) {
@@ -107,7 +66,6 @@
                         
                     }
                     
-                    console.log('plano selecionado:' + selectedPlan);
                 }
                 catch (e) { console.log(e); }
                 }
@@ -115,28 +73,22 @@
             else {
                     loadPlans();
                 }
-        }
+        } 
         
-        function loadContent(htmlFilePath) {
-        
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', htmlFilePath, true);
-
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    document.getElementById('content').innerHTML = xhr.responseText;
-                } else {
-                    console.error('Failed to load content');
+        function handlePlanSelection(planNumber) {
+            console.log(`Plano ${planNumber}`);
+            checkIfPlanExists(planNumber).then(exists => {
+                if (exists) {
+                    loadPlanInfo(planNumber);
+                    selectedPlan = planNumber;
+                    console.log('plano selecionado:' + selectedPlan);
                 }
-            };
-
-            xhr.onerror = function () {
-                console.error('Network error occurred');
-            };
-
-            xhr.send();
+            });
         }
+
     </script>
+
+
     
     <div class="profile">
         <div class = "welcome">
