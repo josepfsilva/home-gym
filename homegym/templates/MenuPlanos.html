@@ -18,6 +18,8 @@
 
     <script type="module">
 
+        let selectedPlan = 0;
+
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
         mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
@@ -45,43 +47,67 @@
                 if (typeof content == 'string') {
                 try {
                     // Try to parse XML
-                    console.log(content);
                     let message = JSON.parse(content);
+                    console.log(selectedPlan);
                     if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
                         window.location.href = '/meusplanos';
+                        
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
                         window.location.href = '/';
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'choose_training_plan') {
                         switch(message.nlu.nome_plano.toLowerCase()) {
-                            case 'plano 1':                 //can be more generic
+                            case 'plano 1':                 //can be more generic (lol)
                                 console.log('Plano 1');
                                 loadPlanInfo(1);
+                                if(PlanIdOrder(1)){
+                                    selectedPlan = 1;
+                                }
                                 break;
                             case 'plano 2':
                                 console.log('Plano 2');
                                 loadPlanInfo(2);
+                                if(PlanIdOrder(2)){
+                                    selectedPlan = 2;
+                                }
                                 break;
                             case 'plano 3':
                                 console.log('Plano 3');
                                 loadPlanInfo(3);
+                                if(PlanIdOrder(3)){
+                                    selectedPlan = 3;
+                                }
                                 break;
                             case 'plano 4':
                                 console.log('Plano 4');
                                 loadPlanInfo(4);
+                                if(PlanIdOrder(4)){
+                                    selectedPlan = 4;
+                                }
                                 break;
                             case 'plano 5':
                                 console.log('Plano 5');
                                 loadPlanInfo(5);
+                                if(checkIfPlanExists(5)){
+                                    selectedPlan = 5;
+                                }
                                 break;
                             case 'plano 6':
                                 console.log('Plano 6');
                                 loadPlanInfo(6);
+                                if(checkIfPlanExists(6)){
+                                    selectedPlan = 6;
+                                }
                                 break;
                         }
-
                     }
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && selectedPlan != 0) {
+                        window.location.href = '/meusplanos/plano'+selectedPlan;
+                        
+                    }
+                    
+                    console.log('plano selecionado:' + selectedPlan);
                 }
                 catch (e) { console.log(e); }
                 }
@@ -130,7 +156,10 @@
         </p>
         
     </div>
-    <div id="content"> 
+    <div id="content" class="animated-content"></div> 
+
+    
+    
         
 
     </div>

@@ -30,8 +30,7 @@ def login():
     if 'UserID' in session:
         session.pop('UserID')
         return redirect('/login')
-
-
+    
     if(request.method == 'POST'):
 
         username = request.form.get('Username')
@@ -92,16 +91,32 @@ def pagina_novasessao():
     
     return render_template('NovaSessao.html')
 
+@app.route("/meusplanos/plano<selectedPlan>" , methods=['GET', 'POST'])
+def pagina_mostrarplano(selectedPlan):
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    json_data = planosOrder()
+    response, status_code = json_data
+    if status_code == 200:
+        json_data = response.json
+        print(json_data)
+    else:
+        print(f"Error: Status Code {status_code}")
+    
+    id_real = json_data[selectedPlan]
+
+    username = get_username(session['UserID'])
+    
+    return render_template('PlanoTreino.html', id_real = id_real, username = username)
+
 #fim paginas base
 
 
 
-
-
 #funções para a API	
-
 @app.route("/planos" , methods=['GET', 'POST'])
-def show_all_trainingPlans_from_user():
+def show_all_trainingPlans_from_user():                       #devolve todos os planos de treino do user
     #verificar se o user está na sessão
     if 'UserID' not in session:
         return redirect(url_for('login'))
@@ -116,7 +131,7 @@ def show_all_trainingPlans_from_user():
     
     count = 1
     for id in training_plans_ID:
-        if count > 6: #max 6 planos
+        if count > 6: #max 6 planos p/user
             break
         id = id[0]
         order[id] = count                                   #{id: order}
@@ -129,6 +144,8 @@ def show_all_trainingPlans_from_user():
     return jsonify(combined),200
 
     
+
+
 @app.route("/planosOrder" , methods=['GET', 'POST'])
 def planosOrder():
 
@@ -149,12 +166,12 @@ def planosOrder():
         id = id[0]
         order[count] = id                                   #{id: order}
         count += 1
-    
     return jsonify(order),200
 
 
 
-@app.route("/planotreino/<trainingPlanID>", methods=['GET', 'POST']) 
+
+@app.route("/planotreino/<trainingPlanID>", methods=['GET', 'POST'])     #devolve info do plano de treino consoante o id
 def show_trainingPlan(trainingPlanID):
    
     if 'UserID' not in session:
@@ -168,14 +185,14 @@ def show_trainingPlan(trainingPlanID):
     cursor = db.cursor()
     cursor.execute("SELECT ExercisePlanID FROM TrainingPlan WHERE TrainingPlanID = ?", (trainingPlanID,))
     exercisePlanId = cursor.fetchone()
-    print(exercisePlanId)
     cursor.close()
     db.close()
 
     exercise_data = mgtreinos.get_exercise_data(exercisePlanId[0])
-    print(exercise_data)
     
     return jsonify([training_plan_data, exercise_data]), 200  
+
+
 
 
 @app.route("/exercise", methods=['GET', 'POST'])

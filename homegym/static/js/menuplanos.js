@@ -24,6 +24,7 @@ function loadPlans() {
                     }
                     html += '</div>'
                     container.append(html);
+                    container.removeClass('loaded').addClass('loaded');
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -31,7 +32,7 @@ function loadPlans() {
             }
 
 function PlanIdOrder(planNumber){ // returns planid using order
-    fetch('http://127.0.0.1:5000//planosOrder')
+    fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -39,20 +40,18 @@ function PlanIdOrder(planNumber){ // returns planid using order
             return response.json();
         })
         .then(data => {
-            console.log(type(data));
-            console.log(data[planNumber].toString());
-            // Process the data and update the HTML content
+
             return data[planNumber];
             
         })
         .catch(error => {
             console.error('Fetch error:', error);
         });
-}
+}   
 
 
 function loadPlanInfo(planNumber) {
-    fetch('http://127.0.0.1:5000//planosOrder')
+    fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -62,7 +61,6 @@ function loadPlanInfo(planNumber) {
         .then(data => {
             // Process the data and update the HTML content
             let planId = data[planNumber];
-            console.log(planId);
 
             fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
                 .then(response => {
@@ -87,7 +85,7 @@ function loadPlanInfo(planNumber) {
                     html += '<div class="menu"> ';  
                     for (var exerciseId in exercises) {
                         var exerciseDetails = exercises[exerciseId];
-                        html += '<div class="container"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[2] +'</p> <p>'+ exerciseDetails[3] +'</p></div> </div>'
+                        html += '<div class="container"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[2] +'</p> <p>'+ exerciseDetails[3] +'</p> </div> </div>'
                     }
                     
                     container.append(html);
@@ -102,6 +100,27 @@ function loadPlanInfo(planNumber) {
         });
 
 }
+
+function checkIfPlanExists(PlanN){
+    fetch('http://127.0.0.1:5000/planosOrder')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+
+            
+            
+            
+            
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
 
 
 
