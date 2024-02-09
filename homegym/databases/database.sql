@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS ExercisePlan (
 
 CREATE TABLE IF NOT EXISTS Exercises (
     ExerciseID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name TEXT UNIQUE NOT NULL,
+    Name TEXT NOT NULL,
     Description TEXT NOT NULL,
     URL TEXT NOT NULL,
-    Type TEXT CHECK( Type IN ('Cardio', 'Musculacao')) NOT NULL DEFAULT 'Musculacao',
+    Type TEXT CHECK( Type IN ('Cardio', 'Musculacao','Meditacao','Alongamento')) NOT NULL DEFAULT 'Musculacao',
     Difficulty TEXT CHECK( Difficulty IN ('Easy', 'Medium', 'Hard')) NOT NULL DEFAULT 'Easy'
 );
 
@@ -78,9 +78,9 @@ CREATE TABLE IF NOT EXISTS Nutrition (
 
 CREATE TABLE IF NOT EXISTS TrainingPlan (
     TrainingPlanID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name TEXT UNIQUE NOT NULL,
+    Name TEXT NOT NULL,
     Description TEXT NOT NULL,
-    Type TEXT CHECK( Type IN('Cardio', 'Musculacao')) NOT NULL DEFAULT 'Musculacao',
+    Type TEXT CHECK( Type IN('Cardio', 'Musculacao', 'Meditacao', 'Alongamentos')) NOT NULL DEFAULT 'Musculacao',
     ExercisePlanID INTEGER NOT NULL,
     UserID INTEGER NOT NULL,
     FOREIGN KEY (ExercisePlanID) REFERENCES ExercisePlan(ExercisePlanID),
