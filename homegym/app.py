@@ -14,7 +14,7 @@ app.secret_key = secrets.token_hex(32) #chave para a sessão
 
 with app.app_context():
     init_db()
-    #clear_db()
+    clear_db()
     add_exercises()
     add_user()
     add_exercise_plan()

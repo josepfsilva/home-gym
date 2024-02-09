@@ -9,12 +9,12 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
-    <script src="static/js/mmi.js"></script>
-    <script src="static/js/globals.js"></script>
-    <script src="static/js/jquery-3.6.4.min.js"></script>
-    <script src="static/js/webtoolkit.utf8.js"></script>
-    <script src='static/js/datetime.js'></script>
-    <script src="static/js/menuplanos.js"></script>
+    <script src="../static/js/mmi.js"></script>
+    <script src="../static/js/globals.js"></script>
+    <script src="../static/js/jquery-3.6.4.min.js"></script>
+    <script src="../static/js/webtoolkit.utf8.js"></script>
+    <script src="../static/js/menuplanos.js"></script>
+    <script src="../static/js/planox.js"></script>
 
     <script type="module">
 
@@ -53,6 +53,32 @@
                 catch (e) { console.log(e); }
                 }
             }
-    }
+            else {
+                    load();
+                    timer()
+                }
+        }
 
+        function load() {
+            let url = new URL(window.location.href);
+            let pathSegments = url.pathname.split('/');
+            // Get the plan number
+            let planNumber = parseInt(pathSegments[pathSegments.length - 1].replace(/\D/g, ''));
+            console.log(planNumber);
+
+            checkIfPlanExists(planNumber).then(exists => {
+                console.log(exists);
+                if (exists) {
+                    console.log(planNumber)
+                    LoadPlanStart(planNumber);
+                }
+            });
+        }
     </script>
+
+    <div id="content"></div>
+    <div id="timer" class="timer">10</div>
+    </div>
+
+</body>
+</html>
