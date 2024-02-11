@@ -270,11 +270,3 @@ p {
     opacity: 1;
     transform: translateY(0);
 }
-
-.timer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 50px;
-}

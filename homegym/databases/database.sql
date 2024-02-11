@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS TrainingPlan (
     Name TEXT NOT NULL,
     Description TEXT NOT NULL,
     Type TEXT CHECK( Type IN('Cardio', 'Musculacao', 'Meditacao', 'Alongamentos')) NOT NULL DEFAULT 'Musculacao',
+    PlanDuration INTEGER NOT NULL,
     ExercisePlanID INTEGER NOT NULL,
     UserID INTEGER NOT NULL,
     FOREIGN KEY (ExercisePlanID) REFERENCES ExercisePlan(ExercisePlanID),
