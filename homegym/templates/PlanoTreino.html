@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/menu.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/treinos.css')}}">
     <title>HomeGym</title>
 </head>
 <body>
@@ -18,8 +18,6 @@
     <script src="../static/js/planox.js"></script>
 
     <script type="module">
-
-        let selectedPlan = 0;
 
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
@@ -54,10 +52,35 @@
                 catch (e) { console.log(e); }
                 }
             }
-    }
+            else {
+                let planNumber = getPlanNumber();
+                LoadPlanHead(planNumber);
 
+                loadExercise(planNumber) //times need to be ajusted
+                    .then(() => runForTime(10))
+                    .then(() => {
+                        console.log("1");
+                        return loadExercise(planNumber);
+                    })
+                    .then(() => runForTime(10))
+                    .then(() => {
+                        console.log("2");
+                        return loadExercise(planNumber);
+                    })
+                    .then(() => runForTime(10))
+                    .then(() => {
+                        console.log("3");
+                        //clean exercise container
+                        var exercise = document.getElementById("exercise");
+                        exercise.innerHTML = "You have finished the plan! Congratulations!";
+                        var timer = document.getElementById("timer");
+                        timer.innerHTML = "";
+                    })
+                    .catch(error => {
+                        console.error('An error occurred:', error);
+                    });
+
+            }
+        }
+        
     </script>
-
-
-</body>
-</html>

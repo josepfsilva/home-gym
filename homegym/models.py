@@ -138,20 +138,20 @@ def add_training_plan():
     cursor = db.cursor()
     
     #user1
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Este plano visa a trabalhar a parte superior do corpo.', 'Musculacao', 1, 1);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte inferior', 'Este plano visa a trabalhar a parte inferior do corpo.', 'Musculacao', 3, 1);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de cardio', 'O objetivo deste plano é aumentar a resistencia.', 'Cardio', 5, 1);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Meditacao', 'Este plano tem como objetivo promover o relaxamento e a saúde mental.', 'Musculacao', 7, 1);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Alongamentos membros superiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros superiores.', 'Musculacao', 8, 1);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Alongamentos membros inferiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros inferiores', 'Cardio', 10, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Este plano visa a trabalhar a parte superior do corpo.', 'Musculacao', 90, 1, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Treino de parte inferior', 'Este plano visa a trabalhar a parte inferior do corpo.', 'Musculacao', 90, 3, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Treino de cardio', 'O objetivo deste plano é aumentar a resistencia.', 'Cardio', 90, 5, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Meditacao', 'Este plano tem como objetivo promover o relaxamento e a saúde mental.', 'Musculacao', 90, 7, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Alongamentos membros superiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros superiores.', 'Musculacao', 90, 8, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Alongamentos membros inferiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros inferiores', 'Cardio', 90, 10, 1);")
 
     #user2
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Este plano visa a trabalhar a parte superior do corpo.', 'Musculacao', 2, 2);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de parte inferior', 'Este plano visa a trabalhar a parte inferior do corpo.', 'Musculacao', 4, 2);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Treino de cardio', 'O objetivo deste plano é aumentar a resistencia.', 'Cardio', 6, 2);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Meditacao', 'Este plano tem como objetivo promover o relaxamento e a saúde mental.', 'Musculacao', 7, 2);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Alongamentos membros superiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros superiores.', 'Musculacao', 9, 2);")
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, ExercisePlanID, UserID) VALUES ('Alongamentos membros inferiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros inferiores', 'Cardio', 11, 2);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Este plano visa a trabalhar a parte superior do corpo.', 'Musculacao', 90, 2, 2);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Treino de parte inferior', 'Este plano visa a trabalhar a parte inferior do corpo.', 'Musculacao', 90, 4, 3);") #changed user to 3 to test
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Treino de cardio', 'O objetivo deste plano é aumentar a resistencia.', 'Cardio', 90, 6, 2);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Meditacao', 'Este plano tem como objetivo promover o relaxamento e a saúde mental.', 'Musculacao', 90,  7, 2);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Alongamentos membros superiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros superiores.', 'Musculacao', 90, 9, 2);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, PlanDuration, ExercisePlanID, UserID) VALUES ('Alongamentos membros inferiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros inferiores', 'Cardio', 90, 11, 2);")
 
     db.commit()
     db.close()

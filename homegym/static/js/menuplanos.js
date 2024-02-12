@@ -78,7 +78,7 @@ function loadPlanInfo(planNumber) {
                     var planDetails = data[0]
                     var exercises = data[1]
                     var html = '<div>';
-                    html += '<h3>Name: ' + planDetails[0] + '</h3>';
+                    html += '<h3>Plano '+ planNumber + ' : ' + planDetails[0] + '</h3>';
                     html += '<p>Description: ' + planDetails[1] + '</p>';
                     html += '<p>Type: ' + planDetails[2] + '</p>';
                     html += '</div> <h3>Exercises</h3>';
