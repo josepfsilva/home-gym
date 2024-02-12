@@ -137,3 +137,14 @@ p {
     transform: translate(-50%, -50%);
     color: green
 }
+
+.animated-content {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animated-content.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}

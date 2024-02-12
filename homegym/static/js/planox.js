@@ -25,7 +25,7 @@ function LoadPlanHead(planNumber) {
         })
         .then(data => {
             // Process the data and update the HTML content
-            let planId = data[planNumber];
+            let planId = data[planNumber];                 //id real na db
 
             fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
                 .then(response => {
@@ -86,7 +86,7 @@ function loadExercise(planNumber) {
                     console.log(exercises)
                     var exerciseDetails = exercises[count];
                     count+=1;
-                    var html = '<div class="container3"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[2] +'</p> <p>'+ exerciseDetails[3] +'</p> </div> </div>'
+                    var html = '<div class="container3"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[3] +'</p> <p>'+ exerciseDetails[4] +'</p> </div> </div>'
                     
                     
                     container.append(html);
