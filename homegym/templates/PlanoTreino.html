@@ -13,7 +13,6 @@
     <script src="../static/js/globals.js"></script>
     <script src="../static/js/jquery-3.6.4.min.js"></script>
     <script src="../static/js/webtoolkit.utf8.js"></script>
-    <script src='../static/js/datetime.js'></script>
     <script src="../static/js/menuplanos.js"></script>
     <script src="../static/js/planox.js"></script>
 
@@ -54,41 +53,58 @@
             }
             else {
                 let planNumber = getPlanNumber();
-                LoadPlanHead(planNumber);
+                LoadPlanHead(planNumber)
+                    //.then(() => runForTime(10))
 
-                loadExercise(planNumber) //times need to be ajusted
-                    .then(() => runForTime(10))
                     .then(() => {
                         console.log("1");
                         return loadExercise(planNumber);
-                    })
+                    })	
+                    .then(() => runForTime(30))
+
+                    .then(() => clearDivs())                   
                     .then(() => runForTime(10))
+
                     .then(() => {
                         console.log("2");
                         return loadExercise(planNumber);
                     })
+                    .then(() => runForTime(30))
+
+                    .then(() => clearDivs())
                     .then(() => runForTime(10))
+
                     .then(() => {
                         console.log("3");
-                        //clean exercise container
-                        var exercise = document.getElementById("exercise");
+                        return loadExercise(planNumber);
+                    })
+                    .then(() => runForTime(30))
+                    
+
+                    .then(() => {
+                        clearDivs();
+                        document.getElementById('timer').innerHTML = "";
                         exercise.innerHTML = "You have finished the plan! Congratulations!";
-                        var timer = document.getElementById("timer");
-                        timer.innerHTML = "";
                     })
                     .catch(error => {
                         console.error('An error occurred:', error);
                     });
-
             }
         }
+
+        function clearDivs() {
+            document.getElementById('exercise').innerHTML = "";
+            document.getElementById('videoFrame').src = "";
+        }
+
         
     </script>
 
 
 <div id="content" > </div>
-<div id="exercise" > </div>
 <div id="timer" > </div>
+<div id="exercise" > </div>
+<iframe width="840" height="472.5" src="" id="videoFrame" frameborder="0" style="position: absolute; top: 60%; left: 30%; transform: translate(-50%, -50%);" allow=""></iframe>
 
 
 </body>

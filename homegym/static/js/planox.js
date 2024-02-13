@@ -16,7 +16,7 @@ function headPlan(){
 }
 
 function LoadPlanHead(planNumber) {
-    fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -27,7 +27,7 @@ function LoadPlanHead(planNumber) {
             // Process the data and update the HTML content
             let planId = data[planNumber];                 //id real na db
 
-            fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
+            return fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -84,12 +84,17 @@ function loadExercise(planNumber) {
                     container.empty();
                     var exercises = data[1]
                     console.log(exercises)
+                    
                     var exerciseDetails = exercises[count];
-                    count+=1;
+
+                    let videoFrame = document.getElementById('videoFrame');
+                    videoFrame.src = ""; 
+                    videoFrame.src = convertToEmbedUrl(exerciseDetails[2]);
+
                     var html = '<div class="container3"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[3] +'</p> <p>'+ exerciseDetails[4] +'</p> </div> </div>'
-                    
-                    
                     container.append(html);
+                    
+                    count+=1;
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -118,4 +123,10 @@ function runForTime(seconds) {
             timerElement.textContent = timeLeft;  // Update the timer on the screen
         }, 1000); 
     });
+}
+
+function convertToEmbedUrl(url) {
+    let videoId = url.split('v=')[1];
+    let embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=1&loop=1&playlist=' + videoId;
+    return embedUrl;
 }

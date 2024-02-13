@@ -41,8 +41,8 @@ p {
 
 .container3 {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 60%;
+    left: 78%;
     transform: translate(-50%, -50%);
     height: 33vh;
     width: 26vw;
@@ -128,7 +128,7 @@ p {
     margin-left: 140px;
 }
 
-.timer {
+#timer {
     position: fixed;
     top: 20%;
     left: 50%;

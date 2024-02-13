@@ -57,8 +57,8 @@ def add_exercises():
     cursor = db.cursor()
 
     #upper body
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/push-ups', 'Musculacao', 'Medium');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões em diamante', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'http://example.com/diamond-push-ups', 'Musculacao', 'Hard');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'https://www.youtube.com/watch?v=WDIpL0pjun0', 'Musculacao', 'Medium');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões em diamante', 'Um exercício de corpo inteiro que trabalha o peito, ombros e tríceps.', 'https://www.youtube.com/watch?v=XtU2VQVuLYs', 'Musculacao', 'Hard');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Abdominais', 'Um exercício de corpo inteiro que trabalha o core.', 'http://example.com/crunches', 'Musculacao', 'Easy');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Flexões de Parede', 'Trabalha os músculos do peito, ombros e braços.', 'http://example.com/wall-push-ups', 'Musculacao', 'Easy');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, Type, Difficulty) VALUES ('Elevação de Halteres Sentado', 'Trabalha os músculos dos ombros.', 'http://example.com/seated-dumbbell-shoulder-press', 'Musculacao', 'Easy');")
