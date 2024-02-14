@@ -6,15 +6,6 @@ function getPlanNumber() {
     return planNumber;
 }
 
-function headPlan(){
-    checkIfPlanExists(planNumber).then(exists => {
-        if (exists) {
-            console.log(planNumber)
-            LoadPlanHead(planNumber);
-        }
-    });
-}
-
 function LoadPlanHead(planNumber) {
     return fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
@@ -144,6 +135,44 @@ function loadExercise(planNumber,count) {
                     var html = '<div class="container3"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[3] +'</p> <p>'+ exerciseDetails[4] +'</p> </div> </div>'
                     container.append(html);
                     
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+            
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+
+}
+
+function getPlanDuration(planNumber) {
+    return fetch('http://127.0.0.1:5000/planosOrder')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Process the data and update the HTML content
+            let planId = data[planNumber];                 //id real na db
+
+            return fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var container = $('#content');
+                    container.empty();
+
+                    var planDetails = data[0];
+                    console.log(data);
+                    return planDetails[3];
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
