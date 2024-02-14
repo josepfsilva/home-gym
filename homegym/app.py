@@ -136,7 +136,7 @@ def show_all_trainingPlans_from_user():                       #devolve todos os 
         id = id[0]
         order[id] = count                                   #{id: order}
         training_plan = mgtreinos.getTrainingPlanData(id)
-        training_plans_data[id] = training_plan             #{id: [name, description, type]}
+        training_plans_data[id] = training_plan             #{id: [name, description, type, duration, image]}
         count += 1
     
     combined = [training_plans_data, order]
