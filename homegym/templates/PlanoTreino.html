@@ -18,6 +18,8 @@
 
     <script type="module">
 
+        let count = 0;
+
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
         mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
@@ -46,6 +48,47 @@
                 try {
                     // Try to parse XML
                     let message = JSON.parse(content);
+                    if(message.hasOwnProperty('nlu') && message.nlu.intent == 'finish_plan') {
+                        //load stats e gamificação
+                    }
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0) {
+                        let planNumber = getPlanNumber();
+                        LoadPlanHead(planNumber)
+                            .then(() => {
+                            console.log(count);
+                            return loadExercise(planNumber,count);
+                            })		    
+                            .then(() => runForTime(30))
+                            .then(() => clearDivs())  
+                            .then(() => {
+                                count = count + 1;
+                            })	               
+                            .catch(error => {
+                                console.error('An error occurred:', error);
+                            });
+
+                        
+                    }
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count > 0) {
+                        let planNumber = getPlanNumber();
+                        LoadPlanHead(planNumber)
+                            .then(() => {
+                            console.log(count);
+                            return loadExercise(planNumber,count);
+                            })	
+                            .then(() => runForTime(30))
+
+                            .then(() => clearDivs())                   
+                            .then(() => {
+                                count = count + 1;
+                            })	   
+                            .catch(error => {
+                                console.error('An error occurred:', error);
+                            });
+
+                        
+                    }
+                    
 
                 }
                 catch (e) { console.log(e); }
@@ -53,46 +96,12 @@
             }
             else {
                 let planNumber = getPlanNumber();
-                LoadPlanHead(planNumber)
-                    //.then(() => runForTime(10))
-
-                    .then(() => {
-                        console.log("1");
-                        return loadExercise(planNumber);
-                    })	
-                    .then(() => runForTime(30))
-
-                    .then(() => clearDivs())                   
-                    .then(() => runForTime(10))
-
-                    .then(() => {
-                        console.log("2");
-                        return loadExercise(planNumber);
-                    })
-                    .then(() => runForTime(30))
-
-                    .then(() => clearDivs())
-                    .then(() => runForTime(10))
-
-                    .then(() => {
-                        console.log("3");
-                        return loadExercise(planNumber);
-                    })
-                    .then(() => runForTime(30))
-                    
-
-                    .then(() => {
-                        clearDivs();
-                        document.getElementById('timer').innerHTML = "";
-                        exercise.innerHTML = "You have finished the plan! Congratulations!";
-                    })
-                    .catch(error => {
-                        console.error('An error occurred:', error);
-                    });
+                loadPlanInfo(planNumber);
             }
         }
 
         function clearDivs() {
+            document.getElementById('timer').innerHTML = "";
             document.getElementById('exercise').innerHTML = "";
             document.getElementById('videoFrame').src = "";
         }

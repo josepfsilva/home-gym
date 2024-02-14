@@ -195,23 +195,6 @@ def show_trainingPlan(trainingPlanID):
 
 
 
-@app.route("/exercise", methods=['GET', 'POST'])
-def exercise():
-    db = sqlite3.connect('database.db')
-    cursor = db.cursor()
-
-    cursor.execute("""
-        SELECT URL
-        FROM Exercises
-        WHERE ExerciseID = 1;
-    """,)
-
-    url = cursor.fetchone()[0]
-    embed_url = mgvideos.convert_to_embed_url(url)
-    db.close()
-
-    return embed_url
-
 
 
 

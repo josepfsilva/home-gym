@@ -59,11 +59,8 @@
                         const planNumber = parseInt(message.nlu.nome_plano.toLowerCase().split(' ')[1]);
                         if (!isNaN(planNumber)) {
                             handlePlanSelection(planNumber);
+                            window.location.href = '/meusplanos/plano'+planNumber;
                         }
-                    }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && selectedPlan != 0) {
-                        window.location.href = '/meusplanos/plano'+selectedPlan;
-                        
                     }
                     
                 }
@@ -79,7 +76,7 @@
             console.log(`Plano ${planNumber}`);
             checkIfPlanExists(planNumber).then(exists => {
                 if (exists) {
-                    loadPlanInfo(planNumber);
+                    //loadPlanInfo(planNumber);
                     selectedPlan = planNumber;
                     console.log('plano selecionado:' + selectedPlan);
                 }
