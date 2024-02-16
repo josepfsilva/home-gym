@@ -163,3 +163,11 @@ def get_username(userID):
     username = cursor.fetchone()
     db.close()
     return username[0]
+
+def get_user_data(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM Users WHERE UserID = ?", (userID,))
+    user_data = cursor.fetchone()
+    db.close()
+    return list(user_data)
