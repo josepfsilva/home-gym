@@ -6,7 +6,24 @@ function getPlanNumber() {
     return planNumber;
 }
 
-function LoadPlanHead(planNumber) {
+function getPlanId(planNumber) { // tried to use in other functions but it was not working
+    return fetch('http://127.0.0.1:5000/planosOrder')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data[planNumber];
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            return Promise.reject(error);
+        });
+}
+
+function loadPlanHead(planNumber) {
     return fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
             if (!response.ok) {
