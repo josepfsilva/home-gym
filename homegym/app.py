@@ -81,10 +81,13 @@ def pagina_perfil():
         return redirect(url_for('login'))
     
     username = get_username(session['UserID'])
-    birthday = get_user_data(session['UserID'])[4]
+    birthday_user = get_user_data(session['UserID'])[4]
+    birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
+    birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
+
     time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
-    date_today = date.today().strftime('%d/%m/%Y')  # Formata a data no estilo europeu
-    
+    date_today = date.today().strftime('%d/%m/%Y')  
+
 
     return render_template('Perfil.html', username = username, birthday = birthday, time = time, date_today = date_today )
 
