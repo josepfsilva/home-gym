@@ -2,7 +2,7 @@ from datetime import date, timedelta, datetime
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data
+from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data,get_age
 import secrets
 import os
 
@@ -81,15 +81,19 @@ def pagina_perfil():
         return redirect(url_for('login'))
     
     username = get_username(session['UserID'])
-    birthday_user = get_user_data(session['UserID'])[4]
+    name = get_user_data(session['UserID'])[3]
+    surname = get_user_data(session['UserID'])[4]
+    
+    birthday_user = get_user_data(session['UserID'])[6]
     birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
     birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
+    age = get_age(birthday_data)
 
     time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
     date_today = date.today().strftime('%d/%m/%Y')  
 
 
-    return render_template('Perfil.html', username = username, birthday = birthday, time = time, date_today = date_today )
+    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age )
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():
