@@ -85,10 +85,17 @@ function loadPlanInfo(planNumber) {
                     container.empty();
                     var planDetails = data[0]
                     var exercises = data[1]
-                    var html = '<div>';
-                    html += '<h3>Plano '+ planNumber + ' : ' + planDetails[0] + '</h3>';
-                    html += '<p>Description: ' + planDetails[1] + '</p>';
-                    html += '<p>Type: ' + planDetails[2] + '</p>';
+                    // inicio do cabeçalho
+                    var html = '<div class="maindiv">';
+                    html += '<div class="Info">';
+                    html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
+                    html += '<div class="text"><h3 class="PlanNumber">Plano '+ planNumber +'</h3>';
+                    html += '<h3 class="Details">'+planDetails[0]+'</h3></div></div>';
+                    html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
+                    // fim do cabeçalho
+                    html += '<div class="description"><p class="d1">Description: </p> ' +'<p>'+ planDetails[1] + '</p></div>';
+                    html += '<div class="duration"><p class="dur1">Duration: </p> ' +'<p>'+ planDetails[3] + ' segundos</p></div>';
+                    html += '<div class="type"><p class="t1">Type: </p>' + '<p>' + planDetails[2] + '</p></div>';
                     html += '</div> <h3>Exercises</h3>';
                     html += '<div class="menu"> ';  
                     for (var exerciseId in exercises) {

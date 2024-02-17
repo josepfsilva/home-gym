@@ -38,13 +38,13 @@ def add_user():
 
     # INSERT OR IGNORE a new row of data into the Users table
     c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Email, BirthDate, RegistrationDate, Role, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, ('Maria', '1234', 'testuser@example.com', '1960-01-01', date.today(), 'User', 'Online'))
+        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, Email, BirthDate, RegistrationDate, Role, Status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, ('Maria', '1234', 'Maria','Santos','testuser@example.com', '1960-01-01', date.today(), 'User', 'Online'))
     c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Email, BirthDate, RegistrationDate, Role, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, ('Jorge', '1234', 'testuser2@example.com', '1955-12-05', date.today(), 'User', 'Online'))
+        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, Email, BirthDate, RegistrationDate, Role, Status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, ('Jorge', '1234', 'Jorge', 'Fernandes', 'testuser2@example.com', '1955-12-05', date.today(), 'User', 'Online'))
 
     # Commit the changes and close the connection
     conn.commit()
@@ -171,3 +171,9 @@ def get_user_data(userID):
     user_data = cursor.fetchone()
     db.close()
     return list(user_data)
+
+def get_age(birthdate):
+    today = date.today()
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    return age
+    

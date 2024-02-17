@@ -4,6 +4,10 @@
     padding: 0;
     margin: 0;
 }
+@font-face {
+    font-family: "FONTTEXT";
+    src: url(../fonts/JosefinSans-ExtraLight.ttf);
+}
 body {
     padding: 0 7em;
     background-color: white;
@@ -80,45 +84,6 @@ p {
     /* Establish positioning context */
 }
 
-.text-overlay {
-    position: absolute;
-    top: 90%;
-    /* Adjust vertically */
-    left: 50%;
-    /* Adjust horizontally */
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    /* Place it on top of the image */
-    text-align: center;
-}
-
-.container2 {
-    aspect-ratio: 1/1;
-    height: 100px;
-    width: 100px;
-    background-color: #D9D9D9;
-    color: white;
-    border-radius: 30px;
-    margin-right: 20px;
-}
-
-.profile {
-    margin: 50px 0;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    color: black;
-}
-.profile .welcome {
-    display: flex;
-}
-.datetime-container {
-    order: 3;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 30px;
-    font-weight: 100;
-}
 .bold {
     font-weight: bold;
     margin-left: 140px;
@@ -144,9 +109,84 @@ p {
     transform: translateY(0);
 }
 
+.Info {
+    aspect-ratio: 1/1; /* Maintain a square aspect ratio */
+    height: 20vh;
+    width: 40vw; /* Adjust width to take half of the container */
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+
+.text {
+    flex: 1; /* Take up remaining space */
+    max-width: calc(100% - 110px);
+}
+
+.IMGcontainer {
+    width: 60%; /* Occupy half of the container width */
+    height: 100%;
+    margin-right: -50px;
+}
+
 .meusplanosimg {
-    width: 100%;
+    width: 20vw;
+    height: 25vh;
     object-fit: cover;
-    border-radius: 30px;
-    padding-top: 17px;
+    border-radius: 30px 30px 30px 30px; /* Adjust border-radius to match the container */
+}
+
+.Details{
+    font-size: x-large;
+}
+.datetime-container {
+    order: 3;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+
+.maindiv {
+    margin: 50px 0;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.PlanInfo {
+    text-align: left;
+    margin-right: 20px; /* Adjust this value as needed */
+    margin-top: 10%;
+}
+
+.PlanNumber{
+    font-family: "FONTTEXT";
+    font-weight: lighter;
+}
+
+.description p {
+    display: inline; /* or inline-block */
+}
+.description .d1{
+    font-weight: normal;
+}
+
+.duration p{
+    display: inline;
+}
+
+.duration .dur1{
+    font-weight: normal;
+}
+
+.type p{
+    display: inline;
+}
+
+.type .t1{
+    font-weight: normal;
 }

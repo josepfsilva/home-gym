@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/plano.css')}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/plano.css')}}"
+    />
     <title>HomeGym</title>
-</head>
-<body>
+  </head>
+  <body>
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
     <script src="../static/js/mmi.js"></script>
     <script src="../static/js/globals.js"></script>
@@ -37,7 +45,6 @@
                 return;
             }
         }
-
 
         function im1MessageHandler(data) {
             console.log("--------------im1MessageHandler---------------");
@@ -121,7 +128,7 @@
                 let planNumber = getPlanNumber();
                 loadPlanInfo(planNumber);
             }
-        }
+      }
 
         function clearDivs() {
             document.getElementById('timer').innerHTML = "";
@@ -171,13 +178,27 @@
 
         
     </script>
-
-
-<div id="content" > </div>
-<div id="timer" > </div>
-<div id="exercise" > </div>
-<iframe width="840" height="472.5" src="" id="videoFrame" frameborder="0" style="position: absolute; top: 60%; left: 30%; transform: translate(-50%, -50%);" allow=""></iframe>
-
-
-</body>
+    <div class="header">
+      <div class="WorkoutPlan">
+        <div class="WorkoutImage"></div>
+      </div>
+    </div>
+    <div id="content"></div>
+    <div id="timer"></div>
+    <div id="exercise"></div>
+    <iframe
+      width="840"
+      height="472.5"
+      src=""
+      id="videoFrame"
+      frameborder="0"
+      style="
+        position: absolute;
+        top: 60%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+      "
+      allow=""
+    ></iframe>
+  </body>
 </html>

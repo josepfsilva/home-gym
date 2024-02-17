@@ -142,7 +142,124 @@ body {
     padding: 0;
 }
 
+
+.profile {
+    display: flex;
+    align-items: flex-start; 
+    padding: 20px;
+}
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    background-color: grey;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info {
+    max-width: 300px;
+    margin-bottom: 20px;
+    padding-left: 20px; /* Adjust spacing */
+}
+
+.name {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+    
+.surname {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.dob {
+    font-size: 24px;
+    color: #707070;
+    margin-bottom: 5px;
+    padding-bottom: 20px;
+}
+
+.stat.height span:first-child,
+.stat.weight span:first-child {
+    font-weight: bolder;
+    font-size: 24px;
+    margin-left: 0px;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+}
+
+.title, .achievements-container {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.stat, .achievement {
+    width: 200px;
+    height: 50px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+
+}
+.height-weight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align to the left */
+    margin-bottom: 20px; /* Space between elements */
+}
+
+.stat, .achievement {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.stat {
+    width: 150px;
+    height: 50px; 
+}
+.stat.height{
+    margin-top: 0px;
+}
+.stat span {
+    text-align: center;
+}
+
+
+
+
 .container {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -151,101 +268,21 @@ body {
     padding: 20px;
 }
 
-.profile {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.profile-pic {
-    width: 200px;
-    height: 200px;
-    background-color: grey;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-position: center;
-}
-
-.info {
-    max-width: 300px;
-    margin-bottom: 20px;
-}
-
-.name {
+.datetime-container {
+    position: absolute; 
+    top: 0; 
+    right: 0; 
     font-size: 28px;
+    font-weight: 100;
+    text-align: right;
+    margin-right: 20px; 
+    margin-top: 20px; 
+}
+
+.datetime-container .time {
     font-weight: bold;
 }
 
-.surname {
-    font-size: 32px;
-    font-weight: bolder;
-    margin-bottom: 5px;
-}
-
-.dob {
-    font-size: 28px;
-    color: #888;
-    margin-bottom: 10px;
-}
-
-.height-weight {
-    display: flex;
-    flex-direction: column;
-
-
-}
-.stat.height a:first-child {
-    font-weight: bolder;
-    font-size: 28px;
-}
-
-.stat.height a:last-child {
-    font-size: 28px;
-}
-
-.stat.height-weight a:first-child {
-    font-weight: bolder;
-    font-size: 28px;
-}
-
-.stat.height-weight a:last-child {
-    font-size: 28px;
-}
-
-
-.stat {
-    background-color: #f0f0f0;
-    padding: 5px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-right: 90px;
-}
-
-.right-side {
-    width: 60%;
-}
-
-.date-time {
-    text-align: right;
-    font-size: 28px;
-    font-weight: bolder;
-}
-
-.dashboard {
-    width: 700px; 
-    height: 500px; 
-    background-color: grey;
-    margin-bottom: 20px;
-    background-size: cover;
-    background-position: center;
-    margin-top: 50px;
-}
 
 .progress-btn {
     display: block;
@@ -258,4 +295,110 @@ body {
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+}
+
+.achievements-container {
+    display: flex;
+
+    
+}
+
+.achievement1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+.achievement {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 10px; 
+}
+
+
+.card {
+    margin-top: 0px;
+    margin-bottom: 500px; 
+    width: 500px;
+    height: 300px;
+    background-image: url(/static/img/dashboard.jpg);
+    background-size: cover;
+    background-position: center;
+    border: none;
+    border-radius: 15px;
+}
+
+
+.progress-placeholder,
+.friends-placeholder {
+    background-color: #f0f0f0; 
+    border-radius: 15px;
+    padding: 20px; 
+    margin-bottom: 20px; 
+}
+
+.action-buttons button {
+    width: 150px; 
+}
+#progresso {
+    padding-left: 150px; 
+    padding-bottom: 5px;
+}
+
+.friends-list {
+    width: 300px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    margin-left: 50px; 
+    margin-top: 60px;
+}
+
+.friends-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.friends-list ul li {
+    margin-bottom: 10px;
+}
+
+.friends-list ul li::before {
+    content: "●";
+    margin-right: 5px;
+    color: grey; 
+}
+
+.friends-list ul li:nth-child(-n+3)::before {
+    color: green;
+}
+.right-side .info .name, 
+.right-side .info .surname, 
+.right-side .info .dob {
+    margin-bottom: 5px; 
+}
+
+.name, .surname {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.dob {
+    font-size: 24px;
+    color: #707070;
+    padding-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
