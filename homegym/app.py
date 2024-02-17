@@ -1,8 +1,8 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username
+from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data
 import secrets
 import os
 
@@ -81,8 +81,15 @@ def pagina_perfil():
         return redirect(url_for('login'))
     
     username = get_username(session['UserID'])
-    
-    return render_template('Perfil.html', username = username)
+    birthday_user = get_user_data(session['UserID'])[4]
+    birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
+    birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
+
+    time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
+    date_today = date.today().strftime('%d/%m/%Y')  
+
+
+    return render_template('Perfil.html', username = username, birthday = birthday, time = time, date_today = date_today )
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():
@@ -136,7 +143,7 @@ def show_all_trainingPlans_from_user():                       #devolve todos os 
         id = id[0]
         order[id] = count                                   #{id: order}
         training_plan = mgtreinos.getTrainingPlanData(id)
-        training_plans_data[id] = training_plan             #{id: [name, description, type]}
+        training_plans_data[id] = training_plan             #{id: [name, description, type, duration, image]}
         count += 1
     
     combined = [training_plans_data, order]

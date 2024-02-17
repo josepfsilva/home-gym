@@ -14,13 +14,16 @@ function loadPlans() {
 
                     plans = data[0];
                     order = data[1];
+
+                    
                     var html='<div class="menu"> '
                     for (var planId in plans) {
                         var planDetails = plans[planId];
                         var planOrder = order[planId];
 
-                        html += '<div class="container"> <div class="content"> <h3>'+ planDetails[0]+'</h3> <p> Plano '+ planOrder +' </p></div> </div>'
+                        html += '<div class="containers"> <div class="content"> <img src=' + planDetails[4] + ' class="meusplanosimg" > <div class="text-overlay"> <h3>'+ planDetails[0]+'</h3> <p> Plano '+ planOrder +' </p></div> </div> </div>'
                         
+                        console.log(planDetails[4]);
                     }
                     html += '</div>'
                     container.append(html);

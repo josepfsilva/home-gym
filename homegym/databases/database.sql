@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS Exercises (
     Name TEXT NOT NULL,
     Description TEXT NOT NULL,
     URL TEXT NOT NULL,
+    ExerciseImg TEXT NOT NULL,
     Type TEXT CHECK( Type IN ('Cardio', 'Musculacao','Meditacao','Alongamento')) NOT NULL DEFAULT 'Musculacao',
     Difficulty TEXT CHECK( Difficulty IN ('Easy', 'Medium', 'Hard')) NOT NULL DEFAULT 'Easy'
 );
@@ -81,7 +82,9 @@ CREATE TABLE IF NOT EXISTS TrainingPlan (
     Name TEXT NOT NULL,
     Description TEXT NOT NULL,
     Type TEXT CHECK( Type IN('Cardio', 'Musculacao', 'Meditacao', 'Alongamentos')) NOT NULL DEFAULT 'Musculacao',
+    Difficulty TEXT CHECK( Difficulty IN('Easy', 'Medium', 'Hard')) NOT NULL DEFAULT 'Easy',
     PlanDuration INTEGER NOT NULL,
+    TrainImage TEXT NOT NULL,
     ExercisePlanID INTEGER NOT NULL,
     UserID INTEGER NOT NULL,
     FOREIGN KEY (ExercisePlanID) REFERENCES ExercisePlan(ExercisePlanID),
