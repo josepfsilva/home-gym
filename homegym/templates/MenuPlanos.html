@@ -56,7 +56,6 @@
             try {
               // Try to parse XML
               let message = JSON.parse(content);
-              console.log(selectedPlan);
               if (
                 message.hasOwnProperty("nlu") &&
                 message.nlu.intent == "go_to_training_plans"
@@ -76,7 +75,6 @@
                 );
                 if (!isNaN(planNumber)) {
                   handlePlanSelection(planNumber);
-                  window.location.href = "/meusplanos/plano" + planNumber;
                 }
               }
             } catch (e) {
@@ -92,9 +90,10 @@
         console.log(`Plano ${planNumber}`);
         checkIfPlanExists(planNumber).then((exists) => {
           if (exists) {
-            //loadPlanInfo(planNumber);
-            selectedPlan = planNumber;
-            console.log("plano selecionado:" + selectedPlan);
+            window.location.href = "/meusplanos/plano" + planNumber;
+          }
+          else {
+            console.log("Plano não existe");
           }
         });
       }

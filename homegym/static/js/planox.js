@@ -43,9 +43,6 @@ function loadPlanHead(planNumber) {
                     return response.json();
                 })
                 .then(data => {
-                    // Process the data and update the HTML content
-                    console.log(data);
-                    //document.getElementById('content').innerText = data.message;
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]
@@ -84,9 +81,6 @@ function loadPlanInfo(planNumber) {
                     return response.json();
                 })
                 .then(data => {
-                    // Process the data and update the HTML content
-                    console.log(data);
-                    //document.getElementById('content').innerText = data.message;
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]
@@ -141,7 +135,6 @@ function loadExercise(planNumber,count) {
                     var container = $('#exercise');
                     container.empty();
                     var exercises = data[1]
-                    console.log(exercises)
                     
                     var exerciseDetails = exercises[count];
 
@@ -188,7 +181,6 @@ function getPlanDuration(planNumber) {
                     container.empty();
 
                     var planDetails = data[0];
-                    console.log(data);
                     return planDetails[3];
                 })
                 .catch(error => {
@@ -200,24 +192,6 @@ function getPlanDuration(planNumber) {
             console.error('Fetch error:', error);
         });
 
-}
-
-function runForTime(seconds) {
-    return new Promise(resolve => {
-        let timerElement = document.getElementById('timer');
-        let timeLeft = seconds;
-        timerElement.textContent = timeLeft;
-
-        setTimeout(() => {
-            clearInterval(intervalId);  // Stop the timer after the specified number of seconds
-            resolve();
-        }, seconds * 1000);
-
-        let intervalId = setInterval(() => {
-            timeLeft--;  // Decrease the time left by 1
-            timerElement.textContent = timeLeft;  // Update the timer on the screen
-        }, 1000); 
-    });
 }
 
 function convertToEmbedUrl(url) {
