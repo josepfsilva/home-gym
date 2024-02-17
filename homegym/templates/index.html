@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Home Gym</title>
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename='css/menu.css')}}"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/menu.css')}}" />
+</head>
+<body>
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
     <script src="static/js/mmi.js"></script>
     <script src="static/js/globals.js"></script>
@@ -17,96 +14,96 @@
     <script src="static/js/datetime.js"></script>
 
     <script type="module">
-      var mmiCli_Out_add = "wss://" + host + ":8005/IM/USER1/";
-      var mmiCli_Out = null;
-      mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
-      mmiCli_Out.onMessage.on(im1MessageHandler);
-      mmiCli_Out.onOpen.on(socketOpenHandler);
-      mmiCli_Out.openSocket();
+        var mmiCli_Out_add = "wss://" + host + ":8005/IM/USER1/";
+        var mmiCli_Out = null;
+        mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
+        mmiCli_Out.onMessage.on(im1MessageHandler);
+        mmiCli_Out.onOpen.on(socketOpenHandler);
+        mmiCli_Out.openSocket();
 
-      function socketOpenHandler(event) {
-        console.log("---------------openSocketHandler---------------");
+        function socketOpenHandler(event) {
+            console.log("---------------openSocketHandler---------------");
 
-        if (mmiCli_Out.socket.readyState !== WebSocket.OPEN) {
-          return;
-        }
-      }
-
-      function im1MessageHandler(data) {
-        console.log("--------------im1MessageHandler---------------");
-
-        if (data != null && data != "RENEW" && data != "OK") {
-          console.log(data);
-          var content = $(data)
-            .find("emma\\:interpretation")
-            .first()
-            .text()
-            .trim();
-          if (typeof content == "string") {
-            try {
-              // Try to parse XML
-              console.log(content);
-              let message = JSON.parse(content);
-              if (
-                message.hasOwnProperty("nlu") &&
-                message.nlu.intent == "go_to_training_plans"
-              ) {
-                window.location.href = "/meusplanos";
-              } else if (
-                message.hasOwnProperty("nlu") &&
-                message.nlu.intent == "go_to_profile"
-              ) {
-                window.location.href = "/meuperfil";
-              } else if (
-                message.hasOwnProperty("nlu") &&
-                message.nlu.intent == "go_to_newsession"
-              ) {
-                window.location.href = "/novasessao";
-              }
-            } catch (e) {
-              console.log(e);
+            if (mmiCli_Out.socket.readyState !== WebSocket.OPEN) {
+                return;
             }
-          }
-        } else {
-          loadContent("templates/MenuInicial.html");
         }
-      }
 
-      function loadContent(htmlFilePath) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", htmlFilePath, true);
+        function im1MessageHandler(data) {
+            console.log("--------------im1MessageHandler---------------");
 
-        xhr.onload = function () {
-          if (xhr.status >= 200 && xhr.status < 300) {
-            document.getElementById("content").innerHTML = xhr.responseText;
-          } else {
-            console.error("Failed to load content");
-          }
-        };
+            if (data != null && data != "RENEW" && data != "OK") {
+                console.log(data);
+                var content = $(data)
+                    .find("emma\\:interpretation")
+                    .first()
+                    .text()
+                    .trim();
+                if (typeof content == "string") {
+                    try {
+                        // Try to parse XML
+                        console.log(content);
+                        let message = JSON.parse(content);
+                        if (
+                            message.hasOwnProperty("nlu") &&
+                            message.nlu.intent == "go_to_training_plans"
+                        ) {
+                            window.location.href = "/meusplanos";
+                        } else if (
+                            message.hasOwnProperty("nlu") &&
+                            message.nlu.intent == "go_to_profile"
+                        ) {
+                            window.location.href = "/meuperfil";
+                        } else if (
+                            message.hasOwnProperty("nlu") &&
+                            message.nlu.intent == "go_to_newsession"
+                        ) {
+                            window.location.href = "/novasessao";
+                        }
+                    } catch (e) {
+                        console.log(e);
+                    }
+                }
+            } else {
+                loadContent("templates/MenuInicial.html");
+            }
+        }
 
-        xhr.onerror = function () {
-          console.error("Network error occurred");
-        };
+        function loadContent(htmlFilePath) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", htmlFilePath, true);
 
-        xhr.send();
-      }
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    document.getElementById("content").innerHTML = xhr.responseText;
+                } else {
+                    console.error("Failed to load content");
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error("Network error occurred");
+            };
+
+            xhr.send();
+        }
     </script>
 
     <div class="profile">
-      <div class="welcome">
-        <div class="container2"></div>
-        <div class="text">
-          <h1>Bem vindo,</h1>
-          <h2>{{username}}</h2>
+        <div class="welcome">
+            <div class="container2"></div>
+            <div class="text">
+                <h1>Bem vindo,</h1>
+                <h2>{{username}}</h2>
+            </div>
         </div>
-      </div>
-      <p id="datetime" class="datetime-container">
-        <span class="time"></span>
-        <span class="date"></span>
-      </p>
+        <p id="datetime" class="datetime-container">
+            <span class="time"></span>
+            <span class="date"></span>
+        </p>
     </div>
     <div id="content">
-      <!-- Content will be loaded here -->
+        <!-- Content will be loaded here -->
     </div>
-  </body>
+</body>
 </html>
