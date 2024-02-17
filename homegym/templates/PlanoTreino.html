@@ -1,122 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/plano.css')}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/plano.css')}}"
+    />
     <title>HomeGym</title>
-</head>
-<body>
+  </head>
+  <body>
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
     <script src="../static/js/mmi.js"></script>
     <script src="../static/js/globals.js"></script>
     <script src="../static/js/jquery-3.6.4.min.js"></script>
     <script src="../static/js/webtoolkit.utf8.js"></script>
     <script src="../static/js/menuplanos.js"></script>
+    <script src="../static/js/datetime.js"></script>
     <script src="../static/js/planox.js"></script>
 
     <script type="module">
+      let count = 0;
 
-        let count = 0;
+      var mmiCli_Out_add = "wss://" + host + ":8005/IM/USER1/";
+      var mmiCli_Out = null;
+      mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
+      mmiCli_Out.onMessage.on(im1MessageHandler);
+      mmiCli_Out.onOpen.on(socketOpenHandler);
+      mmiCli_Out.openSocket();
 
-        var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
-        var mmiCli_Out = null;
-        mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
-        mmiCli_Out.onMessage.on(im1MessageHandler);
-        mmiCli_Out.onOpen.on(socketOpenHandler);
-        mmiCli_Out.openSocket();
-      
+      function socketOpenHandler(event) {
+        console.log("---------------openSocketHandler---------------");
 
-        function socketOpenHandler(event) {
-            console.log("---------------openSocketHandler---------------")
-        
-            if(mmiCli_Out.socket.readyState !== WebSocket.OPEN)
-            {
-                return;
-            }
+        if (mmiCli_Out.socket.readyState !== WebSocket.OPEN) {
+          return;
         }
+      }
 
+      function im1MessageHandler(data) {
+        console.log("--------------im1MessageHandler---------------");
 
-        function im1MessageHandler(data) {
-            console.log("--------------im1MessageHandler---------------");
-
-            if(data != null && data!="RENEW" && data!="OK") {
-                console.log(data);
-                var content = $(data).find("emma\\:interpretation").first().text().trim();
-                if (typeof content == 'string') {
-                try {
-                    // Try to parse XML
-                    let message = JSON.parse(content);
-                    if(message.hasOwnProperty('nlu') && message.nlu.intent == 'finish_plan') {
-                        //load stats e gamificação
-                    }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
-                        window.location.href = "/meusplanos";
-                    }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0) {
-                        let planNumber = getPlanNumber();
-                        loadPlanHead(planNumber)
-                            .then(() => {
-                            console.log(count);
-                            return loadExercise(planNumber,count);
-                            })		    
-                            .then(() => runForTime(30))
-                            .then(() => clearDivs())  
-                            .then(() => {
-                                count = count + 1;
-                            })	               
-                            .catch(error => {
-                                console.error('An error occurred:', error);
-                            });
-
-                        
-                    }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile' && count > 0 && count < 2) {
-                        let planNumber = getPlanNumber();
-                        loadPlanHead(planNumber)
-                            .then(() => {
-                            console.log(count);
-                            return loadExercise(planNumber,count);
-                            })	
-                            .then(() => runForTime(30))
-
-                            .then(() => clearDivs())                   
-                            .then(() => {
-                                count = count + 1;
-                            })	   
-                            .catch(error => {
-                                console.error('An error occurred:', error);
-                            });
-
-                        
-                    }
-                    
-                }
-                catch (e) { console.log(e); }
-                }
-            }
-            else {
+        if (data != null && data != "RENEW" && data != "OK") {
+          console.log(data);
+          var content = $(data)
+            .find("emma\\:interpretation")
+            .first()
+            .text()
+            .trim();
+          if (typeof content == "string") {
+            try {
+              // Try to parse XML
+              let message = JSON.parse(content);
+              if (
+                message.hasOwnProperty("nlu") &&
+                message.nlu.intent == "finish_plan"
+              ) {
+                //load stats e gamificação
+              } else if (
+                message.hasOwnProperty("nlu") &&
+                message.nlu.intent == "go_to_training_plans"
+              ) {
+                window.location.href = "/meusplanos";
+              } else if (
+                message.hasOwnProperty("nlu") &&
+                message.nlu.intent == "start_plan" &&
+                count == 0
+              ) {
                 let planNumber = getPlanNumber();
-                loadPlanInfo(planNumber);
+                loadPlanHead(planNumber)
+                  .then(() => {
+                    console.log(count);
+                    return loadExercise(planNumber, count);
+                  })
+                  .then(() => runForTime(30))
+                  .then(() => clearDivs())
+                  .then(() => {
+                    count = count + 1;
+                  })
+                  .catch((error) => {
+                    console.error("An error occurred:", error);
+                  });
+              } else if (
+                message.hasOwnProperty("nlu") &&
+                message.nlu.intent == "go_to_profile" &&
+                count > 0 &&
+                count < 2
+              ) {
+                let planNumber = getPlanNumber();
+                loadPlanHead(planNumber)
+                  .then(() => {
+                    console.log(count);
+                    return loadExercise(planNumber, count);
+                  })
+                  .then(() => runForTime(30))
+
+                  .then(() => clearDivs())
+                  .then(() => {
+                    count = count + 1;
+                  })
+                  .catch((error) => {
+                    console.error("An error occurred:", error);
+                  });
+              }
+            } catch (e) {
+              console.log(e);
             }
+          }
+        } else {
+          let planNumber = getPlanNumber();
+          loadPlanInfo(planNumber);
         }
+      }
 
-        function clearDivs() {
-            document.getElementById('timer').innerHTML = "";
-            document.getElementById('exercise').innerHTML = "";
-            document.getElementById('videoFrame').src = "";
-        }
-
-        
+      function clearDivs() {
+        document.getElementById("timer").innerHTML = "";
+        document.getElementById("exercise").innerHTML = "";
+        document.getElementById("videoFrame").src = "";
+      }
     </script>
-
-
-<div id="content" > </div>
-<div id="timer" > </div>
-<div id="exercise" > </div>
-<iframe width="840" height="472.5" src="" id="videoFrame" frameborder="0" style="position: absolute; top: 60%; left: 30%; transform: translate(-50%, -50%);" allow=""></iframe>
-
-
-</body>
+    <div class="header">
+      <div class="WorkoutPlan">
+        <div class="WorkoutImage"></div>
+      </div>
+    </div>
+    <div id="content"></div>
+    <div id="timer"></div>
+    <div id="exercise"></div>
+    <iframe
+      width="840"
+      height="472.5"
+      src=""
+      id="videoFrame"
+      frameborder="0"
+      style="
+        position: absolute;
+        top: 60%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+      "
+      allow=""
+    ></iframe>
+  </body>
 </html>
