@@ -51,6 +51,9 @@
                     if(message.hasOwnProperty('nlu') && message.nlu.intent == 'finish_plan') {
                         //load stats e gamificação
                     }
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans') {
+                        window.location.href = "/meusplanos";
+                    }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0) {
                         let planNumber = getPlanNumber();
                         LoadPlanHead(planNumber)
@@ -69,7 +72,7 @@
 
                         
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count > 0) {
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile' && count > 0 && count < 2) {
                         let planNumber = getPlanNumber();
                         LoadPlanHead(planNumber)
                             .then(() => {
@@ -89,7 +92,6 @@
                         
                     }
                     
-
                 }
                 catch (e) { console.log(e); }
                 }
