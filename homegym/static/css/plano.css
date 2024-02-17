@@ -1,33 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
+
 * {
     font-family: "Sans-serif", "Poppins", "Montserrat", "Josefin Sans", sans-serif;
     padding: 0;
     margin: 0;
 }
+
 @font-face {
     font-family: "FONTTEXT";
     src: url(../fonts/JosefinSans-ExtraLight.ttf);
 }
+
 body {
     padding: 0 7em;
     background-color: white;
-    font-size: 18px;
+    font-size: clamp(18px, 1vw, 50px);
 }
+
 h1 {
     color: black;
     font-size: 50px;
     font-weight: 100;
     text-align: center;
+    font-size: clamp(18px, 1vw, 50px);
 }
+
 h2 {
     font-weight: 800;
     font-size: 42px;
 }
+
 h3 {
     font-weight: 600;
     font-size: 30px;
     color: black;
 }
+
 p {
     color: black;
     z-index: 2;
@@ -56,7 +64,7 @@ p {
     display: flex;
 }
 
-.container {
+.Excontainer {
     height: 33vh;
     width: 26vw;
     margin: 10px;
@@ -68,7 +76,7 @@ p {
     /* Establish positioning context */
 }
 
-.container .content {
+.Excontainer .Excontent {
     margin-top: auto;
     text-align: center;
     width: 100%;
@@ -88,6 +96,7 @@ p {
     font-weight: bold;
     margin-left: 140px;
 }
+
 #timer {
     position: fixed;
     top: 20%;
@@ -110,44 +119,58 @@ p {
 }
 
 .Info {
-    aspect-ratio: 1/1; /* Maintain a square aspect ratio */
-    height: 20vh;
-    width: 40vw; /* Adjust width to take half of the container */
+    aspect-ratio: 1/1;
+    /* Maintain a square aspect ratio */
+    height: 25vh;
+    width: 40vw;
+    /* Adjust width to take half of the container */
     color: white;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
 }
 
 .text {
-    flex: 1; /* Take up remaining space */
+    flex: 1;
     max-width: calc(100% - 110px);
+    margin-right: 1rem;
 }
 
 .IMGcontainer {
-    width: 60%; /* Occupy half of the container width */
+    width: 46%;
+    /* Occupy half of the container width */
     height: 100%;
     margin-right: -50px;
 }
 
 .meusplanosimg {
-    width: 20vw;
+    width: 15vw;
     height: 25vh;
     object-fit: cover;
-    border-radius: 30px 30px 30px 30px; /* Adjust border-radius to match the container */
+    border-radius: 30px 30px 30px 30px;
+    /* Adjust border-radius to match the container */
 }
 
-.Details{
+.PlanName {
     font-size: x-large;
 }
+
 .datetime-container {
     order: 3;
     flex-direction: column;
     align-items: flex-start;
+    align-items: right;
     font-size: 30px;
     font-weight: 100;
 }
 
+
+.date {
+    font-family: "FONTTEXT";
+    font-weight: lighter;
+    margin-left: 16%;
+
+}
 
 .maindiv {
     margin: 50px 0;
@@ -159,34 +182,51 @@ p {
 
 .PlanInfo {
     text-align: left;
-    margin-right: 20px; /* Adjust this value as needed */
+    margin-right: 20px;
+    /* Adjust this value as needed */
     margin-top: 10%;
 }
 
-.PlanNumber{
+.PlanNumber {
     font-family: "FONTTEXT";
     font-weight: lighter;
 }
 
+.description {
+    width: 600px;
+}
+
 .description p {
-    display: inline; /* or inline-block */
-}
-.description .d1{
-    font-weight: normal;
-}
-
-.duration p{
     display: inline;
 }
 
-.duration .dur1{
+.description .d1 {
     font-weight: normal;
 }
 
-.type p{
+.duration p {
     display: inline;
 }
 
-.type .t1{
+.duration .dur1 {
     font-weight: normal;
+}
+
+.type p {
+    display: inline;
+}
+
+.type .t1 {
+    font-weight: normal;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Exercicios {
+    margin-top: 2%;
+    font-family: "FONTTEXT";
+    font-weight: lighter;
 }

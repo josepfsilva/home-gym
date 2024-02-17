@@ -16,7 +16,7 @@ function displayDateTime() {
 
     const finalDateTimeString = `
     <span class="bold">${timeString}</span><br>
-    <span>${dateString}</span>
+    <span class="date">${dateString}</span>
 `;
     dateTimeElement.innerHTML = finalDateTimeString;
 }
