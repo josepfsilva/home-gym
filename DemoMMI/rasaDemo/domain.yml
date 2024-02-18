@@ -12,6 +12,7 @@ intents:
 - start_plan
 - stop_plan
 - finish_plan
+- next_exercise
 entities:
 - nome_plano
 slots:

@@ -43,6 +43,10 @@ nlu:
     - Podes ir para os planos de treino
     - Mostra-me os planos de treino
     - Abre os planos de treino
+    - Planos de treino
+    - Mostra os meus treinos disponíveis
+    - Mostra-me os meus planos de treino
+    - Planos
 
 - intent: go_to_profile  
   examples: |
@@ -51,6 +55,7 @@ nlu:
     - Mostra-me o perfil
     - Abre o perfil
     - Ir para o perfil
+    - Perfil
 
 - intent: go_to_newsession
   examples: |
@@ -59,6 +64,8 @@ nlu:
     - Mostra-me a página nova sessão
     - Abre uma nova sessão
     - Começa nova sessão
+    - Nova sessão
+
 
 - intent: go_to_mainpage  
   examples: |
@@ -160,5 +167,30 @@ nlu:
     - Acabar treino
     - Terminar
     - Fechar 
-    
+    - Terminar treino
+    - Finalizar treino
+    - Sair
+    - Sair do treino
+    - Finaizar
+    - Encerrar
+    - Encerrar treino
+    - Sai
+
+
+- intent: next_exercise
+  examples: |
+    - Próximo exercício, por favor
+    - Avançar para o próximo
+    - Vamos para o próximo exercício
+    - Seguinte, por favor
+    - Passar para o próximo exercício
+    - Continuar para o próximo
+    - Avançar
+    - Seguinte
+    - Seguir em frente
+    - Próximo desafio
+    - Próximo
+    - Avança para o próximo exercício
+    - Mostrar o próximo exercício
+    - Mostrar o exercício seguinte
      
