@@ -23,7 +23,7 @@
     <script src="../static/js/webtoolkit.utf8.js"></script>
     <script src="../static/js/menuplanos.js"></script>
     <script src="../static/js/planox.js"></script>
-    <script src="../static/js/datetime.js"></script>
+    <!--<script src="../static/js/datetime.js"></script>-->
 
     <script type="module">
 
@@ -55,9 +55,8 @@
                 var content = $(data).find("emma\\:interpretation").first().text().trim();
                 if (typeof content == 'string') {
                 try {
-                    // Try to parse XML
                     let message = JSON.parse(content);
-                    if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'go_to_profile' && count == 2))) { 
+                    if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'go_to_profile' && count == 3))) { 
                         //terminar plano ou avançar do ultimo exercicio
                         shouldContinue = false;
                         setTimeout(() => {  //esperar pelo fim do outro timer
@@ -90,7 +89,7 @@
 
                         
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile' && count<2) { //avançar exercicio
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile' && count<3) { //avançar exercicio
                         shouldContinue = false;
                         
                         setTimeout(() => {  //esperar pelo fim do outro timer
@@ -129,7 +128,7 @@
                 let planNumber = getPlanNumber();
                 loadPlanInfo(planNumber);
             }
-      }
+        }
 
         function clearDivs() {
             document.getElementById('timer').innerHTML = "";
@@ -175,10 +174,10 @@
                 }
             });
         
-}
+        }
 
-        
     </script>
+
     <div id="content"></div>
     <div id="timer"></div>
     <div id="exercise"></div>
