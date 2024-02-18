@@ -35,7 +35,7 @@ function loadPlanHead(planNumber) {
             // Process the data and update the HTML content
             let planId = data[planNumber];                 //id real na db
 
-            return fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
+            return fetch('http://127.0.0.1:5000/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -43,20 +43,17 @@ function loadPlanHead(planNumber) {
                     return response.json();
                 })
                 .then(data => {
-                    // Process the data and update the HTML content
-                    console.log(data);
-                    //document.getElementById('content').innerText = data.message;
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]
-                    var html = '<div> <h1>Plano '+ planNumber + ' - ' + planDetails[0] + '</h1></div>';
-                    
+                    var html = '<div> <h1>Plano ' + planNumber + ' - ' + planDetails[0] + '</h1></div>';
+
                     container.append(html);
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
                 });
-            
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -76,7 +73,7 @@ function loadPlanInfo(planNumber) {
             // Process the data and update the HTML content
             let planId = data[planNumber];
 
-            fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
+            fetch('http://127.0.0.1:5000/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -84,30 +81,39 @@ function loadPlanInfo(planNumber) {
                     return response.json();
                 })
                 .then(data => {
-                    // Process the data and update the HTML content
-                    console.log(data);
-                    //document.getElementById('content').innerText = data.message;
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]
                     var exercises = data[1]
-                    var html = '<div>';
-                    html += '<h3>Plano '+ planNumber + ' : ' + planDetails[0] + '</h3>';
-                    html += '<p>Description: ' + planDetails[1] + '</p>';
-                    html += '<p>Type: ' + planDetails[2] + '</p>';
-                    html += '</div> <h3>Exercises</h3>';
-                    html += '<div class="menu"> ';  
+                    // inicio do cabeçalho
+                    var html = '<div class="maindiv">';
+                    html += '<div class="Info">';
+                    html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
+                    html += '<div class="text"><h3 class="PlanNumber">Plano ' + planNumber + '</h3>';
+                    html += '<h3 class="PlanName">' + planDetails[0] + '</h3></div></div>';
+                    html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
+                    // fim do cabeçalho
+                    //inicio dos detalhes
+                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="dur1">Duration: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
+                    html += '<div class="type"><p class="t1">Type: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
+                    html += '<div class="description"><p class="d1">Description: </p> ' + '<p>' + planDetails[1] + '</p></div></div>';
+                    //fim dos detalhes
+                    //Exercicios
+                    html += '</div> <div class="ContentEX"><h3 class="Exercicios">Exercícios:</h3>';
+                    html += '<div class="menu"> ';
                     for (var exerciseId in exercises) {
                         var exerciseDetails = exercises[exerciseId];
-                        html += '<div class="container"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[3] +'</p> <p>'+ exerciseDetails[4] +'</p> </div> </div>'
+                        html += '<div class="Excontainer"> <div class="Excontent"> <h3 class="ExName">' + exerciseDetails[0] + '</h3> <p>' + exerciseDetails[1] + '</p> <p class="ExType">' + exerciseDetails[3] + '</p> <p class="ExDifficulty">' + exerciseDetails[4] + '</p> </div> </div>'
                     }
-                    
+                    html += '</div>';
+                    //fim dos exercicios
+
                     container.append(html);
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
                 });
-            
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -116,7 +122,7 @@ function loadPlanInfo(planNumber) {
 }
 
 
-function loadExercise(planNumber,count) {
+function loadExercise(planNumber, count) {
     return fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
             if (!response.ok) {
@@ -128,7 +134,7 @@ function loadExercise(planNumber,count) {
             // Process the data and update the HTML content
             let planId = data[planNumber];
 
-            return fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
+            return fetch('http://127.0.0.1:5000/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -141,22 +147,21 @@ function loadExercise(planNumber,count) {
                     var container = $('#exercise');
                     container.empty();
                     var exercises = data[1]
-                    console.log(exercises)
-                    
+
                     var exerciseDetails = exercises[count];
 
                     let videoFrame = document.getElementById('videoFrame');
-                    videoFrame.src = ""; 
+                    videoFrame.src = "";
                     videoFrame.src = convertToEmbedUrl(exerciseDetails[2]);
 
-                    var html = '<div class="container3"> <div class="content"> <h3>'+ exerciseDetails[0]+'</h3> <p>'+ exerciseDetails[1] +'</p> <p>'+ exerciseDetails[3] +'</p> <p>'+ exerciseDetails[4] +'</p> </div> </div>'
+                    var html = '<div class="container3"> <div class="content"> <h3>' + exerciseDetails[0] + '</h3> <p>' + exerciseDetails[1] + '</p> <p>' + exerciseDetails[3] + '</p> <p>' + exerciseDetails[4] + '</p> </div> </div>'
                     container.append(html);
-                    
+
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
                 });
-            
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -176,7 +181,7 @@ function getPlanDuration(planNumber) {
             // Process the data and update the HTML content
             let planId = data[planNumber];                 //id real na db
 
-            return fetch('http://127.0.0.1:5000/planotreino/'+ planId) 
+            return fetch('http://127.0.0.1:5000/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -188,36 +193,17 @@ function getPlanDuration(planNumber) {
                     container.empty();
 
                     var planDetails = data[0];
-                    console.log(data);
                     return planDetails[3];
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
                 });
-            
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
         });
 
-}
-
-function runForTime(seconds) {
-    return new Promise(resolve => {
-        let timerElement = document.getElementById('timer');
-        let timeLeft = seconds;
-        timerElement.textContent = timeLeft;
-
-        setTimeout(() => {
-            clearInterval(intervalId);  // Stop the timer after the specified number of seconds
-            resolve();
-        }, seconds * 1000);
-
-        let intervalId = setInterval(() => {
-            timeLeft--;  // Decrease the time left by 1
-            timerElement.textContent = timeLeft;  // Update the timer on the screen
-        }, 1000); 
-    });
 }
 
 function convertToEmbedUrl(url) {
