@@ -62,6 +62,7 @@
                         setTimeout(() => {  //esperar pelo fim do outro timer
                             clearDivs();
                             document.getElementById('exercise').innerHTML = "You have finished your plan! Congratulations!";
+                            //load stats
                         }, 1000); // Delay for 1 second
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0) {
@@ -117,8 +118,8 @@
                         }, 1000); // Delay for 1 second
                     
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile' && count==2){
-
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans'){   //por condição caso já esteja a meio de um plano
+                        window.location.href = "/meusplanos";
                     }
                 }
                 catch (e) { console.log(e); }
