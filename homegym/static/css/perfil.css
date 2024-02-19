@@ -1,39 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
-    font-family: "Sans-serif", "Poppins", "Montserrat", "Josefin Sans", sans-serif;
-    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
-body {
-    padding: 0 7em;
-    background-color: white;
-    font-size: 18px;
+.container {
+    min-height: 100vh;
+    padding: 20px 0; 
 }
 
-h1 {
-    color: black;
-    font-size: 50px;
-    font-weight: 100;
-    text-align: center;
+.left-side, .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-h2 {
-    font-weight: 800;
-    font-size: 42px;
+.left-side {
+    padding-left: 0px;
+    margin-left: 0;
 }
 
-h3 {
-    font-weight: 600;
-    font-size: 30px;
-    color: white;
-}
-
-p {
-    color: black;
-    z-index: 2;
-    font-weight: 600;
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    background-color: grey;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
 }
 .circles{
     position: absolute;
@@ -145,14 +145,9 @@ body {
 
 .profile {
     display: flex;
-    align-items: flex-start; 
-    padding: 20px;
+    align-items: center;
 }
-.right-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+
 
 .profile-pic {
     width: 200px;
@@ -161,21 +156,24 @@ body {
     background-size: cover;
     background-position: center;
     margin-bottom: 20px;
+    margin-top: 20px;
     border-radius: 20px;
 }
 
 
 
 .right-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    width: calc(100% - 240px); 
+    padding-left: 20px; 
 }
 
 .info {
     max-width: 300px;
     margin-bottom: 20px;
-    padding-left: 20px; /* Adjust spacing */
+    padding-left: 20px; 
 }
 
 .name {
@@ -209,6 +207,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     margin-right: 20px;
+    width: 100%;
+    margin-left: 0px;
 }
 
 .title, .achievements-container {
@@ -231,8 +231,8 @@ body {
 .height-weight {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align to the left */
-    margin-bottom: 20px; /* Space between elements */
+    align-items: flex-start;
+    margin-bottom: 20px; 
 }
 
 .stat, .achievement {
@@ -257,25 +257,29 @@ body {
 
 
 
-
-.container {
-    position: relative;
+.containerRight,
+.containerLeft {
+    width: 100%; 
+    height: 50%; 
+    max-width: 497px; 
+    max-height: 357px;
+    margin: 10px;
+    background-color: rgb(217, 217, 217);
+    color: white;
+    border-radius: 15px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 80%;
-    margin: auto;
-    padding: 20px;
+    position: relative;
 }
+
 
 .datetime-container {
     position: absolute; 
-    top: 0; 
-    right: 0; 
+    top: 20px; 
+    right: 20px; 
     font-size: 28px;
     font-weight: 100;
     text-align: right;
-    margin-right: 20px; 
+    margin-right: 200px; 
     margin-top: 20px; 
 }
 
@@ -324,16 +328,38 @@ body {
 }
 
 
-.card {
-    margin-top: 0px;
-    margin-bottom: 500px; 
-    width: 500px;
-    height: 300px;
-    background-image: url(/static/img/dashboard.jpg);
-    background-size: cover;
-    background-position: center;
-    border: none;
+.dashboard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; 
+    height: 300px; 
     border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.dashboard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-overlay-dashboard {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10; 
 }
 
 
@@ -354,12 +380,13 @@ body {
 }
 
 .friends-list {
-    width: 300px;
     background-color: #f0f0f0;
     border-radius: 15px;
-    padding: 20px;
-    margin-left: 50px; 
-    margin-top: 60px;
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 200px;
+    right:195px; 
 }
 
 .friends-list ul {
@@ -401,4 +428,34 @@ body {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .friends-list {
+        right: 10px; 
+    }
+}
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+    }
+    .right-side {
+        position: relative; 
+        width: 100%;
+        padding-left: 0; 
+    }
+    .friends-list {
+        position: relative; 
+        top: auto; 
+        right: auto; 
+        left: auto;
+        margin: 20px 0; 
+    }
+}
+@media only screen and (max-width: 768px) {
+    .datetime-container, .friends-list {
+        top: auto; 
+        right: 10px; 
+       
+    }
 }
