@@ -501,6 +501,16 @@ InitializeKWS();
                 doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
                 setValue(JSON.stringify(result))));
           break;
+
+      case 'next_exercise':
+
+          var message = {'intent':'next_exercise'}
+          var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
+          var result = { "recognized" : ["SPEECH", "SPEECHIN", "APP"], "text": messaget, "nlu": message };
+          mmiCli_1.sendToIM(new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
+                doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
+                setValue(JSON.stringify(result))));
+          break;
     }
     
   });

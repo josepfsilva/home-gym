@@ -90,7 +90,7 @@
 
                         
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile' && count<3) { //avançar exercicio
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<3) { //avançar exercicio
                         shouldContinue = false;
                         
                         setTimeout(() => {  //esperar pelo fim do outro timer
