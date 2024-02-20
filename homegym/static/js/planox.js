@@ -81,6 +81,18 @@ function loadPlanInfo(planNumber) {
                     return response.json();
                 })
                 .then(data => {
+
+                    var mmiCli_1 = null;
+                    mmiCli_1 = new MMIClient(null, "https://"+host+":8000/IM/USER1/APPSPEECH");
+                    sendToVoice("Plano "+planNumber);
+                    function sendToVoice(texto){
+                        //let speak = "&lt;speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"&gt;&lt;p&gt;" + "quadrado" + "&lt;/p&gt;&lt;/speak&gt";
+                        let speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"><p>"+texto+"</p></speak>";
+                        var result = speak;
+                        mmiCli_1.sendToIM(new LifeCycleEvent("APPSPEECH", "IM", "text-1", "ctx-1").
+                            doStartRequest(new EMMA("text-", "text", "command", 1, 0).
+                                setValue(JSON.stringify(result))));
+                    }
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]

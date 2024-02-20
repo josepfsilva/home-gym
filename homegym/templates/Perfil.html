@@ -48,6 +48,7 @@
                         let message = JSON.parse(content);
                         if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
                             window.location.href = '/meuperfil';
+
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
                             window.location.href = '/';
@@ -60,25 +61,17 @@
             }
     }
 
-    function loadContent(htmlFilePath) {
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', htmlFilePath, true);
-
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    document.getElementById('content').innerHTML = xhr.responseText;
-                } else {
-                    console.error('Failed to load content');
-                }
-            };
-
-            xhr.onerror = function () {
-                console.error('Network error occurred');
-            };
-
-            xhr.send();
-        }
+    var mmiCli_1 = null;
+    mmiCli_1 = new MMIClient(null, "https://"+host+":8000/IM/USER1/APPSPEECH");
+    sendToVoice("Bem-vindo ao seu Perfil.");
+    function sendToVoice(texto){
+        //let speak = "&lt;speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"&gt;&lt;p&gt;" + "quadrado" + "&lt;/p&gt;&lt;/speak&gt";
+        let speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"><p>"+texto+"</p></speak>";
+        var result = speak;
+        mmiCli_1.sendToIM(new LifeCycleEvent("APPSPEECH", "IM", "text-1", "ctx-1").
+            doStartRequest(new EMMA("text-", "text", "command", 1, 0).
+                setValue(JSON.stringify(result))));
+    }
 
     </script>
 
