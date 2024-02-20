@@ -29,6 +29,7 @@
 
         let count = 0;
         var shouldContinue = true;
+        var planStart = false;
 
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
@@ -56,9 +57,10 @@
                 if (typeof content == 'string') {
                 try {
                     let message = JSON.parse(content);
-                    if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'go_to_profile' && count == 3))) { 
+                    if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'next_exercise' && count == 2)) && planStart == true) { 
                         //terminar plano ou avançar do ultimo exercicio
                         shouldContinue = false;
+                        planStart = false;
                         setTimeout(() => {  //esperar pelo fim do outro timer
                             clearDivs();
                             document.getElementById('exercise').innerHTML = "You have finished your plan! Congratulations!";
@@ -66,6 +68,7 @@
                         }, 1000); // Delay for 1 second
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0) {
+                        planStart = true;
                         let planNumber = getPlanNumber();
                         loadPlanHead(planNumber)
                             .then(() => {
@@ -90,9 +93,8 @@
 
                         
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<3) { //avançar exercicio
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<3 && planStart == true) { //avançar exercicio
                         shouldContinue = false;
-                        
                         setTimeout(() => {  //esperar pelo fim do outro timer
                             let planNumber = getPlanNumber();
                             loadPlanHead(planNumber)
