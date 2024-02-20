@@ -88,8 +88,8 @@ def pagina_perfil():
     birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
     birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
     age = get_age(birthday_data)
-    height = get_user_data(session['UserID'])[5]
-    weight = get_user_data(session['UserID'])[6]
+    height = get_user_data(session['UserID'])[6]
+    weight = get_user_data(session['UserID'])[5]
 
     time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
     date_today = date.today().strftime('%d/%m/%Y')  
