@@ -46,7 +46,7 @@ function loadPlanHead(planNumber) {
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]
-                    var html = '<div> <h1>Plano ' + planNumber + ' - ' + planDetails[0] + '</h1></div>';
+                    var html = '<div class="planhead"> <p>Plano ' + planNumber + ' - ' + planDetails[0] + '<p></div>';
 
                     container.append(html);
                 })
@@ -216,6 +216,18 @@ function getPlanDuration(planNumber) {
             console.error('Fetch error:', error);
         });
 
+}
+
+function formatTime(timeInMilliseconds) {
+    let seconds = Math.floor((timeInMilliseconds / 1000) % 60);
+    let minutes = Math.floor((timeInMilliseconds / (1000 * 60)) % 60);
+    let hours = Math.floor((timeInMilliseconds / (1000 * 60 * 60)) % 24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds;
 }
 
 function convertToEmbedUrl(url) {

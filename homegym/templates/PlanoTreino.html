@@ -30,6 +30,7 @@
         let count = 0;
         var shouldContinue = true;
         var planStart = false;
+        let startTime = 0;
 
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
@@ -60,15 +61,22 @@
                     if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'next_exercise' && count == 2)) && planStart == true) { 
                         //terminar plano ou avançar do ultimo exercicio
                         shouldContinue = false;
+                        let elapsedTime = getElapsedTime(); //mandar para a db
                         planStart = false;
                         setTimeout(() => {  //esperar pelo fim do outro timer
                             clearDivs();
                             document.getElementById('exercise').innerHTML = "You have finished your plan! Congratulations!";
+                            
                             //load stats
+                            document.getElementById('timer').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
+
+                
+               
                         }, 1000); // Delay for 1 second
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0) {
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0 && planStart == false) {
                         planStart = true;
+                        startTime = Date.now();
                         let planNumber = getPlanNumber();
                         loadPlanHead(planNumber)
                             .then(() => {
@@ -78,15 +86,16 @@
                             .then(() => runForTime(30))
                             .then(result => {
                                 console.log(result.message); // 'Operation completed'
-                                console.log(result.incompleteEx); // false
+                                //console.log(result.incompleteEx); // false
                                 count += 1;
                                 
                                 clearDivs();
+                                document.getElementById('exercise').innerHTML = "Exercício terminado! Diga Avançar para começar o proximo exercício.";
                             })
                             .catch(error => {
                                 console.log('Timer was stopped')
                                 if (error.incompleteEx) {
-                                    console.log(error.incompleteEx); // true
+                                    //console.log(error.incompleteEx); // true
                                     count += 1;
                                 }
                             });
@@ -106,15 +115,16 @@
                                 .then(() => runForTime(30))
                                 .then(result => {
                                     console.log(result.message); // 'Operation completed'
-                                    console.log(result.incompleteEx); // false
+                                    //console.log(result.incompleteEx); // false
                                     count += 1;
                                     clearDivs();
+                                    document.getElementById('exercise').innerHTML = "Exercício terminado! Diga Avançar para começar o proximo exercício.";
                                 })
                                 .catch(error => {
                                     console.log('Timer was stopped')
                                     if (error.incompleteEx) {
-                                    console.log(error.incompleteEx); // true
-                                    count += 1;
+                                        //console.log(error.incompleteEx); // true
+                                        count += 1;
                                 }
                                 });
                         }, 1000); // Delay for 1 second
@@ -140,6 +150,11 @@
 
         }
 
+        function getElapsedTime() {
+            let elapsedTime = Date.now() - startTime;
+            return elapsedTime;
+        }
+
         function runForTime(seconds) {
             return new Promise((resolve, reject) => {
                 let incompleteEx = false;
@@ -153,7 +168,6 @@
 
                     if (timeLeft > 0) {
                         let sc = shouldContinue;
-                        console.log(sc);
                         if (sc) {
                             setTimeout(tick, 1000);
                         } else {
