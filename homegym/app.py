@@ -84,18 +84,19 @@ def pagina_perfil():
     name = get_user_data(session['UserID'])[3]
     surname = get_user_data(session['UserID'])[4]
     
-    birthday_user = get_user_data(session['UserID'])[8]
+    birthday_user = get_user_data(session['UserID'])[9]
     birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
     birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
     age = get_age(birthday_data)
-    height = get_user_data(session['UserID'])[6]
-    weight = get_user_data(session['UserID'])[5]
+    height = get_user_data(session['UserID'])[7]
+    weight = get_user_data(session['UserID'])[6]
 
     time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
     date_today = date.today().strftime('%d/%m/%Y')  
+    
+    image_path = get_user_data(session['UserID'])[5]
 
-
-    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight)
+    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path)
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():

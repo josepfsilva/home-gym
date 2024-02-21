@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS Users (
     Password TEXT NOT NULL,
     Name TEXT NOT NULL,
     Surname TEXT NOT NULL,
+    UserImage TEXT NOT NULL,
     Weight INTEGER NOT NULL,
     Height INTEGER NOT NULL,
     Email TEXT UNIQUE NOT NULL,
