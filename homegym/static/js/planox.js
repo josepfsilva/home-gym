@@ -183,9 +183,7 @@ function loadExercise(planNumber, count) {
                                             <p class = "conquistas"> Conquistas: </p>
                                             <div class="badges-gained"></div>
                                             <div class="badges-gained"></div>
-                                            <div class="badges-gained"></div>
                                             <p id = "conquistas-next"> Próximas conquistas: </p>
-                                            <div class="badges-next"></div>
                                             <div class="badges-next"></div>
                                             <div class="badges-next"></div>
                                         </div>

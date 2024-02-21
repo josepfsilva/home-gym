@@ -151,7 +151,7 @@ def add_training_plan():
     cursor = db.cursor()
 
     # user1
-    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Este plano visa a trabalhar a parte superior do corpo.', 'Musculacao', 'Easy', 90, 'static\\img\\upper-body.jpg' ,1, 1);")
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID) VALUES ('Treino de parte superior', 'Este plano visa a trabalhar a parte superior do corpo.', 'Musculacao', 'Easy', 150, 'static\\img\\upper-body.jpg' ,1, 1);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID) VALUES ('Treino de parte inferior', 'Este plano visa a trabalhar a parte inferior do corpo.', 'Musculacao','Easy', 90,'static\\img\\lower-body.jpg', 3, 1);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID) VALUES ('Treino de cardio', 'O objetivo deste plano é aumentar a resistencia.', 'Cardio','Easy', 90, 'static\\img\\cardio.jpg',5, 1);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID) VALUES ('Meditacao', 'Este plano tem como objetivo promover o relaxamento e a saúde mental.', 'Meditacao','Easy', 90, 'static\\img\\meditation.jpg',7, 1);")

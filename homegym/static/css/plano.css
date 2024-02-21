@@ -184,7 +184,7 @@ p {
 }
 
 #timer {
-    position: fixed;
+    position: absolute;
     top: 25%;
     left: 92%;
     font-size: 50px;
@@ -192,6 +192,17 @@ p {
     transform: translate(-50%, -50%);
     color: green;
     z-index: 9999;
+}
+
+#elapsedTime {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    font-size: 40px;
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 24, 160);
+    z-index: 2;
 }
 
 .animated-content {

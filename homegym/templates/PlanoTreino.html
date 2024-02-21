@@ -69,7 +69,7 @@
                             document.getElementById('exercise').innerHTML = "You have finished your plan! Congratulations!";
                             
                             //load stats
-                            document.getElementById('timer').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
+                            document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
 
                 
                
@@ -201,6 +201,7 @@
     </script>
 
     <div id="content"></div>
+    <div id="elapsedTime"></div>
     <div id="timer"></div>
     <div id="exercise"></div>
         <iframe
