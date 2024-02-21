@@ -213,7 +213,6 @@ function loadExercise(planNumber, count) {
 
                     var html = `<div class="videoContainer">
                                     <div class="content">
-                                    <div class="timer" id = "timer">00:30</div> 
                                         <h3>${exerciseDetails[0]}</h3>
                                         <p class="exercise-title">${exerciseDetails[1]}</p>
                                         <p>${exerciseDetails[3]}</p>
