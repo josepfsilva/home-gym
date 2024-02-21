@@ -102,14 +102,17 @@ function loadPlanInfo(planNumber) {
                     var html = '<div class="maindiv">';
                     html += '<div class="Info">';
                     html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
-                    html += '<div class="text"><h3 class="PlanNumber">Plano ' + planNumber + '</h3>';
-                    html += '<h3 class="PlanName">' + planDetails[0] + '</h3></div></div>';
+                    html += '<div class="text">'
+                    html += '<p>Treino de</p>';
+                    html += '<h3>' + planDetails[0] + '</h3>';
+                    html += '<div class="horizontal-line"></div>';
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3></div>';
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
                     //inicio dos detalhes
-                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="dur1">Duration: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
-                    html += '<div class="type"><p class="t1">Type: </p> <p>' + planDetails[2] + '</p></div></div>';
-                    html += '<div class="description"><p class="d1">Description: </p> ' + '<p>' + planDetails[1] + '</p></div></div>';
+                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="subtitle">Duration: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
+                    html += '<div class="type"><p class="subtitle">Type: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
+                    html += '<div class="description">' + '<p>' + planDetails[1] + '</p></div></div>';
                     //fim dos detalhes
                     //Exercicios
                     html += '</div> <div class="ContentEX"><h3 class="Exercicios">Exercícios:</h3>';
