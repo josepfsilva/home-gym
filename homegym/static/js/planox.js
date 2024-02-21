@@ -1,44 +1,3 @@
-let  shouldContinue = true;
-function runForTime(seconds) {
-    return new Promise((resolve, reject) => {
-        let incompleteEx = false;
-        let timerElement = document.getElementById('timer');
-        let timeLeft = seconds;
-        timerElement.textContent = timeLeft;
-
-        function tick() {
-            timeLeft--;
-            timerElement.textContent = timeLeft;
-
-            if (timeLeft > 0) {
-                let sc = shouldContinue;
-                console.log(sc);
-                if (sc) {
-                    setTimeout(tick, 1000);
-                } else {
-                    incompleteEx = true;
-                    reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
-                }
-            } else {
-                if (shouldContinue) {
-                    resolve({message: 'Operation completed', incompleteEx: incompleteEx});
-                } else {
-                    reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
-                }
-            }
-        }
-
-        if (shouldContinue) {
-            setTimeout(tick, 1000);
-        } else {
-            incompleteEx = true;
-            reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
-        }
-    });
-
-}
-
-
 function getPlanNumber() {
     let url = new URL(window.location.href);
     let pathSegments = url.pathname.split('/');
@@ -149,7 +108,7 @@ function loadPlanInfo(planNumber) {
                     // fim do cabeçalho
                     //inicio dos detalhes
                     html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="dur1">Duration: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
-                    html += '<div class="type"><p class="t1">Type: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
+                    html += '<div class="type"><p class="t1">Type: </p> <p>' + planDetails[2] + '</p></div></div>';
                     html += '<div class="description"><p class="d1">Description: </p> ' + '<p>' + planDetails[1] + '</p></div></div>';
                     //fim dos detalhes
                     //Exercicios
