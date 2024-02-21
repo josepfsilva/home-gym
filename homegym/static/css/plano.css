@@ -32,7 +32,7 @@ h2 {
 
 h3 {
     font-weight: 600;
-    font-size: 30px;
+    font-size: 38px;
     color: black;
 }
 
@@ -219,7 +219,7 @@ p {
 .Info {
     aspect-ratio: 1/1;
     height: 25vh;
-    width: 80vw;
+    width: 100%;
     color: white;
     display: flex;
     flex-direction: row;
@@ -233,8 +233,8 @@ p {
 
 
 .IMGcontainer img {
-    height: 150px;
-    width: 150px;
+    height: 144px;
+    width: 144px;
     aspect-ratio: 1/1;
     border-radius: 20px;
     margin-right: 20px;
@@ -249,8 +249,8 @@ p {
 
 .horizontal-line {
     border-top: 1px solid #000;
-    width: 45%;
-    margin: 10px 0;
+    width: 25%;
+    margin: 15px 0;
 }
 
 .text p {
@@ -296,7 +296,7 @@ p {
 }
 
 .maindiv {
-    margin: 50px 0px 40px 0px;
+    margin: 50px 0px 25px 0px;
     justify-content: space-between;
     display: flex;
     align-items: center;
@@ -340,7 +340,12 @@ p {
 }
 
 .Exercicios {
-    margin-top: 2%;
+    font-size: 20px;
+    margin-top: 4%;
     font-family: "FONTTEXT";
     font-weight: lighter;
+}
+
+.lowContent {
+    margin-top: 20px;
 }
