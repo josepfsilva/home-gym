@@ -171,8 +171,6 @@ function loadExercise(planNumber, count) {
                     videoFrame.src = convertToEmbedUrl(exerciseDetails[2]);
 
                     var html = `<div class="videoContainer">
-                                    <div class="content">
-                                    <div class="timer" id = "timer">00:30</div> 
                                         <h3>${exerciseDetails[0]}</h3>
                                         <p class="exercise-title">${exerciseDetails[1]}</p>
                                         <p>${exerciseDetails[3]}</p>
@@ -180,7 +178,6 @@ function loadExercise(planNumber, count) {
                                     </div>
                                 </div>`;
                     container.append(html);
-                    runForTime(30)
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -213,9 +210,6 @@ function getPlanDuration(planNumber) {
                     return response.json();
                 })
                 .then(data => {
-                    var container = $('#content');
-                    container.empty();
-
                     var planDetails = data[0];
                     return planDetails[3];
                 })
