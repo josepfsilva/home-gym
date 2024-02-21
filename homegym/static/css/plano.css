@@ -36,6 +36,10 @@ h3 {
     color: black;
 }
 
+p {
+    margin-bottom: 0;
+}
+
 .planhead {
     font-weight: 600;
     font-size: 50px;
@@ -54,7 +58,7 @@ p {
 .menu {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-end;
     flex-wrap: wrap;
 }
@@ -64,7 +68,8 @@ p {
     color: black;
     border-radius: 20px;
     padding: 20px;
-    width: 15%;
+    min-width: 15%;
+    width: auto;
     height: 90%;
     position: absolute;
     top: 50%;
@@ -75,45 +80,72 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 1000 ;
+    z-index: 999;
+    justify-content: flex-start;
+    padding-top: 10px;
 }
 
-.exercise-title {
-    font-size: 1.2em;
-    font-weight: bold;
 
-}
-
-.progress-indicator {
+#conquistas-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin: 10px 0;
 }
 
-.progress-circle {
-    width: 20px;
-    height: 20px;
+#conquistas-next {
+    margin-top: 7%;
+}
+
+.badges-gained {
+    margin-top: 2px;
+    width: 60px;
+    height: 60px;
+    background-color: gray;
     border-radius: 50%;
-    margin-right: 10px;
+
 }
 
-.progress-circle.completed {
-    background-color: #FFD700;
+.badges-next {
+    margin-top: 2px;
+    width: 60px;
+    height: 60px;
+    background-color: lightgrey;
+    border-radius: 50%;
+
 }
+
+
+.videoContainer>.content h3 {
+    margin-top: 5%;
+}
+
+.videoContainer>.content #word {
+    margin-top: 10%;
+    color: gray
+}
+
+.videoContainer>.content #counter {
+    font-weight: bolder;
+}
+
+.videoContainer>.content #descricao {
+    margin-top: 50%;
+    font-weight: 400;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 
 
 .ExImage {
     height: 20vh;
     width: 25vw;
-    margin: 10px;
+    margin: 0px;
     color: black;
     border-radius: 30px;
     display: flex;
     position: relative;
     align-items: center;
     flex-direction: column;
-    /* Establish positioning context */
 }
 
 .ExImage img {
@@ -121,7 +153,6 @@ p {
     height: 100%;
     object-fit: cover;
     border-radius: 30px;
-    /* Ensure the image covers the container */
 }
 
 .ExName {
@@ -130,9 +161,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 200px;
-    /* Set a fixed width for the container */
     text-align: center;
-    /* Center the text horizontally */
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
@@ -147,7 +176,6 @@ p {
     text-align: center;
     width: 100%;
     position: relative;
-    /* Establish positioning context */
 }
 
 .bold {
@@ -156,10 +184,9 @@ p {
 }
 
 #timer {
-    position: relative;
-    z-index: 1001; /* set higher z-index value */
-    margin-left: 33.5cm;
-    margin-top: 3cm;
+    position: fixed;
+    top: 25%;
+    left: 92%;
     font-size: 50px;
     padding: 10px;
     transform: translate(-50%, -50%);
@@ -180,14 +207,11 @@ p {
 
 .Info {
     aspect-ratio: 1/1;
-    /* Maintain a square aspect ratio */
     height: 25vh;
-    width: 40vw;
-    /* Adjust width to take half of the container */
+    width: 80vw;
     color: white;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
 .text {
@@ -196,11 +220,13 @@ p {
     margin-right: 1rem;
 }
 
-.IMGcontainer {
-    width: 46%;
-    /* Occupy half of the container width */
-    height: 100%;
-    margin-right: -50px;
+
+.IMGcontainer img {
+    height: 150px;
+    width: 150px;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    margin-right: 20px;
 }
 
 .meusplanosimg {
@@ -208,11 +234,36 @@ p {
     height: 25vh;
     object-fit: cover;
     border-radius: 30px 30px 30px 30px;
-    /* Adjust border-radius to match the container */
 }
 
+.horizontal-line {
+    border-top: 1px solid #000;
+    width: 45%;
+    margin: 10px 0;
+}
+
+.text p {
+    font-size: 28px;
+    font-weight: normal;
+}
+
+
 .PlanName {
-    font-size: x-large;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.PlanInfo {
+    text-align: left;
+    margin-right: 20px;
+    margin-top: 10%;
+}
+
+.PlanNumber {
+    margin-top: 0px;
+    font-size: 22px;
+    font-family: "FONTTEXT";
+    font-weight: lighter;
 }
 
 .datetime-container {
@@ -234,30 +285,17 @@ p {
 }
 
 .maindiv {
-    margin: 50px 0;
+    margin: 50px 0px 40px 0px;
     justify-content: space-between;
     display: flex;
     align-items: center;
     color: black;
 }
 
-.PlanInfo {
-    text-align: left;
-    margin-right: 20px;
-    /* Adjust this value as needed */
-    margin-top: 10%;
-}
 
-.PlanNumber {
-    font-family: "FONTTEXT";
-    font-weight: lighter;
-}
-
-.description {
-    width: 600px;
-}
 
 .description p {
+    font-weight: normal;
     display: inline;
 }
 
@@ -269,10 +307,6 @@ p {
     display: inline;
 }
 
-.duration .dur1 {
-    font-weight: normal;
-}
-
 .type p {
     display: inline;
 }
@@ -281,7 +315,11 @@ p {
     display: inline;
 }
 
-.type .t1 {
+.duration .subtitle {
+    font-weight: normal;
+}
+
+.type .subtitle {
     font-weight: normal;
 }
 
