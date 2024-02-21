@@ -1,3 +1,44 @@
+let  shouldContinue = true;
+function runForTime(seconds) {
+    return new Promise((resolve, reject) => {
+        let incompleteEx = false;
+        let timerElement = document.getElementById('timer');
+        let timeLeft = seconds;
+        timerElement.textContent = timeLeft;
+
+        function tick() {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft > 0) {
+                let sc = shouldContinue;
+                console.log(sc);
+                if (sc) {
+                    setTimeout(tick, 1000);
+                } else {
+                    incompleteEx = true;
+                    reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
+                }
+            } else {
+                if (shouldContinue) {
+                    resolve({message: 'Operation completed', incompleteEx: incompleteEx});
+                } else {
+                    reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
+                }
+            }
+        }
+
+        if (shouldContinue) {
+            setTimeout(tick, 1000);
+        } else {
+            incompleteEx = true;
+            reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
+        }
+    });
+
+}
+
+
 function getPlanNumber() {
     let url = new URL(window.location.href);
     let pathSegments = url.pathname.split('/');
@@ -159,6 +200,7 @@ function loadExercise(planNumber, count) {
                     var container = $('#exercise');
                     container.empty();
                     var exercises = data[1]
+                
 
                     var exerciseDetails = exercises[count];
 
@@ -166,9 +208,17 @@ function loadExercise(planNumber, count) {
                     videoFrame.src = "";
                     videoFrame.src = convertToEmbedUrl(exerciseDetails[2]);
 
-                    var html = '<div class="container3"> <div class="content"> <h3>' + exerciseDetails[0] + '</h3> <p>' + exerciseDetails[1] + '</p> <p>' + exerciseDetails[3] + '</p> <p>' + exerciseDetails[4] + '</p> </div> </div>'
+                    var html = `<div class="videoContainer">
+                                    <div class="content">
+                                    <div class="timer" id = "timer">00:30</div> 
+                                        <h3>${exerciseDetails[0]}</h3>
+                                        <p class="exercise-title">${exerciseDetails[1]}</p>
+                                        <p>${exerciseDetails[3]}</p>
+                                        <p>${exerciseDetails[4]}</p>
+                                    </div>
+                                </div>`;
                     container.append(html);
-
+                    runForTime(30)
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
