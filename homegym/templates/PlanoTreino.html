@@ -31,6 +31,7 @@
         var shouldContinue = true;
         var planStart = false;
         let startTime = 0;
+        let exDuration = 0;
 
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
@@ -81,9 +82,13 @@
                         loadPlanHead(planNumber)
                             .then(() => {
                                 console.log(count);
-                                return loadExercise(planNumber,count);
+                                return loadExercise(planNumber, count);
                             })
-                            .then(() => runForTime(30))
+                            .then(() => getPlanDuration(planNumber))
+                            .then(duration => {
+                                exDuration = duration / 3; // Split the duration into three equal parts
+                                return runForTime(exDuration);
+                            })
                             .then(result => {
                                 console.log(result.message); // 'Operation completed'
                                 //console.log(result.incompleteEx); // false
@@ -112,7 +117,7 @@
                                     shouldContinue = true;
                                     return loadExercise(planNumber,count);
                                 })
-                                .then(() => runForTime(30))
+                                .then(() => runForTime(exDuration))
                                 .then(result => {
                                     console.log(result.message); // 'Operation completed'
                                     //console.log(result.incompleteEx); // false
