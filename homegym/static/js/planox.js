@@ -162,9 +162,10 @@ function loadExercise(planNumber, count) {
                     var container = $('#exercise');
                     container.empty();
                     var exercises = data[1]
-                
+                    var totalExercises = exercises.length; // Get the total number of exercises
 
                     var exerciseDetails = exercises[count];
+
 
                     let videoFrame = document.getElementById('videoFrame');
                     videoFrame.src = "";
@@ -172,14 +173,22 @@ function loadExercise(planNumber, count) {
 
                     var html = `<div class="videoContainer">
                                     <div class="content">
-                                        <h3>${exerciseDetails[0]}</h3>
-                                        <p class="exercise-title">${exerciseDetails[1]}</p>
-                                        <p>${exerciseDetails[3]}</p>
-                                        <p>${exerciseDetails[4]}</p>
+                                        <h3 >${exerciseDetails[0]}</h3>
+                                        <span id="word">Exercício:</span> <span id="counter">${count + 1}/${totalExercises}</span>
+                                        <p id = "descricao"> ${exerciseDetails[1]} </p>
+                                        <div id="conquistas-container">
+                                            <p class = "conquistas"> Conquistas: </p>
+                                            <div class="badges-gained"></div>
+                                            <div class="badges-gained"></div>
+                                            <div class="badges-gained"></div>
+                                            <p id = "conquistas-next"> Próximas conquistas: </p>
+                                            <div class="badges-next"></div>
+                                            <div class="badges-next"></div>
+                                            <div class="badges-next"></div>
+                                        </div>
                                     </div>
                                 </div>`;
                     container.append(html);
-                    runForTime(30)
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);

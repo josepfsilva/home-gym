@@ -64,7 +64,8 @@ p {
     color: black;
     border-radius: 20px;
     padding: 20px;
-    width: 15%;
+    min-width: 15%;
+    width: auto;
     height: 90%;
     position: absolute;
     top: 50%;
@@ -76,31 +77,59 @@ p {
     align-items: center;
     justify-content: center;
     z-index: 999 ;
+    justify-content: flex-start;
+    padding-top: 10px;
 }
 
-.exercise-title {
-    font-size: 1.2em;
-    font-weight: bold;
 
-}
-
-.progress-indicator {
+#conquistas-container {
     display: flex;
-    align-items: center;
-    width: 100%;
-    margin: 10px 0;
+    flex-direction: column;
+    align-items: center; 
 }
 
-.progress-circle {
-    width: 20px;
-    height: 20px;
+#conquistas-next
+{
+    margin-top: 7%;
+}
+.badges-gained {
+    margin-top: 2px;
+    width: 60px;
+    height: 60px;
+    background-color: gray;
     border-radius: 50%;
-    margin-right: 10px;
+ 
 }
 
-.progress-circle.completed {
-    background-color: #FFD700;
+.badges-next {
+    margin-top: 2px;
+    width: 60px;
+    height: 60px;
+    background-color: lightgrey;
+    border-radius: 50%;
+ 
 }
+
+
+.videoContainer > .content h3 {
+    margin-top: 5%; 
+}
+
+.videoContainer > .content #word  {
+    margin-top: 10%; 
+    color: gray
+}
+
+.videoContainer > .content #counter  {
+    font-weight: bolder;
+}
+
+.videoContainer > .content #descricao  {
+    margin-top: 50%; 
+    font-weight: 400;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 
 
 .ExImage {
@@ -157,8 +186,8 @@ p {
 
 #timer {
     position: fixed;
-    top: 20%;
-    left: 90%;
+    top: 25%;
+    left: 92%;
     font-size: 50px;
     padding: 10px;
     transform: translate(-50%, -50%);
