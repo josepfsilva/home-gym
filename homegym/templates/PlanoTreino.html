@@ -23,7 +23,7 @@
     <script src="../static/js/webtoolkit.utf8.js"></script>
     <script src="../static/js/menuplanos.js"></script>
     <script src="../static/js/planox.js"></script>
-    <!--<script src="../static/js/datetime.js"></script>-->
+    <script src="../static/js/datetime.js"></script>
 
     <script type="module">
 
@@ -203,19 +203,20 @@
     <div id="content"></div>
     <div id="timer"></div>
     <div id="exercise"></div>
-    <iframe
-      width="840"
-      height="472.5"
-      src=""
-      id="videoFrame"
-      frameborder="0"
-      style="
-        position: absolute;
-        top: 60%;
-        left: 30%;
-        transform: translate(-50%, -50%);
-      "
-      allow=""
-    ></iframe>
+        <iframe
+        id="videoFrame"
+        frameborder="0"
+        style="
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        bottom: 0; 
+        right: 0; 
+        width: 100%; 
+        height: 100%; 
+        z-index: 999; 
+        "
+        allow="autoplay; fullscreen"
+        ></iframe>
   </body>
 </html>

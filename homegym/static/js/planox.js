@@ -1,3 +1,44 @@
+let  shouldContinue = true;
+function runForTime(seconds) {
+    return new Promise((resolve, reject) => {
+        let incompleteEx = false;
+        let timerElement = document.getElementById('timer');
+        let timeLeft = seconds;
+        timerElement.textContent = timeLeft;
+
+        function tick() {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft > 0) {
+                let sc = shouldContinue;
+                console.log(sc);
+                if (sc) {
+                    setTimeout(tick, 1000);
+                } else {
+                    incompleteEx = true;
+                    reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
+                }
+            } else {
+                if (shouldContinue) {
+                    resolve({message: 'Operation completed', incompleteEx: incompleteEx});
+                } else {
+                    reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
+                }
+            }
+        }
+
+        if (shouldContinue) {
+            setTimeout(tick, 1000);
+        } else {
+            incompleteEx = true;
+            reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
+        }
+    });
+
+}
+
+
 function getPlanNumber() {
     let url = new URL(window.location.href);
     let pathSegments = url.pathname.split('/');
@@ -83,11 +124,11 @@ function loadPlanInfo(planNumber) {
                 .then(data => {
 
                     var mmiCli_1 = null;
-                    mmiCli_1 = new MMIClient(null, "https://"+host+":8000/IM/USER1/APPSPEECH");
-                    sendToVoice("Plano "+planNumber);
-                    function sendToVoice(texto){
+                    mmiCli_1 = new MMIClient(null, "https://" + host + ":8000/IM/USER1/APPSPEECH");
+                    sendToVoice("Plano " + planNumber);
+                    function sendToVoice(texto) {
                         //let speak = "&lt;speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"&gt;&lt;p&gt;" + "quadrado" + "&lt;/p&gt;&lt;/speak&gt";
-                        let speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"><p>"+texto+"</p></speak>";
+                        let speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"><p>" + texto + "</p></speak>";
                         var result = speak;
                         mmiCli_1.sendToIM(new LifeCycleEvent("APPSPEECH", "IM", "text-1", "ctx-1").
                             doStartRequest(new EMMA("text-", "text", "command", 1, 0).
@@ -97,6 +138,7 @@ function loadPlanInfo(planNumber) {
                     container.empty();
                     var planDetails = data[0]
                     var exercises = data[1]
+                    console.log(exercises);
                     // inicio do cabeçalho
                     var html = '<div class="maindiv">';
                     html += '<div class="Info">';
@@ -115,7 +157,9 @@ function loadPlanInfo(planNumber) {
                     html += '<div class="menu"> ';
                     for (var exerciseId in exercises) {
                         var exerciseDetails = exercises[exerciseId];
-                        html += '<div class="Excontainer"> <div class="Excontent"> <h3 class="ExName">' + exerciseDetails[0] + '</h3> <p>' + exerciseDetails[1] + '</p> <p class="ExType">' + exerciseDetails[3] + '</p> <p class="ExDifficulty">' + exerciseDetails[4] + '</p> </div> </div>'
+                        html += '<div class="ExContainer"><div class="ExImage"><img src=../' + exerciseDetails[5] + '> <h3 class="ExName">' + exerciseDetails[0] + '</h3></div ><div class="lowContent"><div class="type"><p class="ExType">Tipo: </p><p>' + exerciseDetails[3] + '</p></div> <div class="Diff"> <p class="ExType">Dificuldade: </p><p>' + exerciseDetails[4] + '</p></div></div ></div > '
+                        console.log('../' + exerciseDetails[2]);
+                        //html += 'div class="ExImage"><img src=../' + exerciseDetails[] + ' class="Eximg" ></div>';
                     }
                     html += '</div>';
                     //fim dos exercicios
@@ -159,6 +203,7 @@ function loadExercise(planNumber, count) {
                     var container = $('#exercise');
                     container.empty();
                     var exercises = data[1]
+                
 
                     var exerciseDetails = exercises[count];
 
@@ -166,9 +211,17 @@ function loadExercise(planNumber, count) {
                     videoFrame.src = "";
                     videoFrame.src = convertToEmbedUrl(exerciseDetails[2]);
 
-                    var html = '<div class="container3"> <div class="content"> <h3>' + exerciseDetails[0] + '</h3> <p>' + exerciseDetails[1] + '</p> <p>' + exerciseDetails[3] + '</p> <p>' + exerciseDetails[4] + '</p> </div> </div>'
+                    var html = `<div class="videoContainer">
+                                    <div class="content">
+                                    <div class="timer" id = "timer">00:30</div> 
+                                        <h3>${exerciseDetails[0]}</h3>
+                                        <p class="exercise-title">${exerciseDetails[1]}</p>
+                                        <p>${exerciseDetails[3]}</p>
+                                        <p>${exerciseDetails[4]}</p>
+                                    </div>
+                                </div>`;
                     container.append(html);
-
+                    runForTime(30)
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
