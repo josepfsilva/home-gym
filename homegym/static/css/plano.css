@@ -163,7 +163,8 @@ p {
     font-size: 50px;
     padding: 10px;
     transform: translate(-50%, -50%);
-    color: green
+    color: green;
+    z-index: 9999;
 }
 
 .animated-content {
