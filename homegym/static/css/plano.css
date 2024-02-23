@@ -32,8 +32,21 @@ h2 {
 
 h3 {
     font-weight: 600;
-    font-size: 30px;
+    font-size: 38px;
     color: black;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.planhead {
+    font-weight: 600;
+    font-size: 50px;
+    color: black;
+    text-align: center;
+    top: 5%;
+
 }
 
 p {
@@ -45,43 +58,117 @@ p {
 .menu {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-end;
     flex-wrap: wrap;
 }
 
-.container3 {
+.videoContainer {
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    padding: 20px;
+    min-width: 15%;
+    width: auto;
+    height: 90%;
     position: absolute;
-    top: 60%;
-    left: 78%;
+    top: 50%;
+    left: 92%;
     transform: translate(-50%, -50%);
-    height: 33vh;
-    width: 26vw;
-    margin: 10px;
-    background-color: #D9D9D9;
-    color: black;
-    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    justify-content: flex-start;
+    padding-top: 10px;
 }
 
-.Excontainer {
-    height: 33vh;
-    width: 26vw;
-    margin: 10px;
-    background-color: #D9D9D9;
+
+#conquistas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#conquistas-next {
+    margin-top: 7%;
+}
+
+.badges-gained {
+    margin-top: 2px;
+    width: 60px;
+    height: 60px;
+    background-color: gray;
+    border-radius: 50%;
+
+}
+
+.badges-next {
+    margin-top: 2px;
+    width: 60px;
+    height: 60px;
+    background-color: lightgrey;
+    border-radius: 50%;
+
+}
+
+
+.videoContainer>.content h3 {
+    margin-top: 5%;
+}
+
+.videoContainer>.content #word {
+    margin-top: 10%;
+    color: gray
+}
+
+.videoContainer>.content #counter {
+    font-weight: bolder;
+}
+
+.videoContainer>.content #descricao {
+    margin-top: 50%;
+    font-weight: 400;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+
+.ExImage {
+    height: 20vh;
+    width: 25vw;
+    margin: 0px;
     color: black;
     border-radius: 30px;
     display: flex;
     position: relative;
-    /* Establish positioning context */
+    align-items: center;
+    flex-direction: column;
 }
 
-.Excontainer .Excontent {
-    margin-top: auto;
-    text-align: center;
+.ExImage img {
     width: 100%;
-    position: relative;
-    /* Establish positioning context */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.ExName {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.ExType {
+    font-family: "FONTTEXT";
 }
 
 .container3 .content {
@@ -89,7 +176,6 @@ p {
     text-align: center;
     width: 100%;
     position: relative;
-    /* Establish positioning context */
 }
 
 .bold {
@@ -98,13 +184,25 @@ p {
 }
 
 #timer {
-    position: fixed;
-    top: 20%;
-    left: 50%;
+    position: absolute;
+    top: 25%;
+    left: 92%;
     font-size: 50px;
     padding: 10px;
     transform: translate(-50%, -50%);
-    color: green
+    color: green;
+    z-index: 9999;
+}
+
+#elapsedTime {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    font-size: 40px;
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 24, 160);
+    z-index: 2;
 }
 
 .animated-content {
@@ -120,14 +218,11 @@ p {
 
 .Info {
     aspect-ratio: 1/1;
-    /* Maintain a square aspect ratio */
     height: 25vh;
-    width: 40vw;
-    /* Adjust width to take half of the container */
+    width: 100%;
     color: white;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
 .text {
@@ -136,11 +231,13 @@ p {
     margin-right: 1rem;
 }
 
-.IMGcontainer {
-    width: 46%;
-    /* Occupy half of the container width */
-    height: 100%;
-    margin-right: -50px;
+
+.IMGcontainer img {
+    height: 144px;
+    width: 144px;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    margin-right: 20px;
 }
 
 .meusplanosimg {
@@ -148,11 +245,36 @@ p {
     height: 25vh;
     object-fit: cover;
     border-radius: 30px 30px 30px 30px;
-    /* Adjust border-radius to match the container */
 }
 
+.horizontal-line {
+    border-top: 1px solid #000;
+    width: 25%;
+    margin: 15px 0;
+}
+
+.text p {
+    font-size: 28px;
+    font-weight: normal;
+}
+
+
 .PlanName {
-    font-size: x-large;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.PlanInfo {
+    text-align: left;
+    margin-right: 20px;
+    margin-top: 10%;
+}
+
+.PlanNumber {
+    margin-top: 0px;
+    font-size: 22px;
+    font-family: "FONTTEXT";
+    font-weight: lighter;
 }
 
 .datetime-container {
@@ -162,41 +284,29 @@ p {
     align-items: right;
     font-size: 30px;
     font-weight: 100;
+    text-align: right;
 }
 
 
 .date {
     font-family: "FONTTEXT";
     font-weight: lighter;
-    margin-left: 16%;
+    margin-left: 10%;
 
 }
 
 .maindiv {
-    margin: 50px 0;
+    margin: 50px 0px 25px 0px;
     justify-content: space-between;
     display: flex;
     align-items: center;
     color: black;
 }
 
-.PlanInfo {
-    text-align: left;
-    margin-right: 20px;
-    /* Adjust this value as needed */
-    margin-top: 10%;
-}
 
-.PlanNumber {
-    font-family: "FONTTEXT";
-    font-weight: lighter;
-}
-
-.description {
-    width: 600px;
-}
 
 .description p {
+    font-weight: normal;
     display: inline;
 }
 
@@ -208,15 +318,19 @@ p {
     display: inline;
 }
 
-.duration .dur1 {
-    font-weight: normal;
-}
-
 .type p {
     display: inline;
 }
 
-.type .t1 {
+.Diff p {
+    display: inline;
+}
+
+.duration .subtitle {
+    font-weight: normal;
+}
+
+.type .subtitle {
     font-weight: normal;
 }
 
@@ -226,7 +340,12 @@ p {
 }
 
 .Exercicios {
-    margin-top: 2%;
+    font-size: 20px;
+    margin-top: 4%;
     font-family: "FONTTEXT";
     font-weight: lighter;
+}
+
+.lowContent {
+    margin-top: 20px;
 }
