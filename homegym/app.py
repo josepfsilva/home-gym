@@ -2,7 +2,7 @@ from datetime import date, timedelta, datetime
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data,get_age
+from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data,get_age, add_badge_types, add_user_badges
 import secrets
 import os
 
@@ -17,8 +17,10 @@ with app.app_context():
     clear_db()
     add_exercises()
     add_user()
+    add_badge_types()
     add_exercise_plan()
     add_training_plan()
+    add_user_badges()
    
 @app.route('/templates/<path:filename>')
 def serve_html(filename):
@@ -95,8 +97,14 @@ def pagina_perfil():
     date_today = date.today().strftime('%d/%m/%Y')  
     
     image_path = get_user_data(session['UserID'])[5]
+    
+    
+    badge_id = mgamificacao.getbadges_type(session['UserID']) 
+    badge_data = mgamificacao.getbadges_data(badge_id[0][0])
+    badge_image = badge_data[3]
+    
 
-    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path)
+    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path, badge_image = badge_image)
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():
@@ -156,6 +164,8 @@ def show_all_trainingPlans_from_user():                       #devolve todos os 
     combined = [training_plans_data, order]
     print(combined)
     return jsonify(combined),200
+
+
 
     
 

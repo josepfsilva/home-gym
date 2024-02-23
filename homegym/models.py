@@ -50,7 +50,25 @@ def add_user():
     # Commit the changes and close the connection
     conn.commit()
     conn.close()
+    
+def add_badge_types():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    
+    c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Primeiro Treino', 'Concluiu o primeiro treino', 'Training', '../static/img/badge1.png', 'Concluir o primeiro treino');")
 
+    conn.commit()
+    conn.close()
+    
+def add_user_badges():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    
+    c.execute("INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 1, 1);")
+    
+    conn.commit()
+    conn.close()
+    
 
 def add_exercises():
     # Connect to the SQLite database
