@@ -101,12 +101,12 @@ def pagina_perfil():
     image_path = get_user_data(session['UserID'])[5]
     
     
-    badge_id = mgamificacao.getbadges_type(session['UserID']) 
-    badge_data = mgamificacao.getbadges_data(badge_id[0][0])
-    badge_image = badge_data[3]
+    badge_id = mgamificacao.getbadges_type(session['UserID'])
+    badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
+    badge_images = [data[3] for data in badge_data_list]
     
 
-    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path, badge_image = badge_image)
+    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path, badge_images = badge_images)
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():

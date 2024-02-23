@@ -56,6 +56,9 @@ def add_badge_types():
     c = conn.cursor()
     
     c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Primeiro Treino', 'Concluiu o primeiro treino', 'Training', '../static/img/badge1.jpg', 'Concluir o primeiro treino');")
+    c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('3 Treinos no mesmo dia', 'Concluiu 3 treinos no mesmo dia', 'Training', '../static/img/badge3treinos.jpg', 'Concluir 3 treinos no mesmo dia');")
+    c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Treino de 1 semana', 'Concluiu 7 treinos em 7 dias', 'Training', '../static/img/badge1semana.jpg', 'Concluir 7 treinos em 7 dias');")
+    c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Treino de 1 mês', 'Concluiu 30 treinos em 30 dias', 'Training', '../static/img/badge1mes.png', 'Concluir 30 treinos em 30 dias');")
 
     conn.commit()
     conn.close()
@@ -65,6 +68,9 @@ def add_user_badges():
     c = conn.cursor()
     
     c.execute("INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 1, 1);")
+    c.execute("INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 2, 1);")
+    c.execute("INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 3, 1);")
+    c.execute("INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 4, 1);")
     
     conn.commit()
     conn.close()
