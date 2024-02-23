@@ -318,6 +318,8 @@ body {
     box-sizing: border-box;
     margin-left: 0px;
     margin-right: 10px;
+    background-size: cover;
+    background-position: center;
 }
 
 .achievement {
@@ -325,6 +327,8 @@ body {
     height: 60px;
     border-radius: 10px;
     margin-right: 10px; 
+    background-size: cover;
+    background-position: center;
 }
 
 

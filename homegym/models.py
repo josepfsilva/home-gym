@@ -55,7 +55,7 @@ def add_badge_types():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
     
-    c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Primeiro Treino', 'Concluiu o primeiro treino', 'Training', '../static/img/badge1.png', 'Concluir o primeiro treino');")
+    c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Primeiro Treino', 'Concluiu o primeiro treino', 'Training', '../static/img/badge1.jpg', 'Concluir o primeiro treino');")
 
     conn.commit()
     conn.close()

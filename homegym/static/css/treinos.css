@@ -208,13 +208,14 @@ p {
 }
 
 .container2 {
-    aspect-ratio: 1/1;
     height: 100px;
     width: 100px;
     background-color: #D9D9D9;
     color: white;
     border-radius: 30px;
     margin-right: 20px;
+    background-size: cover;
+    background-position: center;
 }
 
 .welcome h2{

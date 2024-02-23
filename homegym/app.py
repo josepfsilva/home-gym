@@ -65,8 +65,9 @@ def menu():
         return redirect(url_for('login'))
     
     username = get_username(session['UserID'])
+    image_path = get_user_data(session['UserID'])[5]
     
-    return render_template('index.html', username = username)
+    return render_template('index.html', username = username, image_path = image_path)
 
 @app.route("/meusplanos" , methods=['GET', 'POST'])
 def pagina_planos():
@@ -74,8 +75,9 @@ def pagina_planos():
         return redirect(url_for('login'))
     
     username = get_username(session['UserID'])
+    image_path = get_user_data(session['UserID'])[5]
     
-    return render_template('MenuPlanos.html', username = username)
+    return render_template('MenuPlanos.html', username = username, image_path = image_path)
 
 @app.route("/meuperfil" , methods=['GET', 'POST'])
 def pagina_perfil():
