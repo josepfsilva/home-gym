@@ -110,8 +110,8 @@ function loadPlanInfo(planNumber) {
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
                     //inicio dos detalhes
-                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="subtitle">Duration: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
-                    html += '<div class="type"><p class="subtitle">Type: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
+                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="subtitle">Duração: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
+                    html += '<div class="type"><p class="subtitle">Tipo: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
                     html += '<div class="description">' + '<p>' + planDetails[1] + '</p></div></div>';
                     //fim dos detalhes
                     //Exercicios
@@ -125,8 +125,11 @@ function loadPlanInfo(planNumber) {
                     }
                     html += '</div></div>';
                     //fim dos exercicios
-                    html += '<button class="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#ffffff"><rect y="3" x="9" width="6" rx="3" height="11"></rect><path d="m12 18v3"></path><path d="m8 21h8"></path><path d="m19 11c0 3.866-3.134 7-7 7-3.86599 0-7-3.134-7-7"></path></g></svg><span class="lable">Iniciar</span></button > '
-
+                    html += '<div class="footer">';
+                    html += '<img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />';
+                    html += '<button class="button"><span class="lable">Iniciar</span></button > '
+                    html += '<img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />';
+                    html += '</div>';
                     container.append(html);
                 })
                 .catch(error => {
@@ -251,11 +254,11 @@ function sendFinishPlan(elapsedTime, planNumber) {
         },
         body: JSON.stringify(data) // Convert the data to a JSON string
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 
