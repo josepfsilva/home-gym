@@ -164,7 +164,6 @@ def show_all_trainingPlans_from_user():                       #devolve todos os 
         count += 1
     
     combined = [training_plans_data, order]
-    print(combined)
     return jsonify(combined),200
 
 
@@ -218,6 +217,33 @@ def show_trainingPlan(trainingPlanID):
     
     return jsonify([training_plan_data, exercise_data]), 200  
 
+
+@app.route('/FinishPlan', methods=['POST'])
+def handle_post():
+    data = request.get_json()
+    elapsedTime = round(data['elapsedTime'] / 1000)
+    planNumber = data['planNumber']
+    print(f'Elapsed Time: {elapsedTime}')
+    print(f'Plan Number: {planNumber}')
+
+    json_data = planosOrder()
+    response, status_code = json_data
+    if status_code == 200:
+        json_data = response.json
+    else:
+        print(f"Error: Status Code {status_code}")
+
+    planID = int(json_data[str(planNumber)])
+    userID = session['UserID']
+    finishDate = date.today()
+
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO FinishTraining (FinishTime, FinishDate, TrainingPlanID, UserID) VALUES (?, ?, ?, ?)", (elapsedTime, finishDate, planID, userID))
+    conn.commit()
+    conn.close()
+
+    return jsonify({'message': 'Success!'}), 200
 
 
 

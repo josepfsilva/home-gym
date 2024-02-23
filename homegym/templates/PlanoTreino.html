@@ -27,11 +27,12 @@
 
     <script type="module">
 
-        let count = 0;
+        let count = -1;
         var shouldContinue = true;
         var planStart = false;
         let startTime = 0;
         let exDuration = 0;
+        let planNumber = getPlanNumber();
 
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
@@ -60,27 +61,28 @@
                 try {
                     let message = JSON.parse(content);
                     if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'next_exercise' && count == 2)) && planStart == true) { 
-                        //terminar plano ou avançar do ultimo exercicio
                         shouldContinue = false;
-                        let elapsedTime = getElapsedTime(); //mandar para a db
+                        let elapsedTime = getElapsedTime();
                         planStart = false;
+
                         setTimeout(() => {  //esperar pelo fim do outro timer
                             clearDivs();
                             document.getElementById('exercise').innerHTML = "You have finished your plan! Congratulations!";
-                            
-                            //load stats
                             document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
 
-                
+                            if (count == 2) { //only counts if went through the last exercise
+                                sendFinishPlan(elapsedTime, planNumber); //send to db
+                            }
                
-                        }, 1000); // Delay for 1 second
+                        }, 1000);
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == 0 && planStart == false) {
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == -1 && planStart == false) {
                         planStart = true;
                         startTime = Date.now();
-                        let planNumber = getPlanNumber();
+                        
                         loadPlanHead(planNumber)
                             .then(() => {
+                                count+=1;
                                 console.log(count);
                                 return loadExercise(planNumber, count);
                             })
@@ -92,27 +94,25 @@
                             .then(result => {
                                 console.log(result.message); // 'Operation completed'
                                 //console.log(result.incompleteEx); // false
-                                count += 1;
-                                
+
                                 clearDivs();
-                                document.getElementById('exercise').innerHTML = "Exercício terminado! Diga Avançar para começar o proximo exercício.";
+                                document.getElementById('exercise').innerHTML = `<h3>Exercício ${count+1} terminado! Diga Avançar para começar o proximo exercício.</h3>`;
                             })
                             .catch(error => {
                                 console.log('Timer was stopped')
                                 if (error.incompleteEx) {
                                     //console.log(error.incompleteEx); // true
-                                    count += 1;
                                 }
                             });
 
                         
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<3 && planStart == true) { //avançar exercicio
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<2 && planStart == true) { //avançar exercicio
                         shouldContinue = false;
                         setTimeout(() => {  //esperar pelo fim do outro timer
-                            let planNumber = getPlanNumber();
                             loadPlanHead(planNumber)
-                                .then(() => {                     
+                                .then(() => {
+                                    count+=1;
                                     console.log(count);
                                     shouldContinue = true;
                                     return loadExercise(planNumber,count);
@@ -122,14 +122,20 @@
                                     console.log(result.message); // 'Operation completed'
                                     //console.log(result.incompleteEx); // false
                                     count += 1;
+                                    console.log(count);
                                     clearDivs();
-                                    document.getElementById('exercise').innerHTML = "Exercício terminado! Diga Avançar para começar o proximo exercício.";
+
+                                    if (count < 3) {
+                                        document.getElementById('exercise').innerHTML = `<h3>Exercício ${count+1} terminado! Diga Avançar para começar o proximo exercício.</h3>`;
+                                    }
+                                    else {
+                                        document.getElementById('exercise').innerHTML = `<h3>Exercício ${count+1} terminado! Diga Terminar para terminar o plano.</h3>`;
+                                    }
                                 })
                                 .catch(error => {
                                     console.log('Timer was stopped')
                                     if (error.incompleteEx) {
                                         //console.log(error.incompleteEx); // true
-                                        count += 1;
                                 }
                                 });
                         }, 1000); // Delay for 1 second
@@ -152,6 +158,8 @@
             document.getElementById('timer').innerHTML = "";
             document.getElementById('exercise').innerHTML = "";
             document.getElementById('videoFrame').src = "";
+            document.getElementById('elapsedTime').src = "";
+
 
         }
 

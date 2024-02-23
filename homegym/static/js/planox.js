@@ -236,6 +236,28 @@ function getPlanDuration(planNumber) {
 
 }
 
+function sendFinishPlan(elapsedTime, planNumber) {
+    let data = {
+        planNumber: planNumber,
+        elapsedTime: elapsedTime,
+    };
+
+    // Make a POST request to the Flask route
+    return fetch('http://127.0.0.1:5000/FinishPlan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Convert the data to a JSON string
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+
 function formatTime(timeInMilliseconds) {
     let seconds = Math.floor((timeInMilliseconds / 1000) % 60);
     let minutes = Math.floor((timeInMilliseconds / (1000 * 60)) % 60);
