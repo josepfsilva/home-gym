@@ -106,10 +106,9 @@
                 </div>
                 <div class="title">Conquistas do mês</div>
                 <div class="achievements-container">
-                    <div class="achievement1"></div>
-                    <div class="achievement"></div>
-                    <div class="achievement"></div>
-                    <div class="achievement"></div>
+                    {% for badge_image in badge_images %}
+                        <div class="achievement" style="background-image: url('{{badge_image}}');"></div>
+                    {% endfor %}
                 </div>
             </div>
 

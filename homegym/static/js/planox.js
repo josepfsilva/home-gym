@@ -123,8 +123,9 @@ function loadPlanInfo(planNumber) {
                         console.log('../' + exerciseDetails[2]);
                         //html += 'div class="ExImage"><img src=../' + exerciseDetails[] + ' class="Eximg" ></div>';
                     }
-                    html += '</div>';
+                    html += '</div></div>';
                     //fim dos exercicios
+                    html += '<button class="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#ffffff"><rect y="3" x="9" width="6" rx="3" height="11"></rect><path d="m12 18v3"></path><path d="m8 21h8"></path><path d="m19 11c0 3.866-3.134 7-7 7-3.86599 0-7-3.134-7-7"></path></g></svg><span class="lable">Iniciar</span></button > '
 
                     container.append(html);
                 })
@@ -235,6 +236,28 @@ function getPlanDuration(planNumber) {
         });
 
 }
+
+function sendFinishPlan(elapsedTime, planNumber) {
+    let data = {
+        planNumber: planNumber,
+        elapsedTime: elapsedTime,
+    };
+
+    // Make a POST request to the Flask route
+    return fetch('http://127.0.0.1:5000/FinishPlan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Convert the data to a JSON string
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
 
 function formatTime(timeInMilliseconds) {
     let seconds = Math.floor((timeInMilliseconds / 1000) % 60);

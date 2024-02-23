@@ -2,7 +2,7 @@ from datetime import date, timedelta, datetime
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data,get_age
+from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data,get_age, add_badge_types, add_user_badges
 import secrets
 import os
 
@@ -17,8 +17,10 @@ with app.app_context():
     clear_db()
     add_exercises()
     add_user()
+    add_badge_types()
     add_exercise_plan()
     add_training_plan()
+    add_user_badges()
    
 @app.route('/templates/<path:filename>')
 def serve_html(filename):
@@ -63,8 +65,9 @@ def menu():
         return redirect(url_for('login'))
     
     username = get_username(session['UserID'])
+    image_path = get_user_data(session['UserID'])[5]
     
-    return render_template('index.html', username = username)
+    return render_template('index.html', username = username, image_path = image_path)
 
 @app.route("/meusplanos" , methods=['GET', 'POST'])
 def pagina_planos():
@@ -72,8 +75,9 @@ def pagina_planos():
         return redirect(url_for('login'))
     
     username = get_username(session['UserID'])
+    image_path = get_user_data(session['UserID'])[5]
     
-    return render_template('MenuPlanos.html', username = username)
+    return render_template('MenuPlanos.html', username = username, image_path = image_path)
 
 @app.route("/meuperfil" , methods=['GET', 'POST'])
 def pagina_perfil():
@@ -95,8 +99,14 @@ def pagina_perfil():
     date_today = date.today().strftime('%d/%m/%Y')  
     
     image_path = get_user_data(session['UserID'])[5]
+    
+    
+    badge_id = mgamificacao.getbadges_type(session['UserID'])
+    badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
+    badge_images = [data[3] for data in badge_data_list]
+    
 
-    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path)
+    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path, badge_images = badge_images)
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():
@@ -154,8 +164,9 @@ def show_all_trainingPlans_from_user():                       #devolve todos os 
         count += 1
     
     combined = [training_plans_data, order]
-    print(combined)
     return jsonify(combined),200
+
+
 
     
 
@@ -206,6 +217,33 @@ def show_trainingPlan(trainingPlanID):
     
     return jsonify([training_plan_data, exercise_data]), 200  
 
+
+@app.route('/FinishPlan', methods=['POST'])
+def handle_post():
+    data = request.get_json()
+    elapsedTime = round(data['elapsedTime'] / 1000)
+    planNumber = data['planNumber']
+    print(f'Elapsed Time: {elapsedTime}')
+    print(f'Plan Number: {planNumber}')
+
+    json_data = planosOrder()
+    response, status_code = json_data
+    if status_code == 200:
+        json_data = response.json
+    else:
+        print(f"Error: Status Code {status_code}")
+
+    planID = int(json_data[str(planNumber)])
+    userID = session['UserID']
+    finishDate = date.today()
+
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO FinishTraining (FinishTime, FinishDate, TrainingPlanID, UserID) VALUES (?, ?, ?, ?)", (elapsedTime, finishDate, planID, userID))
+    conn.commit()
+    conn.close()
+
+    return jsonify({'message': 'Success!'}), 200
 
 
 

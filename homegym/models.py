@@ -52,6 +52,36 @@ def add_user():
     conn.close()
 
 
+def add_badge_types():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+
+    c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Primeiro Treino', 'Concluiu o primeiro treino', 'Training', '../static/img/badge1.jpg', 'Concluir o primeiro treino');")
+    c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('3 Treinos no mesmo dia', 'Concluiu 3 treinos no mesmo dia', 'Training', '../static/img/badge3treinos.jpg', 'Concluir 3 treinos no mesmo dia');")
+    c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Treino de 1 semana', 'Concluiu 7 treinos em 7 dias', 'Training', '../static/img/badge1semana.jpg', 'Concluir 7 treinos em 7 dias');")
+    c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Treino de 1 mês', 'Concluiu 30 treinos em 30 dias', 'Training', '../static/img/badge1mes.png', 'Concluir 30 treinos em 30 dias');")
+
+    conn.commit()
+    conn.close()
+
+
+def add_user_badges():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+
+    c.execute(
+        "INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 1, 1);")
+    c.execute(
+        "INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 2, 1);")
+    c.execute(
+        "INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 3, 1);")
+    c.execute(
+        "INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 4, 1);")
+
+    conn.commit()
+    conn.close()
+
+
 def add_exercises():
     # Connect to the SQLite database
     db = sqlite3.connect('database.db')
@@ -81,21 +111,21 @@ def add_exercises():
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg,Type, Difficulty) VALUES ('Step Aeróbico', 'Aumenta a frequência cardíaca e trabalha os músculos das pernas.', 'http://example.com/step-aerobics','static\\img\\flexao.jpg' , 'Cardio', 'Medium');")
 
     # meditacao
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Meditação', 'Um exercício de relaxamento que ajuda a aliviar o stress.', 'http://example.com/meditation', 'static\\img\\flexao.jpg' ,'Meditacao', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Meditação2', 'Um exercício de relaxamento que ajuda a aliviar o stress.', 'http://example.com/meditation', 'static\\img\\flexao.jpg' ,'Meditacao', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Meditação3', 'Um exercício de relaxamento que ajuda a aliviar o stress.', 'http://example.com/meditation', 'static\\img\\flexao.jpg' ,'Meditacao', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Meditação', 'Um exercício de relaxamento que ajuda a aliviar o stress.', 'http://example.com/meditation', 'static\\img\\yoga1.jpg' ,'Meditacao', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Meditação2', 'Um exercício de relaxamento que ajuda a aliviar o stress.', 'http://example.com/meditation', 'static\\img\\yoga2.jpg' ,'Meditacao', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Meditação3', 'Um exercício de relaxamento que ajuda a aliviar o stress.', 'http://example.com/meditation', 'static\\img\\yoga3.jpg' ,'Meditacao', 'Easy');")
 
     # alongamentos membros superiores
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Ombros', 'Este alongamento ajuda a alongar os músculos dos ombros e do pescoço.', 'http://exemplo.com/alongamento-ombros', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Bíceps', 'Este alongamento foca nos músculos do bíceps.', 'http://exemplo.com/alongamento-biceps', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Tríceps', 'Este exercício alonga os músculos do tríceps na parte de trás dos braços.', 'http://exemplo.com/alongamento-triceps', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Ombros', 'Este alongamento ajuda a alongar os músculos dos ombros e do pescoço.', 'http://exemplo.com/alongamento-ombros', 'static\\img\\ombro.jpg' ,'Alongamento', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Bíceps', 'Este alongamento foca nos músculos do bíceps.', 'http://exemplo.com/alongamento-biceps', 'static\\img\\bicep.jpg' ,'Alongamento', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Tríceps', 'Este exercício alonga os músculos do tríceps na parte de trás dos braços.', 'http://exemplo.com/alongamento-triceps', 'static\\img\\tricep.jpg' ,'Alongamento', 'Easy');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento dos Flexores do Pulso', 'Ajuda a alongar os músculos do antebraço e dos pulsos.', 'http://example.com/wrist-flexor-stretch', 'static\\img\\flexao.jpg' ,'Alongamento', 'Medium');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Costas', 'Este alongamento alonga os músculos das costas.', 'http://exemplo.com/alongamento-costas', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
 
     # alongamentos membros inferiores
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Quadríceps', 'Este alongamento foca nos músculos dos quadríceps na parte da frente das coxas.', 'http://exemplo.com/alongamento-quadriceps', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Isquiotibiais', 'Este alongamento ajuda a alongar os músculos dos isquiotibiais na parte de trás das coxas.', 'http://exemplo.com/alongamento-isquiotibiais', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Panturrilhas', 'Este alongamento alonga os músculos das panturrilhas na parte de trás das pernas.', 'http://exemplo.com/alongamento-panturrilhas', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Quadríceps', 'Este alongamento foca nos músculos dos quadríceps na parte da frente das coxas.', 'http://exemplo.com/alongamento-quadriceps', 'static\\img\\coxa.jpg' ,'Alongamento', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Posteriores', 'Este alongamento ajuda a alongar os músculos dos isquiotibiais na parte de trás das coxas.', 'http://exemplo.com/alongamento-isquiotibiais', 'static\\img\\posteriores.jpg' ,'Alongamento', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento dos Gémeos', 'Este alongamento alonga os músculos das panturrilhas na parte de trás das pernas.', 'http://exemplo.com/alongamento-panturrilhas', 'static\\img\\gemeo.jpg' ,'Alongamento', 'Easy');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento dos Flexores do Quadril', 'Ajuda a alongar os músculos da parte frontal da coxa e do quadril.', 'http://example.com/hip-flexor-stretch', 'static\\img\\flexao.jpg' ,'Alongamento', 'Medium');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Alongamento de Glúteos', 'Este alongamento foca nos músculos dos glúteos.', 'http://exemplo.com/alongamento-gluteos', 'static\\img\\flexao.jpg' ,'Alongamento', 'Easy');")
 
