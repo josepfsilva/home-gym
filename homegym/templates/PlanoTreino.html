@@ -24,6 +24,7 @@
     <script src="../static/js/menuplanos.js"></script>
     <script src="../static/js/planox.js"></script>
     <script src="../static/js/datetime.js"></script>
+    
 
     <script type="module">
 
@@ -67,11 +68,15 @@
 
                         setTimeout(() => {  //esperar pelo fim do outro timer
                             clearDivs();
-                            document.getElementById('exercise').innerHTML = "You have finished your plan! Congratulations!";
-                            document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
 
-                            if (count == 2) { //only counts if went through the last exercise
+                            if (count == 2) { //only counts if went through all exercises
+                                document.getElementById('exercise').innerHTML = "<h4>Finalizou o Plano de Treino. Parabéns!</h4>";
+                                document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
                                 sendFinishPlan(elapsedTime, planNumber); //send to db
+                            }else{
+                                document.getElementById('exercise').innerHTML = "<h4>Para concluir o Plano precisa de fazer todos os Exercícios!</h4>";
+                                document.getElementById('elapsedTime').innerHTML = "Tente novamente.";
+
                             }
                
                         }, 1000);
@@ -96,7 +101,8 @@
                                 //console.log(result.incompleteEx); // false
 
                                 clearDivs();
-                                document.getElementById('exercise').innerHTML = `<h3>Exercício ${count+1} terminado! Diga Avançar para começar o proximo exercício.</h3>`;
+                                addfooter();
+                                document.getElementById('exercise').innerHTML = `<h4>Exercício ${count+1} Terminado! Diga Avançar para começar o próximo Exercício.</h4>`;
                             })
                             .catch(error => {
                                 console.log('Timer was stopped')
@@ -121,15 +127,14 @@
                                 .then(result => {
                                     console.log(result.message); // 'Operation completed'
                                     //console.log(result.incompleteEx); // false
-                                    count += 1;
-                                    console.log(count);
                                     clearDivs();
+                                    addfooter();
 
-                                    if (count < 3) {
-                                        document.getElementById('exercise').innerHTML = `<h3>Exercício ${count+1} terminado! Diga Avançar para começar o proximo exercício.</h3>`;
+                                    if (count < 2) {
+                                        document.getElementById('exercise').innerHTML = `<h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4>`;
                                     }
                                     else {
-                                        document.getElementById('exercise').innerHTML = `<h3>Exercício ${count+1} terminado! Diga Terminar para terminar o plano.</h3>`;
+                                        document.getElementById('exercise').innerHTML = `<h4>Exercício ${count+1} Terminado! Diga Terminar para Concluir o Plano.</h4>`;
                                     }
                                 })
                                 .catch(error => {
@@ -155,14 +160,26 @@
         }
 
         function clearDivs() {
+            document.getElementById('foot').src = "";
             document.getElementById('timer').innerHTML = "";
             document.getElementById('exercise').innerHTML = "";
             document.getElementById('videoFrame').src = "";
             document.getElementById('elapsedTime').src = "";
 
-
+        }
+        function addfooter(){
+            var container = $('#foot');
+            container.empty();
+            var html = `<div class="footer2">
+                            <img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />
+                            <button class="button"><span class="lable">Avançar</span></button >
+                            <img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />
+                        </div>`;
+            container.append(html);
+                        
         }
 
+        //this functions need to be here
         function getElapsedTime() {
             let elapsedTime = Date.now() - startTime;
             return elapsedTime;
@@ -180,8 +197,7 @@
                     timerElement.textContent = timeLeft;
 
                     if (timeLeft > 0) {
-                        let sc = shouldContinue;
-                        if (sc) {
+                        if (shouldContinue) {
                             setTimeout(tick, 1000);
                         } else {
                             incompleteEx = true;
@@ -227,5 +243,6 @@
         "
         allow="autoplay; fullscreen"
         ></iframe>
+        <div id="foot"></div>
   </body>
 </html>

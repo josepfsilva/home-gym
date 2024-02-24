@@ -36,6 +36,12 @@ h3 {
     color: black;
 }
 
+h4{
+    font-weight: 300;
+    font-size: 30px;
+    color: black;
+    margin-top: 5%;
+}
 p {
     margin-bottom: 0;
 }
@@ -195,7 +201,7 @@ p {
 
 #elapsedTime {
     position: fixed;
-    top: 20%;
+    top: 65%;
     left: 50%;
     font-size: 40px;
     padding: 10px;
@@ -374,6 +380,13 @@ p {
 .footer {
     display: flex;
     margin-top: 2.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer2 {
+    display: flex;
+    margin-top: 24%;
     display: flex;
     justify-content: space-between;
     align-items: center;

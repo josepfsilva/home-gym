@@ -46,7 +46,16 @@ function loadPlanHead(planNumber) {
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]
-                    var html = '<div class="planhead"> <p>Plano ' + planNumber + ' - ' + planDetails[0] + '<p></div>';
+                    // inicio do cabeçalho
+                    var html = '<div class="maindiv">';
+                    html += '<div class="Info">';
+                    html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
+                    html += '<div class="text">'
+                    //html += '<p>Treino de</p>';
+                    html += '<h3>' + planDetails[0] + '</h3>';
+                    html += '<div class="horizontal-line"></div>';
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3></div>';
+                    html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
 
                     container.append(html);
                 })
@@ -97,13 +106,12 @@ function loadPlanInfo(planNumber) {
                     container.empty();
                     var planDetails = data[0]
                     var exercises = data[1]
-                    console.log(exercises);
                     // inicio do cabeçalho
                     var html = '<div class="maindiv">';
                     html += '<div class="Info">';
                     html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
                     html += '<div class="text">'
-                    html += '<p>Treino de</p>';
+                    //html += '<p>Treino de</p>';
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
                     html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3></div>';
