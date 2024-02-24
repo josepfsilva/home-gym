@@ -36,6 +36,12 @@ h3 {
     color: black;
 }
 
+h4{
+    font-weight: 300;
+    font-size: 30px;
+    color: black;
+    margin-top: 5%;
+}
 p {
     margin-bottom: 0;
 }
@@ -141,7 +147,7 @@ p {
     width: 25vw;
     margin: 0px;
     color: black;
-    border-radius: 30px;
+    border-radius: 15px;
     display: flex;
     position: relative;
     align-items: center;
@@ -152,10 +158,11 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 30px;
+    border-radius: 15px;
 }
 
 .ExName {
+    font-size: 32px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -163,8 +170,6 @@ p {
     width: 200px;
     text-align: center;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
 }
 
 .ExType {
@@ -196,7 +201,7 @@ p {
 
 #elapsedTime {
     position: fixed;
-    top: 20%;
+    top: 65%;
     left: 50%;
     font-size: 40px;
     padding: 10px;
@@ -288,13 +293,6 @@ p {
 }
 
 
-.date {
-    font-family: "FONTTEXT";
-    font-weight: lighter;
-    margin-left: 10%;
-
-}
-
 .maindiv {
     margin: 50px 0px 25px 0px;
     justify-content: space-between;
@@ -348,4 +346,66 @@ p {
 
 .lowContent {
     margin-top: 20px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 8px;
+    height: 5vh;
+    width: 15vw;
+    border: none;
+    background: green;
+    border-radius: 10px;
+}
+
+.fas fa-microphone {
+    font-size: 20px;
+    color: black;
+    margin-right: 50px;
+
+}
+
+.lable {
+    line-height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+.footer {
+    display: flex;
+    margin-top: 2.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer2 {
+    display: flex;
+    margin-top: 24%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arrow-icon {
+    transform: rotateY(180deg);
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05) rotate(10deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

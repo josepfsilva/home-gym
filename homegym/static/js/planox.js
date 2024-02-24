@@ -46,7 +46,16 @@ function loadPlanHead(planNumber) {
                     var container = $('#content');
                     container.empty();
                     var planDetails = data[0]
-                    var html = '<div class="planhead"> <p>Plano ' + planNumber + ' - ' + planDetails[0] + '<p></div>';
+                    // inicio do cabeçalho
+                    var html = '<div class="maindiv">';
+                    html += '<div class="Info">';
+                    html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
+                    html += '<div class="text">'
+                    //html += '<p>Treino de</p>';
+                    html += '<h3>' + planDetails[0] + '</h3>';
+                    html += '<div class="horizontal-line"></div>';
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3></div>';
+                    html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
 
                     container.append(html);
                 })
@@ -97,21 +106,20 @@ function loadPlanInfo(planNumber) {
                     container.empty();
                     var planDetails = data[0]
                     var exercises = data[1]
-                    console.log(exercises);
                     // inicio do cabeçalho
                     var html = '<div class="maindiv">';
                     html += '<div class="Info">';
                     html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
                     html += '<div class="text">'
-                    html += '<p>Treino de</p>';
+                    //html += '<p>Treino de</p>';
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
                     html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3></div>';
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
                     //inicio dos detalhes
-                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="subtitle">Duration: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
-                    html += '<div class="type"><p class="subtitle">Type: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
+                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="subtitle">Duração: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
+                    html += '<div class="type"><p class="subtitle">Tipo: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
                     html += '<div class="description">' + '<p>' + planDetails[1] + '</p></div></div>';
                     //fim dos detalhes
                     //Exercicios
@@ -123,9 +131,13 @@ function loadPlanInfo(planNumber) {
                         console.log('../' + exerciseDetails[2]);
                         //html += 'div class="ExImage"><img src=../' + exerciseDetails[] + ' class="Eximg" ></div>';
                     }
-                    html += '</div>';
+                    html += '</div></div>';
                     //fim dos exercicios
-
+                    html += '<div class="footer">';
+                    html += '<img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />';
+                    html += '<button class="button"><span class="lable">Iniciar</span></button > '
+                    html += '<img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />';
+                    html += '</div>';
                     container.append(html);
                 })
                 .catch(error => {
@@ -235,6 +247,28 @@ function getPlanDuration(planNumber) {
         });
 
 }
+
+function sendFinishPlan(elapsedTime, planNumber) {
+    let data = {
+        planNumber: planNumber,
+        elapsedTime: elapsedTime,
+    };
+
+    // Make a POST request to the Flask route
+    return fetch('http://127.0.0.1:5000/FinishPlan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Convert the data to a JSON string
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
 
 function formatTime(timeInMilliseconds) {
     let seconds = Math.floor((timeInMilliseconds / 1000) % 60);

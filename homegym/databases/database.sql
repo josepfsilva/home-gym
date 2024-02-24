@@ -32,11 +32,13 @@ CREATE TABLE IF NOT EXISTS Exercises (
 
 CREATE TABLE IF NOT EXISTS FinishTraining (
     FinishTrainingID INTEGER PRIMARY KEY AUTOINCREMENT,
-    FinishTime Timestamp,
-    TrainingDuration TIME,
+    FinishTime INTEGER NOT NULL,
+    FinishDate DATE,
     Rating INTEGER,
     TrainingPlanID INTEGER NOT NULL,
+    UserID INTEGER NOT NULL,
     FOREIGN KEY (TrainingPlanID) REFERENCES TrainingPlan (TrainingPlanID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
     
 );
 

@@ -141,7 +141,7 @@ p {
 
 .menu {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
 }
 
@@ -163,7 +163,7 @@ p {
     width: 70%;
     height: 70%;
     max-width: 687px;
-    max-height: 492px;
+    max-height: 430px;
     margin: 10px;
     background-color: #D9D9D9;
     color: white;
@@ -227,7 +227,7 @@ p {
 
 .text-overlay {
     position: absolute;
-    top: 90%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -240,13 +240,14 @@ p {
 }
 
 .container2 {
-    aspect-ratio: 1/1;
     height: 100px;
     width: 100px;
     background-color: #D9D9D9;
     color: white;
     border-radius: 30px;
     margin-right: 20px;
+    background-size: cover;
+    background-position: center;
 }
 
 .profile {
