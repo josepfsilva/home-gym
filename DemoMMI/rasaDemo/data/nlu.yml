@@ -193,4 +193,12 @@ nlu:
     - Avança para o próximo exercício
     - Mostrar o próximo exercício
     - Mostrar o exercício seguinte
+
+- intent: enter_newsession
+  examples: |
+    - Entra na [sala 1](nome_sessao)
+    - Entra na [sala 2](nome_sessao)
+    - Entra na [sala 2](nome_sessao)
+     
+
      

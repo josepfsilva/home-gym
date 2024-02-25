@@ -13,8 +13,10 @@ intents:
 - stop_plan
 - finish_plan
 - next_exercise
+- enter_newsession
 entities:
 - nome_plano
+- nome_sessao
 slots:
   nome_plano:
     type: text
