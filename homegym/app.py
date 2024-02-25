@@ -246,6 +246,19 @@ def handle_post():
 
     return jsonify({'message': 'Success!'}), 200
 
+@app.route('/awardedBadges', methods=['GET', 'POST'])
+def awardedBadges():
+    userID = session['UserID']
+    badge_awarded = mgamificacao.badges(userID)
+
+    badge_info = []
+    for badge_id in badge_awarded:
+        badge_info.append({badge_id : mgamificacao.getbadges_data(badge_id)})
+
+
+    return jsonify(badge_info), 200
+
+
 
 
 

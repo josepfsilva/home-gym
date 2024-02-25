@@ -72,7 +72,13 @@
                             if (count == 2) { //only counts if went through all exercises
                                 document.getElementById('exercise').innerHTML = "<h4>Finalizou o Plano de Treino. Parabéns!</h4>";
                                 document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
-                                sendFinishPlan(elapsedTime, planNumber); //send to db
+                                sendFinishPlan(elapsedTime, planNumber) //send to db
+                                .then(() => {
+                                    showAwardedBadges(); //show badges if awarded
+                                })
+                                .catch((error) => {
+                                    console.error('Error:', error);
+                                });
                             }else{
                                 document.getElementById('exercise').innerHTML = "<h4>Para concluir o Plano precisa de fazer todos os Exercícios!</h4>";
                                 document.getElementById('elapsedTime').innerHTML = "Tente novamente.";
@@ -243,6 +249,7 @@
         "
         allow="autoplay; fullscreen"
         ></iframe>
+        <div id="badges"></div>
         <div id="foot"></div>
   </body>
 </html>

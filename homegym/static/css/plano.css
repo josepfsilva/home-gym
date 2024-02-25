@@ -201,13 +201,23 @@ p {
 
 #elapsedTime {
     position: fixed;
-    top: 65%;
+    top: 57%;
     left: 50%;
     font-size: 40px;
     padding: 10px;
     transform: translate(-50%, -50%);
     color: rgb(0, 24, 160);
     z-index: 2;
+}
+#badges {
+    position: fixed;
+    top: 74%;
+    left: 50%;
+    font-size: 30px;
+    padding: 10px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
 }
 
 .animated-content {
@@ -394,6 +404,25 @@ p {
 
 .arrow-icon {
     transform: rotateY(180deg);
+}
+
+.achievement {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 10px; 
+    background-size: cover;
+    background-position: center;
+}
+
+.title, .achievements-container {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.achievements-container {
+    display: flex;
+    position: relative;
 }
 
 @keyframes scale {

@@ -42,11 +42,14 @@ def badges(userID):
     db.close()
 
     badge_checks = {1: badge_check_1, 2: badge_check_2}  
+    badge_awarded = []
 
     for badge_id, check_func in badge_checks.items():
         if badge_id not in badges_id:
-            check_func(userID)
-    return
+            if check_func(userID):
+                badge_awarded.append(badge_id)
+
+    return badge_awarded
 
 
 def badge_check_1(userID): #badge 1
@@ -68,7 +71,9 @@ def badge_check_1(userID): #badge 1
                        """, (Awdate,userID,))
         db.commit()
         db.close()
-    return
+        return True  # Badge awarded
+    
+    return False
 
 
 def badge_check_2(userID): #badge 2
@@ -92,7 +97,9 @@ def badge_check_2(userID): #badge 2
                        """, (date, userID,))
         db.commit()
         db.close()
-    return
+        return True # Badge awarded
+    
+    return False 
 
 
     

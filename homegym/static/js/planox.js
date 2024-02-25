@@ -269,6 +269,41 @@ function sendFinishPlan(elapsedTime, planNumber) {
         });
 }
 
+function showAwardedBadges(){
+    return fetch('http://127.0.0.1:5000/awardedBadges')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+
+            var container = $('#badges');
+            container.empty();
+            var html = '<div class="title">Conquistas Alcançadas:</div> <div class="achievements-container">';
+            
+            if (data.length == 0){
+                html += '<p>Não ganhou nenhuma conquista!</p>';
+            }else{
+                for (var i = 0; i < data.length; i++) {
+                    var badge = data[i];
+                    var badgeId = Object.keys(badge)[0]; // Get the badge id
+                    var badgeDetails = badge[badgeId]; // Get the badge details
+                    html += '<p>"' + badgeDetails[0] + '"</p>';
+                    html += '<div class="achievement" style="background-image: url(' + badgeDetails[3] + ');"></div>';
+                }
+            }   
+            html += '</div>'; 
+                
+            container.append(html);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            return Promise.reject(error);
+        });
+}
 
 function formatTime(timeInMilliseconds) {
     let seconds = Math.floor((timeInMilliseconds / 1000) % 60);
