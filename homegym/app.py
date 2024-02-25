@@ -2,7 +2,7 @@ from datetime import date, timedelta, datetime
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
-from models import init_db,clear_db,add_exercises,add_user,add_exercise_plan,add_training_plan,get_username,get_user_data,get_age, add_badge_types, add_user_badges
+from models import *
 import secrets
 import os
 
@@ -20,7 +20,7 @@ with app.app_context():
     add_badge_types()
     add_exercise_plan()
     add_training_plan()
-    add_user_badges()
+    #add_user_badges()
    
 @app.route('/templates/<path:filename>')
 def serve_html(filename):
@@ -100,11 +100,12 @@ def pagina_perfil():
     
     image_path = get_user_data(session['UserID'])[5]
     
+    mgamificacao.badges(session['UserID'])
     
     badge_id = mgamificacao.getbadges_type(session['UserID'])
     badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
     badge_images = [data[3] for data in badge_data_list]
-    
+
 
     return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path, badge_images = badge_images)
 
@@ -244,7 +245,6 @@ def handle_post():
     conn.close()
 
     return jsonify({'message': 'Success!'}), 200
-
 
 
 
