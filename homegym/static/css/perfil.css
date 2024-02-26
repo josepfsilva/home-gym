@@ -434,6 +434,15 @@ body {
     margin-bottom: 10px;
 }
 
+.streakpos {
+    font-size: 9px;
+    font-weight: 300;
+    margin-top : 10%;
+    left: 73%;
+    position: absolute;
+
+}
+
 @media only screen and (max-width: 1024px) {
     .friends-list {
         right: 10px; 

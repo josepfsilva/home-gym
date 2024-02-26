@@ -191,14 +191,6 @@ function loadExercise(planNumber, count) {
                                         <h3 >${exerciseDetails[0]}</h3>
                                         <span id="word">Exercício:</span> <span id="counter">${count + 1}/${totalExercises}</span>
                                         <p id = "descricao"> ${exerciseDetails[1]} </p>
-                                        <div id="conquistas-container">
-                                            <p class = "conquistas"> Conquistas: </p>
-                                            <div class="badges-gained"></div>
-                                            <div class="badges-gained"></div>
-                                            <p id = "conquistas-next"> Próximas conquistas: </p>
-                                            <div class="badges-next"></div>
-                                            <div class="badges-next"></div>
-                                        </div>
                                     </div>
                                 </div>`;
                     container.append(html);

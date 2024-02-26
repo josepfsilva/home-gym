@@ -14,6 +14,7 @@
     <script src="static/js/jquery-3.6.4.min.js"></script>
     <script src="static/js/webtoolkit.utf8.js"></script>
     <script src="static/js/datetime.js"></script>
+    <script src="static/js/perfil.js"></script>
 
 
     <script type="module">
@@ -58,6 +59,9 @@
                     }
                     catch (e) { console.log(e); }
                 }
+            }
+            else{
+                showStreak();
             }
     }
 
@@ -126,6 +130,7 @@
                        <p id="datetime" class="datetime-container">
                         <span class="time"></span>
                         <span class="date"></span>
+                        <div id="streak" class="streakpos"></div>
                     </p>
 
                  

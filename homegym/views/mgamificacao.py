@@ -101,6 +101,33 @@ def badge_check_2(userID): #badge 2
     
     return False 
 
+def streak(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT FinishDate
+                   FROM FinishTraining
+                   WHERE UserID = ?
+                   ORDER BY FinishDate
+                   """, (userID,))
+    data = cursor.fetchall()
+    db.close()
 
+    if not data:  # If there are no records
+        return 0
     
+    dates = sorted(set([datetime.strptime(date[0], "%Y-%m-%d").date() for date in data]), reverse=True)
+    print(dates)
+    streak = 0
+    current_date = datetime.now().date()
+
+    for date in dates:
+        # If the date is today or yesterday, increment the streak and continue to the previous day
+        if date == current_date or date == current_date - timedelta(days=1):
+            streak += 1
+            current_date -= timedelta(days=1)
+        # If the date is not consecutive, break the loop
+        else:
+            break
+
+    return streak
 
