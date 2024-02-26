@@ -108,7 +108,7 @@
 
                                 clearDivs();
                                 addfooter();
-                                document.getElementById('exercise').innerHTML = `<h4>Exercício ${count+1} Terminado! Diga Avançar para começar o próximo Exercício.</h4>`;
+                                resting();
                             })
                             .catch(error => {
                                 console.log('Timer was stopped')
@@ -137,7 +137,7 @@
                                     addfooter();
 
                                     if (count < 2) {
-                                        document.getElementById('exercise').innerHTML = `<h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4>`;
+                                        document.getElementById('exercise').innerHTML = `<div class="Alert"><h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4></div>`;
                                     }
                                     else {
                                         document.getElementById('exercise').innerHTML = `<h4>Exercício ${count+1} Terminado! Diga Terminar para Concluir o Plano.</h4>`;
@@ -183,6 +183,12 @@
                         </div>`;
             container.append(html);
                         
+        }
+
+        function resting(){
+            var container = $('#exercise')
+            container.empty();
+            document.getElementById('exercise').innerHTML = `<div class="rest"><div class="Alert"><h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4></div><div class="stopwatch-container"> <img src="../static/img/stopwatch.png" /></div></div>`;
         }
 
         //this functions need to be here

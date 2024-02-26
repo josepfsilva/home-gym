@@ -100,11 +100,15 @@
         <div class="profile">
             <div class="left-side">
                 <div class="profile-pic" style="background-image: url('{{image_path}}');"></div>
-                <div class="height-weight">
-
-                    <div class="name">{{name}}</div>
+                <div class="right-side">
+                    <div class="name" style="padding-bottom: 0px;">{{name}}</div>
                     <div class="surname">{{surname}}</div>
                     <div class="dob">{{birthday}}, {{age}} anos</div>
+                </div>
+                
+
+
+                <div class="height-weight">
                     <div class="stat height"><span>{{height}} cm</span></div>
                     <div class="stat weight"><span>{{weight}} kg</span></div>
                 </div>
@@ -114,6 +118,9 @@
                         <div class="achievement" style="background-image: url('{{badge_image}}');"></div>
                     {% endfor %}
                 </div>
+                <div class="casa-viva">Projeto CasaViva+</div>
+                <div class="privacidade">Politicas de privacidade</div>
+                <div class="definicoes">Definições</div>
             </div>
 
             <div class="dashboard">
@@ -138,7 +145,6 @@
 
                     <div class="col-md-4">
                         <div class="friends-list">
-                            <h4>Amigos [3/6]</h4>
                             <ul>
                                 <li>Olga</li>
                                 <li>Rui</li>
@@ -146,7 +152,6 @@
                                 <li>João</li>
                                 <li>Manuel</li>
                                 <li>Carla</li>
-
                             </ul>
                         </div>
                     </div>
