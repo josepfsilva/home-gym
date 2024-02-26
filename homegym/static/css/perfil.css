@@ -428,6 +428,14 @@ body {
     font-weight: 700;
 }
 
+.streakpos {
+    font-size: 9px;
+    font-weight: 300;
+    margin-top : 10%;
+    left: 73%;
+    position: absolute;
+}
+
 .casa-viva {
     margin-top: 95px;
     font-weight: 700;
