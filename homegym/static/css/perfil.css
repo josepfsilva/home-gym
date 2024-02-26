@@ -167,7 +167,8 @@ body {
     top: 0; 
     right: 0; 
     width: calc(100% - 240px); 
-    padding-left: 20px; 
+    padding-left: 117px; 
+    padding-top: 54px;
 }
 
 .info {
@@ -191,8 +192,12 @@ body {
 .dob {
     font-size: 24px;
     color: #707070;
-    margin-bottom: 5px;
-    padding-bottom: 20px;
+    margin-top: 20px;
+    
+}
+
+.name, .surname, .dob {
+    margin-bottom: 1px;  /* adjust as needed */
 }
 
 .stat.height span:first-child,
@@ -206,7 +211,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 20px;
+    margin-right: 107px;
     width: 100%;
     margin-left: 0px;
 }
@@ -230,9 +235,10 @@ body {
 }
 .height-weight {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    margin-top: 20px; 
 }
 
 .stat, .achievement {
@@ -245,8 +251,9 @@ body {
     margin-bottom: 10px;
 }
 .stat {
-    width: 150px;
+    width: 180px;
     height: 50px; 
+    margin-right: 10px;
 }
 .stat.height{
     margin-top: 0px;
@@ -329,6 +336,7 @@ body {
     margin-right: 10px; 
     background-size: cover;
     background-position: center;
+    background-color: rgb(127, 228, 240);
 }
 
 
@@ -342,6 +350,7 @@ body {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
 }
 
 .dashboard-content {
@@ -391,6 +400,8 @@ body {
     position: absolute;
     top: 200px;
     right:195px; 
+    margin-top: 100px;
+    font-size: 24px;
 }
 
 .friends-list ul {
@@ -399,17 +410,18 @@ body {
 }
 
 .friends-list ul li {
-    margin-bottom: 10px;
+    margin-bottom: px;
 }
 
 .friends-list ul li::before {
     content: "●";
     margin-right: 5px;
-    color: grey; 
+    color: grey;
+    font-size: 30px; 
 }
 
 .friends-list ul li:nth-child(-n+3)::before {
-    color: green;
+    color:  rgb(127, 228, 240);
 }
 .right-side .info .name, 
 .right-side .info .surname, 
@@ -432,6 +444,31 @@ body {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 10px;
+}
+
+.casa-viva {
+    margin-top: 95px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.privacidade {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.definicoes {
+    margin-top: 15px;
+    width: 260px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 10px; 
+    background-color:rgb(205, 183, 255);
+    text-align: center;
+    padding-top: 10px;
+    font-size: 27px;
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 1024px) {
