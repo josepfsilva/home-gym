@@ -14,12 +14,12 @@ app.secret_key = secrets.token_hex(32) #chave para a sessão
 
 with app.app_context():
     init_db()
-    #clear_db()
-    #add_exercises()
-    #add_user()
-    #add_badge_types()
-    #add_exercise_plan()
-    #add_training_plan()
+    clear_db()
+    add_exercises()
+    add_user()
+    add_badge_types()
+    add_exercise_plan()
+    add_training_plan()
     #add_user_badges()
    
 @app.route('/templates/<path:filename>')
