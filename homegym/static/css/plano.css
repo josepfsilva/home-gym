@@ -40,7 +40,6 @@ h4 {
     font-weight: 300;
     font-size: 30px;
     color: black;
-    margin-top: 5%;
 }
 
 p {
@@ -399,7 +398,7 @@ p {
 
 .footer2 {
     display: flex;
-    margin-top: 5%;
+    margin-top: 3%;
     display: flex;
     justify-content: space-between;
     align-items: center;

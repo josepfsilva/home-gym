@@ -135,19 +135,13 @@
                                     //console.log(result.incompleteEx); // false
                                     clearDivs();
                                     addfooter();
-
-                                    if (count < 2) {
-                                        document.getElementById('exercise').innerHTML = `<div class="Alert"><h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4></div>`;
-                                    }
-                                    else {
-                                        document.getElementById('exercise').innerHTML = `<h4>Exercício ${count+1} Terminado! Diga Terminar para Concluir o Plano.</h4>`;
-                                    }
+                                    resting();
                                 })
                                 .catch(error => {
                                     console.log('Timer was stopped')
                                     if (error.incompleteEx) {
                                         //console.log(error.incompleteEx); // true
-                                }
+                                    }
                                 });
                         }, 1000); // Delay for 1 second
                     
@@ -160,17 +154,16 @@
                 }
             }
             else {
-                let planNumber = getPlanNumber();
                 loadPlanInfo(planNumber);
             }
         }
 
         function clearDivs() {
-            document.getElementById('foot').src = "";
+            document.getElementById('foot').innerHTML = "";
             document.getElementById('timer').innerHTML = "";
             document.getElementById('exercise').innerHTML = "";
             document.getElementById('videoFrame').src = "";
-            document.getElementById('elapsedTime').src = "";
+            document.getElementById('elapsedTime').innerHTML = "";
 
         }
         function addfooter(){
@@ -185,10 +178,31 @@
                         
         }
 
-        function resting(){
+        function resting() {
             var container = $('#exercise')
             container.empty();
-            document.getElementById('exercise').innerHTML = `<div class="rest"><div class="Alert"><h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4></div><div class="stopwatch-container"> <img src="../static/img/stopwatch.png" /></div></div>`;
+            if (count < 2) {
+                document.getElementById('exercise').innerHTML = `
+                    <div class="rest">
+                        <div class="Alert">
+                            <h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4>
+                        </div>
+                        <div class="stopwatch-container"> 
+                            <img src="../static/img/stopwatch.png" />
+                        </div>
+                    </div>`;
+            }
+            else {
+                document.getElementById('exercise').innerHTML = `
+                    <div class="rest">
+                        <div class="Alert">
+                            <h4>Exercício ${count+1} Terminado! Diga Terminar para Concluir o Plano.</h4>
+                        </div>
+                        <div class="stopwatch-container"> 
+                            <img src="../static/img/stopwatch.png" />
+                        </div>
+                    </div>`;
+            }
         }
 
         //this functions need to be here
