@@ -58,8 +58,23 @@ def add_badge_types():
 
     c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Primeiro Treino', 'Concluiu o primeiro treino', 'Training', '../static/img/badge1.jpg', 'Concluir o primeiro treino');")
     c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('3 Treinos no mesmo dia', 'Concluiu 3 treinos no mesmo dia', 'Training', '../static/img/badge3treinos.jpg', 'Concluir 3 treinos no mesmo dia');")
+    c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('5 Treinos num plano', '5 treinos do mesmo plano', 'Training', '../static/img/badge3image.jpg', 'Concluir 5 treinos num plano');")
+    c.execute("INSERT OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Streak de 3 dias', '3 dias seguidos a treinar', 'Training', '../static/img/badge4image.jpeg', '3 dias seguidos a treinar');")
+    
+    #not implemented
     c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Treino de 1 semana', 'Concluiu 7 treinos em 7 dias', 'Training', '../static/img/badge1semana.jpg', 'Concluir 7 treinos em 7 dias');")
     c.execute("Insert OR IGNORE INTO BadgeType (Name, Description, Type, Image, Requirements) VALUES ('Treino de 1 mês', 'Concluiu 30 treinos em 30 dias', 'Training', '../static/img/badge1mes.png', 'Concluir 30 treinos em 30 dias');")
+
+    conn.commit()
+    conn.close()
+
+def add_test_fintrain():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+
+    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (60, '2024-02-28', 5, 1, 1);")
+    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (60, '2024-02-27', 5, 1, 1);")
+    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (60, '2024-02-29', 5, 1, 1);")
 
     conn.commit()
     conn.close()
