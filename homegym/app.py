@@ -21,6 +21,7 @@ with app.app_context():
     add_exercise_plan()
     add_training_plan()
     #add_user_badges()
+    #add_test_fintrain()
    
 @app.route('/templates/<path:filename>')
 def serve_html(filename):
@@ -259,7 +260,11 @@ def awardedBadges():
     return jsonify(badge_info), 200
 
 
-
+@app.route('/streak', methods=['GET', 'POST'])
+def getstreak():
+    userID = session['UserID']
+    streak = mgamificacao.streak(userID)
+    return jsonify(streak), 200
 
 
 

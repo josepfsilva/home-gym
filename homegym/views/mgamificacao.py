@@ -4,6 +4,35 @@ import sqlite3
 from datetime import date, timedelta, datetime
 
 
+def streak(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT FinishDate
+                   FROM FinishTraining
+                   WHERE UserID = ?
+                   ORDER BY FinishDate
+                   """, (userID,))
+    data = cursor.fetchall()
+    db.close()
+
+    if not data:  # If there are no records
+        return 0
+    
+    dates = sorted(set([datetime.strptime(date[0], "%Y-%m-%d").date() for date in data]), reverse=True)
+    print(dates)
+    streak = 0
+    current_date = datetime.now().date()
+
+    for date in dates:
+        if date == current_date or date == current_date - timedelta(days=1):
+            streak += 1
+            current_date -= timedelta(days=1)
+        else:
+            break
+
+    return streak
+
+
 def getbadges_type(userID):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
@@ -41,7 +70,7 @@ def badges(userID):
     print(badges_id) #mostra badges ja atribuidas
     db.close()
 
-    badge_checks = {1: badge_check_1, 2: badge_check_2}  
+    badge_checks = {1: badge_check_1, 2: badge_check_2, 3: badge_check_3, 4: badge_check_4}  
     badge_awarded = []
 
     for badge_id, check_func in badge_checks.items():
@@ -89,7 +118,7 @@ def badge_check_2(userID): #badge 2
     db.close()
 
     if result:  # If there is a day with at least 3 records
-        date = result[0]  # The date of the day with at least 3 records
+        date = result[0]
         db = sqlite3.connect('database.db')
         cursor = db.cursor()
         cursor.execute("""INSERT INTO UserBadges (DateAwarded, UserID, BadgeID)
@@ -99,8 +128,49 @@ def badge_check_2(userID): #badge 2
         db.close()
         return True # Badge awarded
     
-    return False 
+    return False
 
-
+def badge_check_3(userID): #badge 3
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT FinishTrainingID
+                  FROM FinishTraining
+                  WHERE UserID = ?
+                  GROUP BY TrainingPlanID
+                  HAVING COUNT(*) >= 5
+               """, (userID,))
     
+    result = cursor.fetchone()
+    db.close()
+
+    if result:
+        Awdate = date.today()
+        db = sqlite3.connect('database.db')
+        cursor = db.cursor()
+        cursor.execute("""INSERT INTO UserBadges (DateAwarded, UserID, BadgeID)
+                       VALUES (?, ?, 5)
+                       """, (Awdate,userID,))
+        db.commit()
+        db.close()
+        return True  # Badge awarded
+
+    return False
+
+def badge_check_4(userID): #badge 4
+    daystreak = streak(userID)
+
+    if daystreak >= 3:
+        Awdate = date.today()
+        db = sqlite3.connect('database.db')
+        cursor = db.cursor()
+        cursor.execute("""INSERT INTO UserBadges (DateAwarded, UserID, BadgeID)
+                       VALUES (?, ?, 4)
+                       """, (Awdate,userID,))
+        db.commit()
+        db.close()
+        return True
+    
+    return False
+
+
 
