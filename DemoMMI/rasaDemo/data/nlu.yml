@@ -47,6 +47,14 @@ nlu:
     - Mostra os meus treinos disponíveis
     - Mostra-me os meus planos de treino
     - Planos
+    - Quero fazer um treino
+    - Estou com vontade fazer um treino
+    - Apresenta-me os treinos disponíveis
+    - Apetece-me fazer um treino
+    - Apetece-me treinar
+    - Estou com vontade de fazer um treino
+    - Estou com vontade fazer exercício
+    - Quero fazer exercício
 
 - intent: go_to_profile  
   examples: |
@@ -56,6 +64,10 @@ nlu:
     - Abre o perfil
     - Ir para o perfil
     - Perfil
+    - Quero ir para o perfil
+    - Quero ver o meu perfil
+    - Ver o meu perfil
+    - Ver perfil
 
 - intent: go_to_newsession
   examples: |
@@ -65,6 +77,9 @@ nlu:
     - Abre uma nova sessão
     - Começa nova sessão
     - Nova sessão
+    - Quero fazer exercício em conjunto
+    - Quero treinar em conjunto
+    - Videochamada
 
 
 - intent: go_to_mainpage  
@@ -79,6 +94,8 @@ nlu:
     - Volta para o menu inicial
     - Menu inicial
     - Menu
+    - regressa ao menu
+    - regressa ao menu inicial
     
     
 - intent: choose_training_plan  
