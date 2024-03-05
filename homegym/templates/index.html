@@ -69,7 +69,7 @@
 
                 var mmiCli_1 = null;
                 mmiCli_1 = new MMIClient(null, "https://"+host+":8000/IM/USER1/APPSPEECH");
-                sendToVoice("Bem-vindo de volta. Selecione uma opção para começar.");
+                sendToVoice("Bem-vindo de volta. Escolha uma opção para começar.");
                 function sendToVoice(texto){
                     //let speak = "&lt;speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"&gt;&lt;p&gt;" + "quadrado" + "&lt;/p&gt;&lt;/speak&gt";
                     let speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"><p>"+texto+"</p></speak>";

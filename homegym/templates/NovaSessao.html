@@ -54,7 +54,11 @@
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'enter_newsession') {
                             let sessionname = message.nlu.nome_sessao;
-                            window.location.href =  'https://meet.jit.si/${sessionname}';
+                            sessionname = sessionname.replace(" ", "");
+                            document.getElementById('meet').src = "https://meet.jit.si/"+sessionname;
+;
+                            
+                            document.getElementById('meet').addEventListener('load', onFrameLoad());
                         }
                         
                     }
@@ -80,11 +84,11 @@
         <h1>Salas dísponíveis para treino conjunto</h1>
 
     <ul>
-        <li>sala1</li>
-        <li>sala2</li>
-        <li>sala3</li>
+        <li>Sala 1</li>
+        <li>Sala 2</li>
+        <li>Sala 3</li>
     </ul>
 
-    <div style="height: 15cm; width: 10 cm;" id="meet"></div>
+    <iframe id="meet" width="800" height="600" src="" allow="camera; microphone"></iframe>
 </body>
 </html>
