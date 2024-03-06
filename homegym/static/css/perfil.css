@@ -22,9 +22,9 @@ body, html {
     align-items: flex-start;
 }
 
-.profile-pic {
-    width: 200px;
-    height: 200px;
+.profile-pic2 {
+    width: 150px;
+    height: 150px;
     background-color: grey;
     background-size: cover;
     background-position: center;
@@ -157,8 +157,8 @@ body {
     top: 0; 
     right: 0; 
     width: calc(100% - 240px); 
-    padding-left: 117px; 
-    padding-top: 54px;
+    padding-left: 50px; 
+    padding-top: 34px;
 }
 
 .info {
@@ -182,7 +182,7 @@ body {
 .dob {
     font-size: 24px;
     color: #707070;
-    margin-top: 20px;
+    margin-top: 3px;
 }
 
 .name, .surname, .dob {
@@ -477,6 +477,11 @@ body {
 .friends {
     color: gray;
 
+}
+
+.stats2 {
+    font-size: 25px;
+    font-weight: 800;
 }
 
 @media only screen and (max-width: 1024px) {

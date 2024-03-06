@@ -267,6 +267,19 @@ def getstreak():
     return jsonify(streak), 200
 
 
+@app.route('/progress', methods=['GET', 'POST'])
+def getprogress():
+    userID = session['UserID']
+    plans = mgamificacao.get_plans_done(userID)
+    exs = mgamificacao.get_exs_done(userID)
+    avg_time = round(mgamificacao.get_avg_time(userID))
+    return jsonify({
+        'plans_done': plans,
+        'exs_done': exs,
+        'avg_time': avg_time
+    })
+
+
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug = True)

@@ -72,9 +72,9 @@ def add_test_fintrain():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
 
-    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (60, '2024-02-28', 5, 1, 1);")
-    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (60, '2024-02-27', 5, 1, 1);")
-    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (60, '2024-02-29', 5, 1, 1);")
+    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (120, '2024-02-28', 5, 1, 1);")
+    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (67, '2024-02-27', 5, 1, 1);")
+    c.execute("INSERT OR IGNORE INTO FinishTraining (FinishTime, FinishDate, Rating, TrainingPlanID, UserID) VALUES (99, '2024-02-29', 5, 1, 1);")
 
     conn.commit()
     conn.close()
