@@ -19,7 +19,6 @@ def streak(userID):
         return 0
     
     dates = sorted(set([datetime.strptime(date[0], "%Y-%m-%d").date() for date in data]), reverse=True)
-    print(dates)
     streak = 0
     current_date = datetime.now().date()
 
@@ -193,7 +192,7 @@ def badge_check_3(userID): #badge 3
         db = sqlite3.connect('database.db')
         cursor = db.cursor()
         cursor.execute("""INSERT INTO UserBadges (DateAwarded, UserID, BadgeID)
-                       VALUES (?, ?, 5)
+                       VALUES (?, ?, 3)
                        """, (Awdate,userID,))
         db.commit()
         db.close()

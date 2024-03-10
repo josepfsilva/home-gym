@@ -300,6 +300,11 @@ body {
     display: flex;
 }
 
+.achievements-container2 {
+    display: flex;
+    flex-direction: column;
+}
+
 .achievement1 {
     display: flex;
     justify-content: center;
@@ -313,6 +318,11 @@ body {
     margin-right: 10px;
     background-size: cover;
     background-position: center;
+}
+
+.badge-container {
+    display: flex;
+    align-items: center; 
 }
 
 .achievement {
@@ -429,10 +439,10 @@ body {
 }
 
 .streakpos {
-    font-size: 9px;
-    font-weight: 300;
-    margin-top : 10%;
-    left: 73%;
+    font-size: 20px;
+    font-weight: 750;
+    margin-top : 8%;
+    left: 83%;
     position: absolute;
 }
 
@@ -480,8 +490,14 @@ body {
 }
 
 .stats2 {
+    margin-top: 50px;
     font-size: 25px;
     font-weight: 800;
+}
+
+.text-stats {
+    font-size: 18px;
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 1024px) {
