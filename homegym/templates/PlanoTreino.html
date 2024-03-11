@@ -105,7 +105,7 @@
                             .then(result => {
                                 console.log(result.message); // 'Operation completed'
                                 //console.log(result.incompleteEx); // false
-
+                                planStart = false;
                                 clearDivs();
                                 addfooter();
                                 resting();
@@ -146,8 +146,11 @@
                         }, 1000); // Delay for 1 second
                     
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_training_plans'){   //por condição caso já esteja a meio de um plano
-                        window.location.href = "/meusplanos";
+                    else if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'go_to_training_plans' || message.nlu.intent == 'go_to_mainpage') && planStart == false){   //por condição caso já esteja a meio de um plano
+                        if(message.nlu.intent == 'go_to_training_plans')
+                            window.location.href = "/meusplanos";
+                        else if(message.nlu.intent == 'go_to_mainpage')
+                            window.location.href = "/";
                     }
                 }
                 catch (e) { console.log(e); }

@@ -1,0 +1,28 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-nome_plano",
+      "2": "I-nome_plano",
+      "3": "L-nome_plano",
+      "4": "U-nome_plano",
+      "5": "B-nome_sessao",
+      "6": "I-nome_sessao",
+      "7": "L-nome_sessao",
+      "8": "U-nome_sessao",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-nome_plano": 1,
+      "I-nome_plano": 2,
+      "L-nome_plano": 3,
+      "U-nome_plano": 4,
+      "B-nome_sessao": 5,
+      "I-nome_sessao": 6,
+      "L-nome_sessao": 7,
+      "U-nome_sessao": 8,
+      "O": 0
+    },
+    "num_tags": 9
+  }
+]

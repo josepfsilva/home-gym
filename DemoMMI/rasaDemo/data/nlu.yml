@@ -216,6 +216,39 @@ nlu:
     - Entra na [sala 1](nome_sessao)
     - Entra na [sala 2](nome_sessao)
     - Entra na [sala 2](nome_sessao)
+
+- intent: show_progresso
+  examples: |
+    - Mostra-me o meu progresso
+    - Progresso
+    - Abre o progresso
+    - Abre o meu progresso
+    - Como está o meu progresso?
+    - Meu progresso
+    - Quero ver o meu progresso
+    - Iniciar progresso
+    - Ver progresso
+    - Visualizar progresso
+    - Ver o meu progresso
+    - Abrir progresso
+    - Mostra o progresso que fiz
+    - Mostra o progresso que tenho feito
+
+- intent: show_conquistas
+  examples: |
+    - Mostra-me as minhas conquistas
+    - Conquistas
+    - Abre as conquistas
+    - Abre as minhas conquistas
+    - Que conquistas ganhei?
+    - Que badges ganhei?
+    - Mostra-me as minhas badges
+    - Iniciar progresso
+    - Ver conquistas
+    - Visualizar conquistas
+    - Abrir as conquistas que fiz
+    - Abrir as minhas conquistas
+    - Mostra as conquistas que tenho feito
      
 
      
