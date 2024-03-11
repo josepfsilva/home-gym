@@ -1,17 +1,14 @@
-function onFrameLoad() {
-    const iframe = document.getElementById('jitsiFrame');
-    const api = iframe.contentWindow.api;
-
+function  enterNewSession(sessionname) {
+    const domain = 'meet.jit.si';
+    const options = {
+        roomName: sessionname,
+        width: 700,
+        height: 700,
+        parentNode: document.querySelector('#meet'),
+        lang: 'pt',
+        configOverwrite: { prejoinPageEnabled: false},
+    };
     
-
-
-    // Automatically join the call
-    api.executeCommand('displayName', 'JoseSilva'); // Set your display name
-    api.executeCommand('toggleAudio');
-    api.executeCommand('toggleVideo');
-
-    api.addEventListener('videoConferenceJoined', () => {
-        console.log('Local User Joined');
-    });
+    const api = new JitsiMeetExternalAPI(domain, options);
   }
 

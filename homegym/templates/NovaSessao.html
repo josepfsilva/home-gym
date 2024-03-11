@@ -53,12 +53,9 @@
 
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'enter_newsession') {
-                            let sessionname = message.nlu.nome_sessao;
-                            sessionname = sessionname.replace(" ", "");
-                            document.getElementById('meet').src = "https://meet.jit.si/"+sessionname;
-;
+                            name = "sala1"
+                            enterNewSession(name)
                             
-                            document.getElementById('meet').addEventListener('load', onFrameLoad());
                         }
                         
                     }
@@ -89,6 +86,6 @@
         <li>Sala 3</li>
     </ul>
 
-    <iframe id="meet" width="800" height="600" src="" allow="camera; microphone"></iframe>
+    <div id="meet" width="800" height="600"></div>
 </body>
 </html>
