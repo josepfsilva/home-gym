@@ -188,8 +188,9 @@ function loadExercise(planNumber, count) {
 
                     var html = `<div class="videoContainer">
                                     <div class="content">
-                                        <h3 >${exerciseDetails[0]}</h3>
-                                        <span id="word">Exercício:</span> <span id="counter">${count + 1}/${totalExercises}</span>
+                                        <div class = "NameCont"><h3>${exerciseDetails[0]}</h3></div>
+                                        <div id="timer"></div>
+                                        <div class="word"><span>Exercício:</span> <span id="counter">${count + 1}/${totalExercises}</span></div>
                                         <p id = "descricao"> ${exerciseDetails[1]} </p>
                                     </div>
                                 </div>`;
@@ -261,7 +262,7 @@ function sendFinishPlan(elapsedTime, planNumber) {
         });
 }
 
-function showAwardedBadges(){
+function showAwardedBadges() {
     return fetch('http://127.0.0.1:5000/awardedBadges')
         .then(response => {
             if (!response.ok) {
@@ -275,10 +276,10 @@ function showAwardedBadges(){
             var container = $('#badges');
             container.empty();
             var html = '<div class="title">Conquistas Alcançadas:</div> <div class="achievements-container">';
-            
-            if (data.length == 0){
+
+            if (data.length == 0) {
                 html += '<p>Não ganhou nenhuma conquista!</p>';
-            }else{
+            } else {
                 for (var i = 0; i < data.length; i++) {
                     var badge = data[i];
                     var badgeId = Object.keys(badge)[0]; // Get the badge id
@@ -286,9 +287,9 @@ function showAwardedBadges(){
                     html += '<p>"' + badgeDetails[0] + '"</p>';
                     html += '<div class="achievement" style="background-image: url(' + badgeDetails[3] + ');"></div>';
                 }
-            }   
-            html += '</div>'; 
-                
+            }
+            html += '</div>';
+
             container.append(html);
         })
         .catch(error => {

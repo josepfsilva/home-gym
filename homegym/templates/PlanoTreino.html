@@ -70,7 +70,7 @@
                             clearDivs();
 
                             if (count == 2) { //only counts if went through all exercises
-                                document.getElementById('exercise').innerHTML = "<h4>Finalizou o Plano de Treino. Parabéns!</h4>";
+                                document.getElementById('exercise').innerHTML = '<div class = "finished"><h4>Finalizou o Plano de Treino. Parabéns!</h4><div>';
                                 document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
                                 sendFinishPlan(elapsedTime, planNumber) //send to db
                                 .then(() => {
@@ -252,7 +252,6 @@
 
     <div id="content"></div>
     <div id="elapsedTime"></div>
-    <div id="timer"></div>
     <div id="exercise"></div>
         <iframe
         id="videoFrame"
