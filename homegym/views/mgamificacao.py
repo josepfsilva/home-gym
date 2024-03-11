@@ -19,7 +19,6 @@ def streak(userID):
         return 0
     
     dates = sorted(set([datetime.strptime(date[0], "%Y-%m-%d").date() for date in data]), reverse=True)
-    print(dates)
     streak = 0
     current_date = datetime.now().date()
 
@@ -32,7 +31,52 @@ def streak(userID):
 
     return streak
 
+#PROGRESS------
 
+def get_plans_done(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT COUNT(*)
+                   FROM FinishTraining
+                   WHERE UserID = ?
+                   """, (userID,))
+    plans_done = cursor.fetchone()
+    db.close()
+
+    return plans_done[0]
+
+
+def get_exs_done(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT COUNT(*)
+                   FROM FinishTraining
+                   WHERE UserID = ?
+                   """, (userID,))
+    plans_done = cursor.fetchone()
+    db.close()
+    exs_done = plans_done[0]*3
+
+    return exs_done
+
+def get_avg_time(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT AVG(FinishTime)
+                   FROM FinishTraining
+                   WHERE UserID = ?
+                   """, (userID,))
+    avg_time = cursor.fetchone()
+    db.close()
+    
+    if avg_time[0] == None:
+        return 0
+    return avg_time[0]
+    
+
+
+
+#BADGES-------
 def getbadges_type(userID):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
@@ -148,7 +192,7 @@ def badge_check_3(userID): #badge 3
         db = sqlite3.connect('database.db')
         cursor = db.cursor()
         cursor.execute("""INSERT INTO UserBadges (DateAwarded, UserID, BadgeID)
-                       VALUES (?, ?, 5)
+                       VALUES (?, ?, 3)
                        """, (Awdate,userID,))
         db.commit()
         db.close()

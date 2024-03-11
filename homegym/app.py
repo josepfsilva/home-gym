@@ -85,25 +85,27 @@ def pagina_perfil():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    username = get_username(session['UserID'])
-    name = get_user_data(session['UserID'])[3]
-    surname = get_user_data(session['UserID'])[4]
+    userID = session['UserID']
     
-    birthday_user = get_user_data(session['UserID'])[9]
+    username = get_username(userID)
+    name = get_user_data(userID)[3]
+    surname = get_user_data(userID)[4]
+    
+    birthday_user = get_user_data(userID)[9]
     birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
     birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
     age = get_age(birthday_data)
-    height = get_user_data(session['UserID'])[7]
-    weight = get_user_data(session['UserID'])[6]
+    height = get_user_data(userID)[7]
+    weight = get_user_data(userID)[6]
 
     time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
     date_today = date.today().strftime('%d/%m/%Y')  
     
-    image_path = get_user_data(session['UserID'])[5]
+    image_path = get_user_data(userID)[5]
     
-    mgamificacao.badges(session['UserID'])
+    mgamificacao.badges(userID)
     
-    badge_id = mgamificacao.getbadges_type(session['UserID'])
+    badge_id = mgamificacao.getbadges_type(userID)
     badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
     badge_images = [data[3] for data in badge_data_list]
 
@@ -247,6 +249,7 @@ def handle_post():
 
     return jsonify({'message': 'Success!'}), 200
 
+
 @app.route('/awardedBadges', methods=['GET', 'POST'])
 def awardedBadges():
     userID = session['UserID']
@@ -256,8 +259,15 @@ def awardedBadges():
     for badge_id in badge_awarded:
         badge_info.append({badge_id : mgamificacao.getbadges_data(badge_id)})
 
-
     return jsonify(badge_info), 200
+
+
+@app.route('/allBadges', methods=['GET', 'POST'])
+def allBadges():
+    userID = session['UserID']
+    badge_id = mgamificacao.getbadges_type(userID)
+    badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
+    return jsonify(badge_data_list), 200
 
 
 @app.route('/streak', methods=['GET', 'POST'])
@@ -265,6 +275,19 @@ def getstreak():
     userID = session['UserID']
     streak = mgamificacao.streak(userID)
     return jsonify(streak), 200
+
+
+@app.route('/progress', methods=['GET', 'POST'])
+def getprogress():
+    userID = session['UserID']
+    plans = mgamificacao.get_plans_done(userID)
+    exs = mgamificacao.get_exs_done(userID)
+    avg_time = round(mgamificacao.get_avg_time(userID))
+    return jsonify({
+        'plans_done': plans,
+        'exs_done': exs,
+        'avg_time': avg_time
+    })
 
 
 
