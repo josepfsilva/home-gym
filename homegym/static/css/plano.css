@@ -131,12 +131,17 @@ p {
 
 #timer {
     position: absolute;
-    top: 50%;
+    top: 1px; /* Adjust this value to position the timer at the desired location at the top of the screen */
     left: 50%;
+    border-radius: 10px;
     font-size: 50px;
     padding: 10px;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     color: black;
+    background-color: white; /* This will create a white container behind the timer */
+    min-width: 200px; /* This will ensure the white space does not shrink below this width */
+    min-height: 100px; /* This will ensure the white space does not shrink below this height */
+    text-align: center;
     z-index: 9999;
 }
 
@@ -480,9 +485,10 @@ p {
 }
 
 .finished {
-    margin-left: 27%;
+    text-align: center;
+    
 }
 
 .finished h4 {
-    font-family: "FONTTEXT";
+    font-family: "FONTTEXT";    
 }

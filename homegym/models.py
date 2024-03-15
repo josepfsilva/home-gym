@@ -39,13 +39,13 @@ def add_user():
 
     # INSERT OR IGNORE a new row of data into the Users table
     c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage,Weight, Height, Email, BirthDate, RegistrationDate, Role, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Maria', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', 'Online'))
+        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage,Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, ('Maria', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '0', 'Online'))
     c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Jorge', '1234', 'Jorge', 'Fernandes', '../static/img/FotoMaria.png', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', 'Online'))
+        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, ('Jorge', '1234', 'Jorge', 'Fernandes', '../static/img/FotoMaria.png', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '0', 'Online'))
 
     # Commit the changes and close the connection
     conn.commit()
@@ -94,6 +94,24 @@ def add_user_badges():
         "INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 3, 1);")
     c.execute(
         "INSERT OR IGNORE INTO UserBadges (DateAwarded, BadgeID, UserID) VALUES ('2021-01-01', 4, 1);")
+
+    conn.commit()
+    conn.close()
+
+def add_levels():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (0);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (1000);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (2500);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (5000);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (10000);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (20000);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (40000);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (90000);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (100000);")
+    c.execute("INSERT OR IGNORE INTO Levels (Experience) VALUES (500000);")
 
     conn.commit()
     conn.close()

@@ -189,7 +189,6 @@ function loadExercise(planNumber, count) {
                     var html = `<div class="videoContainer">
                                     <div class="content">
                                         <div class = "NameCont"><h3>${exerciseDetails[0]}</h3></div>
-                                        <div id="timer"></div>
                                         <div class="word"><span>Exercício:</span> <span id="counter">${count + 1}/${totalExercises}</span></div>
                                         <p id = "descricao"> ${exerciseDetails[1]} </p>
                                     </div>

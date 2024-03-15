@@ -4,7 +4,13 @@ CREATE TABLE IF NOT EXISTS BadgeType (
     Description TEXT NOT NULL,
     Type TEXT NOT NULL, 
     Image TEXT NOT NULL,
-    Requirements TEXT NOT NULL
+    Requirements TEXT NOT NULL,
+    XPreward INTEGER NOT NULL DEFAULT 500
+);
+
+CREATE TABLE IF NOT EXISTS Levels (
+    LevelID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Experience INTEGER NOT NULL UNIQUE
 );
 
 
@@ -89,6 +95,7 @@ CREATE TABLE IF NOT EXISTS TrainingPlan (
     TrainImage TEXT NOT NULL,
     ExercisePlanID INTEGER NOT NULL,
     UserID INTEGER NOT NULL,
+    XPreward INTEGER NOT NULL DEFAULT 100,
     FOREIGN KEY (ExercisePlanID) REFERENCES ExercisePlan(ExercisePlanID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
@@ -100,8 +107,6 @@ CREATE TABLE IF NOT EXISTS UserBadges (
     DateAwarded DATETIME NOT NULL,
     BadgeID INTEGER NOT NULL,
     UserID INTEGER NOT NULL,
-    --TrainingPlanID INTEGER NOT NULL,
-    --FOREIGN KEY (TrainingPlanID) REFERENCES TrainingPlan(TrainingPlanID),
     FOREIGN KEY (BadgeID) REFERENCES BadgeType(BadgeID)
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
@@ -122,9 +127,12 @@ CREATE TABLE IF NOT EXISTS Users (
     BirthDate DATE NOT NULL,
     RegistrationDate DATE NOT NULL,
     Role TEXT CHECK( Role IN ('Admin', 'User', 'UserHelper')) NOT NULL DEFAULT 'User',
+    UserXP INTEGER NOT NULL,
+    LevelID INTEGER NOT NULL,
     Status TEXT CHECK( Status IN ('Online', 'Offline')) NOT NULL DEFAULT 'Online',
     MeasurementsID INTEGER UNIQUE,
     FriendshipID INTEGER UNIQUE,
+    FOREIGN KEY (LevelID) REFERENCES Levels(LevelID),
     FOREIGN KEY (MeasurementsID) REFERENCES Measurements(MeasurementsID),
     FOREIGN KEY (FriendshipID) REFERENCES Friendship(FriendshipID)
 );

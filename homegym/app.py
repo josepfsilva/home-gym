@@ -20,6 +20,7 @@ with app.app_context():
     add_badge_types()
     add_exercise_plan()
     add_training_plan()
+    add_levels()
     #add_user_badges()
     #add_test_fintrain()
    
@@ -227,8 +228,6 @@ def handle_post():
     data = request.get_json()
     elapsedTime = round(data['elapsedTime'] / 1000)
     planNumber = data['planNumber']
-    print(f'Elapsed Time: {elapsedTime}')
-    print(f'Plan Number: {planNumber}')
 
     json_data = planosOrder()
     response, status_code = json_data
@@ -247,6 +246,9 @@ def handle_post():
     conn.commit()
     conn.close()
 
+    mgamificacao.give_plan_xp(userID, planID) #give xp depending on the plan
+    mgamificacao.check_level(userID)
+
     return jsonify({'message': 'Success!'}), 200
 
 
@@ -256,8 +258,13 @@ def awardedBadges():
     badge_awarded = mgamificacao.badges(userID)
 
     badge_info = []
-    for badge_id in badge_awarded:
-        badge_info.append({badge_id : mgamificacao.getbadges_data(badge_id)})
+
+    if badge_awarded != []:
+        for badge_id in badge_awarded:
+            badge_info.append({badge_id : mgamificacao.getbadges_data(badge_id)})
+            mgamificacao.give_badge_xp(userID, badge_id)
+            
+        mgamificacao.check_level(userID)
 
     return jsonify(badge_info), 200
 

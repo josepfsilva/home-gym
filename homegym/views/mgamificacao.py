@@ -31,7 +31,7 @@ def streak(userID):
 
     return streak
 
-#PROGRESS------
+#PROGRESS------------------------------
 
 def get_plans_done(userID):
     db = sqlite3.connect('database.db')
@@ -72,11 +72,109 @@ def get_avg_time(userID):
     if avg_time[0] == None:
         return 0
     return avg_time[0]
+
+#LEVELS------------------------------
+
+def check_level(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT LevelID, Experience
+                   FROM Levels
+                   ORDER BY LevelID DESC
+                   """,)
+    all_levels = cursor.fetchall()
+    db.close()
+
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT UserXP, LevelID
+                    FROM Users
+                    WHERE UserID = ?
+                     """, (userID,))
+    user = cursor.fetchone()
+    user_exp = user[0]
+    user_level = user[1]
+    db.close()
+
+    for level in all_levels:
+        if user_exp >= level[1] and user_level != level[0]:
+            db = sqlite3.connect('database.db')
+            cursor = db.cursor()
+            cursor.execute("""UPDATE Users
+                            SET LevelID = ?
+                            WHERE UserID = ?
+                             """, (level[0], userID))
+            db.commit()
+            db.close()
+            print(level[0])
+            return level[0]
+
+
+def give_plan_xp(userID, planID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT UserXP
+                    FROM Users
+                    WHERE UserID = ?
+                     """, (userID,))
+    user_exp = cursor.fetchone()
+    db.close()
+
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT XPreward
+                    FROM TrainingPlan
+                    WHERE TrainingPlanID = ?
+                     """, (planID,))
+    plan_exp = cursor.fetchone()
+
+    new_exp = user_exp[0] + plan_exp[0]
+
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""UPDATE Users
+                    SET UserXP = ?
+                    WHERE UserID = ?
+                     """, (new_exp, userID))
+    db.commit()
+    db.close()
+
+    return new_exp
+
+def give_badge_xp(userID, badgeID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT UserXP
+                    FROM Users
+                    WHERE UserID = ?
+                     """, (userID,))
+    user_exp = cursor.fetchone()
+    db.close()
+
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT XPreward
+                    FROM BadgeType
+                    WHERE BadgeID = ?
+                     """, (badgeID,))
+    badge_exp = cursor.fetchone()
+
+    new_exp = user_exp[0] + badge_exp[0]
+
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""UPDATE Users
+                    SET UserXP = ?
+                    WHERE UserID = ?
+                     """, (new_exp, userID))
+    db.commit()
+    db.close()
+
+    return new_exp
     
 
+#BADGES--------------------------
 
-
-#BADGES-------
 def getbadges_type(userID):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()

@@ -105,7 +105,6 @@
                             .then(result => {
                                 console.log(result.message); // 'Operation completed'
                                 //console.log(result.incompleteEx); // false
-                                planStart = false;
                                 clearDivs();
                                 addfooter();
                                 resting();
@@ -255,6 +254,7 @@
 
     <div id="content"></div>
     <div id="elapsedTime"></div>
+    <div id="timer"></div>
     <div id="exercise"></div>
         <iframe
         id="videoFrame"
