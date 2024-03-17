@@ -73,12 +73,12 @@
                                 document.getElementById('exercise').innerHTML = '<div class = "finished"><h4>Finalizou o Plano de Treino. Parabéns!</h4><div>';
                                 document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
                                 sendFinishPlan(elapsedTime, planNumber) //send to db
-                                .then(() => {
-                                    showAwardedBadges(); //show badges if awarded
-                                })
-                                .catch((error) => {
-                                    console.error('Error:', error);
-                                });
+                                    .then(() => {
+                                        showAwardedBadges(); //show badges if awarded
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                    });
                             }else{
                                 document.getElementById('exercise').innerHTML = "<h4>Para concluir o Plano precisa de fazer todos os Exercícios!</h4>";
                                 document.getElementById('elapsedTime').innerHTML = "Tente novamente.";
@@ -94,7 +94,7 @@
                         loadPlanHead(planNumber)
                             .then(() => {
                                 count+=1;
-                                console.log(count);
+                                changeZIndex("100");
                                 return loadExercise(planNumber, count);
                             })
                             .then(() => getPlanDuration(planNumber))
@@ -106,6 +106,7 @@
                                 console.log(result.message); // 'Operation completed'
                                 //console.log(result.incompleteEx); // false
                                 clearDivs();
+                                changeZIndex("0");
                                 addfooter();
                                 resting();
                             })
@@ -126,6 +127,7 @@
                                     count+=1;
                                     console.log(count);
                                     shouldContinue = true;
+                                    changeZIndex("100");
                                     return loadExercise(planNumber,count);
                                 })
                                 .then(() => runForTime(exDuration))
@@ -133,6 +135,7 @@
                                     console.log(result.message); // 'Operation completed'
                                     //console.log(result.incompleteEx); // false
                                     clearDivs();
+                                    changeZIndex("0");
                                     addfooter();
                                     resting();
                                 })
@@ -168,16 +171,11 @@
             document.getElementById('elapsedTime').innerHTML = "";
 
         }
-        function addfooter(){
-            var container = $('#foot');
-            container.empty();
-            var html = `<div class="footer2">
-                            <img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />
-                            <button class="button"><span class="lable">Avançar</span></button >
-                            <img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />
-                        </div>`;
-            container.append(html);
-                        
+
+        //this functions need to be here
+        function getElapsedTime() {
+            let elapTime = Date.now() - startTime;
+            return elapTime;
         }
 
         function resting() {
@@ -205,12 +203,6 @@
                         </div>
                     </div>`;
             }
-        }
-
-        //this functions need to be here
-        function getElapsedTime() {
-            let elapTime = Date.now() - startTime;
-            return elapTime;
         }
 
         function runForTime(seconds) {
@@ -254,7 +246,9 @@
 
     <div id="content"></div>
     <div id="elapsedTime"></div>
-    <div id="timer"></div>
+    <div id="timerContainer">
+        <div id="timer"></div>
+    </div>
     <div id="exercise"></div>
         <iframe
         id="videoFrame"

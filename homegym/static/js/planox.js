@@ -315,6 +315,25 @@ function convertToEmbedUrl(url) {
     return embedUrl;
 }
 
+function addfooter(){
+    var container = $('#foot');
+    container.empty();
+    var html = `<div class="footer2">
+                    <img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />
+                    <button class="button"><span class="lable">Avançar</span></button >
+                    <img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />
+                </div>`;
+    container.append(html);
+                
+}
+
+function changeZIndex(z) {
+    var element = document.getElementById('timerContainer');
+    if (element) {
+        element.style.zIndex = z;
+    }
+}
+
 
 
 //mostrar stats no final do plano e caso user ganhe badges adquirir a devida badge!
