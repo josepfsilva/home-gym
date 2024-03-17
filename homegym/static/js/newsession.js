@@ -6,7 +6,9 @@ function  enterNewSession(sessionname) {
         height: 700,
         parentNode: document.querySelector('#meet'),
         lang: 'pt',
-        configOverwrite: { prejoinPageEnabled: false},
+        configOverwrite: { 
+            prejoinPageEnabled: false
+        },
     };
     
     const api = new JitsiMeetExternalAPI(domain, options);
