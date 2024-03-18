@@ -16,6 +16,11 @@ intents:
 - enter_newsession
 - show_conquistas
 - show_progresso
+- leave_call
+- mute_call
+- unmute_call
+- turn_video_off
+- turn_video_on
 entities:
 - nome_plano
 - nome_sessao
