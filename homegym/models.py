@@ -41,11 +41,11 @@ def add_user():
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage,Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Maria', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '0', 'Online'))
+    """, ('Maria', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '1', 'Online'))
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Jorge', '1234', 'Jorge', 'Fernandes', '../static/img/FotoMaria.png', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '0', 'Online'))
+    """, ('Jorge', '1234', 'Jorge', 'Fernandes', '../static/img/FotoMaria.png', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '1', 'Online'))
 
     # Commit the changes and close the connection
     conn.commit()

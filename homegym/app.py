@@ -296,6 +296,13 @@ def getprogress():
         'avg_time': avg_time
     })
 
+@app.route('/getlevel', methods=['GET', 'POST'])
+def getlevel():
+    userID = session['UserID']
+    mgamificacao.check_level(userID)
+    level = mgamificacao.get_level(userID)
+    return jsonify(level), 200
+
 
 
 if __name__ == "__main__":

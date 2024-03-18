@@ -142,8 +142,12 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 0;
+    background-image: url('../img/stopwatch.png');
+    background-size: 95%;
+    background-position: center;
+    z-index: -1;
 }
+
 
 #timer {
     font-size: 50px;
