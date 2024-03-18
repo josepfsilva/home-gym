@@ -97,7 +97,7 @@ def check_level(userID):
     db.close()
 
     for level in all_levels:
-        if user_exp >= level[1] and user_level != level[0]:
+        if user_exp >= level[1] and user_level < level[0]:
             db = sqlite3.connect('database.db')
             cursor = db.cursor()
             cursor.execute("""UPDATE Users
@@ -171,7 +171,18 @@ def give_badge_xp(userID, badgeID):
     db.close()
 
     return new_exp
-    
+
+def get_level(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT LevelID
+                   FROM Users
+                   WHERE UserID = ?
+                   """, (userID,))
+    levelID = cursor.fetchone()
+    db.close()
+
+    return levelID[0]
 
 #BADGES--------------------------
 

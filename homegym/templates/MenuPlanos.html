@@ -16,6 +16,7 @@
     <script src="static/js/webtoolkit.utf8.js"></script>
     <script src="static/js/datetime.js"></script>
     <script src="static/js/menuplanos.js"></script>
+    <script src="static/js/geral.js"></script>
 
     <script type="module">
         let selectedPlan = 0;
@@ -63,6 +64,7 @@
                 }
             } else {
                 loadPlans();
+                showLevel();
             }
         }
 
@@ -106,8 +108,11 @@
 
         <div class="profile">
             <div class="welcome">
-                <div class="container2" style="background-image: url('{{image_path}}');""></div>
-                <h2 class="username">{{username}}</h2>
+                <div class="container2" style="background-image: url('{{image_path}}');"></div>
+                <div class="text">
+                    <h2>{{username}}</h2>
+                    <div id="level"></div>
+                </div>
             </div>
             <p id="datetime" class="datetime-container">
                 <span class="time"></span>
