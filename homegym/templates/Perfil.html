@@ -102,41 +102,36 @@
       <div></div>
     </div>
 
-    
-        <div class="container">
-            <div class="profile">
-                <div class="left-side">
-                    <div id="header">
-                        <div id="streak" class="streakpos"></div>
-                        <div class="profile-pic2" style="background-image: url('{{image_path}}');"></div>
-                        <div class="right-side">
-                            <div class="name" style="padding-bottom: 0px;">{{name}}</div>
-                            <div class="surname">{{surname}}</div>
-                            <div class="dob">{{birthday}}, {{age}} anos</div>
-                        </div>
-                        <p id="datetime" class="datetime-container">
-                            <span class="time"></span>
-                            <span class="date"></span>
-                        </p>
-                    </div>
+    <div class="container">
+        <div class="profile">
+            <div class="welcome">
+                <div class="container2" style="background-image: url('{{image_path}}');"></div>
+                <div class="text">
+                    <p class="name">{{name}} {{surname}}</p>
+                </div>
+            </div>
+            <p id="datetime" class="datetime-container">
+                <span class="time"></span>
+                <span class="date"></span>
+            </p>
+        </div>
                     
 
                 <div id="content">
-
-                        <div class="height-weight">
-                            <div class="stat height"><span>{{height}} cm</span></div>
-                            <div class="stat weight"><span>{{weight}} kg</span></div>
-                        </div>
-                        <div class="conquistas">Conquistas do mês</div>
-                        <div class="achievements-container">
-                            {% for badge_image in badge_images %}
-                                <div class="achievement" style="background-image: url('{{badge_image}}');"></div>
-                            {% endfor %}
-                        </div>
-                        <div class="casa-viva">Projeto CasaViva+</div>
-                        <div class="privacidade">Politicas de privacidade</div>
-                        <div class="definicoes">Definições</div>
-                    
+                    <div class="height-weight">
+                        <div class="stat height">{{height}} cm</div>
+                        <div class="stat weight">{{weight}} kg</div>
+                    </div>
+                    <div class="conquistas">Conquistas do mês</div>
+                    <div class="achievements-container">
+                        {% for badge_image in badge_images %}
+                            <div class="achievement" style="background-image: url('{{badge_image}}');"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="casa-viva">Projeto CasaViva+</div>
+                    <div class="privacidade">Politicas de privacidade</div>
+                    <div class="definicoes">Definições</div>
+                
 
                     <div class="dashboard">
                         <div class="dashboard-content">
