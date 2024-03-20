@@ -74,12 +74,11 @@ p {
     color: black;
     border-radius: 20px;
     padding: 20px;
-    min-width: 15%;
-    width: auto;
-    height: 90%;
+    width: 17%;
+    height: 80%;
     position: absolute;
     top: 50%;
-    left: 92%;
+    left: 91%;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -137,13 +136,13 @@ p {
     padding: 10px;
     transform: translateX(-50%);
     background-color: white; /* This will create a white container */
-    min-width: 200px; /* This will ensure the container does not shrink below this width */
+    min-width: 160px; /* This will ensure the container does not shrink below this width */
     min-height: 100px; /* This will ensure the container does not shrink below this height */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../img/stopwatch.png');
-    background-size: 95%;
+    background-size: 60%;
+    background-repeat: no-repeat;
     background-position: center;
     z-index: -1;
 }
@@ -157,10 +156,17 @@ p {
 }
 
 .word {
-    margin: 10px;
-    margin-top: 20%;
+    margin-bottom: 20px;
 }
 
+.endtext{
+    background-color:antiquewhite; /* This sets the background color to gray */
+    padding: 10px; /* This adds some space around the text */
+    font-size: 1.6em; /* This makes the text size similar to an h4 */
+    font-weight: bold; /* This makes the text bold like an h4 */
+    border-radius: 5px;
+    text-align: center;;
+}
 
 .videoContainer>.content #counter {
     font-weight: bolder;
@@ -219,24 +225,29 @@ p {
     margin-left: 140px;
 }
 
+.endcontainer {
+    display: flex; /* This makes the child elements lay out in a row */
+    justify-content: space-around; /* This puts maximum space between the child elements */
+    align-items: center; /* This centers the child elements vertically */
+    position: fixed; /* This makes the .endcontainer stick to a specific position */
+    top: 57%; /* This positions the .endcontainer 57% from the top of the screen */
+    left: 0; /* This positions the .endcontainer at the left edge of the screen */
+    right: 0; /* This positions the .endcontainer at the right edge of the screen */
+}
+
 #elapsedTime {
-    position: fixed;
-    top: 57%;
-    left: 50%;
-    font-size: 40px;
+    font-size: 34px;
     padding: 10px;
-    transform: translate(-50%, -50%);
-    color: rgb(0, 24, 160);
     z-index: 2;
+    align-items: center;
+}
+#elapsedTime p{
+    color: red;
 }
 
 #badges {
-    position: fixed;
-    top: 74%;
-    left: 50%;
-    font-size: 30px;
+    font-size: 34px;
     padding: 10px;
-    transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
 }
@@ -441,7 +452,6 @@ p {
 .title,
 .achievements-container {
     width: 100%;
-    margin-bottom: 10px;
 }
 
 .achievements-container {
@@ -492,7 +502,9 @@ p {
 }
 
 .NameCont {
-    height: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
 .finished {
