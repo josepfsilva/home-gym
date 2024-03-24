@@ -184,6 +184,40 @@ def get_level(userID):
 
     return levelID[0]
 
+def get_level_progress(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT UserXP, LevelID
+                   FROM Users
+                   WHERE UserID = ?
+                   """, (userID,))
+    user = cursor.fetchone()
+    print("-----")
+    print(user)
+    user_exp = user[0]
+    user_level = user[1]
+
+    db.close()
+
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""
+            SELECT LevelID, Experience
+            FROM Levels
+            WHERE LevelID = ?
+            UNION
+            SELECT LevelID, Experience
+            FROM Levels
+            WHERE LevelID = ?
+        """, (user_level, user_level + 1))
+    levels = cursor.fetchall()
+    print(levels)
+    current_level = levels[0]
+    next_level = levels[1]
+    db.close()
+
+    return [user_exp, current_level, next_level]
+
 #BADGES--------------------------
 
 def getbadges_type(userID):

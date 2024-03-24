@@ -16,6 +16,7 @@
     <script src="static/js/webtoolkit.utf8.js"></script>
     <script src="static/js/datetime.js"></script>
     <script src="static/js/perfil.js"></script>
+    <script src="static/js/geral.js"></script>
 
 
     <script type="module">
@@ -60,7 +61,11 @@
                             getBadges();                 
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'show_progresso') { //mostrar progresso
-                            getProgress();
+                            getProgress()
+                            .then(() => {
+                                showLevelProgress();
+                            })
+                            .catch(error => console.error(error));
                         }
                         
                         
@@ -69,6 +74,7 @@
                 }
             }
             else{
+                showLevel();
                 showStreak();
 
             }
@@ -106,8 +112,10 @@
         <div class="profile">
             <div class="welcome">
                 <div class="container2" style="background-image: url('{{image_path}}');"></div>
-                <div class="text">
-                    <p class="name">{{name}} {{surname}}</p>
+                <div>
+                    <h2 class="name">{{name}} {{surname}}</h2>
+                    <div id="level"></div>
+                    <div id="streak"></div>
                 </div>
             </div>
             <p id="datetime" class="datetime-container">
@@ -116,7 +124,7 @@
             </p>
         </div>
                     
-
+            <div class="main-container">
                 <div id="content">
                     <div class="height-weight">
                         <div class="stat height">{{height}} cm</div>
@@ -147,22 +155,25 @@
                 
                         </div>
                     </div>
+                    <!--
                     <div class="right-side">
-                            <div class="col-md-4">
-                                <div class="friends-list">
-                                    <ul>
-                                        <li>Olga</li>
-                                        <li>Rui</li>
-                                        <li>Odete</li>
-                                        <li>João</li>
-                                    </ul>
-                                    <div class="friends">6 Amigos</div>
-                                    <div class="adicionar-amigo"> <i class="fa fa-user-plus" style="font-size: 23px; padding-right: 12px; "></i>   Adicionar amigo</div>
-                                </div>
+                        <div class="col-md-4">
+                            <div class="friends-list">
+                                <ul>
+                                    <li>Olga</li>
+                                    <li>Rui</li>
+                                    <li>Odete</li>
+                                    <li>João</li>
+                                </ul>
+                                <div class="friends">6 Amigos</div>
+                                <div class="adicionar-amigo"> <i class="fa fa-user-plus" style="font-size: 23px; padding-right: 12px; "></i>   Adicionar amigo</div>
                             </div>
                         </div>
                     </div>
+                     -->
+                </div>
             </div>
+        </div>
         </div>  
     
 

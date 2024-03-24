@@ -303,6 +303,16 @@ def getlevel():
     level = mgamificacao.get_level(userID)
     return jsonify(level), 200
 
+@app.route('/getlevelprogress', methods=['GET', 'POST'])
+def getlevelprogress():
+    userID = session['UserID']
+    progress = mgamificacao.get_level_progress(userID)
+    return jsonify({
+        'user_xp': progress[0],
+        'current_level': progress[1],
+        'next_level': progress[2]
+    }), 200
+
 
 
 if __name__ == "__main__":
