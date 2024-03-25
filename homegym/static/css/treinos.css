@@ -29,6 +29,7 @@ h3 {
     color: white;
 }
 
+
 p {
     color: black;
     z-index: 2;
@@ -58,7 +59,21 @@ p {
     }
 }
 
+<<<<<<< HEAD
 .circles div {
+=======
+.leveltext {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.leveltext img{
+    margin-bottom: 5px;
+}
+
+.circles div{
+>>>>>>> 591070de997f75ae10b360572b96864e98aba419
     position: absolute;
     display: block;
     width: 20px;
@@ -226,7 +241,7 @@ p {
 
 .welcome h2 {
     color: black;
-    margin-top: 10%;
+    margin-top: 5px;
 }
 
 .profile {
