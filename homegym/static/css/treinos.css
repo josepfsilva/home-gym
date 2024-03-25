@@ -59,21 +59,16 @@ p {
     }
 }
 
-<<<<<<< HEAD
-.circles div {
-=======
 .leveltext {
     font-weight: bold;
-    font-size: 20px;
     color: black;
 }
 
-.leveltext img{
+.leveltext img {
     margin-bottom: 5px;
 }
 
-.circles div{
->>>>>>> 591070de997f75ae10b360572b96864e98aba419
+.circles div {
     position: absolute;
     display: block;
     width: 20px;
@@ -184,6 +179,10 @@ p {
         width: 380px;
         height: 188px;
     }
+
+    .leveltext {
+        font-size: 20px;
+    }
 }
 
 .containers .content {
@@ -290,6 +289,7 @@ p {
         height: 300px;
     }
 
+
     .containers {
         width: 25vw;
         height: 20vh;
@@ -313,6 +313,10 @@ p {
         height: 300px;
     }
 
+    .leveltext {
+        font-size: 25px;
+    }
+
     .containers {
         width: 23vw;
         height: 25vh;
@@ -329,6 +333,10 @@ p {
 
     h3 {
         font-size: 35px;
+    }
+
+    h2 {
+        font-size: 20px;
     }
 
     .profile {
@@ -495,12 +503,18 @@ p {
     h1 {
         font-size: 60px;
     }
+
+    .leveltext {
+        font-size: 27px;
+    }
 }
 
 @media (min-width: 2300px) {
 
     /* 60% zoom */
-
+    .leveltext {
+        font-size: 30px;
+    }
 
     h3 {
         font-size: 38px;
@@ -508,6 +522,10 @@ p {
 
     h1 {
         font-size: 40px;
+    }
+
+    h2 {
+        font: 60px
     }
 
     .text-overlay p {
@@ -526,7 +544,9 @@ p {
 }
 
 @media (min-width: 2600px) {
-
+    .leveltext {
+        font-size: 40px;
+    }
 
     h2 {
         font-size: 70px;
@@ -536,6 +556,8 @@ p {
     .datetime-container {
         font-size: 50px;
     }
+
+
 
     .bold {
         margin-left: 240px;
@@ -571,6 +593,11 @@ p {
 
 @media (min-width: 3500px) {
 
+    .leveltext {
+        font-size: 60px;
+    }
+
+    .leveltext img {}
 
     h3 {
         font-size: 90px;
@@ -719,6 +746,10 @@ p {
 
     .text-overlay p {
         font-size: 4rem;
+    }
+
+    .leveltext {
+        font-size: 90px;
     }
 
     .containers {
