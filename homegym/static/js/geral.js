@@ -46,7 +46,7 @@ function showStreak(){
             var container = $('#streak');
             container.empty();
 
-            var html = '<div class="streak" >'+ streak +' <img src="../static/img/badge4image.jpeg" alt="Icon" style="width: 20px; height: 20px;"></div>';
+            var html = '<div class="streaktext" >'+ streak +' <img src="../static/img/badge4image.jpeg" alt="Icon" style="width: 20px; height: 20px;"></div>';
             
             container.append(html);
         })
