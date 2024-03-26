@@ -74,42 +74,6 @@ def get_avg_time(userID):
     return avg_time[0]
 
 #LEVELS------------------------------
-
-def check_level(userID):
-    db = sqlite3.connect('database.db')
-    cursor = db.cursor()
-    cursor.execute("""SELECT LevelID, Experience
-                   FROM Levels
-                   ORDER BY LevelID DESC
-                   """,)
-    all_levels = cursor.fetchall()
-    db.close()
-
-    db = sqlite3.connect('database.db')
-    cursor = db.cursor()
-    cursor.execute("""SELECT UserXP, LevelID
-                    FROM Users
-                    WHERE UserID = ?
-                     """, (userID,))
-    user = cursor.fetchone()
-    user_exp = user[0]
-    user_level = user[1]
-    db.close()
-
-    for level in all_levels:
-        if user_exp >= level[1] and user_level < level[0]:
-            db = sqlite3.connect('database.db')
-            cursor = db.cursor()
-            cursor.execute("""UPDATE Users
-                            SET LevelID = ?
-                            WHERE UserID = ?
-                             """, (level[0], userID))
-            db.commit()
-            db.close()
-            print(level[0])
-            return level[0]
-
-
 def give_plan_xp(userID, planID):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
@@ -171,6 +135,41 @@ def give_badge_xp(userID, badgeID):
     db.close()
 
     return new_exp
+
+def check_level(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT LevelID, Experience
+                   FROM Levels
+                   ORDER BY LevelID DESC
+                   """,)
+    all_levels = cursor.fetchall()
+    db.close()
+
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT UserXP, LevelID
+                    FROM Users
+                    WHERE UserID = ?
+                     """, (userID,))
+    user = cursor.fetchone()
+    user_exp = user[0]
+    user_level = user[1]
+    db.close()
+
+    for level in all_levels:
+        if user_exp >= level[1] and user_level < level[0]:
+            db = sqlite3.connect('database.db')
+            cursor = db.cursor()
+            cursor.execute("""UPDATE Users
+                            SET LevelID = ?
+                            WHERE UserID = ?
+                             """, (level[0], userID))
+            db.commit()
+            db.close()
+            return 1
+    return 0
+    
 
 def get_level(userID):
     db = sqlite3.connect('database.db')

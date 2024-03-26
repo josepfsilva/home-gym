@@ -247,7 +247,7 @@ def handle_post():
     conn.close()
 
     mgamificacao.give_plan_xp(userID, planID) #give xp depending on the plan
-    mgamificacao.check_level(userID)
+    #mgamificacao.check_level(userID)
 
     return jsonify({'message': 'Success!'}), 200
 
@@ -264,7 +264,7 @@ def awardedBadges():
             badge_info.append({badge_id : mgamificacao.getbadges_data(badge_id)})
             mgamificacao.give_badge_xp(userID, badge_id)
             
-        mgamificacao.check_level(userID)
+        #mgamificacao.check_level(userID)
 
     return jsonify(badge_info), 200
 
@@ -299,9 +299,13 @@ def getprogress():
 @app.route('/getlevel', methods=['GET', 'POST'])
 def getlevel():
     userID = session['UserID']
-    mgamificacao.check_level(userID)
+    leveledUp = mgamificacao.check_level(userID)
     level = mgamificacao.get_level(userID)
-    return jsonify(level), 200
+    return jsonify({
+            'level': level,
+            'leveledUp': leveledUp,
+        }), 200
+
 
 @app.route('/getlevelprogress', methods=['GET', 'POST'])
 def getlevelprogress():
