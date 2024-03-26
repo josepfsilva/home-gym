@@ -10,7 +10,7 @@ function showLevel() {
             console.log(data);
             var container = $('#level');
             container.empty();
-            var html = '<div class="leveltext"> Nivel ' + data + ' <i class="fa-solid fa-star" style="color: #FFD43B;"></i></div>';
+            var html = '<div class="leveltext"> Nivel ' + data + ' <img src="../static/img/star.png" alt="Icon" style="width: 20px; height: 20px;"></div>';
             container.append(html);
         })
         .catch(error => {
