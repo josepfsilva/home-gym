@@ -190,7 +190,7 @@ function loadExercise(planNumber, count) {
                                     <div class="content">
                                         <div class = "NameCont"><h3>${exerciseDetails[0]}</h3></div>
                                         <div class="word"><span>Exercício:</span> <span id="counter">${count + 1}/${totalExercises}</span></div>
-                                        <p id = "descricao"> ${exerciseDetails[1]} </p>
+                                        <div id = "descricao"> ${exerciseDetails[1]} </div>
                                     </div>
                                 </div>`;
                     container.append(html);
@@ -277,7 +277,7 @@ function showAwardedBadges() {
             var html = '<div class="title">Conquistas Alcançadas:</div> <div class="achievements-container">';
 
             if (data.length == 0) {
-                html += '<p>Não ganhou nenhuma conquista!</p>';
+                html += '<p>Nenhuma</p>';
             } else {
                 for (var i = 0; i < data.length; i++) {
                     var badge = data[i];
@@ -331,6 +331,20 @@ function changeZIndex(z) {
     var element = document.getElementById('timerContainer');
     if (element) {
         element.style.zIndex = z;
+    }
+}
+
+function addtimerimage() {
+    var container = document.getElementById('timerContainer');
+    if (container) {
+        container.style.backgroundImage = "url('../static/img/stopwatch.png')";
+    }
+}
+
+function removetimerimage() {
+    var container = document.getElementById('timerContainer');
+    if (container) {
+        container.style.backgroundImage = "none";
     }
 }
 

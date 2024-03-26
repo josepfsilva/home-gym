@@ -41,11 +41,11 @@ def add_user():
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage,Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Maria', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '0', 'Online'))
+    """, ('Maria', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '1', 'Online'))
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Jorge', '1234', 'Jorge', 'Fernandes', '../static/img/FotoMaria.png', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '0', 'Online'))
+    """, ('Jorge', '1234', 'Jorge', 'Fernandes', '../static/img/FotoMaria.png', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '1', 'Online'))
 
     # Commit the changes and close the connection
     conn.commit()
@@ -131,10 +131,10 @@ def add_exercises():
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg,Type, Difficulty) VALUES ('Puxada com Faixa Elástica', 'Fortalece os músculos das costas.', 'http://example.com/resistance-band-pull', 'static\\img\\flexao.jpg' ,'Musculacao', 'Easy');")
 
     # lower body
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Agachamentos', 'Um exercício composto que trabalha os quadríceps, isquiotibiais e glúteos.', 'https://www.youtube.com/watch?v=xqvCmoLULNY', 'static\\img\\squat.jpg' ,'Musculacao', 'Medium');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Squats', 'Um exercício composto que trabalha os quadríceps, isquiotibiais e glúteos.', 'https://www.youtube.com/watch?v=xqvCmoLULNY', 'static\\img\\squat.jpg' ,'Musculacao', 'Medium');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Lunges', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'https://www.youtube.com/watch?v=MxfTNXSFiYI', 'static\\img\\lunge.jpg' ,'Musculacao', 'Easy');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Agachamentos com salto', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'https://www.youtube.com/watch?v=YGGq0AE5Uyc', 'static\\img\\jumpsquat.jpg' ,'Musculacao', 'Hard');")
-    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Agachamento com Faixa Elástica', 'Trabalha os músculos das pernas e glúteos.', 'http://example.com/resistance-band-squats', 'static\\img\\flexao.jpg' ,'Musculacao', 'Easy');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Squats com salto', 'Um exercício de perna que trabalha os quadríceps e glúteos.', 'https://www.youtube.com/watch?v=YGGq0AE5Uyc', 'static\\img\\jumpsquat.jpg' ,'Musculacao', 'Hard');")
+    cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Squats com Faixa Elástica', 'Trabalha os músculos das pernas e glúteos.', 'http://example.com/resistance-band-squats', 'static\\img\\flexao.jpg' ,'Musculacao', 'Easy');")
     cursor.execute("INSERT OR IGNORE INTO Exercises (Name, Description, URL, ExerciseImg ,Type, Difficulty) VALUES ('Elevação de Pernas Sentado', 'Trabalha os músculos das pernas.', 'http://example.com/seated-leg-raise', 'static\\img\\flexao.jpg' ,'Musculacao', 'Easy');")
 
     # cardio

@@ -1,34 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
-    box-sizing: border-box;
-}
-
-body, html {
-    margin: 0;
+    font-family: "Sans-serif", "Poppins", "Montserrat", "Josefin Sans", sans-serif;
     padding: 0;
-    width: 100%;
-    height: 100%;
+    margin: 0;
 }
 
-.container {
-    min-height: 100vh;
-    padding: 20px 0; 
+body {
+    padding: 0 7em;
+    margin: 0;
+    font-size: 18px;
+    background: white;
 }
 
-.left-side, .right-side {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+h1 {
+    color: black;
+    font-size: 28px;
+    font-weight: 100;
 }
 
-.profile-pic2 {
-    width: 150px;
-    height: 150px;
-    background-color: grey;
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
+h2 {
+    font-weight: 800;
+    font-size: 42px;
+}
+
+p {
+    color: black;
+    z-index: 2;
+    font-weight: 600;
 }
 
 .circles {
@@ -41,12 +40,13 @@ body, html {
 }
 
 @keyframes animate {
-    0%{
+    0% {
         opacity: 1;
         border-radius: 0;
         transform: translateY(0) rotate(0deg);
     }
-    100%{
+
+    100% {
         opacity: 0%;
         border: 50%;
         transform: translateY(-1000px) rotate(720deg);
@@ -58,140 +58,200 @@ body, html {
     display: block;
     width: 20px;
     height: 20px;
-    border-radius: 60%;
+    border-radius: 40%;
     background: rgba(42, 37, 37, 0.2);
     bottom: -150px;
     animation: animate 25s linear infinite;
 }
 
-.circles div:nth-child(1){
-    left:25%;
+.circles div:nth-child(1) {
+    left: 25%;
     width: 80px;
     height: 80px;
     animation-delay: 0s;
 }
-.circles div:nth-child(2){
-    left:10%;
+
+.circles div:nth-child(2) {
+    left: 10%;
     width: 30px;
     height: 30px;
     animation-delay: 2s;
     animation-duration: 12s;
 }
-.circles div:nth-child(3){
-    left:70%;
+
+.circles div:nth-child(3) {
+    left: 70%;
     width: 30px;
     height: 30px;
     animation-delay: 4s;
 }
-.circles div:nth-child(4){
-    left:40%;
+
+.circles div:nth-child(4) {
+    left: 40%;
     width: 60px;
     height: 60px;
     animation-delay: 0s;
     animation-duration: 18s;
 }
-.circles div:nth-child(5){
-    left:65%;
+
+.circles div:nth-child(5) {
+    left: 65%;
     width: 30px;
     height: 30px;
     animation-delay: 0s;
 }
-.circles div:nth-child(6){
-    left:75%;
+
+.circles div:nth-child(6) {
+    left: 75%;
     width: 110px;
     height: 110px;
     animation-delay: 3s;
 }
-.circles div:nth-child(7){
-    left:35%;
+
+.circles div:nth-child(7) {
+    left: 35%;
     width: 150px;
     height: 150px;
     animation-delay: 7s;
 }
-.circles div:nth-child(8){
-    left:50%;
+
+.circles div:nth-child(8) {
+    left: 50%;
     width: 25px;
     height: 25px;
     animation-delay: 15s;
     animation-duration: 45s;
 }
-.circles div:nth-child(9){
-    left:20%;
+
+.circles div:nth-child(9) {
+    left: 20%;
     width: 30px;
     height: 30px;
     animation-delay: 2s;
     animation-duration: 35s;
 }
-.circles div:nth-child(10){
-    left:85%;
+
+.circles div:nth-child(10) {
+    left: 85%;
     width: 150px;
     height: 150px;
     animation-delay: 0s;
     animation-duration: 11s;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.containerRight,
+.containerLeft {
+    width: 50%;
+    height: 50%;
+    max-width: 497px;
+    max-height: 357px;
+    margin: 10px;
+    background-color: rgb(217, 217, 217);
+    color: white;
+    border-radius: 15px;
+    display: flex;
+    position: relative;
+}
+
+.containerMiddle {
+    width: 70%;
+    height: 70%;
+    max-width: 687px;
+    max-height: 430px;
+    margin: 10px;
+    color: white;
+    border-radius: 15px;
+    display: flex;
+    position: relative;
+}
+
+@media (min-width: 992px) {
+
+    .containerRight,
+    .containerLeft {
+        width: 497px;
+        height: 357px;
+    }
+
+    .containerMiddle {
+        width: 687px;
+        height: 492px;
+    }
+}
+
+.containerMiddle .content {
+    position: relative;
+}
+
+
+
+.containerRight .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    font-size: 30px;
+}
+
+.text-overlay p {
+    color: white;
+}
+
+.container2 {
+    height: 100px;
+    width: 100px;
+    background-color: #D9D9D9;
+    color: white;
+    border-radius: 30px;
+    margin-right: 20px;
+    background-size: cover;
+    background-position: center;
 }
 
 .profile {
+    margin: 50px 0;
+    justify-content: space-between;
     display: flex;
     align-items: center;
+    color: black;
 }
 
-.profile-pic {
-    width: 200px;
-    height: 200px;
-    background-color: grey;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    border-radius: 20px;
+.profile .welcome {
+    display: flex;
 }
 
-.right-side {
-    position: absolute; 
-    top: 0; 
-    right: 0; 
-    width: calc(100% - 240px); 
-    padding-left: 50px; 
-    padding-top: 34px;
+.datetime-container {
+    order: 3;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 30px;
+    font-weight: 100;
 }
 
-.info {
-    max-width: 300px;
-    margin-bottom: 20px;
-    padding-left: 20px; 
-}
-
-.name {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-    
-.surname {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.dob {
-    font-size: 24px;
-    color: #707070;
-    margin-top: 3px;
-}
-
-.name, .surname, .dob {
-    margin-bottom: 1px;  /* adjust as needed */
+.bold {
+    font-weight: bold;
+    margin-left: 107px;
 }
 
 .stat.height span:first-child,
 .stat.weight span:first-child {
-    font-weight: bolder;
     font-size: 24px;
     margin-left: 0px;
 }
@@ -199,49 +259,37 @@ body {
 .left-side {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
-    margin-right: 107px;
-    width: 100%;
-    margin-left: 0px;
+    margin: 0 20px;
 }
 
-.title, .achievements-container {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.stat, .achievement {
-    width: 200px;
-    height: 50px;
-    background-color: #f0f0f0;
-    border-radius: 15px;
+.right-side {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    margin-bottom: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 20px;
 }
 
 .height-weight {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-bottom: 20px;
-    margin-top: 20px; 
+    
 }
 
 .stat, .achievement {
     background-color: #f0f0f0;
-    border-radius: 15px;
+    border-radius: 1005px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    margin-bottom: 10px;
-}
+    height: 20px;}
 
 .stat {
-    width: 170px;
+    width: 150px;
     height: 50px; 
     margin-right: 10px;
 }
@@ -254,34 +302,6 @@ body {
     text-align: center;
 }
 
-.containerRight,
-.containerLeft {
-    width: 100%; 
-    height: 50%; 
-    max-width: 497px; 
-    max-height: 357px;
-    margin: 10px;
-    background-color: rgb(217, 217, 217);
-    color: white;
-    border-radius: 15px;
-    display: flex;
-    position: relative;
-}
-
-.datetime-container {
-    position: absolute; 
-    top: 20px; 
-    right: 20px; 
-    font-size: 28px;
-    font-weight: 100;
-    text-align: right;
-    margin-right: 90px; 
-    margin-top: 20px; 
-}
-
-.datetime-container .time {
-    font-weight: bold;
-}
 
 .progress-btn {
     display: block;
@@ -337,11 +357,11 @@ body {
 
 .dashboard {
     position: absolute;
-    top: 50%;
+    top: 41%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 650px; 
-    height: 380px; 
+    width: 750px; 
+    height: 420px; 
     border-radius: 10px;
     overflow: hidden;
     margin-top: 106px;
@@ -352,7 +372,7 @@ body {
 .dashboard-content {
     width: 100%;
     height: 100%;
-    position: relative;
+
     display: flex;
 }
 
@@ -365,7 +385,7 @@ body {
     width: 315px;
     height: 100%;
     border-radius: 15px;
-    margin-right: 20px;
+    margin-right: 70px;
 }
 
 
@@ -375,6 +395,7 @@ body {
     width: 315px;
     font-size: 24px;
     height: 100%; /* Adjust the height to match the dashboard */
+    margin-left: 50px;
 }
 
 .friends-list {
@@ -418,6 +439,7 @@ body {
 .name, .surname {
     font-size: 36px;
     font-weight: 700;
+    margin-top: 5px;
 }
 
 .dob {
@@ -427,23 +449,32 @@ body {
 }
 
 .title {
-    font-size: 16px;
-    font-weight: 100;
+    font-size: 20px;
+    font-weight: 200;
     padding-left: 30px;
     padding-top: 20px;
 }
+
+.titleprg {
+    font-size: 19px;
+    font-weight: 200;
+    padding-top: 20px;
+}
+
 
 .conquistas {
     font-size: 20px;
     font-weight: 700;
 }
 
-.streakpos {
+
+.streak{
+    font-weight: bold;
     font-size: 20px;
-    font-weight: 750;
-    margin-top : 8%;
-    left: 83%;
-    position: absolute;
+    color: black;
+}
+.streak img{
+    margin-bottom: 4px;
 }
 
 .casa-viva {
@@ -478,7 +509,7 @@ body {
     border-radius: 10px;
     margin-right: 10px; 
     background-color:rgb(205, 183, 255);
-    padding-top: 19px;
+    padding-top: 29px;
     font-size: 18px;
     font-weight: 600;
     padding-left: 20px;
@@ -490,6 +521,7 @@ body {
 }
 
 .stats2 {
+    text-align: center;
     margin-top: 50px;
     font-size: 25px;
     font-weight: 800;
@@ -500,6 +532,53 @@ body {
     font-weight: 600;
 }
 
+.leveltext {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.leveltext img{
+    margin-bottom: 4px;
+}
+
+#levelprog-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #333;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+#level-indicators {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#current-level, #next-level {
+    font-size: 30px;  
+    color: #333;
+    font-weight: bold;
+}
+
+#progress-bar {
+    margin-top: 50px;
+    width: 100%;
+    height: 30px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+  }
+#progress {
+    width: 0%;
+    height: 100%;
+    background-color: #ffc107;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
 @media only screen and (max-width: 1024px) {
     .friends-list {
         right: 10px; 

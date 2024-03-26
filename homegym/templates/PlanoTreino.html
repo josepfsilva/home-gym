@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/plano.css')}}"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>HomeGym</title>
   </head>
   <body>
@@ -68,10 +69,12 @@
 
                         setTimeout(() => {  //esperar pelo fim do outro timer
                             clearDivs();
+                            removetimerimage();
+                            changeZIndex("0");
 
                             if (count == 2) { //only counts if went through all exercises
-                                document.getElementById('exercise').innerHTML = '<div class = "finished"><h4>Finalizou o Plano de Treino. Parabéns!</h4><div>';
-                                document.getElementById('elapsedTime').innerHTML = "Tempo total de treino: " + formatTime(elapsedTime);
+                                document.getElementById('exercise').innerHTML = '<div class="endtext">Finalizou o Plano de Treino. Parabéns!</div><div>';
+                                document.getElementById('elapsedTime').innerHTML = "Tempo Total de Treino:<p>" + formatTime(elapsedTime) + "</p>";
                                 sendFinishPlan(elapsedTime, planNumber) //send to db
                                     .then(() => {
                                         showAwardedBadges(); //show badges if awarded
@@ -80,8 +83,9 @@
                                         console.error('Error:', error);
                                     });
                             }else{
-                                document.getElementById('exercise').innerHTML = "<h4>Para concluir o Plano precisa de fazer todos os Exercícios!</h4>";
+                                document.getElementById('exercise').innerHTML = '<div class="endtext">Para concluir o Plano precisa de fazer todos os Exercícios!</div>';
                                 document.getElementById('elapsedTime').innerHTML = "Tente novamente.";
+                                document.getElementById('badges').innerHTML = '<i class="fa fa-refresh fa-spin" style="font-size:50px; margin-left:-50px;"></i>';
 
                             }
                
@@ -95,6 +99,7 @@
                             .then(() => {
                                 count+=1;
                                 changeZIndex("100");
+                                addtimerimage();
                                 return loadExercise(planNumber, count);
                             })
                             .then(() => getPlanDuration(planNumber))
@@ -106,6 +111,7 @@
                                 console.log(result.message); // 'Operation completed'
                                 //console.log(result.incompleteEx); // false
                                 clearDivs();
+                                removetimerimage();
                                 changeZIndex("0");
                                 addfooter();
                                 resting();
@@ -128,6 +134,7 @@
                                     console.log(count);
                                     shouldContinue = true;
                                     changeZIndex("100");
+                                    addtimerimage();
                                     return loadExercise(planNumber,count);
                                 })
                                 .then(() => runForTime(exDuration))
@@ -135,6 +142,7 @@
                                     console.log(result.message); // 'Operation completed'
                                     //console.log(result.incompleteEx); // false
                                     clearDivs();
+                                    removetimerimage();
                                     changeZIndex("0");
                                     addfooter();
                                     resting();
@@ -245,7 +253,6 @@
     </script>
 
     <div id="content"></div>
-    <div id="elapsedTime"></div>
     <div id="timerContainer">
         <div id="timer"></div>
     </div>
@@ -265,7 +272,10 @@
         "
         allow="autoplay; fullscreen"
         ></iframe>
-        <div id="badges"></div>
+        <div class="endcontainer">
+            <div id="elapsedTime"></div>
+            <div id="badges"></div>
+        </div>
         <div id="foot"></div>
   </body>
 </html>
