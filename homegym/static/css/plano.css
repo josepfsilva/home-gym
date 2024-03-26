@@ -459,6 +459,16 @@ p {
     position: relative;
 }
 
+.leveltext {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.leveltext img{
+    margin-bottom: 4px;
+}
+
 @keyframes scale {
     0% {
         transform: scale(1);
