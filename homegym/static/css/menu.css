@@ -298,13 +298,34 @@ p {
 
 .leveltext {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
     color: black;
+    margin-left: 5px;
 }
 
 .leveltext img{
     margin-bottom: -2px;
+    margin-left: 3px;
 }
+
+
+.streaktext img{
+    margin-bottom: -2px;
+    margin-left: 3px;
+}
+
+.streaktext {
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+    margin-left: 20px;
+}
+
+.streak_level_group {
+    display: flex;
+    
+}
+
 
 @media (min-width: 3500px) {
     p {

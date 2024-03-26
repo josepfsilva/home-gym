@@ -456,9 +456,33 @@ p {
 }
 
 .titleprg {
-    font-size: 19px;
-    font-weight: 200;
+    font-size: 18px;
+    font-weight: 100;
     padding-top: 20px;
+}
+
+.titlevalues {
+    font-size: 50px;
+    font-weight: 500;
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.titlevalues_animated_1 {
+    font-size: 50px;
+    font-weight: 500;
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.titlevalues_animated_2 {
+    font-size: 50px;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.title_group1 {
+    display: flex;
 }
 
 
@@ -521,7 +545,7 @@ p {
 }
 
 .stats2 {
-    text-align: center;
+    text-align: left;
     margin-top: 50px;
     font-size: 25px;
     font-weight: 800;
@@ -564,7 +588,7 @@ p {
 }
 
 #progress-bar {
-    margin-top: 50px;
+    margin-top: 55px;
     width: 100%;
     height: 30px;
     background-color: #f0f0f0;
@@ -608,4 +632,11 @@ p {
         top: auto; 
         right: 10px; 
     }
+}
+
+
+#timedesign {
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 45px;
 }

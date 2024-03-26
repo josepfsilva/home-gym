@@ -71,7 +71,26 @@ def get_avg_time(userID):
     
     if avg_time[0] == None:
         return 0
+    
     return avg_time[0]
+
+
+def get_total_time(userID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT SUM(FinishTime)
+                   FROM FinishTraining
+                   WHERE UserID = ?
+                   """, (userID,))
+    total_time = cursor.fetchone()
+    db.close()
+
+    if total_time[0] == None:
+        return 0
+    
+    else:
+        return total_time[0] / 60
+    
 
 #LEVELS------------------------------
 

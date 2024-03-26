@@ -23,7 +23,7 @@ with app.app_context():
     add_levels()
     #add_user_badges()
     #add_test_fintrain()
-   
+
 @app.route('/templates/<path:filename>')
 def serve_html(filename):
     return send_from_directory(os.path.join(app.root_path, 'templates'), filename)
@@ -297,10 +297,12 @@ def getprogress():
     plans = mgamificacao.get_plans_done(userID)
     exs = mgamificacao.get_exs_done(userID)
     avg_time = round(mgamificacao.get_avg_time(userID))
+    total_time = mgamificacao.get_total_time(userID)
     return jsonify({
         'plans_done': plans,
         'exs_done': exs,
-        'avg_time': avg_time
+        'avg_time': avg_time,
+        'total_time': total_time
     })
 
 @app.route('/getlevel', methods=['GET', 'POST'])

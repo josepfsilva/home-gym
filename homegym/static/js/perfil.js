@@ -67,11 +67,15 @@ function getProgress(){
             var plansDone = data.plans_done;
             var exsDone = data.exs_done;
             var avgTime = data.avg_time;
+            var total_time = data.total_time;
 
-            var html = '<div class="stats2">PROGRESSO';
-            html += '<div class="titleprg">Treinos Feitos: ' + plansDone + '</div>';
-            html += '<div class="titleprg">Exercicios Feitos: ' + exsDone + '</div>';
-            html += '<div class="titleprg">Tempo Médio de Treino: ' + avgTime + ' s</div></div>';
+            var html = '<div class="stats2">';
+            html += '<div class="titleprg">Total de tempo a treinar</div>';
+            html += '<div class="title_group1"> <div class="titlevalues_animated_1">'+ total_time +'</div><span id="timedesign">min</span></div>';
+            html += '<div class="titleprg">Planos de treino realizados</div>';
+            html += '<div class="titlevalues">'+ plansDone +'</div>';
+            html += '<div class="titleprg">Tempo médio por treino</div>';
+            html += '<div class="title_group1"> <div class="titlevalues_animated_2">'+ avgTime +'</div> <span id="timedesign">seg</span></div></div>';
 
             html += `<div id="progress-bar">
                         <div id="progress"></div>
@@ -82,6 +86,32 @@ function getProgress(){
                     </div>`;
 
             container.append(html);
+
+            
+            animateNumber($('.titlevalues_animated_1'), total_time);
+            animateNumber($('.titlevalues'), plansDone);
+            animateNumber($('.titlevalues_animated_2'), avgTime);
+
+            function animateNumber(element, newValue) {
+                $({value: 0}).animate({value: newValue}, {
+                    duration: 1000, 
+                    easing: 'swing', 
+                    step: function() {
+                        
+                        var formattedValue = this.value;
+                        if (element.hasClass('titlevalues_animated_1') ) {
+                            formattedValue = this.value.toFixed(2);
+                        } else if (element.hasClass('titlevalues_animated_2')) {
+                            formattedValue = this.value.toFixed(0);
+                        }
+                        else {
+                            formattedValue = this.value.toFixed(0);
+                        }
+                        element.text(formattedValue);
+                    }
+                });
+            }
+            
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -106,8 +136,8 @@ function showLevelProgress(){
         var levelpercentage = (user_xp / next_level[1]) * 100;
         setProgress(levelpercentage);
 
-        document.getElementById('current-level').textContent = `NIVEL ${current_level[0]}`;
-        document.getElementById('next-level').textContent = `NIVEL ${next_level[0]}`;
+        document.getElementById('current-level').textContent = `NÍVEL ${current_level[0]}`;
+        document.getElementById('next-level').textContent = `NÍVEL ${next_level[0]}`;
 
         
     })

@@ -68,6 +68,7 @@
             } else {
                 loadContent("templates/MenuInicial.html");
                 showLevel();
+                showStreak();
 
                 var mmiCli_1 = null;
                 mmiCli_1 = new MMIClient(null, "https://"+host+":8000/IM/USER1/APPSPEECH");
@@ -108,7 +109,10 @@
             <div class="container2" style="background-image: url('{{image_path}}');"></div>
             <div class="text">
                 <h2>{{username}}</h2>
-                <div id="level"></div>
+                <div class="streak_level_group">
+                <div id="level"></div> 
+                <div id="streak"></div>
+                </div>
             </div>
         </div>
         <p id="datetime" class="datetime-container">
