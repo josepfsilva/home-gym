@@ -1,0 +1,12 @@
+.meet-container {
+    border: 1px solid #ccc;
+    height: 400px; /* Adjust height as needed */
+}
+
+.exercise {
+    background-color: #f0f0f0;
+    padding: 20px;
+    height: 400px; /* Adjust height as needed */
+    width: 100%; /* Ensure full width */
+    text-align: center; /* Center content horizontally */
+}

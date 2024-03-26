@@ -53,6 +53,7 @@ def login():
 
         if  validLogin[0]:
             session['UserID'] = validLogin[0]
+            print(session)
             session.permanent = True
             app.permanent_session_lifetime = timedelta(minutes=20)   #tempo da sessão ativa
             return redirect('/')
@@ -120,6 +121,14 @@ def pagina_novasessao():
     
     return render_template('NovaSessao.html')
 
+@app.route("/novasessao/<sessionname>" , methods=['GET', 'POST'])
+def pagina_mostrarsessao(sessionname):
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    return render_template('Sessao.html')
+
+
 @app.route("/meusplanos/plano<selectedPlan>" , methods=['GET', 'POST'])
 def pagina_mostrarplano(selectedPlan):
     if 'UserID' not in session:
@@ -174,8 +183,6 @@ def show_all_trainingPlans_from_user():                       #devolve todos os 
 
 
     
-
-
 @app.route("/planosOrder" , methods=['GET', 'POST'])
 def planosOrder():
 

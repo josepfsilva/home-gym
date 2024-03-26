@@ -1,16 +1,12 @@
-function  enterNewSession(sessionname) {
-    const domain = 'meet.jit.si';
-    const options = {
-        roomName: sessionname,
-        width: 700,
-        height: 700,
-        parentNode: document.querySelector('#meet'),
-        lang: 'pt',
-        configOverwrite: { 
-            prejoinPageEnabled: false
-        },
-    };
-    
-    const api = new JitsiMeetExternalAPI(domain, options);
-  }
+
+function getSessionName() {
+    let url = new URL(window.location.href);
+    let pathSegments = url.pathname.split('/');
+    // Get the session name
+    let sessionname  = pathSegments[pathSegments.length - 1].toLowerCase();
+    return sessionname;
+}
+
+
+
 

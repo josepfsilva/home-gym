@@ -433,6 +433,17 @@ InitializeKWS();
           mmiCli_1.sendToIM(new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
                 doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
                 setValue(JSON.stringify(result))));
+
+      } else if(data.intent.name == 'enter_newsession') {
+          var nome_sessao = '';
+          nome_sessao = data.entities[0].value;
+          var message = {'intent':'enter_newsession','nome_sessao':nome_sessao}
+          var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
+          var result = { "recognized" : ["SPEECH", "SPEECHIN", "APP"], "text": messaget, "nlu": message };
+          mmiCli_1.sendToIM(new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
+                doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
+                setValue(JSON.stringify(result))));
+      
       } else {
         var message = {'intent': data.intent.name}
         var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
