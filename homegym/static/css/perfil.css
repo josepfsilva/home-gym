@@ -355,47 +355,94 @@ p {
     background-color: rgb(127, 228, 240);
 }
 
-.dashboard {
-    position: absolute;
-    top: 41%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 750px; 
-    height: 420px; 
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 106px;
-    margin-left: 60px;
-    
-}
+
 
 .dashboard-content {
-    width: 100%;
-    height: 100%;
-
     display: flex;
 }
 
+.main-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    
+}
 .left-side {
-    width: 35%; /* Adjust this width as needed */
+    margin-left: 10px;
 }
 
-.calendario {
-    border: solid 1px black;
+.info_sq {
+    align-items: center;
+    border: solid 2px black;
     width: 315px;
-    height: 100%;
+    height: 300px;
     border-radius: 15px;
-    margin-right: 70px;
+    margin-right: 50px;
+    display: flex; /* Add this */
+    justify-content: center; /* Add this to center horizontally */
+    align-items: center; /* Add this to center vertically */
+    text-align: center; 
+    background-image: url('../img/bicep.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 
-.leaderboard {
+.progresso_sq {
+    align-items: center;
+    border: solid 2px black;
+    width: 315px;
+    height: 300px;
+    border-radius: 15px;
+    margin-right: 50px;
+    display: flex; /* Add this */
+    justify-content: center; /* Add this to center horizontally */
+    align-items: center;  /*Add this to center vertically */
+    text-align: center; 
+    background-image: url('../img/prog_sq.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.conquistas_sq {
+    border: solid 2px black;
+    width: 315px;
+    height: 300px;
+    border-radius: 15px;
+    display: flex; /* Add this */
+    justify-content: center; /* Add this to center horizontally */
+    align-items: center; /* Add this to center vertically */
+    text-align: center; 
+    background-image: url('../img/conq_sq.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.conquistas_sq img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+
+}
+
+.title_sq {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.leaderboard_sq {
     background-color: rgb(127, 228, 240);
     border-radius: 15px;
     width: 315px;
+    height : 200px;
     font-size: 24px;
-    height: 100%; /* Adjust the height to match the dashboard */
-    margin-left: 50px;
 }
 
 .friends-list {
@@ -558,12 +605,31 @@ p {
 
 .leveltext {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
     color: black;
+    margin-left: 5px;
 }
 
 .leveltext img{
-    margin-bottom: 4px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
+
+.streaktext img{
+    margin-bottom: 3px;
+    margin-left: 2px;
+}
+
+.streaktext {
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+    margin-left: 20px;
+}
+
+.streak_level_group {
+    display: flex;
+
 }
 
 #levelprog-text {

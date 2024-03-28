@@ -52,6 +52,26 @@ function getBadges(){
     });
 }
 
+function showinfo(){
+    ```<div class="left-side">
+            <div class="height-weight">
+                <div class="stat height">{{height}} cm</div>
+                <div class="stat weight">{{weight}} kg</div>
+            </div>
+            <div class="conquistas">Conquistas do mês</div>
+            <div class="achievements-container">
+                {% for badge_image in badge_images %}
+                    <div class="achievement" style="background-image: url('{{badge_image}}');"></div>
+                {% endfor %}
+            </div>
+            <div class="casa-viva">Projeto CasaViva+</div>
+            <div class="privacidade">Politicas de privacidade</div>
+            <div class="definicoes">Definições</div>
+        </div>
+        
+        ir buscar measurements a base de dados```
+}
+
 function getProgress(){
     return fetch('http://127.0.0.1:5000/progress')
         .then(response => {

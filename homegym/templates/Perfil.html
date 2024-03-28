@@ -57,6 +57,10 @@
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
                             window.location.href = '/';
                         }
+                        else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan') { //mostrar informacoes
+                            document.getElementById('content').innerHTML = '<p class="stats2">INFORMAÇÔES</p>';
+                            
+                        }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'show_conquistas') { //mostrar conquistas
                             document.getElementById('content').innerHTML = '<p class="stats2">CONQUISTAS</p>';
                             getBadges();                 
@@ -115,8 +119,10 @@
                 <div class="container2" style="background-image: url('{{image_path}}');"></div>
                 <div>
                     <h2 class="name">{{name}} {{surname}}</h2>
-                    <div id="level"></div>  
-                    <div id="streak"></div>
+                    <div class="streak_level_group">
+                        <div id="level"></div>  
+                        <div id="streak"></div>
+                    </div>
                 </div>
             </div>
             <p id="datetime" class="datetime-container">
@@ -125,57 +131,62 @@
             </p>
         </div>
                     
-            <div class="main-container">
-                <div id="content">
-                    <div class="height-weight">
-                        <div class="stat height">{{height}} cm</div>
-                        <div class="stat weight">{{weight}} kg</div>
-                    </div>
-                    <div class="conquistas">Conquistas do mês</div>
-                    <div class="achievements-container">
-                        {% for badge_image in badge_images %}
-                            <div class="achievement" style="background-image: url('{{badge_image}}');"></div>
-                        {% endfor %}
-                    </div>
-                    <div class="casa-viva">Projeto CasaViva+</div>
-                    <div class="privacidade">Politicas de privacidade</div>
-                    <div class="definicoes">Definições</div>
-                
+        <div id="content"> 
 
-                    <div class="dashboard">
-                        <div class="dashboard-content">
-                            <div class="left-side">
-                                <div class="calendario">
-                                    <div class="title">PROGRESSO</div>
-                                </div>
-                            </div>
-
-                                <div class="leaderboard">
-                                    <div class="title" style="color: white;">LEADERBOARD</div>
-                                </div>
+            <div class="main-group">
+                <div class="dashboard-content">
+                    <div class="info_sq">
+                        <div class="title_sq">INFORMAÇÔES</div>
+                    </div>
+                    <div class="progresso_sq">
+                        <div class="title_sq">PROGRESSO</div>
                 
-                        </div>
                     </div>
-                    <!--
-                    <div class="right-side">
-                        <div class="col-md-4">
-                            <div class="friends-list">
-                                <ul>
-                                    <li>Olga</li>
-                                    <li>Rui</li>
-                                    <li>Odete</li>
-                                    <li>João</li>
-                                </ul>
-                                <div class="friends">6 Amigos</div>
-                                <div class="adicionar-amigo"> <i class="fa fa-user-plus" style="font-size: 23px; padding-right: 12px; "></i>   Adicionar amigo</div>
-                            </div>
-                        </div>
+                    <div class="conquistas_sq">
+                        
+                        <div class="title_sq">CONQUISTAS</div>
                     </div>
-                     -->
                 </div>
             </div>
+
+
+                <!--
+                    <div class="left-side">
+                        <div class="height-weight">
+                            <div class="stat height">{{height}} cm</div>
+                            <div class="stat weight">{{weight}} kg</div>
+                        </div>
+                        <div class="conquistas">Conquistas do mês</div>
+                        <div class="achievements-container">
+                            {% for badge_image in badge_images %}
+                                <div class="achievement" style="background-image: url('{{badge_image}}');"></div>
+                            {% endfor %}
+                        </div>
+                        <div class="casa-viva">Projeto CasaViva+</div>
+                        <div class="privacidade">Politicas de privacidade</div>
+                        <div class="definicoes">Definições</div>
+                    </div>
+
+
+                <div class="right-side">
+                    <div class="col-md-4">
+                        <div class="friends-list">
+                            <ul>
+                                <li>Olga</li>
+                                <li>Rui</li>
+                                <li>Odete</li>
+                                <li>João</li>
+                            </ul>
+                            <div class="friends">6 Amigos</div>
+                            <div class="adicionar-amigo"> <i class="fa fa-user-plus" style="font-size: 23px; padding-right: 12px; "></i>   Adicionar amigo</div>
+                        </div>
+                    </div>
+                </div>
+                    -->
+
+
         </div>
-        </div>  
+    </div>  
     
 
 </body>

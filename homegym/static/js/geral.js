@@ -13,7 +13,7 @@ function showLevel() {
 
             var container = $('#level');
             container.empty();
-            var html = '<div class="leveltext"> Nivel ' + level + ' <img src="../static/img/star.png" alt="Icon" style="width: 20px; height: 20px;"></div>';
+            var html = '<div class="leveltext">' + level + ' <img src="../static/img/star.png" alt="Icon" style="width: 20px; height: 20px;"></div>';
             container.append(html);
 
             if(leveledUp==1){

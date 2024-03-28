@@ -272,7 +272,6 @@ def badges(userID):
                    WHERE UserID = ?
                    """, (userID,))
     badges_id = [item for sublist in cursor.fetchall() for item in sublist]
-    print(badges_id) #mostra badges ja atribuidas
     db.close()
 
     badge_checks = {1: badge_check_1, 2: badge_check_2, 3: badge_check_3, 4: badge_check_4}  
