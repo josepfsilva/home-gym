@@ -84,7 +84,6 @@
                                     })
                                     .then(() => {
                                         return new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for 2 seconds
-                                        console.log("Waiting for 2 seconds");
                                     })
                                     .then(() => {
                                         showLevel();
@@ -177,7 +176,17 @@
                 }
             }
             else {
-                loadPlanInfo(planNumber);
+                loadPlanInfo(planNumber)
+                .then(() => {
+                    return new Promise((resolve) => setTimeout(resolve, 1000));
+                })
+                .then(() => {
+                    showLevel();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
             }
         }
 

@@ -21,7 +21,7 @@ def getUserTrainingPlans(userID):   #devolve ids dos planos do user
 def getTrainingPlanData(trainingPlanID):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
-    cursor.execute("""SELECT Name, Description, Type, PlanDuration, TrainImage
+    cursor.execute("""SELECT Name, Description, Type, PlanDuration, TrainImage, Difficulty, XPreward
                    FROM TrainingPlan
                    WHERE TrainingPlanID = ?
                    """, (trainingPlanID,))

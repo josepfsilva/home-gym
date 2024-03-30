@@ -346,6 +346,7 @@ p {
 
 
 
+
 .description p {
     font-weight: normal;
     display: inline;
@@ -356,6 +357,14 @@ p {
 }
 
 .duration p {
+    display: inline;
+}
+
+.dif p{
+    display: inline;
+}
+
+.rec p {
     display: inline;
 }
 
@@ -370,6 +379,9 @@ p {
 .duration .subtitle {
     font-weight: normal;
 }
+.difrec .subtitle{
+    font-weight: normal;
+}
 
 .type .subtitle {
     font-weight: normal;
@@ -377,14 +389,32 @@ p {
 
 .details {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.TypeandTime{
+    margin-right: 10px;
+    background-color: antiquewhite;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.difrec{
+    margin-right: 10px;
+    background-color: antiquewhite;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 .Exercicios {
-    font-size: 20px;
+    font-size: 30px;
     margin-top: 4%;
     font-family: "FONTTEXT";
-    font-weight: lighter;
 }
 
 .lowContent {

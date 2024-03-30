@@ -70,7 +70,7 @@ function loadPlanHead(planNumber) {
 }
 
 function loadPlanInfo(planNumber) {
-    fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('http://127.0.0.1:5000/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -113,13 +113,15 @@ function loadPlanInfo(planNumber) {
                     //html += '<p>Treino de</p>';
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
-                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3></div>';
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div id="level"></div> </div>'; //level
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
                     //inicio dos detalhes
-                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="subtitle">Duração: </p> ' + '<p>' + planDetails[3] + ' segundos</p></div>';
-                    html += '<div class="type"><p class="subtitle">Tipo: </p>' + '<p>' + planDetails[2] + '</p></div></div>';
-                    html += '<div class="description">' + '<p>' + planDetails[1] + '</p></div></div>';
+                    html += '<div class="details"><div class="TypeandTime"><div class="duration"><p class="subtitle">Duração: </p> ' + '<p>' + planDetails[3] + 's</p></div></div> ';
+                    html += '<div class="TypeandTime"><div class="type"><p class="subtitle">Tipo: </p> <p>' + planDetails[2] + '</p></div></div>';
+                    html += '<div class="difrec"><div class="dif"><p class="subtitle" >Dificuldade: </p><p>' + planDetails[5] + '</p></div></div>';
+                    html += '<div class="difrec"><div class="rec"><p class="subtitle">Recompensa: </p><p>' + planDetails[6] + 'XP</p></div></div>';
+                    //html += '<div class="description">' + '<p>' + planDetails[1] + '</p></div></div>';
                     //fim dos detalhes
                     //Exercicios
                     html += '</div> <div class="ContentEX"><h3 class="Exercicios">Exercícios:</h3>';
