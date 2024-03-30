@@ -237,6 +237,16 @@ def get_level_progress(userID):
     return [user_exp, current_level, next_level]
 
 #BADGES--------------------------
+def getallbadges():
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT Name, Description, Type, Image
+                   FROM BadgeType
+                   """,)
+    badges = cursor.fetchall()
+    db.close()
+
+    return badges
 
 def getbadges_type(userID):
     db = sqlite3.connect('database.db')
