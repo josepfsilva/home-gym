@@ -22,30 +22,54 @@ function showStreak(){
 }
 
 function getBadges(){
-    fetch('http://127.0.0.1:5000/allBadges')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
+    Promise.all([
+        fetch('http://127.0.0.1:5000/userBadges'),
+        fetch('http://127.0.0.1:5000/allBadges')
+    ])
+    .then(async([res1, res2]) => {
+        if (!res1.ok) {
+            throw new Error(`HTTP error! Status: ${res1.status}`);
+        }
+        if (!res2.ok) {
+            throw new Error(`HTTP error! Status: ${res2.status}`);
+        }
+        return Promise.all([res1.json(), res2.json()]);
+    })
+        .then(([userBadges, allBadges]) => {
+            console.log(userBadges, allBadges);
             var container = $('#content');
             container.empty();
         
             var html = '<p class="stats2">SUAS CONQUISTAS</p>' + '<div class="achievements-container2">';
             
-            for (badge of data) {
+            for (badge of userBadges) {
                 html += '<div class="badge-container">';
                 html += '<div class="text-stats">"' + badge[0] + ' "</div>';
+                html += '<div class="text-stats">"' + badge[1] + ' "</div>';
+                html += '<div class="text-stats">"' + badge[2] + ' "</div>';
                 html += '<div class="achievement" style="background-image: url(' + badge[3] + ');"></div>';
                 html += '</div>';
 
             }
             html += '</div>';
+
+            var badgesToWin = allBadges.filter(badge => !userBadges.some(userBadge => userBadge[0] === badge[0]));
+
+            // Display the badges that the user doesn't have yet
+            html += '<p class="stats2">CONQUISTAS POR GANHAR</p>' + '<div class="achievements-container2">';
+            for (badge of badgesToWin) {
+                html += '<div class="badge-container">';
+                html += '<div class="text-stats">"' + badge[0] + ' "</div>';
+                html += '<div class="text-stats">"' + badge[1] + ' "</div>';
+                html += '<div class="text-stats">"' + badge[2] + ' "</div>';
+                html += '<div class="achievement" style="background-image: url(' + badge[3] + ');"></div>';
+                html += '</div>';
+            }
+            html += '</div>';
+
             container.append(html);
         })
+        
         .catch(error => {
             console.error('Fetch error:', error);
             return Promise.reject(error);
@@ -172,3 +196,4 @@ function setProgress(percentage) {
     progressBar.style.width = percentage + '%';
     console.log(percentage);
   }
+

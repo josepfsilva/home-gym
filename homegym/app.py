@@ -276,12 +276,17 @@ def awardedBadges():
     return jsonify(badge_info), 200
 
 
-@app.route('/allBadges', methods=['GET', 'POST'])
-def allBadges():
+@app.route('/userBadges', methods=['GET', 'POST'])
+def userBadges():
     userID = session['UserID']
     badge_id = mgamificacao.getbadges_type(userID)
     badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
     return jsonify(badge_data_list), 200
+
+@app.route('/allBadges', methods=['GET', 'POST'])
+def allBadges():
+    badge_data = mgamificacao.getallbadges()
+    return jsonify(badge_data), 200
 
 
 @app.route('/streak', methods=['GET', 'POST'])
