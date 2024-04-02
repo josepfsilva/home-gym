@@ -247,7 +247,7 @@ p {
 
 .bold {
     font-weight: bold;
-    margin-left: 107px;
+    margin-left: 65px;
 }
 
 .stat.height span:first-child,
@@ -374,11 +374,10 @@ p {
 
 .info_sq {
     align-items: center;
-    border: solid 2px black;
-    width: 350px;
-    height: 400px;
+    width: 450px;
+    height: 420px;
     border-radius: 15px;
-    margin-right: 30px;
+    margin-right: 60px;
     display: flex; /* Add this */
     justify-content: center; /* Add this to center horizontally */
     align-items: center; /* Add this to center vertically */
@@ -392,11 +391,10 @@ p {
 
 .progresso_sq {
     align-items: center;
-    border: solid 2px black;
-    width: 315px;
-    height: 300px;
+    width: 335px;
+    height: 315px;
     border-radius: 15px;
-    margin-right: 30px;
+    margin-right: 60px;
     display: flex; /* Add this */
     justify-content: center; /* Add this to center horizontally */
     align-items: center;  /*Add this to center vertically */
@@ -408,9 +406,8 @@ p {
 }
 
 .conquistas_sq {
-    border: solid 2px black;
-    width: 315px;
-    height: 300px;
+    width: 335px;
+    height: 315px;
     border-radius: 15px;
     display: flex; /* Add this */
     justify-content: center; /* Add this to center horizontally */

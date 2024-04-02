@@ -271,8 +271,6 @@ function showAwardedBadges() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
-
             var container = $('#badges');
             container.empty();
             var html = '<div class="title">Conquistas Alcançadas:</div> <div class="achievements-container">';
@@ -296,6 +294,54 @@ function showAwardedBadges() {
             console.error('Fetch error:', error);
             return Promise.reject(error);
         });
+}
+
+function showLevelProgress(){
+    return fetch('http://127.0.0.1:5000/getlevelprogress')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data)
+
+        var container = $('#pgbar');
+        container.empty();
+        
+        var html = `<div id="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                    <div id="level-indicators">
+                        <span id="current-level"></span>
+                        <span id="next-level"></span>
+                    </div>`;
+
+        container.append(html);
+
+
+        var user_xp = data.user_xp;
+        var current_level = data.current_level;
+        var next_level = data.next_level;
+
+        var levelpercentage = (user_xp / next_level[1]) * 100;
+        setProgress(levelpercentage);
+
+        document.getElementById('current-level').textContent = `NÍVEL ${current_level[0]}`;
+        document.getElementById('next-level').textContent = `NÍVEL ${next_level[0]}`;
+
+        
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        return Promise.reject(error);
+    });
+}
+
+function setProgress(percentage) {
+    var progressBar = document.getElementById('progress');
+    progressBar.style.width = percentage + '%';
 }
 
 function formatTime(timeInMilliseconds) {

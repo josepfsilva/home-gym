@@ -225,14 +225,15 @@ p {
     margin-left: 140px;
 }
 
-.endcontainer {
+#endcontainer{
+    margin-top: 50px;
+}
+
+
+.elapsedTime-badges {
     display: flex; /* This makes the child elements lay out in a row */
     justify-content: space-around; /* This puts maximum space between the child elements */
     align-items: center; /* This centers the child elements vertically */
-    position: fixed; /* This makes the .endcontainer stick to a specific position */
-    top: 57%; /* This positions the .endcontainer 57% from the top of the screen */
-    left: 0; /* This positions the .endcontainer at the left edge of the screen */
-    right: 0; /* This positions the .endcontainer at the right edge of the screen */
 }
 
 #elapsedTime {
@@ -554,4 +555,41 @@ p {
 
 .finished h4 {
     font-family: "FONTTEXT";    
+}
+
+#levelprog-text {
+    left: 50%;
+    transform: translateX(-50%);
+    color: #333;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+#level-indicators {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#current-level, #next-level {
+    font-size: 30px;  
+    color: #333;
+    font-weight: bold;
+}
+
+#progress-bar {
+    margin-top: 55px;
+    width: 100%;
+    height: 30px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+  }
+#progress {
+    width: 0%;
+    height: 100%;
+    background-color: #ffc107;
+    border-radius: 5px;
+    transition: width 0.3s ease;
 }

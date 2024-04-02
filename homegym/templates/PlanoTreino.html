@@ -80,13 +80,20 @@
                                 document.getElementById('elapsedTime').innerHTML = "Tempo Total de Treino:<p>" + formatTime(elapsedTime) + "</p>";
                                 sendFinishPlan(elapsedTime, planNumber) //send to db
                                     .then(() => {
-                                        showAwardedBadges(); //show badges if award
+                                        showAwardedBadges(); //show badges if awarded
                                     })
                                     .then(() => {
                                         return new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for 2 seconds
                                     })
                                     .then(() => {
                                         showLevel();
+                                    })
+                                    .then(() => {
+                                        return new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 2 seconds
+                                    })
+                                    .then(() => {
+                                        console.log("showing progress");
+                                        showLevelProgress();
                                     })
                                     .catch((error) => {
                                         console.error('Error:', error);
@@ -291,9 +298,12 @@
         "
         allow="autoplay; fullscreen"
         ></iframe>
-        <div class="endcontainer">
-            <div id="elapsedTime"></div>
-            <div id="badges"></div>
+        <div id="endcontainer">
+            <div class="elapsedTime-badges">
+                <div id="elapsedTime"></div>
+                <div id="badges"></div>
+            </div>
+            <div id="pgbar"></div>
         </div>
         <div id="foot"></div>
   </body>

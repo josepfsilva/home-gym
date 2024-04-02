@@ -225,9 +225,9 @@ p {
     }
 
     .containerMiddle {
-        width: 50%;
+        width: 40%;
         /* Adjust as needed */
-        height: 70vh;
+        height: 60vh;
         /* Adjust as needed */
     }
 
@@ -289,7 +289,7 @@ p {
 
 .bold {
     font-weight: bold;
-    margin-left: 140px;
+    margin-left: 98px;
 }
 
 .date {
