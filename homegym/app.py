@@ -27,38 +27,25 @@ with app.app_context():
 @app.route('/templates/<path:filename>')
 def serve_html(filename):
     return send_from_directory(os.path.join(app.root_path, 'templates'), filename)
-
+    
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        user_id = request.get_json().get('userId')
+        session['UserID'] = user_id
+        session.permanent = True
+        app.permanent_session_lifetime = timedelta(minutes=20)   #tempo da sessão ativa
+        return '', 200
+    else:
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
 
-    if 'UserID' in session:
-        session.pop('UserID')
-        return redirect('/login')
-    
-    if(request.method == 'POST'):
+        c.execute("SELECT Username, UserImage FROM Users")
+        users = [{"username": row[0], "image_path": row[1]} for row in c.fetchall()]
 
-        username = request.form.get('Username')
-        password = request.form.get('Password')
+        conn.close()
 
-        db = sqlite3.connect("database.db")
-        cursor = db.cursor()
-        cursor.execute("SELECT UserId FROM Users WHERE Username = ? and Password = ?", (username, password))
-
-        validLogin = cursor.fetchone()
-        cursor.close()
-        db.close()
-
-        if(validLogin == None):
-            return render_template('login.html')
-
-        if  validLogin[0]:
-            session['UserID'] = validLogin[0]
-            print(session)
-            session.permanent = True
-            app.permanent_session_lifetime = timedelta(minutes=20)   #tempo da sessão ativa
-            return redirect('/')
-
-    return render_template('login.html')
+        return render_template('login.html', users=users)
 
 
 #paginas base
