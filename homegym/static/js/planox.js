@@ -7,7 +7,7 @@ function getPlanNumber() {
 }
 
 function getPlanId(planNumber) { // tried to use in other functions but it was not working
-    return fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -24,7 +24,7 @@ function getPlanId(planNumber) { // tried to use in other functions but it was n
 }
 
 function loadPlanHead(planNumber) {
-    return fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -35,7 +35,7 @@ function loadPlanHead(planNumber) {
             // Process the data and update the HTML content
             let planId = data[planNumber];                 //id real na db
 
-            return fetch('http://127.0.0.1:5000/planotreino/' + planId)
+            return fetch('/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -70,7 +70,7 @@ function loadPlanHead(planNumber) {
 }
 
 function loadPlanInfo(planNumber) {
-    return fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -81,7 +81,7 @@ function loadPlanInfo(planNumber) {
             // Process the data and update the HTML content
             let planId = data[planNumber];
 
-            fetch('http://127.0.0.1:5000/planotreino/' + planId)
+            fetch('/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -154,7 +154,7 @@ function loadPlanInfo(planNumber) {
 
 
 function loadExercise(planNumber, count) {
-    return fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -165,7 +165,7 @@ function loadExercise(planNumber, count) {
             // Process the data and update the HTML content
             let planId = data[planNumber];
 
-            return fetch('http://127.0.0.1:5000/planotreino/' + planId)
+            return fetch('/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -208,7 +208,7 @@ function loadExercise(planNumber, count) {
 }
 
 function getPlanDuration(planNumber) {
-    return fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -219,7 +219,7 @@ function getPlanDuration(planNumber) {
             // Process the data and update the HTML content
             let planId = data[planNumber];                 //id real na db
 
-            return fetch('http://127.0.0.1:5000/planotreino/' + planId)
+            return fetch('/planotreino/' + planId)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -248,7 +248,7 @@ function sendFinishPlan(elapsedTime, planNumber) {
     };
 
     // Make a POST request to the Flask route
-    return fetch('http://127.0.0.1:5000/FinishPlan', {
+    return fetch('/FinishPlan', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -263,7 +263,7 @@ function sendFinishPlan(elapsedTime, planNumber) {
 }
 
 function showAwardedBadges() {
-    return fetch('http://127.0.0.1:5000/awardedBadges')
+    return fetch('/awardedBadges')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -297,7 +297,7 @@ function showAwardedBadges() {
 }
 
 function showLevelProgress(){
-    return fetch('http://127.0.0.1:5000/getlevelprogress')
+    return fetch('/getlevelprogress')
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

@@ -1,5 +1,5 @@
 function showStreak(){
-    fetch('http://127.0.0.1:5000/streak')
+    fetch('/streak')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -23,8 +23,8 @@ function showStreak(){
 
 function getBadges(){
     Promise.all([
-        fetch('http://127.0.0.1:5000/userBadges'),
-        fetch('http://127.0.0.1:5000/allBadges')
+        fetch('/userBadges'),
+        fetch('/allBadges')
     ])
     .then(async([res1, res2]) => {
         if (!res1.ok) {
@@ -97,7 +97,7 @@ function showinfo(){
 }
 
 function getProgress(){
-    return fetch('http://127.0.0.1:5000/progress')
+    return fetch('/progress')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -164,7 +164,7 @@ function getProgress(){
 }
 
 function showLevelProgress(){
-    return fetch('http://127.0.0.1:5000/getlevelprogress')
+    return fetch('/getlevelprogress')
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

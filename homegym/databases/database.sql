@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS Users (
     Role TEXT CHECK( Role IN ('Admin', 'User', 'UserHelper')) NOT NULL DEFAULT 'User',
     UserXP INTEGER NOT NULL,
     LevelID INTEGER NOT NULL,
-    Status TEXT CHECK( Status IN ('Online', 'Offline')) NOT NULL DEFAULT 'Online',
+    Status TEXT CHECK( Status IN ('Online', 'Offline')),
     MeasurementsID INTEGER UNIQUE,
     FriendshipID INTEGER UNIQUE,
     FOREIGN KEY (LevelID) REFERENCES Levels(LevelID),

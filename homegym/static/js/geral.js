@@ -1,5 +1,5 @@
 function showLevel() {
-    return fetch('http://127.0.0.1:5000/getlevel')
+    return fetch('/getlevel')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -34,7 +34,7 @@ function showLevel() {
 
 
 function showStreak(){
-    fetch('http://127.0.0.1:5000/streak')
+    fetch('/streak')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

@@ -1,5 +1,5 @@
 function loadPlans() {
-    fetch('http://127.0.0.1:5000/planos') 
+    fetch('/planos') 
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -35,7 +35,7 @@ function loadPlans() {
             }
 
 function PlanIdOrder(planNumber){ // returns planid using order
-    fetch('http://127.0.0.1:5000/planosOrder')
+    fetch('/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -56,7 +56,7 @@ function PlanIdOrder(planNumber){ // returns planid using order
 
 
 function checkIfPlanExists(PlanN){
-    return fetch('http://127.0.0.1:5000/planosOrder')
+    return fetch('/planosOrder')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

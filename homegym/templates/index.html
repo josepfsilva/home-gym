@@ -62,7 +62,13 @@
                             message.nlu.intent == "go_to_newsession"
                         ) {
                             window.location.href = "/novasessao";
+                        } else if (
+                            message.hasOwnProperty("nlu") &&
+                            message.nlu.intent == "logout"
+                        ) {
+                            window.location.href = "/logout";
                         }
+
                     } catch (e) {
                         console.log(e);
                     }
