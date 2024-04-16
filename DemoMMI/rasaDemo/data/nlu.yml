@@ -290,3 +290,16 @@ nlu:
     - Ativa o vídeo
     - Ativa o meu vídeo
     - Ativar vídeo
+
+
+- intent: logout  
+  examples: |
+    - Terminar sessão
+    - Termina sessão
+    - Sair
+    - Fechar sessão
+    - Fechar conta
+    - Sair da minha conta
+    - Dá logout
+
+   

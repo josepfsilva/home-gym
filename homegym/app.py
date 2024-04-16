@@ -34,7 +34,12 @@ def login():
         user_id = request.get_json().get('userId')
         session['UserID'] = user_id
         session.permanent = True
-        app.permanent_session_lifetime = timedelta(minutes=20)   #tempo da sessão ativa
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        c.execute("UPDATE Users SET status= 'Online' WHERE UserID = ?", (session['UserID'],))
+        conn.commit()
+        conn.close()
+        #app.permanent_session_lifetime = timedelta(minutes=20)   #tempo da sessão ativa
         return '', 200
     else:
         conn = sqlite3.connect('database.db')
@@ -46,6 +51,22 @@ def login():
         conn.close()
 
         return render_template('login.html', users=users)
+    
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Users SET status= 'Offline' WHERE UserID = ?", (session['UserID'],))
+    conn.commit()
+    conn.close()
+
+    session.pop('UserID', None)
+
+    return redirect(url_for('login'))
 
 
 #paginas base
@@ -321,6 +342,6 @@ def getlevelprogress():
 
 
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0', debug = True)
+    app.run(host = '192.168.1.70')
     
     
