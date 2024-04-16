@@ -130,14 +130,18 @@ p {
 
 #timerContainer {
     position: absolute;
-    top: 1px; /* Adjust this value to position the container at the desired location at the top of the screen */
+    top: 1px;
+    /* Adjust this value to position the container at the desired location at the top of the screen */
     left: 50%;
     border-radius: 10px;
     padding: 10px;
     transform: translateX(-50%);
-    background-color: white; /* This will create a white container */
-    min-width: 160px; /* This will ensure the container does not shrink below this width */
-    min-height: 100px; /* This will ensure the container does not shrink below this height */
+    background-color: white;
+    /* This will create a white container */
+    min-width: 160px;
+    /* This will ensure the container does not shrink below this width */
+    min-height: 100px;
+    /* This will ensure the container does not shrink below this height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -159,13 +163,17 @@ p {
     margin-bottom: 20px;
 }
 
-.endtext{
-    background-color:antiquewhite; /* This sets the background color to gray */
-    padding: 10px; /* This adds some space around the text */
-    font-size: 1.6em; /* This makes the text size similar to an h4 */
-    font-weight: bold; /* This makes the text bold like an h4 */
+.endtext {
+    padding: 10px;
+    /* This adds some space around the text */
+    font-family: 'FONTTEXT';
+    font-weight: lighter;
+    font-size: 1.6em;
+    /* This makes the text size similar to an h4 */
+    /* This makes the text bold like an h4 */
     border-radius: 5px;
-    text-align: center;;
+    text-align: center;
+    ;
 }
 
 .videoContainer>.content #counter {
@@ -225,15 +233,20 @@ p {
     margin-left: 140px;
 }
 
-#endcontainer{
+#endcontainer {
     margin-top: 50px;
+    min-height: 10rem;
 }
 
 
 .elapsedTime-badges {
-    display: flex; /* This makes the child elements lay out in a row */
-    justify-content: space-around; /* This puts maximum space between the child elements */
-    align-items: center; /* This centers the child elements vertically */
+    display: flex;
+    /* This makes the child elements lay out in a row */
+    justify-content: space-around;
+    /* This puts maximum space between the child elements */
+    align-items: center;
+    /* This centers the child elements vertically */
+    flex-direction: column;
 }
 
 #elapsedTime {
@@ -242,7 +255,13 @@ p {
     z-index: 2;
     align-items: center;
 }
-#elapsedTime p{
+
+.Experience {
+    font-family: 'FONTTEXT';
+    font-weight: bold;
+}
+
+#elapsedTime p {
     color: red;
 }
 
@@ -361,7 +380,7 @@ p {
     display: inline;
 }
 
-.dif p{
+.dif p {
     display: inline;
 }
 
@@ -380,7 +399,8 @@ p {
 .duration .subtitle {
     font-weight: normal;
 }
-.difrec .subtitle{
+
+.difrec .subtitle {
     font-weight: normal;
 }
 
@@ -396,7 +416,7 @@ p {
 
 }
 
-.TypeandTime{
+.TypeandTime {
     margin-right: 10px;
     background-color: antiquewhite;
     padding: 10px;
@@ -404,7 +424,7 @@ p {
     border: 1px solid black;
 }
 
-.difrec{
+.difrec {
     margin-right: 10px;
     background-color: antiquewhite;
     padding: 10px;
@@ -496,7 +516,7 @@ p {
     color: black;
 }
 
-.leveltext img{
+.leveltext img {
     margin-bottom: 4px;
 }
 
@@ -550,11 +570,11 @@ p {
 
 .finished {
     text-align: center;
-    
+
 }
 
 .finished h4 {
-    font-family: "FONTTEXT";    
+    font-family: "FONTTEXT";
 }
 
 #levelprog-text {
@@ -563,7 +583,7 @@ p {
     color: #333;
     font-size: 50px;
     font-weight: bold;
-  }
+}
 
 #level-indicators {
     display: flex;
@@ -571,8 +591,9 @@ p {
     width: 100%;
 }
 
-#current-level, #next-level {
-    font-size: 30px;  
+#current-level,
+#next-level {
+    font-size: 30px;
     color: #333;
     font-weight: bold;
 }
@@ -584,8 +605,9 @@ p {
     background-color: #f0f0f0;
     border-radius: 5px;
     margin-bottom: 10px;
-    
-  }
+
+}
+
 #progress {
     width: 0%;
     height: 100%;
