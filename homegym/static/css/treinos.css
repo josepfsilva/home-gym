@@ -261,6 +261,7 @@ p {
     align-items: flex-start;
     font-size: 30px;
     font-weight: 100;
+    text-align: end;
 }
 
 .bold {
