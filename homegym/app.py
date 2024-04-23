@@ -75,20 +75,20 @@ def menu():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    username = get_username(session['UserID'])
+    name = get_user_data(session['UserID'])[3]
     image_path = get_user_data(session['UserID'])[5]
     
-    return render_template('index.html', username = username, image_path = image_path)
+    return render_template('index.html', name = name, image_path = image_path)
 
 @app.route("/meusplanos" , methods=['GET', 'POST'])
 def pagina_planos():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    username = get_username(session['UserID'])
+    name = get_user_data(session['UserID'])[3]
     image_path = get_user_data(session['UserID'])[5]
     
-    return render_template('MenuPlanos.html', username = username, image_path = image_path)
+    return render_template('MenuPlanos.html', name = name, image_path = image_path)
 
 @app.route("/meuperfil" , methods=['GET', 'POST'])
 def pagina_perfil():
