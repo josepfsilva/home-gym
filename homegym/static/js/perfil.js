@@ -42,17 +42,21 @@ function getBadges() {
         
             var html = '<p class="stats2">SUAS CONQUISTAS</p>';
             html += '<div class="card-container">'; 
-
-            for (badge of userBadges) {
-                html += '<div class="card">';
-                html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%;">';
-                html += '<div class="container">'
-                html += '<div class="text-stats">' + badge[0] + ' </div>';
-                html += '<div class="text-stats">' + badge[1] + ' </div>';
-                html += '</div>';
-                html += '</div>';
-
+        
+            if (userBadges.length === 0) {
+                html += '<p>Ainda não ganhou nenhuma conquista.</p>'; 
+            } else {
+                for (badge of userBadges) {
+                    html += '<div class="card">';
+                    html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%;">';
+                    html += '<div class="container">'
+                    html += '<div class="text-stats">' + badge[0] + ' </div>';
+                    html += '<div class="text-stats">' + badge[1] + ' </div>';
+                    html += '</div>';
+                    html += '</div>';
+                }
             }
+        
             html += '</div>';
 
             var badgesToWin = allBadges.filter(badge => !userBadges.some(userBadge => userBadge[0] === badge[0]));
@@ -60,16 +64,20 @@ function getBadges() {
             // Display the badges that the user doesn't have yet
             html += '<p class="stats2">CONQUISTAS POR GANHAR</p>';
             html += '<div class="card-container">';
-
-            for (badge of badgesToWin) {
-                html += '<div class="card">';
-                html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%; filter: grayscale(100%);">';
-                html += '<div class="container">'
-                html += '<div class="text-stats">' + badge[0] + ' </div>';
-                html += '<div class="text-stats">' + badge[1] + ' </div>';
-                html += '</div>';
-                html += '</div>';
+            if (badgesToWin.length === 0) {
+                html += '<p>Não tem mais badges para ganhar.</p>'; // Replace with your message
+            } else {
+                for (badge of badgesToWin) {
+                    html += '<div class="card">';
+                    html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%; filter: grayscale(100%);">';
+                    html += '<div class="container">'
+                    html += '<div class="text-stats">' + badge[0] + ' </div>';
+                    html += '<div class="text-stats">' + badge[1] + ' </div>';
+                    html += '</div>';
+                    html += '</div>';
+                }
             }
+            
             html += '</div>'; 
 
             container.append(html);
