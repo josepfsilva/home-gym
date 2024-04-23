@@ -231,6 +231,7 @@ p {
     display: flex;
     align-items: center;
     color: black;
+    margin-bottom: 10px;
 }
 
 .profile .welcome {
@@ -243,6 +244,9 @@ p {
     align-items: flex-start;
     font-size: 30px;
     font-weight: 100;
+    text-align: end;
+    width : 245px;
+    height: 100px;
 }
 
 .bold {
@@ -590,9 +594,11 @@ p {
 
 .stats2 {
     text-align: left;
-    margin-top: 50px;
-    font-size: 25px;
+    margin-top: 0px;
+    font-size: 22px;
     font-weight: 800;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .text-stats {
@@ -703,4 +709,36 @@ p {
     font-size: 20px;
     font-weight: 100;
     margin-top: 45px;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 200px; /* This will set a specific width for the cards */
+    height: 320px;
+    padding-bottom: 5px;
+    margin-right: 45px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+}
+
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+    
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+.card img {
+    border-radius: 5px 5px 0 0;
+    height:200px; 
+
 }

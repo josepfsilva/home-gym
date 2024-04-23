@@ -251,6 +251,25 @@ p {
     color: black;
 }
 
+.streaktext {
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+    margin-left: 20px;
+}
+
+.leveltext {
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+    margin-left: 5px;
+}
+
+.streak_level_group {
+    display: flex;
+
+}
+
 .profile .welcome {
     display: flex;
 }
@@ -261,6 +280,9 @@ p {
     align-items: flex-start;
     font-size: 30px;
     font-weight: 100;
+    text-align: end;
+    width : 245px;
+    height: 100px;
 }
 
 .bold {

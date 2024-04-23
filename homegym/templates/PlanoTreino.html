@@ -13,7 +13,8 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/plano.css')}}"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>HomeGym</title>
   </head>
   <body>
@@ -27,6 +28,7 @@
     <script src="../static/js/datetime.js"></script>
     <script src="../static/js/geral.js"></script>
     <script src="../static/js/newsession.js"></script>
+    <script src="../static/js/perfil.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     
@@ -100,9 +102,10 @@
                                         console.error('Error:', error);
                                     });
                             }else{
-                                document.getElementById('exercise').innerHTML = '<div class="endtext">Para concluir o Plano precisa de fazer todos os Exercícios!</div>';
-                                document.getElementById('elapsedTime').innerHTML = "Tente novamente.";
-                                document.getElementById('badges').innerHTML = '<i class="fa fa-refresh fa-spin" style="font-size:50px; margin-left:-50px;"></i>';
+                                document.getElementById('exercise').innerHTML = '<div class="endtext">Não Finalizou o Plano de Treino' +' ' + planNumber +' </div>';
+                                document.getElementById('elapsedTime').innerHTML = "Para ganhar recompensas, tente novamente";
+                                document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência: 0</div>";
+                                document.getElementById('badges').innerHTML = '<i class="fa-regular fa-face-sad-tear" style="color: #000000;"></i>';
 
                             }
                
@@ -206,6 +209,7 @@
             document.getElementById('exercise').innerHTML = "";
             document.getElementById('videoFrame').src = "";
             document.getElementById('elapsedTime').innerHTML = "";
+            document.getElementById('Experience').innerHTML = "";
 
         }
 
@@ -304,6 +308,7 @@
         <div id="endcontainer">
             <div class="elapsedTime-badges">
                 <div id="elapsedTime"></div>
+                <div id="Experience"></div>
                 <div id="badges"></div>
             </div>
             <div id="pgbar"></div>

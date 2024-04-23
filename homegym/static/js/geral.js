@@ -13,15 +13,15 @@ function showLevel() {
 
             var container = $('#level');
             container.empty();
-            var html = '<div class="leveltext">' + level + ' <img src="../static/img/star.png" alt="Icon" style="width: 20px; height: 20px;"></div>';
+            var html = '<div class="leveltext">' + level + ' <i class="fa-solid fa-star" style="color: #ffc800;"></i></div>';
             container.append(html);
 
-            if(leveledUp==1){
+            if (leveledUp == 1) {
                 Swal.fire({
                     title: 'Parabéns!',
-                    text: 'Subiu para o Nivel '+ level + '',
+                    text: 'Subiu para o Nivel ' + level + '',
                     icon: 'success',
-                    timer: 4000,  
+                    timer: 4000,
                     showConfirmButton: false
                 });
             }
@@ -33,7 +33,7 @@ function showLevel() {
 }
 
 
-function showStreak(){
+function showStreak() {
     fetch('/streak')
         .then(response => {
             if (!response.ok) {
@@ -46,12 +46,24 @@ function showStreak(){
             var container = $('#streak');
             container.empty();
 
-            var html = '<div class="streaktext" >'+ streak +' <img src="../static/img/badge4image.jpeg" alt="Icon" style="width: 20px; height: 20px;"></div>';
-            
+            var html = '<div class="streaktext" >' + streak + ' <i class="fa-solid fa-fire" style="color: #ee7320;"></i></div>';
+
             container.append(html);
         })
         .catch(error => {
             console.error('Fetch error:', error);
             return Promise.reject(error);
         });
+}
+
+function micON(){
+    console.log("Mic ON");
+    var mic = document.querySelector("#mic path");
+    mic.style.fill = "#008000";
+}
+
+function micOFF(){
+    console.log("Mic OFF");
+    var mic = document.querySelector("#mic path");
+    mic.style.fill = "#000000";
 }
