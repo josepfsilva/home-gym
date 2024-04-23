@@ -46,7 +46,7 @@ function showStreak() {
             var container = $('#streak');
             container.empty();
 
-            var html = '<div class="streaktext" >' + streak + '<i class="fa-solid fa-fire" style="color: #ee7320;"></i></div>';
+            var html = '<div class="streaktext" >' + streak + ' <i class="fa-solid fa-fire" style="color: #ee7320;"></i></div>';
 
             container.append(html);
         })
@@ -54,4 +54,16 @@ function showStreak() {
             console.error('Fetch error:', error);
             return Promise.reject(error);
         });
+}
+
+function micON(){
+    console.log("Mic ON");
+    var mic = document.querySelector("#mic path");
+    mic.style.fill = "#008000";
+}
+
+function micOFF(){
+    console.log("Mic OFF");
+    var mic = document.querySelector("#mic path");
+    mic.style.fill = "#000000";
 }

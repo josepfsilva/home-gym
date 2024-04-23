@@ -252,6 +252,8 @@
         font-size: 30px;
         font-weight: 100;
         text-align: end;
+        width : 245px;
+        height: 100px;
     }
 
     .bold {

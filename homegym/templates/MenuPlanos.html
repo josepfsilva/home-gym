@@ -64,13 +64,24 @@
                                 handlePlanSelection(planNumber);
                             }
                         }
+                        else if(message.hasOwnProperty("nlu") && message.nlu.intent == "mic_on") {
+                            micON();
+                        }else if(message.hasOwnProperty("nlu") && message.nlu.intent == "mic_off") {
+                            micOFF();
+                        }else if(message.hasOwnProperty("nlu") && message.nlu.intent != null) {
+                            //intent not recognized
+                            micOFF();
+                        }
+
                     } catch (e) {
                         console.log(e);
+
                     }
                 }
             } else {
                 loadPlans();
                 showLevel();
+                showStreak();
             }
         }
 
@@ -93,6 +104,7 @@
                     window.location.href = "/meusplanos/plano" + planNumber;
                 } else {
                     console.log("Plano não existe");
+                    micOFF();
                 }
             });
         }
@@ -117,8 +129,16 @@
                 <div class="container2" style="background-image: url('{{image_path}}');"></div>
                 <div class="text">
                     <h2>{{username}}</h2>
-                    <div id="level"></div>
+                    <div class="streak_level_group">
+                        <div id="level"></div> 
+                        <div id="streak"></div>
+                    </div>
                 </div>
+            </div>
+            <div id="mic">
+                <svg class="mic" id="mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:70px; height:70px;">
+                    <path fill="#000000" d="M12,1A4,4 0 0,1 16,5V11A4,4 0 0,1 12,15A4,4 0 0,1 8,11V5A4,4 0 0,1 12,1M12,19A7,7 0 0,0 19,12H22A10,10 0 0,1 12,22A10,10 0 0,1 2,12H5A7,7 0 0,0 12,19Z" />
+                </svg>
             </div>
             <p id="datetime" class="datetime-container">
                 <span class="time"></span>
