@@ -41,15 +41,15 @@ def add_user():
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage,Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Maria', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '1', 'Offline'))
+    """, ('Maria123', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '1', 'Offline'))
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Jorge', '1234', 'Jorge', 'Fernandes', '../static/img/FotoJorge.jpg', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '1', 'Offline'))
+    """, ('Jorge123', '1234', 'Jorge', 'Fernandes', '../static/img/FotoJorge.jpg', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '1', 'Offline'))
     c.execute("""
         INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Odete', '1234', 'Odete', 'Lopes', '../static/img/FotoOdete.jpg', '59kg', '158', 'testuser3@example.com', '1975-02-01', date.today(), 'User', '0', '1', 'Offline'))
+    """, ('Odete123', '1234', 'Odete', 'Lopes', '../static/img/FotoOdete.jpg', '59kg', '158', 'testuser3@example.com', '1975-02-01', date.today(), 'User', '0', '1', 'Offline'))
     # Commit the changes and close the connection
     conn.commit()
     conn.close()

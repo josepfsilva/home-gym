@@ -749,7 +749,10 @@ p {
     }
 
     .leveltext {
-        font-size: 90px;
+        font-weight: bold;
+        font-size: 25px;
+        color: black;
+        margin-left: 5px;
     }
 
     .containers {
@@ -784,4 +787,36 @@ p {
         font-size: 180px;
     }
 
+}
+
+
+
+.leveltext {
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+    margin-left: 5px;
+}
+
+.leveltext img{
+    margin-bottom: -2px;
+    margin-left: 3px;
+}
+
+
+.streaktext img{
+    margin-bottom: -2px;
+    margin-left: 1px;
+}
+
+.streaktext {
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+    margin-left: 20px;
+}
+
+.streak_level_group {
+    display: flex;
+    
 }

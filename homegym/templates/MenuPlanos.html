@@ -19,6 +19,7 @@
     <script src="static/js/menuplanos.js"></script>
     <script src="static/js/geral.js"></script>
     
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script type="module">
@@ -68,6 +69,7 @@
             } else {
                 loadPlans();
                 showLevel();
+                showStreak();
             }
         }
 
@@ -113,8 +115,11 @@
             <div class="welcome">
                 <div class="container2" style="background-image: url('{{image_path}}');"></div>
                 <div class="text">
-                    <h2>{{username}}</h2>
-                    <div id="level"></div>
+                    <h2>{{name}}</h2>
+                    <div class="streak_level_group">
+                        <div id="level"></div>  
+                        <div id="streak"></div>
+                    </div>
                 </div>
             </div>
             <p id="datetime" class="datetime-container">

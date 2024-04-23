@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="static/css/newsession_initialpage.css" rel="stylesheet">
     <title>HomeGym</title>
 </head>
 <body>
@@ -15,6 +16,8 @@
     <script src="static/js/datetime.js"></script>
     <script src="static/js/newsession.js"></script>
     <script src='https://meet.jit.si/external_api.js'></script>
+    <script src="static/js/geral.js"></script>
+    
 
 
     <script type="module">
@@ -61,6 +64,9 @@
                     } catch (e) { console.log(e); }
                 }
             }
+            loadOnlineFriends();
+            showLevel();
+            showStreak();
     }
 
     /*
@@ -77,13 +83,60 @@
     }
     */
     </script>
-        <h1>Salas dísponíveis para treino conjunto</h1>
+    <div class="main-area">
+        <div class="circles">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+    
+        <div class="container">
+            <div class="profile">
+                <div class="welcome">
+                    <div class="container2" style="background-image: url('{{image_path}}');"></div>
+                    <div>
+                        <h2 class="name">{{name}}</h2>
+                        <div class="streak_level_group">
+                            <div id="level"></div>  
+                            <div id="streak"></div>
+                        </div>
+                    </div>
+                </div>
+                <p id="datetime" class="datetime-container">
+                    <span class="time"></span>
+                    <span class="date"></span>
+                </p>
+            </div>
+                        
+            <div id="content"> 
+    
+                <div class="main-group">
+                    <div class="dashboard-content">
+                        <div class="progresso_sq">
+                            <div class="title_sq">ADICIONAR AMIGOS</div>
+                        </div>
+                        <div class="info_sq">
+                            <div class="title_sq">MEUS AMIGOS</div>
+                            <div id="friendsonline"> </div>
+                        </div>
+                        <div class="conquistas_sq">
+                            <div class="title_sq">NOVA SESSÃO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li>Sala 1</li>
-        <li>Sala 2</li>
-        <li>Sala 3</li>
-    </ul>
+   
+
 
 </body>
 </html>
