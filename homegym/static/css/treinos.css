@@ -281,7 +281,7 @@ p {
     font-size: 30px;
     font-weight: 100;
     text-align: end;
-    width : 245px;
+    width: 245px;
     height: 100px;
 }
 
@@ -820,13 +820,13 @@ p {
     margin-left: 5px;
 }
 
-.leveltext img{
+.leveltext img {
     margin-bottom: -2px;
     margin-left: 3px;
 }
 
 
-.streaktext img{
+.streaktext img {
     margin-bottom: -2px;
     margin-left: 1px;
 }
@@ -840,5 +840,5 @@ p {
 
 .streak_level_group {
     display: flex;
-    
+
 }
