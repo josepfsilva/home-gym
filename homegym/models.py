@@ -39,21 +39,48 @@ def add_user():
 
     # INSERT OR IGNORE a new row of data into the Users table
     c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage,Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Maria123', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', '70', '165', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '1', 'Offline'))
+        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage,Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, MeasurementsID, Status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, ('Maria123', '1234', 'Maria', 'Santos', '../static/img/FotoMaria.png', 'testuser@example.com', '1960-01-01', date.today(), 'User', '0', '1','0','Offline'))
     c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Jorge123', '1234', 'Jorge', 'Fernandes', '../static/img/FotoJorge.jpg', '85kg', '180', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '1', 'Offline'))
+        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID,MeasurementsID, Status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, ('Jorge123', '1234', 'Jorge', 'Fernandes', '../static/img/FotoJorge.jpg', 'testuser2@example.com', '1955-12-05', date.today(), 'User', '0', '1', '1','Offline'))
     c.execute("""
-        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Weight, Height, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID, Status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, ('Odete123', '1234', 'Odete', 'Lopes', '../static/img/FotoOdete.jpg', '59kg', '158', 'testuser3@example.com', '1975-02-01', date.today(), 'User', '0', '1', 'Offline'))
+        INSERT OR IGNORE INTO Users (Username, Password, Name, Surname, UserImage, Email, BirthDate, RegistrationDate, Role, UserXP, LevelID,MeasurementsID, Status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, ('Odete123', '1234', 'Odete', 'Lopes', '../static/img/FotoOdete.jpg', 'testuser3@example.com', '1975-02-01', date.today(), 'User', '0', '1', '2','Offline'))
     # Commit the changes and close the connection
     conn.commit()
     conn.close()
 
+def add_measurements():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+
+    measurements = [
+        (date.today(), 165, 70, 80, 20),
+        (date.today(), 180, 85, 90, 25),
+        (date.today(), 158, 59, 70, 15)
+    ]
+
+    for measurement in measurements:
+        measurement_date, height, weight, waist, body_fat = measurement
+
+        # Convert height from cm to m
+        height_m = height / 100
+
+        # Calculate BMI
+        bmi = round(weight / (height_m ** 2), 1)
+
+        # Insert data into the database
+        c.execute(
+            "INSERT OR IGNORE INTO Measurements (Date, Height, Weight, Waist, BodyFat, BodyMassIndex) VALUES (?, ?, ?, ?, ?, ?)",
+            (measurement_date, height, weight, waist, body_fat, bmi)
+        )
+
+    conn.commit()
+    conn.close()
 
 def add_badge_types():
     conn = sqlite3.connect('database.db')
@@ -252,6 +279,7 @@ def get_user_data(userID):
     cursor = db.cursor()
     cursor.execute("SELECT * FROM Users WHERE UserID = ?", (userID,))
     user_data = cursor.fetchone()
+    print(user_data)
     db.close()
     return list(user_data)
 
@@ -261,3 +289,11 @@ def get_age(birthdate):
     age = today.year - birthdate.year - \
         ((today.month, today.day) < (birthdate.month, birthdate.day))
     return age
+
+def get_measurements(measurementsID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM Measurements WHERE MeasurementsID = ?", (measurementsID,))
+    measurements = cursor.fetchone()
+    db.close()
+    return measurements

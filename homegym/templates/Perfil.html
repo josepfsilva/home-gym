@@ -58,7 +58,8 @@
                             window.location.href = '/';
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan') { //mostrar informacoes
-                            document.getElementById('content').innerHTML = '<p class="stats2">INFORMAÇÔES</p>';
+                            document.getElementById('content').innerHTML = '<p class="stats2">INFORMAÇÕES</p>';
+                            showinfo();
                                 
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'show_conquistas') { //mostrar conquistas

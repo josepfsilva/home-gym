@@ -67,13 +67,7 @@ CREATE TABLE IF NOT EXISTS Friendship (
     FOREIGN KEY (FriendID) REFERENCES User(UserID)
 );
 
-CREATE TABLE IF NOT EXISTS Measurements (
-    MeasurementsID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Height DECIMAL(5,2),
-    Weight DECIMAL(5,2),
-    BodyFat DECIMAL(4,2),
-    Date DATE
-);
+
 
 
 CREATE TABLE IF NOT EXISTS Nutrition (
@@ -121,8 +115,6 @@ CREATE TABLE IF NOT EXISTS Users (
     Name TEXT NOT NULL,
     Surname TEXT NOT NULL,
     UserImage TEXT NOT NULL,
-    Weight INTEGER NOT NULL,
-    Height INTEGER NOT NULL,
     Email TEXT UNIQUE NOT NULL,
     BirthDate DATE NOT NULL,
     RegistrationDate DATE NOT NULL,
@@ -137,6 +129,15 @@ CREATE TABLE IF NOT EXISTS Users (
     FOREIGN KEY (FriendshipID) REFERENCES Friendship(FriendshipID)
 );
 
-
+CREATE TABLE IF NOT EXISTS Measurements (
+    MeasurementsID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Date DATE,
+    Height DECIMAL(5,2),
+    Weight DECIMAL(5,2),
+    Waist DECIMAL(4,2),
+    BodyFat DECIMAL(4,2),
+    BodyMassIndex DECIMAL(4,2)
+    
+);
 
 
