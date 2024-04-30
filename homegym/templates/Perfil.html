@@ -58,14 +58,18 @@
                             window.location.href = '/';
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan') { //mostrar informacoes
-                            document.getElementById('content').innerHTML = '<p class="stats2">INFORMAÇÔES</p>';
+                            micOFF();
+                            document.getElementById('content').innerHTML = '<p class="stats2">INFORMAÇÕES</p>';
+                            showinfo();
                                 
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'show_conquistas') { //mostrar conquistas
+                            micOFF();
                             document.getElementById('content').innerHTML = '<p class="stats2">CONQUISTAS</p>';
-                            getBadges();                 
+                            getBadges();       
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'show_progresso') { //mostrar progresso
+                            micOFF();
                             getProgress()
                             .then(() => {
                                 showLevelProgress();

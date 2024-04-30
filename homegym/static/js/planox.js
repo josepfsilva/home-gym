@@ -23,6 +23,8 @@ function getPlanId(planNumber) { // tried to use in other functions but it was n
         });
 }
 
+
+
 function loadPlanHead(planNumber) {
     return fetch('/planosOrder')
         .then(response => {
@@ -53,7 +55,7 @@ function loadPlanHead(planNumber) {
                     html += '<div class="text">'
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
-                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div id="level"></div> </div>';
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3><div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>';
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // ajeitar o nivel no final do treino
                     container.append(html);
@@ -113,7 +115,7 @@ function loadPlanInfo(planNumber) {
                     //html += '<p>Treino de</p>';
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
-                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div id="level"></div> </div>'; //level
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>'; //level
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
                     //inicio dos detalhes
@@ -149,8 +151,40 @@ function loadPlanInfo(planNumber) {
         .catch(error => {
             console.error('Fetch error:', error);
         });
-
 }
+
+function getPlanName(planNumber) {
+    return fetch('/planosOrder')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            let planId = planNumber; //id real na db
+
+            return fetch('/planotreino/' + planId)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var planDetails = data[0];
+                    return planDetails[0]; // Return the plan's name
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
 
 
 function loadExercise(planNumber, count) {
@@ -296,21 +330,20 @@ function showAwardedBadges() {
         });
 }
 
-function showLevelProgress(){
+function showLevelProgress() {
     return fetch('/getlevelprogress')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
 
-        var container = $('#pgbar');
-        container.empty();
-        
-        var html = `<div id="progress-bar">
+            var container = $('#pgbar');
+
+            var html = `<div id="progress-bar">
                         <div id="progress"></div>
                     </div>
                     <div id="level-indicators">
@@ -318,25 +351,24 @@ function showLevelProgress(){
                         <span id="next-level"></span>
                     </div>`;
 
-        container.append(html);
+
+            container.append(html);
+            var user_xp = data.user_xp;
+            var current_level = data.current_level;
+            var next_level = data.next_level;
+
+            var levelpercentage = (user_xp / next_level[1]) * 100;
+            setProgress(levelpercentage);
+
+            document.getElementById('current-level').textContent = `NÍVEL ${current_level[0]}`;
+            document.getElementById('next-level').textContent = `NÍVEL ${next_level[0]}`;
 
 
-        var user_xp = data.user_xp;
-        var current_level = data.current_level;
-        var next_level = data.next_level;
-
-        var levelpercentage = (user_xp / next_level[1]) * 100;
-        setProgress(levelpercentage);
-
-        document.getElementById('current-level').textContent = `NÍVEL ${current_level[0]}`;
-        document.getElementById('next-level').textContent = `NÍVEL ${next_level[0]}`;
-
-        
-    })
-    .catch(error => {
-        console.error('Fetch error:', error);
-        return Promise.reject(error);
-    });
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            return Promise.reject(error);
+        });
 }
 
 function setProgress(percentage) {
@@ -362,7 +394,7 @@ function convertToEmbedUrl(url) {
     return embedUrl;
 }
 
-function addfooter(){
+function addfooter() {
     var container = $('#foot');
     container.empty();
     var html = `<div class="footer2">
@@ -371,7 +403,7 @@ function addfooter(){
                     <img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />
                 </div>`;
     container.append(html);
-                
+
 }
 
 function changeZIndex(z) {

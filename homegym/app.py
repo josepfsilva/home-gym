@@ -16,11 +16,13 @@ with app.app_context():
     init_db()
     clear_db()
     add_exercises()
+    add_measurements()
     add_user()
     add_badge_types()
     add_exercise_plan()
     add_training_plan()
     add_levels()
+    
     #add_user_badges()
     #add_test_fintrain()
 
@@ -102,33 +104,15 @@ def pagina_planos():
 def pagina_perfil():
     if 'UserID' not in session:
         return redirect(url_for('login'))
-    
     userID = session['UserID']
-    
-    username = get_username(userID)
-    name = get_user_data(userID)[3]
-    surname = get_user_data(userID)[4]
-    
-    birthday_user = get_user_data(userID)[9]
-    birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
-    birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
-    age = get_age(birthday_data)
-    height = get_user_data(userID)[7]
-    weight = get_user_data(userID)[6]
-
+    user_info = get_user_data(userID)
+    name = user_info[3]
     time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
     date_today = date.today().strftime('%d/%m/%Y')  
-    
-    image_path = get_user_data(userID)[5]
-    
+    image_path = user_info[5]    
     mgamificacao.badges(userID)
-    
-    badge_id = mgamificacao.getbadges_type(userID)
-    badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
-    badge_images = [data[3] for data in badge_data_list]
 
-
-    return render_template('Perfil.html', username = username, name=name, surname=surname, birthday = birthday, time = time, date_today = date_today, age=age, height=height, weight=weight, image_path = image_path, badge_images = badge_images)
+    return render_template('Perfil.html',time = time, date_today = date_today, image_path = image_path, name = name)
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():
@@ -320,6 +304,36 @@ def getstreak():
     userID = session['UserID']
     streak = mgamificacao.streak(userID)
     return jsonify(streak), 200
+
+@app.route('/info', methods=['GET', 'POST'])
+def getinfo():
+    userID = session['UserID']
+    info = get_user_data(userID)
+
+    
+    full_name = info[3] + " " + info[4]
+    
+    measurements = get_measurements(userID)
+
+    register_date = info[8]
+    register_date = datetime.strptime( register_date, "%Y-%m-%d")
+    register_date = register_date.strftime("%d-%m-%Y")
+    
+    birthday_user = info[7]
+    birthday_data = datetime.strptime( birthday_user, "%Y-%m-%d")
+    birthday = birthday_data.strftime("%d-%m-%Y")# Formata a data no estilo europeu
+    age = get_age(birthday_data)
+
+    
+    return jsonify({
+        'register_date': register_date,
+        'measurements': measurements,
+        'full_name': full_name,
+        'birthday': birthday,
+        'age': age
+    }), 200
+
+
 
 
 @app.route('/progress', methods=['GET', 'POST'])

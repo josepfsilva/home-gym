@@ -28,7 +28,6 @@
     <script src="../static/js/datetime.js"></script>
     <script src="../static/js/geral.js"></script>
     <script src="../static/js/newsession.js"></script>
-    <script src="../static/js/perfil.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     
@@ -41,7 +40,13 @@
         let startTime = 0;
         let exDuration = 0;
         let planNumber = getPlanNumber();
-
+        console.log(planNumber);
+        let planName;
+        getPlanName(planNumber)
+        .then(result => {
+            planName = result;
+        console.log(planName); 
+    });
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
         mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
@@ -90,6 +95,7 @@
                                     })
                                     .then(() => {
                                         showLevel();
+                                        showStreak();
                                     })
                                     .then(() => {
                                         return new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 2 seconds
@@ -101,12 +107,20 @@
                                     .catch((error) => {
                                         console.error('Error:', error);
                                     });
-                            }else{
-                                document.getElementById('exercise').innerHTML = '<div class="endtext">Não Finalizou o Plano de Treino' +' ' + planNumber +' </div>';
-                                document.getElementById('elapsedTime').innerHTML = "Para ganhar recompensas, tente novamente";
-                                document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência: 0</div>";
-                                document.getElementById('badges').innerHTML = '<i class="fa-regular fa-face-sad-tear" style="color: #000000;"></i>';
-
+                            }else {
+                                document.getElementById('exercise').innerHTML = '<div class="endtext"><h1>Não Finalizou o </h1> <h2>' +' ' + planName +'</h2> </div>';
+                                document.getElementById('elapsedTime').innerHTML = "<h1> Para ganhar recompensas</h1> <h1>tente novamente</h1>";
+                                document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência Ganha: 0</div>";
+                                showLevelProgress();
+                            
+                                // Schedule the code to run after the current call stack has cleared
+                                setTimeout(function() {
+                                    var elapsedTimebadges = document.getElementsByClassName('elapsedTime-badges');
+                                    for (var i = 0; i < elapsedTimebadges.length; i++) {
+                                        elapsedTimebadges[i].style.display = 'flex'; // Make the element a flex container
+                                        elapsedTimebadges[i].style.flexDirection = 'column'; // Set the flex direction to column
+                                    }
+                                }, 0);
                             }
                
                         }, 1000);
@@ -193,6 +207,7 @@
                 })
                 .then(() => {
                     showLevel();
+                    showStreak();
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -310,6 +325,7 @@
                 <div id="elapsedTime"></div>
                 <div id="Experience"></div>
                 <div id="badges"></div>
+                
             </div>
             <div id="pgbar"></div>
         </div>
