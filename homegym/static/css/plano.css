@@ -527,10 +527,22 @@ p {
     position: relative;
 }
 
+.streaktext {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    margin-left: 15px;
+}
+
 .leveltext {
     font-weight: bold;
     font-size: 20px;
     color: black;
+}
+
+.streak_level_group {
+    display: flex;
+
 }
 
 .leveltext img {

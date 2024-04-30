@@ -96,24 +96,15 @@ def pagina_planos():
 def pagina_perfil():
     if 'UserID' not in session:
         return redirect(url_for('login'))
-    
     userID = session['UserID']
-    
-    
-
+    user_info = get_user_data(userID)
+    name = user_info[3]
     time = datetime.now().strftime('%H:%M')  # Formata a hora para mostrar apenas horas e minutos
     date_today = date.today().strftime('%d/%m/%Y')  
-    
-    image_path = get_user_data(userID)[5]
-    
+    image_path = user_info[5]    
     mgamificacao.badges(userID)
-    
-    badge_id = mgamificacao.getbadges_type(userID)
-    badge_data_list = [mgamificacao.getbadges_data(id[0]) for id in badge_id]
-    badge_images = [data[3] for data in badge_data_list]
 
-
-    return render_template('Perfil.html',time = time, date_today = date_today, image_path = image_path, badge_images = badge_images)
+    return render_template('Perfil.html',time = time, date_today = date_today, image_path = image_path, name = name)
 
 @app.route("/novasessao" , methods=['GET', 'POST'])
 def pagina_novasessao():

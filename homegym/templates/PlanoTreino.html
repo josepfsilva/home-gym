@@ -42,9 +42,9 @@
         let planNumber = getPlanNumber();
         console.log(planNumber);
         let planName;
-getPlanName(planNumber)
-    .then(result => {
-        planName = result;
+        getPlanName(planNumber)
+        .then(result => {
+            planName = result;
         console.log(planName); 
     });
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
@@ -95,6 +95,7 @@ getPlanName(planNumber)
                                     })
                                     .then(() => {
                                         showLevel();
+                                        showStreak();
                                     })
                                     .then(() => {
                                         return new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 2 seconds
@@ -206,6 +207,7 @@ getPlanName(planNumber)
                 })
                 .then(() => {
                     showLevel();
+                    showStreak();
                 })
                 .catch((error) => {
                     console.error('Error:', error);
