@@ -372,7 +372,24 @@ p {
     margin-left: 10px;
 }
 
-.info_sq {
+.info_sq_1 {
+    align-items: center;
+    width: 450px;
+    height: 420px;
+    border-radius: 15px;
+    margin-right: 60px;
+    display: flex; /* Add this */
+    flex-direction: column;
+    justify-content: center; /* Add this to center horizontally */
+    align-items: center; /* Add this to center vertically */
+    text-align: center; 
+    background-color: burlywood;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.info_sq_2 {
     align-items: center;
     width: 450px;
     height: 420px;
@@ -380,9 +397,10 @@ p {
     margin-right: 60px;
     display: flex; /* Add this */
     justify-content: center; /* Add this to center horizontally */
+    flex-direction: column;
     align-items: center; /* Add this to center vertically */
     text-align: center; 
-    background-color: burlywood;
+    background-color: #445e7a;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

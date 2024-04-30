@@ -24,21 +24,18 @@ with app.app_context():
     #add_user_badges()
     #add_test_fintrain()
 
+
 @app.route('/templates/<path:filename>')
 def serve_html(filename):
     return send_from_directory(os.path.join(app.root_path, 'templates'), filename)
     
+#funções de login/logout/registo ------------------------------------------------------------------------------------------------------
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         user_id = request.get_json().get('userId')
         session['UserID'] = user_id
         session.permanent = True
-        conn = sqlite3.connect('database.db')
-        c = conn.cursor()
-        c.execute("UPDATE Users SET status= 'Online' WHERE UserID = ?", (session['UserID'],))
-        conn.commit()
-        conn.close()
         #app.permanent_session_lifetime = timedelta(minutes=20)   #tempo da sessão ativa
         return '', 200
     else:
@@ -69,26 +66,37 @@ def logout():
     return redirect(url_for('login'))
 
 
-#paginas base
+#paginas base ------------------------------------------------------------------------------------------------------
+@app.route("/teste" , methods=['GET', 'POST'])
+def teste():
+    return render_template('teste.html')
+
+
 @app.route("/" , methods=['GET', 'POST'])
 def menu():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    username = get_username(session['UserID'])
+    name = get_user_data(session['UserID'])[3]
     image_path = get_user_data(session['UserID'])[5]
+
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Users SET status= 'Offline' WHERE UserID = ?", (session['UserID'],))
+    conn.commit()
+    conn.close()
     
-    return render_template('index.html', username = username, image_path = image_path)
+    return render_template('index.html', name = name , image_path = image_path)
 
 @app.route("/meusplanos" , methods=['GET', 'POST'])
 def pagina_planos():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    username = get_username(session['UserID'])
+    name = get_user_data(session['UserID'])[3]
     image_path = get_user_data(session['UserID'])[5]
     
-    return render_template('MenuPlanos.html', username = username, image_path = image_path)
+    return render_template('MenuPlanos.html', name = name, image_path = image_path)
 
 @app.route("/meuperfil" , methods=['GET', 'POST'])
 def pagina_perfil():
@@ -127,7 +135,16 @@ def pagina_novasessao():
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    return render_template('NovaSessao.html')
+    name = get_user_data(session['UserID'])[3]
+    image_path = get_user_data(session['UserID'])[5]
+
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Users SET status= 'Online' WHERE UserID = ?", (session['UserID'],))
+    conn.commit()
+    conn.close()
+    
+    return render_template('NovaSessao.html', name = name, image_path = image_path)
 
 @app.route("/novasessao/<sessionname>" , methods=['GET', 'POST'])
 def pagina_mostrarsessao(sessionname):
@@ -160,7 +177,8 @@ def pagina_mostrarplano(selectedPlan):
 
 
 
-#funções para a API	
+
+#funções para a API	------------------------------------------------------------------------------------------------------
 @app.route("/planos" , methods=['GET', 'POST'])
 def show_all_trainingPlans_from_user():                       #devolve todos os planos de treino do user
     #verificar se o user está na sessão
@@ -339,6 +357,49 @@ def getlevelprogress():
         'next_level': progress[2]
     }), 200
 
+@app.route('/getOnlineFriends', methods=['GET', 'POST'])
+def getOnlineFriends():
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    userID = session['UserID']
+    online_friends = mgamigos.get_online_friends(userID)
+    #print(online_friends)
+    if online_friends == []:
+        return [], 200
+    
+    return jsonify(online_friends), 200
+
+#----http requests para o serverApp utilizar------------------------------------------------
+@app.route('/getOnlineFriends/<ID>', methods=['GET', 'POST'])
+def getOnlineFriendsID(ID):
+    online_friends_json = {}
+    online_friends = mgamigos.get_online_friends(ID)
+    print(online_friends)
+    if online_friends == []:  
+        return {}, 200
+    
+    for friend in online_friends:
+        online_friends_json[friend[0]] = friend[1]
+        print(online_friends_json)
+
+    return online_friends_json, 200
+        
+        
+
+@app.route('/getUserId', methods=['GET', 'POST'])
+def getUserId():
+    return jsonify(session['UserID']), 200
+
+@app.route('/getUsername/<id>', methods=['GET', 'POST'])
+def getUsername(id):
+    username = get_username(id)
+    
+    if username is None:
+        return [], 404
+    
+    return jsonify(username), 200
+#----------------------------------------------------------------------------------
 
 
 if __name__ == "__main__":

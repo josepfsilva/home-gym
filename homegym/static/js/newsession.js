@@ -27,7 +27,7 @@ function loadOnlineFriends() {
                 return;
             } 
 
-            var html = '<p>AMIGOS ONLINE</p>';
+            var html = '';
             for (friend of onlineFriends) {
                 html += '<div class="friend">';
                 html += '<div class="friend-name">' + friend[1] + '</div>';

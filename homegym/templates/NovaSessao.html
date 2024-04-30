@@ -17,6 +17,7 @@
     <script src="static/js/newsession.js"></script>
     <script src='https://meet.jit.si/external_api.js'></script>
     <script src="static/js/geral.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     
 
 
@@ -28,6 +29,9 @@
         mmiCli_Out.onMessage.on(im1MessageHandler);
         mmiCli_Out.onOpen.on(socketOpenHandler);
         mmiCli_Out.openSocket();
+        let userID;
+
+        
         
 
         function socketOpenHandler(event) {
@@ -41,6 +45,52 @@
         function im1MessageHandler(data) {
 
             console.log("--------------im1MessageHandler---------------");
+
+            fetch('/getUserId')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                        })
+                    .then(data => {
+                        userID = data;
+                        })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                        return Promise.reject(error);
+                        });
+
+            const socket = io('https://192.168.1.70:5004');
+
+            socket.on('connect', () => {
+                console.log('Connected to server');
+                socket.emit('handle_connect', { 'id': userID });
+            });
+
+            socket.on('disconnect', () => {
+                console.log('Disconnected from server');
+            }); 
+
+            socket.on('receive_message', (data) => {
+                console.log(data);
+            });
+
+            socket.on('receive_invite', (data) => {
+                console.log(data);
+                let room = data['room'];
+                let friend_name = data['friend_name'];
+                socket.emit('handle_invite', {'room': room, 'friend_name': friend_name});
+            });
+
+            function sendInvite(room, message, friend_name) {
+                socket.emit('send_invite', {'message': message, 'room': room, 'friend_name': friend_name, 'userID': userID});
+            }
+
+            function sendMessage(room, message) {
+                socket.emit('send_message', {'message': message, 'room': room});
+            }
+
 
             if(data != null && data!="RENEW" && data!="OK") {
                 console.log(data);
@@ -58,16 +108,30 @@
                             let sessionname = message.nlu.nome_sessao.replace(/ /g, "");
                             console.log(sessionname);
                             window.location.href = '/novasessao/'+sessionname;
-                            
+                        }
+                        else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
+                            sendMessage('Nuno', 'Olá a todos os que estão no Nuno room');
+                        }
+                        else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan') {
+                            sendInvite('Nuno', 'Convite para te juntares à minha sessão', 'Jorge123');
                         }
                         
                     } catch (e) { console.log(e); }
                 }
             }
-            loadOnlineFriends();
+            const interval = 5; // Interval in seconds
+            runEveryXSeconds(interval);
             showLevel();
             showStreak();
     }
+
+    async function runEveryXSeconds(intervalInSeconds) {
+    while (true) {
+        await new Promise(resolve => setTimeout(resolve, intervalInSeconds * 1000));
+        loadOnlineFriends(); // Call the function
+    }
+    }
+
 
     /*
     var mmiCli_1 = null;
@@ -119,15 +183,16 @@
     
                 <div class="main-group">
                     <div class="dashboard-content">
-                        <div class="progresso_sq">
-                            <div class="title_sq">ADICIONAR AMIGOS</div>
+                        <div class="info_sq_2">
+                            <div class="title_sq">A SUA SESSÃO ATUAL</div>
+                            <p>Diga Convidar + Username para convidar um amigo para a sua sessão</p>
+                            <div id="session_friends"></div>
+
                         </div>
-                        <div class="info_sq">
+                        <div class="info_sq_1">
                             <div class="title_sq">MEUS AMIGOS</div>
-                            <div id="friendsonline"> </div>
-                        </div>
-                        <div class="conquistas_sq">
-                            <div class="title_sq">NOVA SESSÃO</div>
+                            <p>AMIGOS ONLINE</p>
+                            <div id="friendsonline"></div>
                         </div>
                     </div>
                 </div>
