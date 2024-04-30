@@ -55,7 +55,7 @@ function loadPlanHead(planNumber) {
                     html += '<div class="text">'
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
-                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div id="level"></div> </div>';
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3><div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>';
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // ajeitar o nivel no final do treino
                     container.append(html);
@@ -115,7 +115,7 @@ function loadPlanInfo(planNumber) {
                     //html += '<p>Treino de</p>';
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
-                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div id="level"></div> </div>'; //level
+                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>'; //level
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
                     //inicio dos detalhes
@@ -353,8 +353,6 @@ function showLevelProgress() {
 
 
             container.append(html);
-            console.log("ADICONOU");
-
             var user_xp = data.user_xp;
             var current_level = data.current_level;
             var next_level = data.next_level;
