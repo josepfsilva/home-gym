@@ -496,6 +496,22 @@ p {
     align-items: center;
 }
 
+.footer-content {
+    display: flex;
+    align-items: center;
+}
+
+.footer-content p {
+    margin-left: 5px; 
+}
+
+.footer-content2 {
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
+}
+
+
 .footer2 {
     display: flex;
     margin-top: 3%;

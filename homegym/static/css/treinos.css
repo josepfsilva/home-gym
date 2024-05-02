@@ -811,6 +811,20 @@ p {
 
 }
 
+.arrow-icon {
+    transform: rotateY(180deg);
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+}
+
+.footer-content p {
+    margin-left: 5px; 
+    margin-top: 20px;
+}
+
 
 
 .leveltext {

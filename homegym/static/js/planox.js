@@ -137,8 +137,13 @@ function loadPlanInfo(planNumber) {
                     html += '</div></div>';
                     //fim dos exercicios
                     html += '<div class="footer">';
+                    html += '<div class="footer-content">';
                     html += '<img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />';
-                    html += '<button class="button"><span class="lable">Iniciar</span></button > '
+                    html += '<p>Voltar para os meus planos</p>';
+                    html += '</div>';
+                    html += '<div class="footer-content2">';
+                    html += '<button class="button"><span class="lable">Iniciar</span></button > ';
+                    html += '</div>';
                     html += '<img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />';
                     html += '</div>';
                     container.append(html);
