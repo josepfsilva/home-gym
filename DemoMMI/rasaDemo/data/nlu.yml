@@ -96,6 +96,7 @@ nlu:
     - Menu
     - regressa ao menu
     - regressa ao menu inicial
+    - Vai para o menu
     
     
 - intent: choose_training_plan  
@@ -107,6 +108,7 @@ nlu:
     - Ir para o [plano 1](nome_plano)
     - Selecionar [plano 1](nome_plano)
     - [plano 1](nome_plano)
+    - Quero ver mais sobre o [plano 1](nome_plano)
     - Vai para o [plano 2](nome_plano), por favor
     - Podes ir para o [plano 2](nome_plano)?
     - Mostra-me o [plano 2](nome_plano)
@@ -114,6 +116,7 @@ nlu:
     - Ir para o [plano 2](nome_plano)
     - Selecionar [plano 2](nome_plano)
     - [plano 2](nome_plano)
+    - Quero ver mais sobre o [plano 2](nome_plano)
     - Vai para o [plano 3](nome_plano), por favor
     - Podes ir para o [plano 3](nome_plano)?
     - Mostra-me o [plano 3](nome_plano)
@@ -121,6 +124,7 @@ nlu:
     - Ir para o [plano 3](nome_plano)
     - Selecionar [plano 3](nome_plano)
     - [plano 3](nome_plano)
+    - Quero ver mais sobre o [plano 3](nome_plano)
     - Vai para o [plano 4](nome_plano), por favor
     - Podes ir para o [plano 4](nome_plano)?
     - Mostra-me o [plano 4](nome_plano)
@@ -128,6 +132,7 @@ nlu:
     - Ir para o [plano 4](nome_plano)
     - Selecionar [plano 4](nome_plano)
     - [plano 4](nome_plano)
+    - Quero ver mais sobre o [plano 4](nome_plano)
     - Vai para o [plano 5](nome_plano), por favor
     - Podes ir para o [plano 5](nome_plano)?
     - Mostra-me o [plano 5](nome_plano)
@@ -135,6 +140,7 @@ nlu:
     - Ir para o [plano 5](nome_plano)
     - Selecionar [plano 5](nome_plano)
     - [plano 5](nome_plano)
+    - Quero ver mais sobre o [plano 5](nome_plano)
     - Vai para o [plano 6](nome_plano), por favor
     - Podes ir para o [plano 6](nome_plano)?
     - Mostra-me o [plano 6](nome_plano)
@@ -142,6 +148,7 @@ nlu:
     - Ir para o [plano 6](nome_plano)
     - Selecionar [plano 6](nome_plano)
     - [plano 6](nome_plano)
+    - Quero ver mais sobre o [plano 6](nome_plano)
 
 
 
@@ -243,12 +250,50 @@ nlu:
     - Que conquistas ganhei?
     - Que badges ganhei?
     - Mostra-me as minhas badges
-    - Iniciar progresso
+    - Iniciar conquistas
     - Ver conquistas
     - Visualizar conquistas
     - Abrir as conquistas que fiz
     - Abrir as minhas conquistas
     - Mostra as conquistas que tenho feito
+    - Minhas conquistas
+    - Meus prémios
+    - Quero ver os meus prémios
+    - Prémios
+    - Que emblemas ganhei
+    - Quero ver os meus emblemas
+    - Mostra-me os meus emblemas
+
+
+- intent: show_informacoes
+  examples: |
+    - Mostra-me as minhas informações
+    - Sobre mim
+    - Abre informações
+    - Abre as minhas informações
+    - Como estão as minhas informações?
+    - Minhas informações
+    - Quero ver mais informações sobre mim
+    - Iniciar informações
+    - Ver informações
+    - Visualizar informações
+    - Ver as minhas informações
+    - Abrir informações
+    - Mostra mais informações
+    - Mostra informações
+    - Quero saber mais sobre mim
+    - Mostra-me os meus dados
+    - Quero saber o meu peso
+    - Quero ver a minha altura
+    - Quero saber mais sobre mim
+    - Diz-me o meu peso
+    - Diz-me a minha altura
+    - Diz-me a minha idade
+    - Diz-me o meu IMC
+    - Quero saber o meu IMC
+    - Diz-me o meu índice de massa corporal
+    - Quero saber o meu índice de massa corporal
+
 
 
 - intent: leave_call
@@ -301,5 +346,6 @@ nlu:
     - Fechar conta
     - Sair da minha conta
     - Dá logout
+
 
    

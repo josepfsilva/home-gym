@@ -765,3 +765,19 @@ p {
     height: 200px;
 
 }
+
+
+.arrow-icon {
+    transform: rotateY(360deg);
+    margin-left: 8px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+}
+
+.footer-content p {
+    margin-left: 1020px; 
+    margin-top: 20px;
+}
