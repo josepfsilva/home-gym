@@ -57,7 +57,7 @@
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
                             window.location.href = '/';
                         }
-                        else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan') { //mostrar informacoes
+                        else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'show_informacoes') { //mostrar informacoes
                             micOFF();
                             document.getElementById('content').innerHTML = '<p class="stats2">INFORMAÇÕES</p>';
                             showinfo();
