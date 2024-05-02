@@ -124,10 +124,10 @@
     <script type="text/javascript" src="kws__/run-impulse.js"></script>
 
 <script type="module">
-//var host = '192.168.1.70'
+var host = '192.168.1.70'
 //var host = '127.0.0.1'
 
-var host = '192.168.1.69';
+//var host = '192.168.1.69';
 
 function sendMicStatus(isMicOn, obj) {
     $.post("https://"+ host +":8000/IM/USER1/", JSON.stringify(obj), function(data) {
@@ -196,7 +196,7 @@ const onSampleComplete = (obj) => {
         if (!classifyCache[cacheKey]) {
             let slice = window.slice(wx, wx + classifyWindowLength);
 
-            classifyCache[cacheKey] = classifier.classify(slice, false);
+            classifyCache[cacheKey] = classifier.classifyContinuous(slice, false);
         }
 
         classifyResult = classifyCache[cacheKey];
@@ -208,7 +208,7 @@ if(casa_viva>.3)
         if (noise >= 0.6) {
             noiseCount++;
         }
-        else if (casa_viva >= 0.6) {
+        else if (casa_viva >= 0.8) {
             casa_vivaCount++; 
             
             if(!isOnKWS){
@@ -439,7 +439,7 @@ InitializeKWS();
   */
   $.post( "https://"+ host +":5005/model/parse", JSON.stringify(obj), function( data ) {
 
-    const list_of_intents = ['go_to_training_plans','go_to_mainpage','go_to_profile','go_to_newsession','choose_training_plan','start_plan','stop_plan','finish_plan','next_exercise','enter_newsession','show_conquistas','show_progresso','leave_call','mute_call','unmute_call','turn_video_off','turn_video_on','logout'];
+    const list_of_intents = ['go_to_training_plans','go_to_mainpage','go_to_profile','go_to_newsession','choose_training_plan','start_plan','stop_plan','finish_plan','next_exercise','enter_newsession','show_conquistas','show_progresso','leave_call','mute_call','unmute_call','turn_video_off','turn_video_on','logout','show_informacoes'];
 
     if (list_of_intents.includes(data.intent.name)) {
       if(data.intent.name == 'choose_training_plan'){
@@ -472,6 +472,7 @@ InitializeKWS();
       }
     } else {
       console.log("Intent not found");
+      
       sendMicStatus(false);
     }
     
