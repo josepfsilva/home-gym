@@ -252,7 +252,7 @@
         font-size: 30px;
         font-weight: 100;
         text-align: end;
-        width : 245px;
+        width: 245px;
         height: 100px;
     }
 
@@ -535,15 +535,13 @@
 
     .term {
         text-align: center;
-        font-size: 20px;
-        height: 25px;
-        width: 100px;
+        font-weight: 400;
+        font-size: 18px;
+        height: 40px;
+        width: 100%;
         background-color: gray;
-        margin-left: auto;
-        margin-top: auto;
         color: white;
         border-radius: 10px;
         margin-top: 40px;
-        height: 40px;
-        width: 300px;
+        line-height: 40px;
     }

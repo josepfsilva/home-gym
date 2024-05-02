@@ -15,6 +15,7 @@
     <header>
     </header>
     <div class="main-area">
+        <!-- HEADER 
         <div class="circles">
             <div></div>
             <div></div>
@@ -26,23 +27,22 @@
             <div></div>
             <div></div>
             <div></div>
-        </div>
+        </div>-->
         <!-- login section -->
-        <div>
-            <div class="login-text">
-            
-                    <h1 class="title">Home Gym</h1>
-          
-
+        <div class="profileContainer">
+            <div class="container">
+            {% for user in users %}
+            <div class="user-card" onclick="redirectToLogin({{ loop.index }})" style="background-image: url('{{ url_for('static', filename=user.image_path) }}');">              <div class="card-content" >
+                    <h3>{{ user.username }}</h3>
+                </div>
             </div>
-        <div class="container">
-          {% for user in users %}
-          <div class="user-card" onclick="redirectToLogin({{ loop.index }})" style="background-image: url('{{ url_for('static', filename=user.image_path) }}');">              <div class="card-content" >
-                  <h3>{{ user.username }}</h3>
-              </div>
-          </div>
-          {% endfor %}
-      </div>
+            {% endfor %}
+            </div>
+        </div>
+     <!--
+      <div class="otherUser-btn">
+            <p>Começar</p>
+      </div>-->
            
 
     <script>
