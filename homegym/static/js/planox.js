@@ -56,6 +56,7 @@ function loadPlanHead(planNumber) {
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
                     html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3><div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>';
+                    html += '<div id="mic"> <svg class="mic" id="mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:70px; height:70px;"> <path fill="#000000" d="M12,1A4,4 0 0,1 16,5V11A4,4 0 0,1 12,15A4,4 0 0,1 8,11V5A4,4 0 0,1 12,1M12,19A7,7 0 0,0 19,12H22A10,10 0 0,1 12,22A10,10 0 0,1 2,12H5A7,7 0 0,0 12,19Z" /></svg> </div>'; //mic
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // ajeitar o nivel no final do treino
                     container.append(html);
@@ -112,10 +113,12 @@ function loadPlanInfo(planNumber) {
                     html += '<div class="Info">';
                     html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
                     html += '<div class="text">'
-                    //html += '<p>Treino de</p>';
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
                     html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>'; //level
+
+                    html += '<div id="mic"> <svg class="mic" id="mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:70px; height:70px;"> <path fill="#000000" d="M12,1A4,4 0 0,1 16,5V11A4,4 0 0,1 12,15A4,4 0 0,1 8,11V5A4,4 0 0,1 12,1M12,19A7,7 0 0,0 19,12H22A10,10 0 0,1 12,22A10,10 0 0,1 2,12H5A7,7 0 0,0 12,19Z" /></svg> </div>'; //mic
+
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
                     //inicio dos detalhes
@@ -144,7 +147,6 @@ function loadPlanInfo(planNumber) {
                     html += '<div class="footer-content2">';
                     html += '<button class="button"><span class="lable">Iniciar</span></button > ';
                     html += '</div>';
-                    html += '<img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />';
                     html += '</div>';
                     container.append(html);
                 })
@@ -405,7 +407,6 @@ function addfooter() {
     var html = `<div class="footer2">
                     <img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />
                     <button class="button"><span class="lable">Avançar</span></button >
-                    <img class="micro-icon" src="../static/img/icon/black-microphone-14637.svg" />
                 </div>`;
     container.append(html);
 

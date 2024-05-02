@@ -246,7 +246,6 @@ p {
 
 #endcontainer {
     margin-top: 50px;
-    min-height: 10rem;
 }
 
 
@@ -488,6 +487,11 @@ p {
     letter-spacing: 1px;
 }
 
+.mic{
+    margin-top: 20px;
+    margin-right: 370px;
+}
+
 .footer {
     display: flex;
     margin-top: 2.5%;
@@ -514,7 +518,6 @@ p {
 
 .footer2 {
     display: flex;
-    margin-top: 3%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -584,18 +587,48 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    margin-top: 10px;
+}
+
+.count{
+    margin-bottom: 5px;
 }
 
 .Alert {
     text-align: center;
-    margin-bottom: 20px;
+    background-color: antiquewhite;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1.5px solid black;
+    font-weight: bold;
+}
+
+.rest_sq {
+    width: 420px;
+    height: 370px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    /* Add this to center horizontally */
+    align-items: center;
+    /* Add this to center vertically */
+    text-align: center;
+    background-image: url('../img/workoutplan.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.title_sq {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
 }
 
 .stopwatch-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 40vh;
     /* Set height to full viewport height */
 }
 

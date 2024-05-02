@@ -82,6 +82,7 @@
                             clearDivs();
                             removetimerimage();
                             changeZIndex("0");
+                            micOFF();
 
                             if (count == 2) { //only counts if went through all exercises
                                 document.getElementById('exercise').innerHTML = '<div class="endtext">Finalizou o Plano de Treino. Parabéns!</div><div>';
@@ -147,7 +148,6 @@
                                 clearDivs();
                                 removetimerimage();
                                 changeZIndex("0");
-                                addfooter();
                                 resting();
                             })
                             .catch(error => {
@@ -178,7 +178,6 @@
                                     clearDivs();
                                     removetimerimage();
                                     changeZIndex("0");
-                                    addfooter();
                                     resting();
                                 })
                                 .catch(error => {
@@ -196,6 +195,15 @@
                         else if(message.nlu.intent == 'go_to_mainpage')
                             window.location.href = "/";
                     }
+                    else if(message.hasOwnProperty("nlu") && message.nlu.intent == "mic_on") {
+                        micON();
+                    }else if(message.hasOwnProperty("nlu") && message.nlu.intent == "mic_off") {
+                        micOFF();
+                    }else if(message.hasOwnProperty("nlu") && message.nlu.intent != null) {
+                        //intent not recognized
+                        micOFF();
+                    }
+                
                 }
                 catch (e) { console.log(e); }
                 }
@@ -240,11 +248,14 @@
             if (count < 2) {
                 document.getElementById('exercise').innerHTML = `
                     <div class="rest">
-                        <div class="Alert">
-                            <h4>Exercício ${count+1} Terminado! Diga Avançar para começar o proximo Exercício.</h4>
+                        <div class="count">
+                            <p><b>Exercício ${count+1}</b> Terminado! Diga Avançar Quando estiver Pronto<p>
                         </div>
-                        <div class="stopwatch-container"> 
-                            <img src="../static/img/stopwatch.png" />
+                        <div class="rest_sq">
+                            <div class="title_sq">Tempo de Descanso</div>
+                        </div>
+                        <div class="footer2">
+                            <button class="button"><span class="lable">Avançar</span></button >
                         </div>
                     </div>`;
             }
@@ -305,21 +316,7 @@
         <div id="timer"></div>
     </div>
     <div id="exercise"></div>
-        <iframe
-        id="videoFrame"
-        frameborder="0"
-        style="
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        bottom: 0; 
-        right: 0; 
-        width: 100%; 
-        height: 100%; 
-        z-index: 99; 
-        "
-        allow="autoplay; fullscreen"
-        ></iframe>
+    <iframe id="videoFrame" frameborder="0" style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; z-index: 99;" allow="autoplay; fullscreen"></iframe>
         <div id="endcontainer">
             <div class="elapsedTime-badges">
                 <div id="elapsedTime"></div>
@@ -329,6 +326,5 @@
             </div>
             <div id="pgbar"></div>
         </div>
-        <div id="foot"></div>
   </body>
 </html>
