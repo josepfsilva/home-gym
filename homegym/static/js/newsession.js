@@ -22,7 +22,7 @@ function loadOnlineFriends() {
             container.empty();
 
             if (onlineFriends.length == 0) {
-                var html = '<p>Não tens amigos online</p>';
+                var html = '<p>Não tem amigos online</p>';
                 container.append(html);
                 return;
             } 
@@ -41,6 +41,8 @@ function loadOnlineFriends() {
             return Promise.reject(error);
         });
 }
+
+
 
 function getOnlineFriends() {
     return fetch('/getOnlineFriends')

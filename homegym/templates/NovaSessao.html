@@ -30,6 +30,7 @@
         mmiCli_Out.onOpen.on(socketOpenHandler);
         mmiCli_Out.openSocket();
         let userID;
+        //let randomLobbyName = Math.random().toString(36).substring(7);
 
         
         
@@ -73,22 +74,25 @@
             }); 
 
             socket.on('receive_message', (data) => {
-                console.log(data);
+                console.log('Received message:',data);
+                if (data['message'] == 'start_session') {
+                    window.location.href = '/perfil';
+                }
             });
 
             socket.on('receive_invite', (data) => {
-                console.log(data);
+                console.log('Received Invite',data);
                 let room = data['room'];
                 let friend_name = data['friend_name'];
                 socket.emit('handle_invite', {'room': room, 'friend_name': friend_name});
             });
 
-            function sendInvite(room, message, friend_name) {
-                socket.emit('send_invite', {'message': message, 'room': room, 'friend_name': friend_name, 'userID': userID});
+            function sendInvite(message, friend_name) {
+                socket.emit('send_invite', {'message': message,'friend_name': friend_name, 'userID': userID});
             }
 
-            function sendMessage(room, message) {
-                socket.emit('send_message', {'message': message, 'room': room});
+            function sendMessagetoRoom(message) {
+                socket.emit('send_message', {'message': message});
             }
 
 
@@ -110,10 +114,10 @@
                             window.location.href = '/novasessao/'+sessionname;
                         }
                         else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
-                            sendMessage('Nuno', 'Olá a todos os que estão no Nuno room');
+                            sendMessagetoRoom('start_session');
                         }
                         else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan') {
-                            sendInvite('Nuno', 'Convite para te juntares à minha sessão', 'Jorge123');
+                            sendInvite('Convite para te juntares à minha sessão', 'Jorge123');
                         }
                         
                     } catch (e) { console.log(e); }

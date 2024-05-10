@@ -1,3 +1,4 @@
+import string
 from flask import Flask, render_template,request
 from flask_socketio import SocketIO,join_room, leave_room, emit
 from flask_cors import CORS
@@ -5,12 +6,16 @@ import eventlet
 import eventlet.wsgi
 import requests
 import time
+import math
+import random
 
 app = Flask(__name__)
 socketio = SocketIO(app,cors_allowed_origins='*')
 
 users = {}  #{id: (idsocket, addr, {onlinefriends})}
 rooms = {}  #{room: [users]}
+
+##Cuidado com os ips nas funcs de chamada ao server homegym
 
 
 print("Server is running")
@@ -46,7 +51,6 @@ def disconnect():
             print('User disconnected: ', id)
             del users[id]
             break
-
     for id, user in users.items():
         time.sleep(1.5)
         onlinefriends = get_online_friends(id)
@@ -64,7 +68,7 @@ def handle_leave(data):
 
 @socketio.on('send_invite')
 def send_invite(data):
-    room = data['room']
+    room = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
     friend_name = data['friend_name']
     #check if room exists
     if room not in rooms:
@@ -95,6 +99,9 @@ def handle_invite(data):
     room = data['room']
     friend_name = data['friend_name']
 
+    if room not in rooms:
+        return
+
     join_room(room)
     rooms[room].append(friend_name)
 
@@ -107,15 +114,23 @@ def handle_invite(data):
 
 @socketio.on('send_message')
 def send_message(data):
-    room = data['room']
-    message = data['message']
-    emit('receive_message', {'message': message}, room=room)
+    for user_id, user_info in users.items():
+        if user_info[0] == request.sid:
+            id = user_id
+
+    username = get_username(id)
+
+    for room in rooms:
+        if username in rooms[room]:
+            message = data['message']
+            emit('receive_message', {'message': message}, room=room)
+    
 
 
 
 #--------------------------------funcs http request ao server homegym----------------------------------
 def get_online_friends(userID):
-    response = requests.get("https://192.168.1.69\:5000/getOnlineFriends/"+str(userID), verify='cert.pem') 
+    response = requests.get("https://192.168.1.70:5000/getOnlineFriends/"+str(userID), verify='cert.pem') 
 
     if response != []:
         return response.json()
@@ -123,13 +138,13 @@ def get_online_friends(userID):
         return None
     
 def get_username(id):
-    response = requests.get("https://192.168.1.69\:5000/getUsername/"+str(id), verify='cert.pem')
+    response = requests.get("https://192.168.1.70:5000/getUsername/"+str(id), verify='cert.pem')
 
     if response != []:
         return response.json()
     else:
         return None
-                            
+    
 
 
 if __name__ == '__main__':
