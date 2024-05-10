@@ -21,7 +21,7 @@ function loadPlans() {
                         var planDetails = plans[planId];
                         var planOrder = order[planId];
 
-                        html += '<div class="containers"> <div class="content"> <img src=' + planDetails[4] + ' class="meusplanosimg" > <div class="text-overlay"> <h3>'+ planDetails[0]+'</h3> <p> Plano '+ planOrder +' </p></div> </div> </div>'
+                        html += '<div class="containers plan' + planId + '"> <div class="content"> <img src=' + planDetails[4] + ' class="meusplanosimg" > <div class="text-overlay"> <h3>'+ planDetails[0]+'</h3> <p> Plano '+ planOrder +' </p></div> </div> </div>'
                         
                         console.log(planDetails[4]);
                     }

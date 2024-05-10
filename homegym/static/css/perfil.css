@@ -397,6 +397,7 @@ p {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 
 
@@ -417,6 +418,7 @@ p {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 
 .conquistas_sq {
@@ -434,6 +436,7 @@ p {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 
 .conquistas_sq img {

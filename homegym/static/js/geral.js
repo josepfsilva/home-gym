@@ -67,3 +67,22 @@ function micOFF(){
     var mic = document.querySelector("#mic path");
     mic.style.fill = "#000000";
 }
+
+function animateDiv(divClass) {
+    var $div = $('.' + divClass); // Get the div using its class
+    console.log($div);
+
+    $div.animate({ left: "+=10" }, 120, function() {
+        $div.animate({ left: "-=20" }, 120, function() {
+            $div.animate({ left: "+=20" }, 120, function() {
+                $div.animate({ left: "-=20" }, 120, function() {
+                    $div.animate({ left: "+=20" }, 120, function() {
+                        $div.animate({ left: "-=20" }, 120, function() {
+                            $div.animate({ left: "+=10" }, 120); // Animation complete
+                        });
+                    });
+                });
+            });
+        });
+    });
+}

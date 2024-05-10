@@ -51,17 +51,26 @@
                             message.hasOwnProperty("nlu") &&
                             message.nlu.intent == "go_to_training_plans"
                         ) {
-                            window.location.href = "/meusplanos";
+                            animateDiv('containerMiddle');
+                            setTimeout(function() {
+                                window.location.href = "/meusplanos";
+                            }, 1000);
                         } else if (
                             message.hasOwnProperty("nlu") &&
                             message.nlu.intent == "go_to_profile"
                         ) {
-                            window.location.href = "/meuperfil";
+                            animateDiv('containerLeft');
+                            setTimeout(function() {
+                                window.location.href = "/meuperfil";
+                            }, 1000);
                         } else if (
                             message.hasOwnProperty("nlu") &&
                             message.nlu.intent == "go_to_newsession"
                         ) {
-                            window.location.href = "/novasessao";
+                            animateDiv('containerRight');
+                            setTimeout(function() {
+                                window.location.href = "/novasessao";
+                            }, 1000);
                         } else if (
                             message.hasOwnProperty("nlu") &&
                             message.nlu.intent == "logout"

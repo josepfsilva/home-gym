@@ -237,3 +237,26 @@ function setProgress(percentage) {
     console.log(percentage);
 }
 
+function showContent() {
+    var html = `
+        <div class="main-group">
+            <div class="dashboard-content">
+                <div class="progresso_sq">
+                    <div class="title_sq">Progresso</div>
+                </div>
+                <div class="info_sq">
+                    <div class="title_sq">Informações</div>
+                </div>
+                <div class="conquistas_sq">
+                    <div class="title_sq">Conquistas</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-content">
+            <p>Voltar para o menu</p>
+            <img class="arrow-icon" src="../static/img/icon/arrow-232.svg" />
+        </div>
+    `;
+
+    $('#content').html(html);
+}

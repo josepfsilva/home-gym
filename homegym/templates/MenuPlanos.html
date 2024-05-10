@@ -102,7 +102,11 @@
             console.log(`Plano ${planNumber}`);
             checkIfPlanExists(planNumber).then((exists) => {
                 if (exists) {
-                    window.location.href = "/meusplanos/plano" + planNumber;
+                    $('.' + 'plan' + planNumber).css('position', 'relative');
+                    animateDiv('plan' + planNumber)
+                    setTimeout(() => {
+                        window.location.href = "/meusplanos/plano" + planNumber;
+                    }, 1500);
                 } else {
                     console.log("Plano não existe");
                     micOFF();
