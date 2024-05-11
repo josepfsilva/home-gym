@@ -720,6 +720,12 @@ p {
     }
 }
 
+.mic {
+    width: 70px;
+    height: 70px;
+
+}
+
 @media only screen and (max-width: 768px) {
 
     .datetime-container,
@@ -782,6 +788,481 @@ p {
 }
 
 .footer-content p {
-    margin-left: 1020px; 
+    margin-left: 1020px;
     margin-top: 20px;
+}
+
+@media (min-width: 2000px) {
+    .container {
+        max-width: 70%;
+    }
+
+    .mic {
+        width: 70px;
+        height: 70px;
+    }
+
+    #mic {
+        width: 70px;
+        height: 70px;
+    }
+
+
+    .footer-content p {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 2300px) {
+    .container {
+        max-width: 70%;
+    }
+
+    .name {
+        font-size: 40px;
+    }
+
+    #mic {
+        width: 80px;
+        height: 80px;
+    }
+
+    .mic {
+        width: 80px;
+        height: 80px;
+    }
+
+    .streaktext {
+        font-size: 30px;
+    }
+
+    .leveltext {
+        font-size: 30px;
+    }
+
+    .container2 {
+        width: 140px;
+        height: 140px;
+    }
+
+    .datetime-container {
+        font-size: 40px;
+    }
+
+
+    .profile {
+        width: 100%;
+    }
+
+    .main-group {
+        margin-top: 5%;
+    }
+
+    .info_sq {
+        width: 18vw;
+        height: 50vh;
+    }
+
+    .progresso_sq {
+        width: 18vw;
+        height: 40vh;
+    }
+
+    .conquistas_sq {
+        width: 18vw;
+        height: 40vh;
+    }
+
+    .title_sq {
+        font-size: 30px;
+    }
+
+
+    .footer-content {
+        margin-left: 10%;
+    }
+
+
+    .footer-content p {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 4600px) {
+
+    .name {
+        font-size: 80px;
+    }
+
+    #mic {
+        width: 150px;
+        height: 150px;
+        margin-right: 0;
+    }
+
+
+    .mic {
+        width: 150px;
+        height: 150px;
+    }
+
+    .streaktext {
+        font-size: 60px;
+    }
+
+    .leveltext {
+        font-size: 60px;
+    }
+
+    .container2 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .datetime-container {
+        font-size: 70px;
+        width: 15%;
+    }
+
+    .container {
+        max-width: 70%;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .main-group {
+        margin-top: 5%;
+    }
+
+    .info_sq {
+        width: 24vw;
+        height: 60vh;
+    }
+
+    .progresso_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .conquistas_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .title_sq {
+        font-size: 60px;
+    }
+
+    .footer-content {
+        margin-left: 45%;
+    }
+
+    .footer-content p {
+        font-size: 60px;
+    }
+}
+
+@media (min-width: 4700px) {
+    .name {
+        font-size: 100px;
+    }
+
+    #mic {
+        width: 180px;
+        height: 180px;
+        margin-right: 0;
+    }
+
+
+    .mic {
+        width: 180px;
+        height: 180px;
+    }
+
+    .streaktext {
+        font-size: 60px;
+    }
+
+    .leveltext {
+        font-size: 60px;
+    }
+
+    .container2 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .datetime-container {
+        font-size: 80px;
+        width: 10%;
+    }
+
+    .container {
+        max-width: 70%;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .main-group {
+        margin-top: 5%;
+    }
+
+    .info_sq {
+        width: 24vw;
+        height: 60vh;
+    }
+
+    .progresso_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .conquistas_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .title_sq {
+        font-size: 80px;
+    }
+
+    .footer-content {
+        margin-left: 55%;
+    }
+
+    .footer-content p {
+        font-size: 70px;
+    }
+
+}
+
+@media (min-width: 2500px) {
+
+    .name {
+        font-size: 60px;
+    }
+
+    #mic {
+        width: 100px;
+        height: 100px;
+        margin-right: 9%;
+    }
+
+    .mic {
+        width: 100px;
+        height: 100px;
+    }
+
+    .streaktext {
+        font-size: 40px;
+    }
+
+    .leveltext {
+        font-size: 40px;
+    }
+
+    .container2 {
+        width: 200px;
+        height: 200px;
+    }
+
+    .datetime-container {
+        font-size: 40px;
+    }
+
+    .container {
+        max-width: 70%;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .main-group {
+        margin-top: 5%;
+    }
+
+    .info_sq {
+        width: 20vw;
+        height: 50vh;
+    }
+
+    .progresso_sq {
+        width: 20vw;
+        height: 40vh;
+    }
+
+    .conquistas_sq {
+        width: 20vw;
+        height: 40vh;
+    }
+
+    .title_sq {
+        font-size: 50px;
+    }
+
+    .footer-content {
+        margin-left: 20%;
+    }
+
+    .footer-content p {
+        font-size: 40px;
+    }
+}
+
+
+@media (min-width: 4600px) {
+
+    .name {
+        font-size: 80px;
+    }
+
+    #mic {
+        width: 150px;
+        height: 150px;
+        margin-right: 0;
+    }
+
+
+    .mic {
+        width: 150px;
+        height: 150px;
+    }
+
+    .streaktext {
+        font-size: 60px;
+    }
+
+    .leveltext {
+        font-size: 60px;
+    }
+
+    .container2 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .datetime-container {
+        font-size: 70px;
+        width: 15%;
+    }
+
+    .container {
+        max-width: 70%;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .main-group {
+        margin-top: 5%;
+    }
+
+    .info_sq {
+        width: 24vw;
+        height: 60vh;
+    }
+
+    .progresso_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .conquistas_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .title_sq {
+        font-size: 60px;
+    }
+
+    .footer-content {
+        margin-left: 45%;
+    }
+
+    .footer-content p {
+        font-size: 60px;
+    }
+}
+
+@media (min-width: 4700px) {
+    .name {
+        font-size: 100px;
+    }
+
+    #mic {
+        width: 180px;
+        height: 180px;
+        margin-right: 0;
+    }
+
+
+    .mic {
+        width: 180px;
+        height: 180px;
+    }
+
+    .streaktext {
+        font-size: 60px;
+    }
+
+    .leveltext {
+        font-size: 60px;
+    }
+
+    .container2 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .datetime-container {
+        font-size: 80px;
+        width: 10%;
+    }
+
+    .container {
+        max-width: 70%;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .main-group {
+        margin-top: 5%;
+    }
+
+    .info_sq {
+        width: 24vw;
+        height: 60vh;
+    }
+
+    .progresso_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .conquistas_sq {
+        width: 20vw;
+        height: 48vh;
+    }
+
+    .title_sq {
+        font-size: 80px;
+    }
+
+    .footer-content {
+        margin-left: 55%;
+    }
+
+    .footer-content p {
+        font-size: 70px;
+    }
+
 }
