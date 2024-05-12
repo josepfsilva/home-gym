@@ -40,7 +40,7 @@ function getBadges() {
             var container = $('#content');
             container.empty();
         
-            var html = '<p class="stats2">SUAS CONQUISTAS</p>';
+            var html = '<p class="stats2" style="margin-top:-8vh">SUAS CONQUISTAS</p>';
             html += '<div class="card-container">'; 
         
             if (userBadges.length === 0) {

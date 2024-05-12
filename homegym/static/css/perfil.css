@@ -792,7 +792,7 @@ p {
 .parent-div {
     display: flex;
     justify-content: space-between;
-    margin-top: 4vh;
+    margin-top: 8vh;
 }
 
 .left-side2 {
