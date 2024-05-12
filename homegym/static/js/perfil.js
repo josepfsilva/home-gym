@@ -103,31 +103,31 @@ function showinfo() {
             var full_name = data.full_name;
             var measurements = data.measurements;
             var age = data.age;
-            var register_date = data.register_date
+var register_date = data.register_date
 
-
-            var html = '<div class="left-side">';
-            html = '<div class="stats2">';
-            html += '<div class="titleprg">Nome</div>';
-            html += '<div class="titlevalues">' + full_name + '</div>';
-            html += '<div class="titleprg">Idade</div>';
-            html += '<div class="titlevalues">' + age + '</div>';
-            html += '<div class="titleprg">Data de Inicio</div>';
-            html += '<div class="titlevalues">' + register_date + '</div>';
-            html += '</div>'; // Closing tag for 'stats2' div
-            html += '</div>'; // Closing tag for 'left-side' div
-            html += '<div class="right-side">';
-            html += '<div class="stats2">';
-            html += '<div class="titleprg">Altura</div>';
-            html += '<div class="titlevalues">' + measurements[2] + '</div>';
-            html += '<div class="titleprg">Peso</div>';
-            html += '<div class="titlevalues">' + measurements[3] + '</div>';
-            html += '<div class="titleprg">IMC</div>';
-            html += '<div class="titlevalues">' + measurements[6] + '</div>';
-            html += '<div class="titleprg">Gordura Corporal</div>';
-            html += '<div class="titlevalues">' + measurements[5] + '</div>';
-            
-            container.append(html);
+var html = '<div class="parent-div">'; // Start of parent div
+html += '<div class="left-side2">';
+html += '<div class="stats2">';
+html += '<div class="titleprg">Nome</div>';
+html += '<div class="titlevalues">' + full_name + '</div>';
+html += '<div class="titleprg">Idade</div>';
+html += '<div class="titlevalues">' + age + '</div>';
+html += '<div class="titleprg">Data de Inicio</div>';
+html += '<div class="titlevalues">' + register_date + '</div>';
+html += '</div>'; // Closing tag for 'stats2' div
+html += '</div>'; // Closing tag for 'left-side2' div
+html += '<div class="right-side2">';
+html += '<div class="stats2">';
+html += '<div class="titleprg">Altura</div>';
+html += '<div class="titlevalues">' + measurements[2] + ' cm</div>'; // Adds 'cm' for centimeters
+html += '<div class="titleprg">Peso</div>';
+html += '<div class="titlevalues">' + measurements[3] + ' kg</div>'; // Adds 'kg' for kilograms
+html += '<div class="titleprg">IMC</div>';
+html += '<div class="titlevalues">' + measurements[6] + ' kg/m²</div>'; // IMC is unitless
+html += '</div>'; // Closing tag for 'stats2' div
+html += '</div>'; // Closing tag for 'right-side2' div
+html += '</div>'; // End of parent div
+container.append(html);
         })
         .catch(error => {
             console.error('Fetch error:', error);

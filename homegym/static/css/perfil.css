@@ -789,6 +789,32 @@ p {
     margin-top: 20px;
 }
 
+.parent-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4vh;
+}
+
+.left-side2 {
+    width: 45%; /* adjust as needed */
+    background-color: #FFEB9C; /* lighter yellow */
+    border: 1px solid #ccc; /* gray border */
+    padding: 20px; /* space between the content and the border */
+    margin: 10px; /* space around the element */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* subtle shadow for a 3D effect */
+    border-radius: 10px; /* rounded corners */
+}
+
+.right-side2 {
+    width: 45%; /* adjust as needed */
+    background-color: #C7E4EB; /* lighter shade of #EE7320 */
+    border: 1px solid #ccc; /* gray border */
+    padding: 20px; /* space between the content and the border */
+    margin: 10px; /* space around the element */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* subtle shadow for a 3D effect */
+    border-radius: 10px; /* rounded corners */
+}
+
 @media (min-width: 2000px) {
     .container {
         max-width: 70%;
@@ -1263,3 +1289,4 @@ p {
     }
 
 }
+
