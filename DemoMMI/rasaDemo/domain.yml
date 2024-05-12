@@ -13,7 +13,6 @@ intents:
 - stop_plan
 - finish_plan
 - next_exercise
-- enter_newsession
 - show_conquistas
 - show_progresso
 - leave_call
@@ -22,6 +21,9 @@ intents:
 - turn_video_off
 - turn_video_on
 - logout
+- show_informacoes
+- start_session
+- invite_to_session
 entities:
 - nome_plano
 - nome_sessao

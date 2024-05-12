@@ -71,15 +71,18 @@ nlu:
 
 - intent: go_to_newsession
   examples: |
-    - Vai para nova sessão, por favor
-    - Podes ir para nova sessão?
-    - Mostra-me a página nova sessão
+    - Vai para amigos e nova sessão, por favor
+    - Podes ir para amigos e nova sessão?
+    - Mostra-me a página amigos e nova sessão
     - Abre uma nova sessão
     - Começa nova sessão
     - Nova sessão
     - Quero fazer exercício em conjunto
     - Quero treinar em conjunto
     - Videochamada
+    - Quero ver os meus amigos e treinar em conjunto
+    - Amigos e Nova sessão
+    - Abre amigos e nova sessão
 
 
 - intent: go_to_mainpage  
@@ -218,12 +221,6 @@ nlu:
     - Mostrar o próximo exercício
     - Mostrar o exercício seguinte
 
-- intent: enter_newsession
-  examples: |
-    - Entra na [sala 1](nome_sessao)
-    - Entra na [sala 2](nome_sessao)
-    - Entra na [sala 2](nome_sessao)
-
 - intent: show_progresso
   examples: |
     - Mostra-me o meu progresso
@@ -346,6 +343,26 @@ nlu:
     - Fechar conta
     - Sair da minha conta
     - Dá logout
+
+
+- intent: start_session 
+  examples: |
+    - Começa a sessão
+    - Inicia a sessão
+    - Começar sessão
+    - Iniciar treino em conjunto
+    - Inicia o treino em conjunto
+
+- intent: invite_to_session 
+  examples: |
+    - Envia um convite
+    - Convidar amigos
+    - Quero convidar amigos
+    - Convidar Jorge123
+    - Envia um convite ao Jorge123 para se juntar à minha sessão
+
+
+
 
 
    

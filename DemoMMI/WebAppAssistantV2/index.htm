@@ -127,7 +127,7 @@
 var host = '192.168.1.70'
 //var host = '127.0.0.1'
 
-var host = '192.168.1.67';
+//var host = '192.168.1.67';
 
 function sendMicStatus(isMicOn, obj) {
     $.post("https://"+ host +":8000/IM/USER1/", JSON.stringify(obj), function(data) {
@@ -208,7 +208,7 @@ if(casa_viva>.3)
         if (noise >= 0.6) {
             noiseCount++;
         }
-        else if (casa_viva >= 0.8) {
+        else if (casa_viva >= 0.7) {
             casa_vivaCount++; 
             
             if(!isOnKWS){
@@ -439,7 +439,7 @@ InitializeKWS();
   */
   $.post( "https://"+ host +":5005/model/parse", JSON.stringify(obj), function( data ) {
 
-    const list_of_intents = ['go_to_training_plans','go_to_mainpage','go_to_profile','go_to_newsession','choose_training_plan','start_plan','stop_plan','finish_plan','next_exercise','enter_newsession','show_conquistas','show_progresso','leave_call','mute_call','unmute_call','turn_video_off','turn_video_on','logout','show_informacoes'];
+    const list_of_intents = ['go_to_training_plans','go_to_mainpage','go_to_profile','go_to_newsession','choose_training_plan','start_plan','stop_plan','finish_plan','next_exercise','show_conquistas','show_progresso','leave_call','mute_call','unmute_call','turn_video_off','turn_video_on','logout','show_informacoes', 'start_session','invite_to_session'];
 
     if (list_of_intents.includes(data.intent.name)) {
       if(data.intent.name == 'choose_training_plan'){
@@ -452,17 +452,8 @@ InitializeKWS();
                 doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
                 setValue(JSON.stringify(result))));
 
-      } else if(data.intent.name == 'enter_newsession') {
-          var nome_sessao = '';
-          nome_sessao = data.entities[0].value;
-          var message = {'intent':'enter_newsession','nome_sessao':nome_sessao}
-          var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
-          var result = { "recognized" : ["SPEECH", "SPEECHIN", "APP"], "text": messaget, "nlu": message };
-          mmiCli_1.sendToIM(new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
-                doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
-                setValue(JSON.stringify(result))));
-      
       } else {
+
         var message = {'intent': data.intent.name}
         var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
         var result = { "recognized" : ["SPEECH", "SPEECHIN", "APP"], "text": messaget, "nlu": message };
