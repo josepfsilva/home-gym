@@ -51,6 +51,7 @@
                         console.log(content);
                         let message = JSON.parse(content);
                         if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
+                            micOFF();
                             showContent();
                         }
                         else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
