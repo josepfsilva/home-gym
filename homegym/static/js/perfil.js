@@ -50,7 +50,7 @@ function getBadges() {
                     html += '<div class="card">';
                     html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%;">';
                     html += '<div class="container">'
-                    html += '<div class="text-stats">' + badge[0] + ' </div>';
+                    //html += '<div class="text-stats">' + badge[0] + ' </div>';
                     html += '<div class="text-stats">' + badge[1] + ' </div>';
                     html += '</div>';
                     html += '</div>';
@@ -71,7 +71,7 @@ function getBadges() {
                     html += '<div class="card">';
                     html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%; filter: grayscale(100%);">';
                     html += '<div class="container">'
-                    html += '<div class="text-stats">' + badge[0] + ' </div>';
+                    //html += '<div class="text-stats">' + badge[0] + ' </div>';
                     html += '<div class="text-stats">' + badge[1] + ' </div>';
                     html += '</div>';
                     html += '</div>';
