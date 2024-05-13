@@ -246,28 +246,27 @@
             container.empty();
             if (count < 2) {
                 document.getElementById('exercise').innerHTML = `
-                    <div class="rest">
-                        <div class="count">
-                            <p><b>Exercício ${count+1}</b> Terminado! Diga Avançar Quando estiver Pronto<p>
-                        </div>
-                        <div class="rest_sq">
-                            <div class="title_sq">Tempo de Descanso</div>
-                        </div>
-                        <div class="footer2">
-                            <button class="button"><span class="lable">Avançar</span></button >
-                        </div>
-                    </div>`;
+                <div class="rest">
+                    <div class="stopwatch-container"> 
+                        <h4 class="descanso">Descanso</h4>
+                        <img src="../static/img/stopwatch.png" />
+                    </div>
+                    <div class="Alert">
+                        <h4>Exercício ${count+1} terminado!<br> Diga <span class="highlight">"Avançar"</span> para começar o próximo exercício</h4>
+                    </div>
+                </div>`;
             }
             else {
                 document.getElementById('exercise').innerHTML = `
-                    <div class="rest">
-                        <div class="Alert">
-                            <h4>Exercício ${count+1} Terminado! Diga Terminar para Concluir o Plano.</h4>
-                        </div>
-                        <div class="stopwatch-container"> 
-                            <img src="../static/img/stopwatch.png" />
-                        </div>
-                    </div>`;
+                <div class="rest">
+                    <div class="stopwatch-container">
+                        <h4 class="descanso">Descanso</h4>
+                        <img src="../static/img/stopwatch.png" alt="Stopwatch">
+                    </div>
+                    <div class="Alert">
+                        <h4>Treino terminado!<br> Diga <span class="highlight">"Avançar"</span> para ver as estatísticas.</h4>
+                    </div>
+                </div>`;
             }
         }
 

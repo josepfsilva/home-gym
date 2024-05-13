@@ -487,7 +487,7 @@ p {
     letter-spacing: 1px;
 }
 
-.mic{
+.mic {
     margin-top: 20px;
     margin-right: 370px;
 }
@@ -506,7 +506,7 @@ p {
 }
 
 .footer-content p {
-    margin-left: 5px; 
+    margin-left: 5px;
 }
 
 .footer-content2 {
@@ -588,18 +588,49 @@ p {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+    text-align: center;
 }
 
-.count{
+.stopwatch-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 40vh;
+}
+
+.descanso {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-weight: 100;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 48px;
+    z-index: 1;
+}
+
+.stopwatch-container img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    height: auto;
+}
+
+.highlight {
+    color: #92E3A9;
+    font-weight: bold;
+}
+
+.count {
     margin-bottom: 5px;
+    font-weight: 100;
 }
 
 .Alert {
     text-align: center;
-    background-color: antiquewhite;
     padding: 8px;
     border-radius: 5px;
-    border: 1.5px solid black;
     font-weight: bold;
 }
 
@@ -625,20 +656,6 @@ p {
     color: white;
 }
 
-.stopwatch-container {
-    position: relative;
-    width: 100%;
-    height: 40vh;
-    /* Set height to full viewport height */
-}
-
-.stopwatch-container img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    /* Position at the top of the container */
-}
 
 .NameCont {
     padding-top: 10px;
