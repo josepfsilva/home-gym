@@ -74,7 +74,7 @@ p {
     color: black;
     border-radius: 20px;
     padding: 20px;
-    width: 17%;
+    width: 18%;
     height: 80%;
     position: absolute;
     top: 50%;
@@ -88,6 +88,13 @@ p {
     z-index: 999;
     justify-content: flex-start;
     padding-top: 10px;
+}
+
+.videoContainer * {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    overflow-wrap: break-word; /* Modern browsers */
 }
 
 
@@ -130,22 +137,19 @@ p {
 
 #timerContainer {
     position: absolute;
-    top: 1px;
-    /* Adjust this value to position the container at the desired location at the top of the screen */
-    left: 50%;
+    top: 65%;
+    left: 91%;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     transform: translateX(-50%);
-    background-color: white;
     /* This will create a white container */
-    min-width: 160px;
+    min-width: 190px;
     /* This will ensure the container does not shrink below this width */
-    min-height: 100px;
-    /* This will ensure the container does not shrink below this height */
+    min-height: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: 60%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
     z-index: -1;
@@ -153,7 +157,8 @@ p {
 
 
 #timer {
-    font-size: 50px;
+    font-size: 55px;
+    font-weight: 650;
     color: black;
     text-align: center;
     z-index: 9999;

@@ -133,7 +133,7 @@
                         loadPlanHead(planNumber)
                             .then(() => {
                                 count+=1;
-                                changeZIndex("100");
+                                changeZIndex("1000");
                                 addtimerimage();
                                 return loadExercise(planNumber, count);
                             })
@@ -167,7 +167,7 @@
                                     count+=1;
                                     console.log(count);
                                     shouldContinue = true;
-                                    changeZIndex("100");
+                                    changeZIndex("1000");
                                     addtimerimage();
                                     return loadExercise(planNumber,count);
                                 })
@@ -276,11 +276,11 @@
                 let incompleteEx = false;
                 let timerElement = document.getElementById('timer');
                 let timeLeft = seconds;
-                timerElement.textContent = timeLeft;
+                updateTimerDisplay(timeLeft);
 
                 function tick() {
                     timeLeft--;
-                    timerElement.textContent = timeLeft;
+                    updateTimerDisplay(timeLeft);
 
                     if (timeLeft > 0) {
                         if (shouldContinue) {
@@ -298,6 +298,12 @@
                     }
                 }
 
+                function updateTimerDisplay(timeLeft) {
+                    var minutes = Math.floor(timeLeft / 60);
+                    var seconds = timeLeft % 60;
+                    timerElement.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                }
+
                 if (shouldContinue) {
                     setTimeout(tick, 1000);
                 } else {
@@ -305,8 +311,7 @@
                     reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
                 }
             });
-        
-        }
+}
 
     </script>
 
