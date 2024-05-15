@@ -69,7 +69,7 @@
             console.log('Received message:',data);
             if (data['message'] == 'start_session') {
                 let room = data['room'];
-                window.location.href = '/teste';
+                window.location.href = '/novasessao/'+ room;
             }
         });
         socket.on('receive_invite', (data) => {
