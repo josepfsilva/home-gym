@@ -31,6 +31,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src='https://meet.jit.si/external_api.js'></script>
     
 
     <script type="module">
@@ -233,127 +234,12 @@
                     let message = JSON.parse(content);
                     if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'next_exercise' && count == 2)) && planStart == true) {  //terminar plano
                         sendMessagetoRoom('finish_plan');
-                        /*
-                        shouldContinue = false;
-                        let elapsedTime = getElapsedTime();
-                        planStart = false;
-
-                        setTimeout(() => {  //esperar pelo fim do outro timer
-                            clearDivs();
-                            removetimerimage();
-                            changeZIndex("0");
-                            micOFF();
-
-                            if (count == 2) { //only counts if went through all exercises
-                                document.getElementById('exercise').innerHTML = '<div class="endtext">Finalizou o Plano de Treino. Parabéns!</div><div>';
-                                document.getElementById('elapsedTime').innerHTML = "Tempo Total de Treino:<p>" + formatTime(elapsedTime) + "</p>";
-                                sendFinishPlan(elapsedTime, planNumber) //send to db
-                                    .then(() => {
-                                        showAwardedBadges(); //show badges if awarded
-                                    })
-                                    .then(() => {
-                                        return new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for 2 seconds
-                                    })
-                                    .then(() => {
-                                        showLevel();
-                                        showStreak();
-                                    })
-                                    .then(() => {
-                                        return new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 2 seconds
-                                    })
-                                    .then(() => {
-                                        console.log("showing progress");
-                                        showLevelProgress();
-                                    })
-                                    .catch((error) => {
-                                        console.error('Error:', error);
-                                    });
-                            }else {
-                                document.getElementById('exercise').innerHTML = '<div class="endtext"><h1>Não Finalizou o </h1> <h2>' +' ' + planName +'</h2> </div>';
-                                document.getElementById('elapsedTime').innerHTML = "<h1> Para ganhar recompensas</h1> <h1>tente novamente</h1>";
-                                document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência Ganha: 0</div>";
-                                showLevelProgress();
-                            
-                                // Schedule the code to run after the current call stack has cleared
-                                setTimeout(function() {
-                                    var elapsedTimebadges = document.getElementsByClassName('elapsedTime-badges');
-                                    for (var i = 0; i < elapsedTimebadges.length; i++) {
-                                        elapsedTimebadges[i].style.display = 'flex'; // Make the element a flex container
-                                        elapsedTimebadges[i].style.flexDirection = 'column'; // Set the flex direction to column
-                                    }
-                                }, 0);
-                            }
-               
-                        }, 1000);
-                        */
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == -1 && planStart == false) { //começar plano
                         sendMessagetoRoom('start_plan');
-                        /*
-                        planStart = true;
-                        startTime = Date.now();
-                        
-                        loadPlanHead_2(planNumber)
-                            .then(() => {
-                                count+=1;
-                                changeZIndex("100");
-                                addtimerimage();
-                                return loadExercise_2(planNumber, count);
-                            })
-                            .then(() => getPlanDuration_2(planNumber))
-                            .then(duration => {
-                                exDuration = duration / 3; // Split the duration into three equal parts
-                                return runForTime(exDuration);
-                            })
-                            .then(result => {
-                                console.log(result.message); // 'Operation completed'
-                                //console.log(result.incompleteEx); // false
-                                clearDivs();
-                                removetimerimage();
-                                changeZIndex("0");
-                                resting();
-                            })
-                            .catch(error => {
-                                console.log('Timer was stopped')
-                                if (error.incompleteEx) {
-                                    //console.log(error.incompleteEx); // true
-                                }
-                            });
-                        */
-
-                        
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<2 && planStart == true) { //avançar exercicio
                         sendMessagetoRoom('next_exercise');
-                        /*
-                        shouldContinue = false;
-                        setTimeout(() => {  //esperar pelo fim do outro timer
-                            loadPlanHead_2(planNumber)
-                                .then(() => {
-                                    count+=1;
-                                    console.log(count);
-                                    shouldContinue = true;
-                                    changeZIndex("100");
-                                    addtimerimage();
-                                    return loadExercise_2(planNumber,count);
-                                })
-                                .then(() => runForTime(exDuration))
-                                .then(result => {
-                                    console.log(result.message); // 'Operation completed'
-                                    //console.log(result.incompleteEx); // false
-                                    clearDivs();
-                                    removetimerimage();
-                                    changeZIndex("0");
-                                    resting();
-                                })
-                                .catch(error => {
-                                    console.log('Timer was stopped')
-                                    if (error.incompleteEx) {
-                                        //console.log(error.incompleteEx); // true
-                                    }
-                                });
-                        }, 1000); // Delay for 1 second
-                        */
                     }
                     else if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'go_to_training_plans' || message.nlu.intent == 'go_to_mainpage') && planStart == false){   //por condição caso já esteja a meio de um plano
                         if(message.nlu.intent == 'go_to_training_plans')
@@ -387,10 +273,30 @@
                     console.error('Error:', error);
                 });
 
-                //let onlineF = getOnlineFriends();    //get online friends
-
             }
         }
+
+        //video call
+
+        let sessionname = 'fffff';
+
+        const domain = 'meet.jit.si';
+        const options = {
+        roomName: sessionname,
+        width: 400,
+        height: 400,
+        parentNode: document.querySelector('#meet'),
+        lang: 'pt',
+        configOverwrite: { 
+            prejoinPageEnabled: false
+        },
+        };
+    
+        const api = new JitsiMeetExternalAPI(domain, options);
+
+
+
+
 
         function clearDivs() {
             document.getElementById('timer').innerHTML = "";
@@ -476,6 +382,7 @@
 
     </script>
 
+    <div id="meet" class="meet-container"></div>
     <div id="content"></div>
     <div id="timerContainer">
         <div id="timer"></div>

@@ -154,6 +154,8 @@ def send_message(data):
             elif message == 'finish_plan':
                 emit('receive_message', {'message': message}, room=room)
                 del rooms[room]
+                print('All rooms: ', rooms)
+                return
             else:
                 emit('receive_message', {'message': message}, room=room)
     
