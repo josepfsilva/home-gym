@@ -167,8 +167,8 @@ p {
     padding: 10px;
     /* This adds some space around the text */
     font-family: 'FONTTEXT';
-    font-weight: lighter;
-    font-size: 1.6em;
+    font-weight: normal;
+    font-size: 2em;
     /* This makes the text size similar to an h4 */
     /* This makes the text bold like an h4 */
     border-radius: 5px;
@@ -278,7 +278,7 @@ p {
 }
 
 #elapsedTime p {
-    color: red;
+    color: #8AED4D;
 }
 
 #badges {
