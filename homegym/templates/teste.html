@@ -24,25 +24,26 @@
     <script src="../static/js/jquery-3.6.4.min.js"></script>
     <script src="../static/js/webtoolkit.utf8.js"></script>
     <script src="../static/js/menuplanos.js"></script>
-    <script src="../static/js/planox.js"></script>
+    <script src="../static/js/sharedPlan.js"></script>
     <script src="../static/js/datetime.js"></script>
     <script src="../static/js/geral.js"></script>
     <script src="../static/js/newsession.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     
 
     <script type="module">
-
+        let userID;
         let count = -1;
         var shouldContinue = true;
         var planStart = false;
         let startTime = 0;
         let exDuration = 0;
-        let planNumber = getPlanNumber();
+        let planNumber = 13;
         console.log(planNumber);
         let planName;
-        getPlanName(planNumber)
+        getPlanName_2(planNumber)
         .then(result => {
             planName = result;
         console.log(planName); 
@@ -64,6 +65,163 @@
             }
         }
 
+        const socket = io('https://192.168.1.83:5004');
+    
+        fetch('/getUserId')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                userID = data; 
+                socket.emit('handle_connect', { 'id': userID });
+                console.log('Connected to server');  
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+            
+            
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        }); 
+
+        socket.on('receive_message', (data) => {
+            console.log('Received message:',data);
+            if (data['message'] == 'start_plan') {
+                //code
+                planStart = true;
+                startTime = Date.now();
+                
+                loadPlanHead_2(planNumber)
+                    .then(() => {
+                        count+=1;
+                        changeZIndex("100");
+                        addtimerimage();
+                        return loadExercise_2(planNumber, count);
+                    })
+                    .then(() => getPlanDuration_2(planNumber))
+                    .then(duration => {
+                        exDuration = duration / 3; // Split the duration into three equal parts
+                        return runForTime(exDuration);
+                    })
+                    .then(result => {
+                        console.log(result.message); // 'Operation completed'
+                        //console.log(result.incompleteEx); // false
+                        clearDivs();
+                        removetimerimage();
+                        changeZIndex("0");
+                        resting();
+                    })
+                    .catch(error => {
+                        console.log('Timer was stopped')
+                        if (error.incompleteEx) {
+                            //console.log(error.incompleteEx); // true
+                        }
+                    });
+            }
+            else if (data['message'] == 'finish_plan') {
+                shouldContinue = false;
+                let elapsedTime = getElapsedTime();
+                planStart = false
+                setTimeout(() => {  //esperar pelo fim do outro timer
+                    clearDivs();
+                    removetimerimage();
+                    changeZIndex("0");
+                    micOFF()
+                    if (count == 2) { //only counts if went through all exercises
+                        document.getElementById('exercise').innerHTML = '<div class="endtext">Finalizou o Plano de Treino. Parabéns!</div><div>';
+                        document.getElementById('elapsedTime').innerHTML = "Tempo Total de Treino:<p>" + formatTime(elapsedTime) + "</p>";
+                        sendFinishPlan(elapsedTime, planNumber) //send to db
+                            .then(() => {
+                                showAwardedBadges(); //show badges if awarded
+                            })
+                            .then(() => {
+                                return new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for 2 seconds
+                            })
+                            .then(() => {
+                                showLevel();
+                                showStreak();
+                            })
+                            .then(() => {
+                                return new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 2 seconds
+                            })
+                            .then(() => {
+                                console.log("showing progress");
+                                showLevelProgress();
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+                    }else {
+                        document.getElementById('exercise').innerHTML = '<div class="endtext"><h1>Não Finalizou o </h1> <h2>' +' ' + planName +'</h2> </div>';
+                        document.getElementById('elapsedTime').innerHTML = "<h1> Para ganhar recompensas</h1> <h1>tente novamente</h1>";
+                        document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência Ganha: 0</div>";
+                        showLevelProgress();
+                    
+                        // Schedule the code to run after the current call stack has cleared
+                        setTimeout(function() {
+                            var elapsedTimebadges = document.getElementsByClassName('elapsedTime-badges');
+                            for (var i = 0; i < elapsedTimebadges.length; i++) {
+                                elapsedTimebadges[i].style.display = 'flex'; // Make the element a flex container
+                                elapsedTimebadges[i].style.flexDirection = 'column'; // Set the flex direction to column
+                            }
+                        }, 0);
+                    }
+        
+                }, 1000);
+            }
+            else if (data['message'] == 'next_exercise') {
+                //code
+                shouldContinue = false;
+                        setTimeout(() => {  //esperar pelo fim do outro timer
+                            loadPlanHead_2(planNumber)
+                                .then(() => {
+                                    count+=1;
+                                    console.log(count);
+                                    shouldContinue = true;
+                                    changeZIndex("100");
+                                    addtimerimage();
+                                    return loadExercise_2(planNumber,count);
+                                })
+                                .then(() => runForTime(exDuration))
+                                .then(result => {
+                                    console.log(result.message); // 'Operation completed'
+                                    //console.log(result.incompleteEx); // false
+                                    clearDivs();
+                                    removetimerimage();
+                                    changeZIndex("0");
+                                    resting();
+                                })
+                                .catch(error => {
+                                    console.log('Timer was stopped')
+                                    if (error.incompleteEx) {
+                                        //console.log(error.incompleteEx); // true
+                                    }
+                                });
+                        }, 1000); // Delay for 1 second
+            }
+            
+        });
+
+        socket.on('receive_invite', (data) => {
+            console.log('Received Invite',data);
+            let room = data['room'];
+            let friend_name = data['friend_name'];
+            socket.emit('handle_invite', {'room': room, 'friend_name': friend_name});
+        });
+
+        function sendInvite(message, friend_name) {
+            socket.emit('send_invite', {'message': message,'friend_name': friend_name, 'userID': userID});
+        }
+
+        function sendMessagetoRoom(message) {
+            socket.emit('send_message', {'message': message});
+        }
+        
+
         function im1MessageHandler(data) {
             console.log("--------------im1MessageHandler---------------");
 
@@ -73,7 +231,9 @@
                 if (typeof content == 'string') {
                 try {
                     let message = JSON.parse(content);
-                    if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'next_exercise' && count == 2)) && planStart == true) { 
+                    if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'finish_plan' || (message.nlu.intent == 'next_exercise' && count == 2)) && planStart == true) {  //terminar plano
+                        sendMessagetoRoom('finish_plan');
+                        /*
                         shouldContinue = false;
                         let elapsedTime = getElapsedTime();
                         planStart = false;
@@ -85,7 +245,7 @@
                             micOFF();
 
                             if (count == 2) { //only counts if went through all exercises
-                                document.getElementById('exercise').innerHTML = '<div class="endtext">Parabéns! Finalizou <br><strong>' + planName + '</strong></div><div>';
+                                document.getElementById('exercise').innerHTML = '<div class="endtext">Finalizou o Plano de Treino. Parabéns!</div><div>';
                                 document.getElementById('elapsedTime').innerHTML = "Tempo Total de Treino:<p>" + formatTime(elapsedTime) + "</p>";
                                 sendFinishPlan(elapsedTime, planNumber) //send to db
                                     .then(() => {
@@ -125,19 +285,22 @@
                             }
                
                         }, 1000);
+                        */
                     }
-                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == -1 && planStart == false) {
+                    else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan' && count == -1 && planStart == false) { //começar plano
+                        sendMessagetoRoom('start_plan');
+                        /*
                         planStart = true;
                         startTime = Date.now();
                         
-                        loadPlanHead(planNumber)
+                        loadPlanHead_2(planNumber)
                             .then(() => {
                                 count+=1;
-                                changeZIndex("1000");
+                                changeZIndex("100");
                                 addtimerimage();
-                                return loadExercise(planNumber, count);
+                                return loadExercise_2(planNumber, count);
                             })
-                            .then(() => getPlanDuration(planNumber))
+                            .then(() => getPlanDuration_2(planNumber))
                             .then(duration => {
                                 exDuration = duration / 3; // Split the duration into three equal parts
                                 return runForTime(exDuration);
@@ -156,20 +319,23 @@
                                     //console.log(error.incompleteEx); // true
                                 }
                             });
+                        */
 
                         
                     }
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<2 && planStart == true) { //avançar exercicio
+                        sendMessagetoRoom('next_exercise');
+                        /*
                         shouldContinue = false;
                         setTimeout(() => {  //esperar pelo fim do outro timer
-                            loadPlanHead(planNumber)
+                            loadPlanHead_2(planNumber)
                                 .then(() => {
                                     count+=1;
                                     console.log(count);
                                     shouldContinue = true;
-                                    changeZIndex("1000");
+                                    changeZIndex("100");
                                     addtimerimage();
-                                    return loadExercise(planNumber,count);
+                                    return loadExercise_2(planNumber,count);
                                 })
                                 .then(() => runForTime(exDuration))
                                 .then(result => {
@@ -187,7 +353,7 @@
                                     }
                                 });
                         }, 1000); // Delay for 1 second
-                    
+                        */
                     }
                     else if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'go_to_training_plans' || message.nlu.intent == 'go_to_mainpage') && planStart == false){   //por condição caso já esteja a meio de um plano
                         if(message.nlu.intent == 'go_to_training_plans')
@@ -209,7 +375,7 @@
                 }
             }
             else {
-                loadPlanInfo(planNumber)
+                loadPlanInfo_2(planNumber)
                 .then(() => {
                     return new Promise((resolve) => setTimeout(resolve, 1000));
                 })
@@ -246,27 +412,28 @@
             container.empty();
             if (count < 2) {
                 document.getElementById('exercise').innerHTML = `
-                <div class="rest">
-                    <div class="stopwatch-container"> 
-                        <h4 class="descanso">Descanso</h4>
-                        <img src="../static/img/stopwatch.png" />
-                    </div>
-                    <div class="Alert">
-                        <h4>Exercício ${count+1} terminado!<br> Diga <span class="highlight">"Avançar"</span> para começar o próximo exercício</h4>
-                    </div>
-                </div>`;
+                    <div class="rest">
+                        <div class="count">
+                            <p><b>Exercício ${count+1}</b> Terminado! Diga Avançar Quando estiver Pronto<p>
+                        </div>
+                        <div class="rest_sq">
+                            <div class="title_sq">Tempo de Descanso</div>
+                        </div>
+                        <div class="footer2">
+                            <button class="button"><span class="lable">Avançar</span></button >
+                        </div>
+                    </div>`;
             }
             else {
                 document.getElementById('exercise').innerHTML = `
-                <div class="rest">
-                    <div class="stopwatch-container">
-                        <h4 class="descanso">Descanso</h4>
-                        <img src="../static/img/stopwatch.png" alt="Stopwatch">
-                    </div>
-                    <div class="Alert">
-                        <h4>Treino terminado!<br> Diga <span class="highlight">"Avançar"</span> para ver as estatísticas.</h4>
-                    </div>
-                </div>`;
+                    <div class="rest">
+                        <div class="Alert">
+                            <h4>Exercício ${count+1} Terminado! Diga Terminar para Concluir o Plano.</h4>
+                        </div>
+                        <div class="stopwatch-container"> 
+                            <img src="../static/img/stopwatch.png" />
+                        </div>
+                    </div>`;
             }
         }
 
@@ -275,11 +442,11 @@
                 let incompleteEx = false;
                 let timerElement = document.getElementById('timer');
                 let timeLeft = seconds;
-                updateTimerDisplay(timeLeft);
+                timerElement.textContent = timeLeft;
 
                 function tick() {
                     timeLeft--;
-                    updateTimerDisplay(timeLeft);
+                    timerElement.textContent = timeLeft;
 
                     if (timeLeft > 0) {
                         if (shouldContinue) {
@@ -297,12 +464,6 @@
                     }
                 }
 
-                function updateTimerDisplay(timeLeft) {
-                    var minutes = Math.floor(timeLeft / 60);
-                    var seconds = timeLeft % 60;
-                    timerElement.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-                }
-
                 if (shouldContinue) {
                     setTimeout(tick, 1000);
                 } else {
@@ -310,7 +471,8 @@
                     reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
                 }
             });
-}
+        
+        }
 
     </script>
 

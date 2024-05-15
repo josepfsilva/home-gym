@@ -1,5 +1,6 @@
 from datetime import date, timedelta, datetime
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
+from flask_cors import CORS
 import sqlite3
 from views import mgvideos, mgamificacao, mgamigos, mgtreinos
 from models import *
@@ -9,6 +10,7 @@ import os
 
 app = Flask(__name__)
 #app.config.from_object('config.py')
+CORS(app, cors_allowed_origins='*')
 
 app.secret_key = secrets.token_hex(32) #chave para a sessão
 
@@ -69,9 +71,14 @@ def logout():
 
 
 #paginas base ------------------------------------------------------------------------------------------------------
-@app.route("/teste" , methods=['GET', 'POST'])
+@app.route("/teste", methods=['GET', 'POST'])
 def teste():
+    if 'UserID' not in session:
+        return redirect(url_for('login'))
+    
+    
     return render_template('teste.html')
+
 
 
 @app.route("/" , methods=['GET', 'POST'])
@@ -130,12 +137,18 @@ def pagina_novasessao():
     
     return render_template('NovaSessao.html', name = name, image_path = image_path)
 
-@app.route("/novasessao/<sessionname>" , methods=['GET', 'POST'])
-def pagina_mostrarsessao(sessionname):
+@app.route("/novasessao/<lobbyname>" , methods=['GET', 'POST'])
+def pagina_mostrarsessao(lobbyname):
     if 'UserID' not in session:
         return redirect(url_for('login'))
     
-    return render_template('Sessao.html')
+    db_id = get_user_data(session['UserID'])[0]
+    if db_id == 1:
+        planId = 7
+    else:
+        planId = 14
+    
+    return render_template('Sessao.html', planId = planId)
 
 
 @app.route("/meusplanos/plano<selectedPlan>" , methods=['GET', 'POST'])
@@ -417,6 +430,6 @@ def getUsername(id):
 
 
 if __name__ == "__main__":
-    app.run(host = '192.168.1.70')
+    app.run(host = '0.0.0.0')
     
     
