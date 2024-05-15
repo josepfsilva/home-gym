@@ -85,7 +85,7 @@
                             micOFF();
 
                             if (count == 2) { //only counts if went through all exercises
-                                document.getElementById('exercise').innerHTML = '<div class="endtext">Finalizou o Plano de Treino. Parabéns!</div><div>';
+                                document.getElementById('exercise').innerHTML = '<div class="endtext">Parabéns! Finalizou <br><strong>' + planName + '</strong></div><div>';
                                 document.getElementById('elapsedTime').innerHTML = "Tempo Total de Treino:<p>" + formatTime(elapsedTime) + "</p>";
                                 sendFinishPlan(elapsedTime, planNumber) //send to db
                                     .then(() => {
