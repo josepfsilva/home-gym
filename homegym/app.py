@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 #app.config.from_object('config.py')
-CORS(app)
+CORS(app, cors_allowed_origins='*')
 
 app.secret_key = secrets.token_hex(32) #chave para a sessão
 
@@ -430,6 +430,6 @@ def getUsername(id):
 
 
 if __name__ == "__main__":
-    app.run(host = '192.168.1.70')
+    app.run(host = '0.0.0.0')
     
     

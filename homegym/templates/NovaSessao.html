@@ -23,6 +23,7 @@
 
     <script type="module">
 
+        //var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
         var mmiCli_Out = null;
         mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
@@ -43,58 +44,53 @@
               return;
           }
         }
+        const socket = io('https://192.168.1.70:5004');
+    
+        fetch('/getUserId')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                userID = data; 
+                console.log('User ID:', userID); 
+                socket.emit('handle_connect', { 'id': userID });
+                console.log('Connected to server');  
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            }); 
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        }); 
+        socket.on('receive_message', (data) => {
+            console.log('Received message:',data);
+            if (data['message'] == 'start_session') {
+                let room = data['room'];
+                window.location.href = '/teste';
+            }
+        });
+        socket.on('receive_invite', (data) => {
+            console.log('Received Invite',data);
+            let room = data['room'];
+            let friend_name = data['friend_name'];
+            socket.emit('handle_invite', {'room': room, 'friend_name': friend_name});
+        });
+        function sendInvite(message, friend_name) {
+            socket.emit('send_invite', {'message': message,'friend_name': friend_name, 'userID': userID});
+        }
+        function sendMessagetoRoom(message) {
+            socket.emit('send_message', {'message': message});
+        }
+
+
+
+
         function im1MessageHandler(data) {
 
             console.log("--------------im1MessageHandler---------------");
-
-            fetch('/getUserId')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        return response.json();
-                        })
-                    .then(data => {
-                        userID = data;
-                        })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        return Promise.reject(error);
-                        });
-
-            const socket = io('https://192.168.1.70:5004');
-
-            socket.on('connect', () => {
-                console.log('Connected to server');
-                socket.emit('handle_connect', { 'id': userID });
-            });
-
-            socket.on('disconnect', () => {
-                console.log('Disconnected from server');
-            }); 
-
-            socket.on('receive_message', (data) => {
-                console.log('Received message:',data);
-                if (data['message'] == 'start_session') {
-                    window.location.href = '/perfil';
-                }
-            });
-
-            socket.on('receive_invite', (data) => {
-                console.log('Received Invite',data);
-                let room = data['room'];
-                let friend_name = data['friend_name'];
-                socket.emit('handle_invite', {'room': room, 'friend_name': friend_name});
-            });
-
-            function sendInvite(message, friend_name) {
-                socket.emit('send_invite', {'message': message,'friend_name': friend_name, 'userID': userID});
-            }
-
-            function sendMessagetoRoom(message) {
-                socket.emit('send_message', {'message': message});
-            }
-
 
             if(data != null && data!="RENEW" && data!="OK") {
                 console.log(data);
@@ -108,15 +104,10 @@
                             window.location.href = '/';
 
                         }
-                        else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'enter_newsession') {
-                            let sessionname = message.nlu.nome_sessao.replace(/ /g, "");
-                            console.log(sessionname);
-                            window.location.href = '/novasessao/'+sessionname;
-                        }
-                        else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_profile') {
+                        else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_session') {
                             sendMessagetoRoom('start_session');
                         }
-                        else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'start_plan') {
+                        else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'invite_to_session') {
                             sendInvite('Convite para te juntares à minha sessão', 'Jorge123');
                         }
                         
