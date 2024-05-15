@@ -237,6 +237,13 @@ def add_exercise_plan():
         "INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (26, 27, 28);")
     cursor.execute(
         "INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (28, 29, 30);")
+    
+
+    #shared training plan
+    cursor.execute(
+        "INSERT OR IGNORE INTO ExercisePlan (Exercise1, Exercise2, Exercise3) VALUES (7, 8, 2);")
+
+
     db.commit()
     db.close()
 
@@ -252,6 +259,7 @@ def add_training_plan():
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Meditacao', 'Este plano tem como objetivo promover o relaxamento e a saúde mental.', 'Meditacao','Easy', 300, 'static\\img\\meditation.jpg',7, 1, 100);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Alongamentos membros superiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros superiores.', 'Musculacao', 'Easy',90, 'static\\img\\upper-stretches.jpg',8, 1, 100);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Alongamentos membros inferiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros inferiores', 'Musculacao', 'Easy',90, 'static\\img\\lower-stretches.jpg',10, 1, 100);")
+    
 
     # user2
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Treino de parte superior', 'Este plano visa a trabalhar a parte superior do corpo.', 'Musculacao', 'Easy',150, 'static\\img\\upper-body.jpg',2, 2, 150);")
@@ -260,7 +268,9 @@ def add_training_plan():
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Meditacao', 'Este plano tem como objetivo promover o relaxamento e a saúde mental.', 'Meditacao','Easy', 300, 'static\\img\\meditation.jpg', 7, 2, 100);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Alongamentos membros superiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros superiores.', 'Musculacao','Easy', 90,'static\\img\\upper-stretches.jpg', 9, 2, 100);")
     cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Alongamentos membros inferiores', 'A finalidade deste plano é melhorar a flexibilidade e aliviar a tensão muscular dos membros inferiores', 'Musculacao', 'Easy',90,'static\\img\\lower-stretches.jpg', 11, 2, 100);")
-
+    
+    #shared training plan
+    cursor.execute("INSERT OR IGNORE INTO TrainingPlan (Name, Description, Type, Difficulty, PlanDuration, TrainImage,ExercisePlanID, UserID, XPreward) VALUES ('Treino corpo todo', 'Este plano visa a trabalhar a parte superior do corpo assim como a parte inferior.', 'Musculacao', 'Medium',150, 'static\\img\\upper-body.jpg',12,0,150);")
     db.commit()
     db.close()
 
