@@ -39,12 +39,12 @@ function getBadges() {
             console.log(userBadges, allBadges);
             var container = $('#content');
             container.empty();
-        
+
             var html = '<p class="stats2" style="margin-top:-8vh">SUAS CONQUISTAS</p>';
-            html += '<div class="card-container">'; 
-        
+            html += '<div class="card-container">';
+
             if (userBadges.length === 0) {
-                html += '<p>Ainda não ganhou nenhuma conquista.</p>'; 
+                html += '<p>Ainda não ganhou nenhuma conquista.</p>';
             } else {
                 for (badge of userBadges) {
                     html += '<div class="card">';
@@ -56,7 +56,7 @@ function getBadges() {
                     html += '</div>';
                 }
             }
-        
+
             html += '</div>';
 
             var badgesToWin = allBadges.filter(badge => !userBadges.some(userBadge => userBadge[0] === badge[0]));
@@ -77,8 +77,8 @@ function getBadges() {
                     html += '</div>';
                 }
             }
-            
-            html += '</div>'; 
+
+            html += '</div>';
 
             container.append(html);
         })
@@ -103,37 +103,37 @@ function showinfo() {
             var full_name = data.full_name;
             var measurements = data.measurements;
             var age = data.age;
-var register_date = data.register_date
+            var register_date = data.register_date
 
-var html = '<div class="parent-div">'; // Start of parent div
-html += '<div class="left-side2">';
-html += '<div class="stats2">';
-html += '<div class="titleprg">Nome</div>';
-html += '<div class="titlevalues">' + full_name + '</div>';
-html += '<div class="titleprg">Idade</div>';
-html += '<div class="titlevalues">' + age + '</div>';
-html += '<div class="titleprg">Data de Inicio</div>';
-html += '<div class="titlevalues">' + register_date + '</div>';
-html += '</div>'; // Closing tag for 'stats2' div
-html += '</div>'; // Closing tag for 'left-side2' div
-html += '<div class="right-side2">';
-html += '<div class="stats2">';
-html += '<div class="titleprg">Altura</div>';
-html += '<div class="titlevalues">' + measurements[2] + ' cm</div>'; // Adds 'cm' for centimeters
-html += '<div class="titleprg">Peso</div>';
-html += '<div class="titlevalues">' + measurements[3] + ' kg</div>'; // Adds 'kg' for kilograms
-html += '<div class="titleprg">IMC</div>';
-html += '<div class="titlevalues">' + measurements[6] + ' kg/m²</div>'; // IMC is unitless
-html += '</div>'; // Closing tag for 'stats2' div
-html += '</div>'; // Closing tag for 'right-side2' div
-html += '</div>'; // End of parent div
-container.append(html);
+            var html = '<div class="parent-div">'; // Start of parent div
+            html += '<div class="left-side2">';
+            html += '<div class="stats2">';
+            html += '<div class="titleprg">Nome</div>';
+            html += '<div class="titlevalues">' + full_name + '</div>';
+            html += '<div class="titleprg">Idade</div>';
+            html += '<div class="titlevalues">' + age + '</div>';
+            html += '<div class="titleprg">Data de Inicio</div>';
+            html += '<div class="titlevalues">' + register_date + '</div>';
+            html += '</div>'; // Closing tag for 'stats2' div
+            html += '</div>'; // Closing tag for 'left-side2' div
+            html += '<div class="right-side2">';
+            html += '<div class="stats2">';
+            html += '<div class="titleprg">Altura</div>';
+            html += '<div class="titlevalues">' + measurements[2] + ' cm</div>'; // Adds 'cm' for centimeters
+            html += '<div class="titleprg">Peso</div>';
+            html += '<div class="titlevalues">' + measurements[3] + ' kg</div>'; // Adds 'kg' for kilograms
+            html += '<div class="titleprg">IMC</div>';
+            html += '<div class="titlevalues">' + measurements[6] + ' kg/m²</div>'; // IMC is unitless
+            html += '</div>'; // Closing tag for 'stats2' div
+            html += '</div>'; // Closing tag for 'right-side2' div
+            html += '</div>'; // End of parent div
+            container.append(html);
         })
         .catch(error => {
             console.error('Fetch error:', error);
             return Promise.reject(error);
         });
-        
+
 }
 
 function getProgress() {
@@ -153,20 +153,19 @@ function getProgress() {
             var avgTime = data.avg_time;
             var total_time = data.total_time;
 
-            var html = '<div class="stats2">';
-            html += '<div class="titleprg">Total de tempo a treinar</div>';
-            html += '<div class="title_group1"> <div class="titlevalues_animated_1">' + total_time + '</div><span id="timedesign">min</span></div>';
-            html += '<div class="titleprg">Planos de treino realizados</div>';
-            html += '<div class="titlevalues">' + plansDone + '</div>';
-            html += '<div class="titleprg">Tempo médio por treino</div>';
-            html += '<div class="title_group1"> <div class="titlevalues_animated_2">' + avgTime + '</div> <span id="timedesign">seg</span></div></div>';
+            var html = '<div class="stats3">';
+            html += '<div class ="TempoTreino"><div class="titleprg">Total de tempo a treinar</div>';
+            html += '<div class="title_group1"> <div class="titlevalues_animated_1">' + total_time + '</div><span id="timedesign">min</span></div></div>';
+            html += '<div class="PlanosFeitos"><div class="titleprg">Planos de treino realizados</div>';
+            html += '<div class="titlevalues">' + plansDone + '</div></div>';
+            html += '<div class="TempoMedio"><div class="titleprg">Tempo médio por treino</div>';
+            html += '<div class="title_group1"> <div class="titlevalues_animated_2">' + avgTime + '</div> <span id="timedesign">seg</span></div></div></div>';
 
-            html += `<div id="progress-bar">
+            html += `<div id="Progress-bar">
                         <div id="progress"></div>
-                    </div>
+                    <span id="current-level"></span>
                     <div id="level-indicators">
-                        <span id="current-level"></span>
-                        <span id="next-level"></span>
+                        
                     </div>`;
 
             container.append(html);
