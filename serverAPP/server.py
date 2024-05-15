@@ -31,8 +31,7 @@ def handle_connect(data):
     user_id_socket = request.sid
     user_addr = request.remote_addr
     userID = data['id']
-    onlinefriends = get_online_friends(userID)       #alterar o genero de display
-    print(onlinefriends)
+    onlinefriends = get_online_friends(userID)       
     users[userID] = (user_id_socket, user_addr,onlinefriends)
 
     #refresh online friends-- percorrer o dicionario e pesquisar os amigos online de todos os users ligados e dar update
@@ -41,6 +40,12 @@ def handle_connect(data):
             onlinefriends_2 = get_online_friends(id)
             users[id] = (user[0], user[1], onlinefriends_2)
 
+    #check if user was in any room and rejoin
+    username = get_username(userID)
+    for room in rooms:
+        if username in rooms[room]:
+            join_room(room)
+                     
     print(users)
 
 
@@ -56,6 +61,7 @@ def disconnect():
         onlinefriends = get_online_friends(id)
         users[id] = (user[0], user[1], onlinefriends)
     print(users)
+    print(rooms)
 
 
 
@@ -70,8 +76,10 @@ def handle_leave(data):
 def send_invite(data):
     room = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
     friend_name = data['friend_name']
+
     #check if room exists
     if room not in rooms:
+        
         join_room(room)
         print('socket: ', request.sid , ' joined room: ', room)
         username = get_username(data['userID'])
@@ -101,6 +109,15 @@ def handle_invite(data):
 
     if room not in rooms:
         return
+    
+    for user_id, user_info in users.items():
+        if user_info[0] == request.sid:
+            id = user_id
+            username = get_username(id)
+    
+    for room in rooms:
+        if username in rooms[room]:
+            return
 
     join_room(room)
     rooms[room].append(friend_name)
@@ -123,6 +140,8 @@ def send_message(data):
     for room in rooms:
         if username in rooms[room]:
             message = data['message']
+            if message == 'start_session':
+                emit('receive_message', {'message': message,'room':room}, room=room)
             emit('receive_message', {'message': message}, room=room)
     
 

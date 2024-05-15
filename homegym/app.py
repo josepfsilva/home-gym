@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 #app.config.from_object('config.py')
-CORS(app)
+CORS(app, cors_allowed_origins='*')
 
 app.secret_key = secrets.token_hex(32) #chave para a sessão
 

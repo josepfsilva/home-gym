@@ -72,6 +72,8 @@ function loadPlanHead(planNumber) {
 
 }
 
+
+
 function loadPlanInfo(planNumber) {
     return fetch('/planosOrder')
         .then(response => {
@@ -159,6 +161,8 @@ function loadPlanInfo(planNumber) {
             console.error('Fetch error:', error);
         });
 }
+
+
 
 function getPlanName(planNumber) {
     return fetch('/planosOrder')
@@ -248,6 +252,8 @@ function loadExercise(planNumber, count) {
 
 }
 
+
+
 function getPlanDuration(planNumber) {
     return fetch('/planosOrder')
         .then(response => {
@@ -281,6 +287,9 @@ function getPlanDuration(planNumber) {
         });
 
 }
+
+
+
 
 function sendFinishPlan(elapsedTime, planNumber) {
     let data = {

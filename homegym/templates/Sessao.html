@@ -52,6 +52,7 @@
                         let message = JSON.parse(content);
                         if(message.hasOwnProperty('nlu') && message.nlu.intent == 'go_to_mainpage') {
                             window.location.href = '/';
+
                         } else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'leave_call' && api) {
                             window.location.href = '/novasessao'; 
                         }
@@ -83,8 +84,8 @@
     const domain = 'meet.jit.si';
     const options = {
         roomName: sessionname,
-        width: 700,
-        height: 700,
+        width: 600,
+        height: 600,
         parentNode: document.querySelector('#meet'),
         lang: 'pt',
         configOverwrite: { 
@@ -107,19 +108,11 @@
     }
     */
     </script>
-    <h1>Video call page</h1>
 
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 d-flex justify-content-center align-items-center">
-                <div id="meet" class="meet-container"></div>
-            </div>
-            <div class="col-md-6 d-flex justify-content-center align-items-center">
-                <div class="exercise">ola</div>
-            </div>
-        </div>
+    <div style="background-color: aqua;" >
+        <div id="meet" class="meet-container"></div>
     </div>
+   
 
 </body>
 </html>
