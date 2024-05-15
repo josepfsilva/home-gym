@@ -323,7 +323,7 @@ function showAwardedBadges() {
         .then(data => {
             var container = $('#badges');
             container.empty();
-            var html = '<div class="title">Conquistas Alcançadas:</div> <div class="achievements-container">';
+            var html = '<div class="title">Conquistas alcançadas:</div> <div class="achievements-container">';
 
             if (data.length == 0) {
                 html += '<p>Nenhuma</p>';
@@ -332,8 +332,11 @@ function showAwardedBadges() {
                     var badge = data[i];
                     var badgeId = Object.keys(badge)[0]; // Get the badge id
                     var badgeDetails = badge[badgeId]; // Get the badge details
-                    html += '<p>"' + badgeDetails[0] + '"</p>';
-                    html += '<div class="achievement" style="background-image: url(' + badgeDetails[3] + ');"></div>';
+                    
+                    html += '<div class="flex-container">';
+                    html += '<div class="box"><img src=' + badgeDetails[3] + ' alt="Your Image"></img></div>';
+                    html += '<div class="box2" style="color: #92E3A9;"><p>' + badgeDetails[0] + '</p></div>';
+                    html += '</div>';
                 }
             }
             html += '</div>';
@@ -395,13 +398,11 @@ function setProgress(percentage) {
 function formatTime(timeInMilliseconds) {
     let seconds = Math.floor((timeInMilliseconds / 1000) % 60);
     let minutes = Math.floor((timeInMilliseconds / (1000 * 60)) % 60);
-    let hours = Math.floor((timeInMilliseconds / (1000 * 60 * 60)) % 24);
 
-    hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-    return hours + ":" + minutes + ":" + seconds;
+    return minutes + ":" + seconds;
 }
 
 function convertToEmbedUrl(url) {
