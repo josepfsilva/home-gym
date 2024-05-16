@@ -242,6 +242,8 @@
         }
 
         function resting() {
+            moveMicrophone('10%', '50%');
+            
             var container = $('#exercise')
             container.empty();
             if (count < 2) {
@@ -249,7 +251,7 @@
                 <div class="rest">
                     <div class="stopwatch-container"> 
                         <h4 class="descanso">Descanso</h4>
-                        <img src="../static/img/stopwatch.png" />
+                        <img src="../static/img/watch1.png" />
                     </div>
                     <div class="Alert">
                         <h4>Exercício ${count+1} terminado!<br> Diga <span class="highlight">"Avançar"</span> para começar o próximo exercício</h4>
@@ -261,7 +263,7 @@
                 <div class="rest">
                     <div class="stopwatch-container">
                         <h4 class="descanso">Descanso</h4>
-                        <img src="../static/img/stopwatch.png" alt="Stopwatch">
+                        <img src="../static/img/watch1.png" alt="Stopwatch">
                     </div>
                     <div class="Alert">
                         <h4>Treino terminado!<br> Diga <span class="highlight">"Avançar"</span> para ver as estatísticas.</h4>
@@ -314,6 +316,7 @@
 
     </script>
 
+    <div id="main">
     <div id="content"></div>
     <div id="timerContainer">
         <div id="timer"></div>
@@ -329,5 +332,6 @@
             </div>
             <div id="pgbar"></div>
         </div>
+    </div>
   </body>
 </html>
