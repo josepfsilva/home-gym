@@ -69,6 +69,80 @@ p {
     flex-wrap: wrap;
 }
 
+.flex-container {
+    display: flex;
+    border-radius: 10px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+    /*outline: solid 4px #92E3A9;*/
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+    animation-duration: 2s;
+}
+
+@keyframes animate-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5, 0.5);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+
+.animate-pop {
+animation-name: animate-pop;
+animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+animation-duration: 2s;
+}
+
+@keyframes animate-pop {
+0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+}
+
+100% {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+}
+
+
+.box2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    /*background-color: #92E3A9;*/
+    height: 80px;
+    color: #92E3A9;
+    font-weight: 500;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border-radius: 5px;
+
+    height: 80px;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+
+
 .videoContainer {
     background-color: white;
     color: black;
@@ -261,12 +335,21 @@ p {
     /* This centers the child elements vertically */
 }
 
+
+
+
+
 #elapsedTime {
     font-size: 34px;
     padding: 10px;
     z-index: 2;
     align-items: center;
+    border-radius: 10px; /* rounded corners */
+    outline: solid 4px #92E3A9;
 }
+
+
+
 
 #elapsedTime h1 {
     display: block;
@@ -281,7 +364,7 @@ p {
 }
 
 #elapsedTime p {
-    color: #8AED4D;
+    color: #92E3A9;
 }
 
 #badges {
@@ -289,7 +372,28 @@ p {
     padding: 10px;
     z-index: 2;
     text-align: center;
+    border-radius: 10px;
+    /* rounded corners */
+    outline: solid 4px #92E3A9;
+    animation: 1s appear ease-in-out;
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+    animation-duration: 2s;
 }
+
+@keyframes animate-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5, 0.5);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+
+
 
 .animated-content {
     opacity: 0;
@@ -334,6 +438,8 @@ p {
     border-radius: 30px 30px 30px 30px;
 }
 
+
+
 .horizontal-line {
     border-top: 1px solid #000;
     width: 25%;
@@ -349,7 +455,10 @@ p {
 .PlanName {
     font-size: 32px;
     font-weight: bold;
+
 }
+
+ 
 
 .PlanInfo {
     text-align: left;
@@ -372,6 +481,7 @@ p {
     font-size: 30px;
     font-weight: 100;
     text-align: right;
+    
 }
 
 
@@ -543,6 +653,7 @@ p {
 .title,
 .achievements-container {
     width: 100%;
+    
 }
 
 .achievements-container {
@@ -710,7 +821,7 @@ p {
 #progress {
     width: 0%;
     height: 100%;
-    background-color: #68f014ba;
+    background-color: #92E3A9;
     border-radius: 5px;
     transition: width 0.3s ease;
     /* Apply the animation */
