@@ -118,12 +118,18 @@ function showinfo() {
             html += '</div>'; // Closing tag for 'left-side2' div
             html += '<div class="right-side2">';
             html += '<div class="stats2">';
+            html += '<div class="stat-block">';
             html += '<div class="titleprg">Altura</div>';
             html += '<div class="titlevalues">' + measurements[2] + ' cm</div>'; // Adds 'cm' for centimeters
+            html += '</div>';
+            html += '<div class="stat-block">';
             html += '<div class="titleprg">Peso</div>';
             html += '<div class="titlevalues">' + measurements[3] + ' kg</div>'; // Adds 'kg' for kilograms
+            html += '</div>';
+            html += '<div class="stat-block">';
             html += '<div class="titleprg">IMC</div>';
             html += '<div class="titlevalues">' + measurements[6] + ' kg/m²</div>'; // IMC is unitless
+            html += '</div>';
             html += '</div>'; // Closing tag for 'stats2' div
             html += '</div>'; // Closing tag for 'right-side2' div
             html += '</div>'; // End of parent div
