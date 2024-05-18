@@ -372,75 +372,91 @@ p {
 }
 
 .main-group {
-    margin-top: 20px;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-
+    flex-direction: column;
 }
 
-.left-side {
-    margin-left: 10px;
+.dashboard-content {
+    display: flex;
+    justify-content: space-around;
+    /* Distribute space between the items */
+    align-items: center;
+    flex-wrap: wrap;
+    /* Allow items to wrap to the next line if necessary */
+    width: 100%;
+    max-width: 1200px;
+    /* Maximum width for larger screens */
+}
+
+.dashboard-content>div {
+    flex: 1;
+    min-width: 300px;
+    /* Minimum width to maintain layout on small screens */
+    margin: 10px;
+    /* Spacing between items */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progresso_sq,
+.info_sq,
+.conquistas_sq {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    /* Example background color */
+    padding: 20px;
+    border-radius: 10px;
+    /* Optional rounded corners */
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
 }
 
 .info_sq {
-    align-items: center;
     width: 450px;
     height: 420px;
-    border-radius: 15px;
-    margin-right: 60px;
-    display: flex;
-    /* Add this */
-    justify-content: center;
-    /* Add this to center horizontally */
-    align-items: center;
-    /* Add this to center vertically */
-    text-align: center;
-    background-image: url('../img/info.webp');
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    background-image: url('../img/info.webp');
 }
 
-
 .progresso_sq {
-    align-items: center;
-    width: 335px;
-    height: 315px;
-    border-radius: 15px;
-    margin-right: 60px;
-    display: flex;
-    /* Add this */
-    justify-content: center;
-    /* Add this to center horizontally */
-    align-items: center;
-    /*Add this to center vertically */
-    text-align: center;
-    background-image: url('../img/progress.webp');
-    background-repeat: no-repeat;
+    width: 450px;
+    height: 420px;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    background-image: url('../img/progress.webp');
 }
 
 .conquistas_sq {
-    width: 335px;
-    height: 315px;
-    border-radius: 15px;
-    display: flex;
-    /* Add this */
-    justify-content: center;
-    /* Add this to center horizontally */
-    align-items: center;
-    /* Add this to center vertically */
-    text-align: center;
-    background-image: url('../img/conquistas.webp');
-    background-repeat: no-repeat;
+    width: 450px;
+    height: 420px;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    background-image: url('../img/conquistas.webp');
+}
+
+.progresso_sq:hover,
+.info_sq:hover,
+.conquistas_sq:hover {
+    transform: scale(1.05);
+    /* Slight zoom effect on hover */
+}
+
+@media (max-width: 768px) {
+    .dashboard-content {
+        flex-direction: column;
+        height: 800px;
+        align-items: center;
+    }
 }
 
 .conquistas_sq img {
@@ -816,10 +832,6 @@ p {
     /* Increase this value to increase the space between the cards */
 }
 
-/* Add some padding inside the card container */
-.container {
-    padding: 2px 16px;
-}
 
 /* Add rounded corners to the top left and the top right corner of the image */
 .card img {
@@ -828,22 +840,27 @@ p {
     margin-top: 15%;
 }
 
-
-
 .arrow-icon {
-    transform: rotateY(360deg);
-    margin-left: 8px;
+    transform: rotateY(180deg);
+    margin-right: 8px;
+    width: 20px;
+    /* Example size */
+    height: 20px;
+    /* Example size */
 }
 
 .footer-content {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    padding-top: 30px;
 }
 
 .footer-content p {
-    margin-left: 1020px;
-    margin-top: 20px;
+    margin-right: 10;
+    margin-bottom: 0;
 }
+
 
 .parent-div {
     display: flex;
@@ -854,9 +871,7 @@ p {
 .left-side2 {
     width: 45%;
     /* adjust as needed */
-    background-color: rgba(255, 255, 255, 0.9);
-    /* lighter yellow */
-    border: 1px solid #ccc;
+    background-color: white;
     /* gray border */
     padding: 20px;
     /* space between the content and the border */
