@@ -31,10 +31,6 @@
         mmiCli_Out.onOpen.on(socketOpenHandler);
         mmiCli_Out.openSocket();
         let userID;
-        //let randomLobbyName = Math.random().toString(36).substring(7);
-
-        
-        
 
         function socketOpenHandler(event) {
           console.log("---------------openSocketHandler---------------")
@@ -56,8 +52,7 @@
             .then(data => {
                 userID = data; 
                 console.log('User ID:', userID); 
-                socket.emit('handle_connect', { 'id': userID });
-                console.log('Connected to server');  
+                socket.emit('handle_connect', { 'id': userID });  
             })
             .catch(error => {
                 console.error('Fetch error:', error);
