@@ -69,13 +69,87 @@ p {
     flex-wrap: wrap;
 }
 
+.flex-container {
+    display: flex;
+    border-radius: 10px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+    /*outline: solid 4px #92E3A9;*/
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+    animation-duration: 2s;
+}
+
+@keyframes animate-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5, 0.5);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+
+.animate-pop {
+animation-name: animate-pop;
+animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+animation-duration: 2s;
+}
+
+@keyframes animate-pop {
+0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+}
+
+100% {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+}
+
+
+.box2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    /*background-color: #92E3A9;*/
+    height: 80px;
+    color: #92E3A9;
+    font-weight: 500;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border-radius: 5px;
+
+    height: 80px;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+
+
 .videoContainer {
     background-color: white;
     color: black;
     border-radius: 20px;
     padding: 20px;
     width: 18%;
-    height: 80%;
+    height: 90%;
     position: absolute;
     top: 50%;
     left: 91%;
@@ -149,7 +223,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: 70%;
+    background-size: 75%;
     background-repeat: no-repeat;
     background-position: center;
     z-index: -1;
@@ -172,8 +246,8 @@ p {
     padding: 10px;
     /* This adds some space around the text */
     font-family: 'FONTTEXT';
-    font-weight: lighter;
-    font-size: 1.6em;
+    font-weight: normal;
+    font-size: 2em;
     /* This makes the text size similar to an h4 */
     /* This makes the text bold like an h4 */
     border-radius: 5px;
@@ -249,9 +323,7 @@ p {
     margin-left: 140px;
 }
 
-#endcontainer {
-    margin-top: 50px;
-}
+
 
 
 .elapsedTime-badges {
@@ -263,12 +335,21 @@ p {
     /* This centers the child elements vertically */
 }
 
+
+
+
+
 #elapsedTime {
     font-size: 34px;
     padding: 10px;
     z-index: 2;
     align-items: center;
+    border-radius: 10px; /* rounded corners */
+    outline: solid 4px #92E3A9;
 }
+
+
+
 
 #elapsedTime h1 {
     display: block;
@@ -283,7 +364,7 @@ p {
 }
 
 #elapsedTime p {
-    color: red;
+    color: #92E3A9;
 }
 
 #badges {
@@ -291,7 +372,28 @@ p {
     padding: 10px;
     z-index: 2;
     text-align: center;
+    border-radius: 10px;
+    /* rounded corners */
+    outline: solid 4px #92E3A9;
+    animation: 1s appear ease-in-out;
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+    animation-duration: 2s;
 }
+
+@keyframes animate-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5, 0.5);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+
+
 
 .animated-content {
     opacity: 0;
@@ -336,6 +438,8 @@ p {
     border-radius: 30px 30px 30px 30px;
 }
 
+
+
 .horizontal-line {
     border-top: 1px solid #000;
     width: 25%;
@@ -351,7 +455,10 @@ p {
 .PlanName {
     font-size: 32px;
     font-weight: bold;
+
 }
+
+ 
 
 .PlanInfo {
     text-align: left;
@@ -374,6 +481,7 @@ p {
     font-size: 30px;
     font-weight: 100;
     text-align: right;
+    
 }
 
 
@@ -434,28 +542,26 @@ p {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
 }
 
 .TypeandTime {
-    margin-right: 10px;
-    background-color: antiquewhite;
-    padding: 10px;
+    margin-right: 15px;
+    background-color: #92E3A9;
+    padding: 13px;
     border-radius: 5px;
-    border: 1px solid black;
 }
 
 .difrec {
-    margin-right: 10px;
-    background-color: antiquewhite;
-    padding: 10px;
+    margin-right: 15px;
+    background-color: #92E3A9;
+    padding: 13px;
     border-radius: 5px;
-    border: 1px solid black;
 }
 
 .Exercicios {
     font-size: 30px;
-    margin-top: 4%;
+    font-weight: bold;
+    margin-top: 2%;
     font-family: "FONTTEXT";
 }
 
@@ -492,9 +598,12 @@ p {
     letter-spacing: 1px;
 }
 
-.mic {
-    margin-top: 20px;
-    margin-right: 370px;
+#microphone{
+    position: absolute;
+    z-index: 1000;
+    top: 10%;
+    left: 50%;
+    
 }
 
 .footer {
@@ -544,6 +653,7 @@ p {
 .title,
 .achievements-container {
     width: 100%;
+    
 }
 
 .achievements-container {
@@ -610,7 +720,7 @@ p {
     font-weight: 100;
     transform: translate(-50%, -50%);
     color: black;
-    font-size: 48px;
+    font-size: 70px;
     z-index: 1;
 }
 
@@ -619,7 +729,8 @@ p {
     left: 50%;
     transform: translateX(-50%);
     top: 0;
-    height: auto;
+    height: 280px;
+    width: 280px;
 }
 
 .highlight {
@@ -710,10 +821,20 @@ p {
 #progress {
     width: 0%;
     height: 100%;
-    background-color: #68f014ba;
+    background-color: #92E3A9;
     border-radius: 5px;
     transition: width 0.3s ease;
     /* Apply the animation */
 }
 
 /* Define the animation */
+
+
+.meet-container {
+    position: fixed;
+    top: 0.5cm;
+    left: 2cm;
+    width: 100%;
+    height: 100%;
+    z-index: 100; 
+}

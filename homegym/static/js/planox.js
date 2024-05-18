@@ -50,15 +50,15 @@ function loadPlanHead(planNumber) {
                     var planDetails = data[0]
                     // inicio do cabeçalho
                     var html = '<div class="maindiv">';
+                    html += '<div id="microphone"> <svg class="mic" id="mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:70px; height:70px;"> <path fill="#000000" d="M12,1A4,4 0 0,1 16,5V11A4,4 0 0,1 12,15A4,4 0 0,1 8,11V5A4,4 0 0,1 12,1M12,19A7,7 0 0,0 19,12H22A10,10 0 0,1 12,22A10,10 0 0,1 2,12H5A7,7 0 0,0 12,19Z" /></svg> </div>'; 
                     html += '<div class="Info">';
                     html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
                     html += '<div class="text">'
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
                     html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3><div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>';
-                    html += '<div id="mic"> <svg class="mic" id="mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:70px; height:70px;"> <path fill="#000000" d="M12,1A4,4 0 0,1 16,5V11A4,4 0 0,1 12,15A4,4 0 0,1 8,11V5A4,4 0 0,1 12,1M12,19A7,7 0 0,0 19,12H22A10,10 0 0,1 12,22A10,10 0 0,1 2,12H5A7,7 0 0,0 12,19Z" /></svg> </div>'; //mic
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
-                    // ajeitar o nivel no final do treino
+                    
                     container.append(html);
                 })
                 .catch(error => {
@@ -112,6 +112,7 @@ function loadPlanInfo(planNumber) {
                     var exercises = data[1]
                     // inicio do cabeçalho
                     var html = '<div class="maindiv">';
+                    html += '<div id="microphone"> <svg class="mic" id="mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:70px; height:70px;"> <path fill="#000000" d="M12,1A4,4 0 0,1 16,5V11A4,4 0 0,1 12,15A4,4 0 0,1 8,11V5A4,4 0 0,1 12,1M12,19A7,7 0 0,0 19,12H22A10,10 0 0,1 12,22A10,10 0 0,1 2,12H5A7,7 0 0,0 12,19Z" /></svg> </div>'; 
                     html += '<div class="Info">';
                     html += '<div class="IMGcontainer"><img src=../' + planDetails[4] + ' class="meusplanosimg" ></div>';
                     html += '<div class="text">'
@@ -119,7 +120,6 @@ function loadPlanInfo(planNumber) {
                     html += '<div class="horizontal-line"></div>';
                     html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>'; //level
 
-                    html += '<div id="mic"> <svg class="mic" id="mic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:70px; height:70px;"> <path fill="#000000" d="M12,1A4,4 0 0,1 16,5V11A4,4 0 0,1 12,15A4,4 0 0,1 8,11V5A4,4 0 0,1 12,1M12,19A7,7 0 0,0 19,12H22A10,10 0 0,1 12,22A10,10 0 0,1 2,12H5A7,7 0 0,0 12,19Z" /></svg> </div>'; //mic
 
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     // fim do cabeçalho
@@ -131,7 +131,7 @@ function loadPlanInfo(planNumber) {
                     //html += '<div class="description">' + '<p>' + planDetails[1] + '</p></div></div>';
                     //fim dos detalhes
                     //Exercicios
-                    html += '</div> <div class="ContentEX"><h3 class="Exercicios">Exercícios:</h3>';
+                    html += '</div> <div class="ContentEX"><h3 class="Exercicios">Exercícios</h3>';
                     html += '<div class="menu"> ';
                     for (var exerciseId in exercises) {
                         var exerciseDetails = exercises[exerciseId];
@@ -150,7 +150,9 @@ function loadPlanInfo(planNumber) {
                     html += '<button class="button"><span class="lable">Iniciar</span></button > ';
                     html += '</div>';
                     html += '</div>';
+
                     container.append(html);
+                    moveMicrophone('10%', '50%');
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -160,6 +162,12 @@ function loadPlanInfo(planNumber) {
         .catch(error => {
             console.error('Fetch error:', error);
         });
+}
+
+function moveMicrophone(top, left) {
+    var microphone = document.getElementById('microphone');
+    microphone.style.top = top;
+    microphone.style.left = left;
 }
 
 
@@ -240,6 +248,7 @@ function loadExercise(planNumber, count) {
                                     </div>
                                 </div>`;
                     container.append(html);
+                    moveMicrophone('50%', '88.6%');
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -276,7 +285,7 @@ function getPlanDuration(planNumber) {
                 .then(data => {
                     var planDetails = data[0];
                     return planDetails[3];
-                })
+                })  
                 .catch(error => {
                     console.error('Fetch error:', error);
                 });
@@ -323,7 +332,7 @@ function showAwardedBadges() {
         .then(data => {
             var container = $('#badges');
             container.empty();
-            var html = '<div class="title">Conquistas Alcançadas:</div> <div class="achievements-container">';
+            var html = '<div class="title">Conquistas alcançadas:</div> <div class="achievements-container">';
 
             if (data.length == 0) {
                 html += '<p>Nenhuma</p>';
@@ -332,8 +341,11 @@ function showAwardedBadges() {
                     var badge = data[i];
                     var badgeId = Object.keys(badge)[0]; // Get the badge id
                     var badgeDetails = badge[badgeId]; // Get the badge details
-                    html += '<p>"' + badgeDetails[0] + '"</p>';
-                    html += '<div class="achievement" style="background-image: url(' + badgeDetails[3] + ');"></div>';
+                    
+                    html += '<div class="flex-container">';
+                    html += '<div class="box"><img src=' + badgeDetails[3] + ' alt="Your Image"></img></div>';
+                    html += '<div class="box2" style="color: #92E3A9;"><p>' + badgeDetails[0] + '</p></div>';
+                    html += '</div>';
                 }
             }
             html += '</div>';
@@ -395,13 +407,11 @@ function setProgress(percentage) {
 function formatTime(timeInMilliseconds) {
     let seconds = Math.floor((timeInMilliseconds / 1000) % 60);
     let minutes = Math.floor((timeInMilliseconds / (1000 * 60)) % 60);
-    let hours = Math.floor((timeInMilliseconds / (1000 * 60 * 60)) % 24);
 
-    hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-    return hours + ":" + minutes + ":" + seconds;
+    return minutes + ":" + seconds;
 }
 
 function convertToEmbedUrl(url) {
@@ -431,7 +441,7 @@ function changeZIndex(z) {
 function addtimerimage() {
     var container = document.getElementById('timerContainer');
     if (container) {
-        container.style.backgroundImage = "url('../static/img/stopwatch.png')";
+        container.style.backgroundImage = "url('../static/img/watch1.png')";
     }
 }
 

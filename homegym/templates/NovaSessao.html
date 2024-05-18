@@ -31,6 +31,10 @@
         mmiCli_Out.onOpen.on(socketOpenHandler);
         mmiCli_Out.openSocket();
         let userID;
+        
+
+        
+        
 
         function socketOpenHandler(event) {
           console.log("---------------openSocketHandler---------------")
@@ -40,7 +44,7 @@
               return;
           }
         }
-        const socket = io('https://192.168.1.70:5004');
+        const socket = io('https://192.168.1.83:5004');
     
         fetch('/getUserId')
             .then(response => {
@@ -64,11 +68,11 @@
             console.log('Received message:',data);
             if (data['message'] == 'start_session') {
                 let room = data['room'];
-                window.location.href = '/teste';
+                window.location.href = '/novasessao/'+ room;
             }
         });
         socket.on('receive_invite', (data) => {
-            console.log('Received Invite',data);
+            alert(data['message']);
             let room = data['room'];
             let friend_name = data['friend_name'];
             socket.emit('handle_invite', {'room': room, 'friend_name': friend_name});
@@ -170,6 +174,8 @@
             </div>
                         
             <div id="content"> 
+
+                <div id="popup"> Convite recebido </div>
     
                 <div class="main-group">
                     <div class="dashboard-content">
