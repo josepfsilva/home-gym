@@ -188,7 +188,18 @@ def check_level(userID):
             db.close()
             return 1
     return 0
-    
+
+def get_plan_xp(planID):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("""SELECT XPreward
+                   FROM TrainingPlan
+                   WHERE TrainingPlanID = ?
+                   """, (planID,))
+    plan_exp = cursor.fetchone()
+    db.close()
+
+    return plan_exp[0]
 
 def get_level(userID):
     db = sqlite3.connect('database.db')

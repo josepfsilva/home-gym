@@ -373,6 +373,10 @@ def getlevel():
             'leveledUp': leveledUp,
         }), 200
 
+@app.route('/getplanxp/<planid>', methods=['GET', 'POST'])
+def getplanxp(planid):
+    xp = mgamificacao.get_plan_xp(planid)
+    return jsonify(xp), 200
 
 @app.route('/getlevelprogress', methods=['GET', 'POST'])
 def getlevelprogress():

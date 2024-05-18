@@ -211,7 +211,7 @@ animation-duration: 2s;
 
 #timerContainer {
     position: absolute;
-    top: 65%;
+    top: 70%;
     left: 91%;
     border-radius: 10px;
     padding: 5px;
@@ -243,13 +243,11 @@ animation-duration: 2s;
 }
 
 .endtext {
-    padding: 10px;
-    /* This adds some space around the text */
+    padding-top: 5px;
+    padding-bottom: 10px;
     font-family: 'FONTTEXT';
     font-weight: normal;
     font-size: 2em;
-    /* This makes the text size similar to an h4 */
-    /* This makes the text bold like an h4 */
     border-radius: 5px;
     text-align: center;
     ;
@@ -345,7 +343,7 @@ animation-duration: 2s;
     z-index: 2;
     align-items: center;
     border-radius: 10px; /* rounded corners */
-    outline: solid 4px #92E3A9;
+
 }
 
 
@@ -361,6 +359,9 @@ animation-duration: 2s;
 .Experience {
     font-weight: bold;
     font-size: 25px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
 }
 
 #elapsedTime p {
@@ -374,7 +375,6 @@ animation-duration: 2s;
     text-align: center;
     border-radius: 10px;
     /* rounded corners */
-    outline: solid 4px #92E3A9;
     animation: 1s appear ease-in-out;
     animation-name: animate-pop;
     animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
@@ -420,6 +420,10 @@ animation-duration: 2s;
     flex: 1;
     max-width: calc(100% - 110px);
     margin-right: 1rem;
+}
+
+.text h3{
+    max-width: 400px;
 }
 
 
@@ -676,6 +680,8 @@ animation-duration: 2s;
 
 .streak_level_group {
     display: flex;
+    margin-left: 60px;
+    margin-bottom: 20px;
 
 }
 
@@ -810,7 +816,7 @@ animation-duration: 2s;
 }
 
 #progress-bar {
-    margin-top: 55px;
+    margin-top: 20px;
     width: 100%;
     height: 30px;
     background-color: rgba(121, 118, 118, 0.2);
@@ -837,4 +843,14 @@ animation-duration: 2s;
     width: 100%;
     height: 100%;
     z-index: 100; 
+}
+
+.titleend{
+    font-size: 25px;
+}
+
+.dn{
+    display: flex;
+    flex-direction: row;
+    
 }

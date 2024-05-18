@@ -56,7 +56,7 @@ function loadPlanHead(planNumber) {
                     html += '<div class="text">'
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
-                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3><div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>';
+                    html += '<div class="dn"><h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div></div>'; //level
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
                     
                     container.append(html);
@@ -118,7 +118,7 @@ function loadPlanInfo(planNumber) {
                     html += '<div class="text">'
                     html += '<h3>' + planDetails[0] + '</h3>';
                     html += '<div class="horizontal-line"></div>';
-                    html += '<h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div>'; //level
+                    html += '<div class="dn"><h3 class="PlanNumber">Plano ' + planNumber + '</h3> <div class="streak_level_group"><div id="level"></div><div id="streak"></div></div></div></div>'; //level
 
 
                     html += '<p id="datetime" class="datetime-container"><span class="time"></span><span class="date"></span></p></div></div>';
@@ -152,7 +152,6 @@ function loadPlanInfo(planNumber) {
                     html += '</div>';
 
                     container.append(html);
-                    moveMicrophone('10%', '50%');
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -248,7 +247,7 @@ function loadExercise(planNumber, count) {
                                     </div>
                                 </div>`;
                     container.append(html);
-                    moveMicrophone('50%', '88.6%');
+                    moveMicrophone('55%', '88.6%');
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -332,7 +331,7 @@ function showAwardedBadges() {
         .then(data => {
             var container = $('#badges');
             container.empty();
-            var html = '<div class="title">Conquistas alcançadas:</div> <div class="achievements-container">';
+            var html = '<div class="titleend">Conquistas alcançadas:</div> <div class="achievements-container">';
 
             if (data.length == 0) {
                 html += '<p>Nenhuma</p>';
@@ -351,6 +350,27 @@ function showAwardedBadges() {
             html += '</div>';
 
             container.append(html);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            return Promise.reject(error);
+        });
+}
+
+function getplanxp(planNumber) {
+    return getPlanId(planNumber)
+        .then(planId => {
+            return fetch('/getplanxp/' + planId)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência Ganha: " + data + "</div>";
         })
         .catch(error => {
             console.error('Fetch error:', error);
