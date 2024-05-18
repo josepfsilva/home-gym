@@ -841,7 +841,7 @@ p {
 }
 
 .arrow-icon {
-    transform: rotateY(180deg);
+    transform: rotateY(360deg);
     margin-right: 8px;
     width: 20px;
     /* Example size */
