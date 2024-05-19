@@ -99,7 +99,7 @@
                 loadPlanHead_2(planNumber)
                     .then(() => {
                         count+=1;
-                        changeZIndex("100");
+                        changeZIndex("1000");
                         addtimerimage();
                         return loadExercise_2(planNumber, count);
                     })
@@ -131,11 +131,13 @@
                     clearDivs();
                     removetimerimage();
                     changeZIndex("0");
-                    micOFF()
+                    micOFF();
+                    moveMicrophone('10%', '50%')
                     if (count == 2) { //only counts if went through all exercises
-                        document.getElementById('exercise').innerHTML = '<div class="endtext">Finalizou o Plano de Treino. Parabéns!</div><div>';
-                        document.getElementById('elapsedTime').innerHTML = "Tempo Total de Treino:<p>" + formatTime(elapsedTime) + "</p>";
-                        sendFinishPlan(elapsedTime, planNumber) //send to db
+                        document.getElementById('exercise').innerHTML = '<div class="endtext">Parabéns! Finalizou <br><strong>' + planName + '</strong></div><div>';
+                        document.getElementById('elapsedTime').innerHTML = '<div class="titleend">Tempo total de treino:</div><p class="animate-pop"style="font-size: 70px;">' + formatTime(elapsedTime) + '</p>';
+                        document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência Ganha: </div>";
+                        sendFinishPlan_2(elapsedTime, planNumber) //send to db
                             .then(() => {
                                 showAwardedBadges(); //show badges if awarded
                             })
@@ -152,6 +154,7 @@
                             .then(() => {
                                 console.log("showing progress");
                                 showLevelProgress();
+                                getplanxp(planNumber);
                             })
                             .catch((error) => {
                                 console.error('Error:', error);
@@ -177,32 +180,32 @@
             else if (data['message'] == 'next_exercise') {
                 //code
                 shouldContinue = false;
-                        setTimeout(() => {  //esperar pelo fim do outro timer
-                            loadPlanHead_2(planNumber)
-                                .then(() => {
-                                    count+=1;
-                                    console.log(count);
-                                    shouldContinue = true;
-                                    changeZIndex("100");
-                                    addtimerimage();
-                                    return loadExercise_2(planNumber,count);
-                                })
-                                .then(() => runForTime(exDuration))
-                                .then(result => {
-                                    console.log(result.message); // 'Operation completed'
-                                    //console.log(result.incompleteEx); // false
-                                    clearDivs();
-                                    removetimerimage();
-                                    changeZIndex("0");
-                                    resting();
-                                })
-                                .catch(error => {
-                                    console.log('Timer was stopped')
-                                    if (error.incompleteEx) {
-                                        //console.log(error.incompleteEx); // true
-                                    }
-                                });
-                        }, 1000); // Delay for 1 second
+                setTimeout(() => {  //esperar pelo fim do outro timer
+                    loadPlanHead_2(planNumber)
+                        .then(() => {
+                            count+=1;
+                            console.log(count);
+                            shouldContinue = true;
+                            changeZIndex("1000");
+                            addtimerimage();
+                            return loadExercise_2(planNumber,count);
+                        })
+                        .then(() => runForTime(exDuration))
+                        .then(result => {
+                            console.log(result.message); // 'Operation completed'
+                            //console.log(result.incompleteEx); // false
+                            clearDivs();
+                            removetimerimage();
+                            changeZIndex("0");
+                            resting();
+                        })
+                        .catch(error => {
+                            console.log('Timer was stopped')
+                            if (error.incompleteEx) {
+                                //console.log(error.incompleteEx); // true
+                            }
+                        });
+                }, 1000); // Delay for 1 second
             }
             
         });
@@ -314,32 +317,33 @@
         }
 
         function resting() {
+            moveMicrophone('10%', '50%');
+            
             var container = $('#exercise')
             container.empty();
             if (count < 2) {
                 document.getElementById('exercise').innerHTML = `
-                    <div class="rest">
-                        <div class="count">
-                            <p><b>Exercício ${count+1}</b> Terminado! Diga Avançar Quando estiver Pronto<p>
-                        </div>
-                        <div class="rest_sq">
-                            <div class="title_sq">Tempo de Descanso</div>
-                        </div>
-                        <div class="footer2">
-                            <button class="button"><span class="lable">Avançar</span></button >
-                        </div>
-                    </div>`;
+                <div class="rest">
+                    <div class="stopwatch-container"> 
+                        <h4 class="descanso">Descanso</h4>
+                        <img src="../static/img/watch1.png" />
+                    </div>
+                    <div class="Alert">
+                        <h4>Exercício ${count+1} terminado!<br> Diga <span class="highlight">"Avançar"</span> para começar o próximo exercício</h4>
+                    </div>
+                </div>`;
             }
             else {
                 document.getElementById('exercise').innerHTML = `
-                    <div class="rest">
-                        <div class="Alert">
-                            <h4>Exercício ${count+1} Terminado! Diga Terminar para Concluir o Plano.</h4>
-                        </div>
-                        <div class="stopwatch-container"> 
-                            <img src="../static/img/stopwatch.png" />
-                        </div>
-                    </div>`;
+                <div class="rest">
+                    <div class="stopwatch-container">
+                        <h4 class="descanso">Descanso</h4>
+                        <img src="../static/img/watch1.png" alt="Stopwatch">
+                    </div>
+                    <div class="Alert">
+                        <h4>Treino terminado!<br> Diga <span class="highlight">"Avançar"</span> para ver as estatísticas.</h4>
+                    </div>
+                </div>`;
             }
         }
 
@@ -348,11 +352,11 @@
                 let incompleteEx = false;
                 let timerElement = document.getElementById('timer');
                 let timeLeft = seconds;
-                timerElement.textContent = timeLeft;
+                updateTimerDisplay(timeLeft);
 
                 function tick() {
                     timeLeft--;
-                    timerElement.textContent = timeLeft;
+                    updateTimerDisplay(timeLeft);
 
                     if (timeLeft > 0) {
                         if (shouldContinue) {
@@ -370,6 +374,12 @@
                     }
                 }
 
+                function updateTimerDisplay(timeLeft) {
+                    var minutes = Math.floor(timeLeft / 60);
+                    var seconds = timeLeft % 60;
+                    timerElement.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                }
+
                 if (shouldContinue) {
                     setTimeout(tick, 1000);
                 } else {
@@ -377,12 +387,12 @@
                     reject({message: 'Operation was cancelled', incompleteEx: incompleteEx});
                 }
             });
-        
-        }
+}
 
     </script>
 
     <div id="meet" class="meet-container"></div>
+    <div id="main">
     <div id="content"></div>
     <div id="timerContainer">
         <div id="timer"></div>
@@ -392,11 +402,12 @@
         <div id="endcontainer">
             <div class="elapsedTime-badges">
                 <div id="elapsedTime"></div>
-                <div id="Experience"></div>
                 <div id="badges"></div>
                 
             </div>
+            <div id="Experience"></div>
             <div id="pgbar"></div>
         </div>
+    </div>
   </body>
 </html>

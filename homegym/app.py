@@ -281,6 +281,27 @@ def handle_post():
 
     return jsonify({'message': 'Success!'}), 200
 
+@app.route('/FinishSharedPlan', methods=['POST'])
+def handle_post_shared():
+    data = request.get_json()
+    elapsedTime = round(data['elapsedTime'] / 1000)
+    planNumber = data['planNumber']
+
+    planID = planNumber
+    userID = session['UserID']
+    finishDate = date.today()
+
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO FinishTraining (FinishTime, FinishDate, TrainingPlanID, UserID) VALUES (?, ?, ?, ?)", (elapsedTime, finishDate, planID, userID))
+    conn.commit()
+    conn.close()
+
+    mgamificacao.give_plan_xp(userID, planID) #give xp depending on the plan
+    #mgamificacao.check_level(userID)
+
+    return jsonify({'message': 'Success!'}), 200
+
 
 @app.route('/awardedBadges', methods=['GET', 'POST'])
 def awardedBadges():

@@ -54,12 +54,16 @@ def disconnect():
     for id, user in users.items():
         if user[0] == request.sid:
             print('User disconnected: ', id)
+            username = get_username(id)
             del users[id]
             break
     for id, user in users.items():
         time.sleep(1.5)
         onlinefriends = get_online_friends(id)
         users[id] = (user[0], user[1], onlinefriends)
+    
+
+
     print(users)
     print(rooms)
 
@@ -123,7 +127,7 @@ def handle_invite(data):
     if room not in rooms:
         return
     
-    #check if user already in a room
+    #check if user already in a room                     
     for r in rooms:
         if friend_name in rooms[r]:
             return
@@ -132,7 +136,7 @@ def handle_invite(data):
     rooms[room].append(friend_name)
 
     print('socket: ', request.sid , ' joined room: ', room)
-    emit('receive_message', {'text': 'User has joined the room'}, to=room)
+    emit('receive_message', {'message': 'User has joined the room', 'friend_name': friend_name}, to=room)
 
     print('All rooms: ', rooms)
 
@@ -164,7 +168,7 @@ def send_message(data):
 
 #--------------------------------funcs http request ao server homegym----------------------------------
 def get_online_friends(userID):
-    response = requests.get("https://192.168.1.83:5000/getOnlineFriends/"+str(userID), verify= False) #certificado n esta a funcionar 
+    response = requests.get("https://192.168.1.70:5000/getOnlineFriends/"+str(userID), verify= False) #certificado n esta a funcionar 
 
     if response != []:
         return response.json()
@@ -172,7 +176,7 @@ def get_online_friends(userID):
         return None
     
 def get_username(id):
-    response = requests.get("https://192.168.1.83:5000/getUsername/"+str(id), verify= False)
+    response = requests.get("https://192.168.1.70:5000/getUsername/"+str(id), verify= False)
 
     if response != []:
         return response.json()
