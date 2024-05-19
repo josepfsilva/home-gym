@@ -47,8 +47,8 @@ function getBadges() {
                 html += '<p>Ainda não ganhou nenhuma conquista.</p>';
             } else {
                 for (badge of userBadges) {
-                    html += '<div class="card">';
-                    html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%;">';
+                    html += '<div class="card" style="margin-top:-1.5vh" >';
+                    html += '<img src="' + badge[3] + '" alt="Avatar">';
                     html += '<div class="container">'
                     //html += '<div class="text-stats">' + badge[0] + ' </div>';
                     html += '<div class="text-stats">' + badge[1] + ' </div>';
@@ -63,13 +63,13 @@ function getBadges() {
 
             // Display the badges that the user doesn't have yet
             html += '<p class="stats2">CONQUISTAS POR GANHAR</p>';
-            html += '<div class="card-container">';
+            html += '<div class="card-container2">';
             if (badgesToWin.length === 0) {
                 html += '<p>Não tem mais badges para ganhar.</p>'; // Replace with your message
             } else {
                 for (badge of badgesToWin) {
                     html += '<div class="card">';
-                    html += '<img src="' + badge[3] + '" alt="Avatar" style="width:100%; filter: grayscale(100%);">';
+                    html += '<img src="' + badge[3] + '" alt="Avatar" style=" filter: grayscale(100%);">';
                     html += '<div class="container">'
                     //html += '<div class="text-stats">' + badge[0] + ' </div>';
                     html += '<div class="text-stats">' + badge[1] + ' </div>';

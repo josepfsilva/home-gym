@@ -469,7 +469,8 @@ p {
     font-size: 32px;
     font-weight: bold;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow to the text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* Add shadow to the text */
 }
 
 
@@ -677,7 +678,8 @@ p {
 
 .text-stats {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: bolder;
+    margin-top: 5%;
 }
 
 .leveltext {
@@ -811,25 +813,31 @@ p {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     border-radius: 10%;
-    /* 5px rounded corners */
-    width: 11vw;
-    /* This will set a specific width for the cards */
-    height: 30vh;
-    /* Adjust the height using viewport height */
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     margin-right: 45px;
-    overflow: auto;
+    height: 30vh;
+    width: 23vh;
     /* Add a scrollbar if the content is too large */
     word-wrap: break-word;
     /* Break the word and move it to the next line if it's too long */
+    align-items: center;
+    text-align: center;
 }
 
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 3vw;
     /* Increase this value to increase the space between the cards */
 }
+
+.card-container2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 3vw;
+    /* Increase this value to increase the space between the cards */
+}
+
 
 
 /* Add rounded corners to the top left and the top right corner of the image */
@@ -837,6 +845,11 @@ p {
     border-radius: 5px 5px 0 0;
     height: 50%;
     margin-top: 15%;
+    width: 80%;
+}
+
+.card .container {
+    margin-top: ;
 }
 
 .arrow-icon {
