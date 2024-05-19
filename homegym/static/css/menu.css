@@ -216,11 +216,13 @@
         transform: translate(-50%, -50%);
         z-index: 1;
         text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow to the text */
     }
 
 
     .text-overlay p {
         color: white;
+        font-size: 32px;
     }
 
     .container2 {
