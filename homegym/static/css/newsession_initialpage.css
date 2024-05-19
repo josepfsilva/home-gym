@@ -576,3 +576,21 @@ p {
     font-weight: 100;
     margin-top: 45px;
 }
+
+
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #444;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none; 
+}
+
+.popup.show {
+    opacity: 1;
+}

@@ -64,6 +64,38 @@ function getOnlineFriends() {
 }
 
 
+function invitereceived_popup() {
+    const popup = document.querySelector('.popup');
+    const popupMessage = document.getElementById('popup-message');
+
+    
+    const message = 'Convite recebido! A juntar-se à sessão...';	
+    popupMessage.textContent = message;
+    
+    popup.classList.add('show');
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 3000);
+}
+
+function joinedroom_popup(name) {
+    const popup = document.querySelector('.popup');
+    const popupMessage = document.getElementById('popup-message');
+
+    
+    const message = name+' juntou-se à sessão!';	
+    popupMessage.textContent = message;
+    
+    popup.classList.add('show');
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 3000);
+}
+
 
 
 

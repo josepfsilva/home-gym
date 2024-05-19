@@ -44,7 +44,7 @@
               return;
           }
         }
-        const socket = io('https://192.168.1.83:5004');
+        const socket = io('https://192.168.1.70:5004');
     
         fetch('/getUserId')
             .then(response => {
@@ -70,11 +70,15 @@
                 let room = data['room'];
                 window.location.href = '/novasessao/'+ room;
             }
+            else if (data['message'] == 'User has joined the room') {
+                let name = data['friend_name'];
+                joinedroom_popup(name);
+            }
         });
         socket.on('receive_invite', (data) => {
-            alert(data['message']);
             let room = data['room'];
             let friend_name = data['friend_name'];
+            invitereceived_popup(room, friend_name);
             socket.emit('handle_invite', {'room': room, 'friend_name': friend_name});
         });
         function sendInvite(message, friend_name) {
@@ -156,6 +160,9 @@
         </div>
     
         <div class="container">
+            <div class="popup">
+                <span id="popup-message"></span>
+            </div> 
             <div class="profile">
                 <div class="welcome">
                     <div class="container2" style="background-image: url('{{image_path}}');"></div>
@@ -174,9 +181,7 @@
             </div>
                         
             <div id="content"> 
-
-                <div id="popup"> Convite recebido </div>
-    
+                
                 <div class="main-group">
                     <div class="dashboard-content">
                         <div class="info_sq_2">
