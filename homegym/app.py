@@ -160,7 +160,7 @@ def pagina_mostrarplano(selectedPlan):
     response, status_code = json_data
     if status_code == 200:
         json_data = response.json
-        print(json_data)
+        #print(json_data)
     else:
         print(f"Error: Status Code {status_code}")
     
@@ -402,13 +402,13 @@ def getOnlineFriends():
 def getOnlineFriendsID(ID):
     online_friends_json = {}
     online_friends = mgamigos.get_online_friends(ID)
-    print(online_friends)
+    #print(online_friends)
     if online_friends == []:  
         return {}, 200
     
     for friend in online_friends:
         online_friends_json[friend[0]] = friend[1]
-        print(online_friends_json)
+        #print(online_friends_json)
 
     return online_friends_json, 200
         
