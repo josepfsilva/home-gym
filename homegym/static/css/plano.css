@@ -81,32 +81,32 @@ p {
 
 @keyframes animate-pop {
     0% {
-      opacity: 0;
-      transform: scale(0.5, 0.5);
+        opacity: 0;
+        transform: scale(0.5, 0.5);
     }
-  
+
     100% {
-      opacity: 1;
-      transform: scale(1, 1);
+        opacity: 1;
+        transform: scale(1, 1);
     }
-  }
+}
 
 .animate-pop {
-animation-name: animate-pop;
-animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
-animation-duration: 2s;
+    animation-name: animate-pop;
+    animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+    animation-duration: 2s;
 }
 
 @keyframes animate-pop {
-0% {
-    opacity: 0;
-    transform: scale(0.5, 0.5);
-}
+    0% {
+        opacity: 0;
+        transform: scale(0.5, 0.5);
+    }
 
-100% {
-    opacity: 1;
-    transform: scale(1, 1);
-}
+    100% {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
 }
 
 
@@ -168,7 +168,8 @@ animation-duration: 2s;
     box-sizing: border-box;
     width: 100%;
     height: auto;
-    overflow-wrap: break-word; /* Modern browsers */
+    overflow-wrap: break-word;
+    /* Modern browsers */
 }
 
 
@@ -211,7 +212,7 @@ animation-duration: 2s;
 
 #timerContainer {
     position: absolute;
-    top: 65%;
+    top: 70%;
     left: 91%;
     border-radius: 10px;
     padding: 5px;
@@ -243,13 +244,11 @@ animation-duration: 2s;
 }
 
 .endtext {
-    padding: 10px;
-    /* This adds some space around the text */
+    padding-top: 5px;
+    padding-bottom: 10px;
     font-family: 'FONTTEXT';
     font-weight: normal;
     font-size: 2em;
-    /* This makes the text size similar to an h4 */
-    /* This makes the text bold like an h4 */
     border-radius: 5px;
     text-align: center;
     ;
@@ -340,12 +339,15 @@ animation-duration: 2s;
 
 
 #elapsedTime {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-size: 34px;
     padding: 10px;
     z-index: 2;
-    align-items: center;
-    border-radius: 10px; /* rounded corners */
-    outline: solid 4px #92E3A9;
+    border-radius: 10px;
+    text-align: center;
 }
 
 
@@ -361,6 +363,9 @@ animation-duration: 2s;
 .Experience {
     font-weight: bold;
     font-size: 25px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
 }
 
 #elapsedTime p {
@@ -368,13 +373,13 @@ animation-duration: 2s;
 }
 
 #badges {
+    text-align: center;
     font-size: 34px;
     padding: 10px;
     z-index: 2;
     text-align: center;
     border-radius: 10px;
     /* rounded corners */
-    outline: solid 4px #92E3A9;
     animation: 1s appear ease-in-out;
     animation-name: animate-pop;
     animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
@@ -383,15 +388,15 @@ animation-duration: 2s;
 
 @keyframes animate-pop {
     0% {
-      opacity: 0;
-      transform: scale(0.5, 0.5);
+        opacity: 0;
+        transform: scale(0.5, 0.5);
     }
-  
+
     100% {
-      opacity: 1;
-      transform: scale(1, 1);
+        opacity: 1;
+        transform: scale(1, 1);
     }
-  }
+}
 
 
 
@@ -420,6 +425,10 @@ animation-duration: 2s;
     flex: 1;
     max-width: calc(100% - 110px);
     margin-right: 1rem;
+}
+
+.text h3 {
+    max-width: 400px;
 }
 
 
@@ -458,7 +467,7 @@ animation-duration: 2s;
 
 }
 
- 
+
 
 .PlanInfo {
     text-align: left;
@@ -481,7 +490,7 @@ animation-duration: 2s;
     font-size: 30px;
     font-weight: 100;
     text-align: right;
-    
+
 }
 
 
@@ -578,7 +587,8 @@ animation-duration: 2s;
     height: 5vh;
     width: 15vw;
     border: none;
-    background: green;
+    color: black;
+    background: #92E3A9;
     border-radius: 10px;
 }
 
@@ -593,17 +603,15 @@ animation-duration: 2s;
     line-height: 20px;
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
-    font-family: sans-serif;
     letter-spacing: 1px;
 }
 
-#microphone{
+#microphone {
     position: absolute;
     z-index: 1000;
     top: 10%;
     left: 50%;
-    
+
 }
 
 .footer {
@@ -653,7 +661,7 @@ animation-duration: 2s;
 .title,
 .achievements-container {
     width: 100%;
-    
+
 }
 
 .achievements-container {
@@ -676,6 +684,8 @@ animation-duration: 2s;
 
 .streak_level_group {
     display: flex;
+    margin-left: 60px;
+    margin-bottom: 20px;
 
 }
 
@@ -810,7 +820,7 @@ animation-duration: 2s;
 }
 
 #progress-bar {
-    margin-top: 55px;
+    margin-top: 20px;
     width: 100%;
     height: 30px;
     background-color: rgba(121, 118, 118, 0.2);
@@ -836,5 +846,15 @@ animation-duration: 2s;
     left: 2cm;
     width: 100%;
     height: 100%;
-    z-index: 100; 
+    z-index: 100;
+}
+
+.titleend {
+    font-size: 25px;
+}
+
+.dn {
+    display: flex;
+    flex-direction: row;
+
 }

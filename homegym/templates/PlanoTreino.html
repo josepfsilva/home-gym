@@ -83,10 +83,12 @@
                             removetimerimage();
                             changeZIndex("0");
                             micOFF();
+                            moveMicrophone('10%', '50%');
 
                             if (count == 2) { //only counts if went through all exercises
                                 document.getElementById('exercise').innerHTML = '<div class="endtext">Parabéns! Finalizou <br><strong>' + planName + '</strong></div><div>';
-                                document.getElementById('elapsedTime').innerHTML = 'Tempo total de treino:<p class="animate-pop"style="font-size: 70px;">' + formatTime(elapsedTime) + '</p>';
+                                document.getElementById('elapsedTime').innerHTML = '<div class="titleend">Tempo total de treino:</div><p class="animate-pop"style="font-size: 70px;">' + formatTime(elapsedTime) + '</p>';
+                                document.getElementById('Experience').innerHTML = "<div class='Experience'>Experiência Ganha: </div>";
                                 sendFinishPlan(elapsedTime, planNumber) //send to db
                                     .then(() => {
                                         showAwardedBadges(); //show badges if awarded
@@ -104,6 +106,7 @@
                                     .then(() => {
                                         console.log("showing progress");
                                         showLevelProgress();
+                                        getplanxp(planNumber);
                                     })
                                     .catch((error) => {
                                         console.error('Error:', error);
@@ -326,10 +329,10 @@
         <div id="endcontainer">
             <div class="elapsedTime-badges">
                 <div id="elapsedTime"></div>
-                <div id="Experience"></div>
                 <div id="badges"></div>
                 
             </div>
+            <div id="Experience"></div>
             <div id="pgbar"></div>
         </div>
     </div>
