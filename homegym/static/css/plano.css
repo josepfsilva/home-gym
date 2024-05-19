@@ -304,6 +304,7 @@ p {
     width: 200px;
     text-align: center;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
 .ExType {
