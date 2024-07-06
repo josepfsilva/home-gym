@@ -13,6 +13,8 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/plano.css')}}"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>HomeGym</title>
@@ -42,6 +44,8 @@
         let startTime = 0;
         let exDuration = 0;
         let planNumber = 13;
+        let video = false;
+        let audio = false;
         console.log(planNumber);
         let planName;
         getPlanName_2(planNumber)
@@ -66,7 +70,7 @@
             }
         }
 
-        const socket = io('https://192.168.1.70:5004');
+        const socket = io('https://100.90.238.30:5004');
     
         fetch('/getUserId')
             .then(response => {
@@ -244,6 +248,25 @@
                     else if(message.hasOwnProperty('nlu') && message.nlu.intent == 'next_exercise' && count<2 && planStart == true) { //avançar exercicio
                         sendMessagetoRoom('next_exercise');
                     }
+                    else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'leave_call' && api) {
+                            window.location.href = '/novasessao'; 
+                    }
+                    else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'turn_video_on' && api && video == false) {
+                        api.executeCommand('toggleVideo');
+                        video = true;
+                    }
+                    else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'turn_video_off' && api && video == true) {
+                        api.executeCommand('toggleVideo');
+                        video = false;
+                    }
+                    else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'mute_call' && api && audio == true) {
+                        api.executeCommand('toggleAudio');
+                        audio = false;
+                    }
+                    else if (message.hasOwnProperty('nlu') && message.nlu.intent == 'unmute_call' && api && audio == false) {
+                        api.executeCommand('toggleAudio');
+                        audio = true;
+                    }
                     else if(message.hasOwnProperty('nlu') && (message.nlu.intent == 'go_to_training_plans' || message.nlu.intent == 'go_to_mainpage') && planStart == false){   //por condição caso já esteja a meio de um plano
                         if(message.nlu.intent == 'go_to_training_plans')
                             window.location.href = "/meusplanos";
@@ -291,7 +314,9 @@
         parentNode: document.querySelector('#meet'),
         lang: 'pt',
         configOverwrite: { 
-            prejoinPageEnabled: false
+            prejoinPageEnabled: false,
+            startWithAudioMuted: true,
+            startWithVideoMuted: true,
         },
         };
     
