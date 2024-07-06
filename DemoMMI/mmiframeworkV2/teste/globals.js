@@ -1,5 +1,8 @@
 //var host = '192.168.0.200';
-var host = 'localhost';
+//var host = 'localhost';
+//var host = '192.168.1.91';
+//var host = '192.168.1.70';
+var host = '127.0.0.1';
 
 var mmi_im = "https://"+host+":8000/IM/USER1/";
 var mmi_fusion = "https://"+host+":9876/IM/USER1/";

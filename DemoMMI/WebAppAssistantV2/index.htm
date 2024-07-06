@@ -54,6 +54,8 @@
     <button id="start-btn">Start</button>
     -->
 
+    
+
 
 
 
@@ -124,8 +126,8 @@
     <script type="text/javascript" src="kws__/run-impulse.js"></script>
 
 <script type="module">
-var host = '192.168.1.70'
-//var host = '127.0.0.1'
+//var host = '192.168.1.70'
+var host = '127.0.0.1';
 
 //var host = '192.168.1.67';
 
@@ -258,7 +260,7 @@ InitializeKWS();
   const transcriptDiv = document.getElementById('transcript');
   const energyDiv = document.getElementById('energy');
 
-  var firstSent = "Diga 'Jim' para comecar a falar.";
+  var firstSent = "Diga 'Casa Viva' para comecar a falar.";
   transcriptDiv.textContent = firstSent;
   var resetfunc ;
 
@@ -411,6 +413,8 @@ InitializeKWS();
 
     var obj = new Object();
     obj.text = final_transcript;
+
+
     /*
     $.post( "http://localhost:5005/model/parse", JSON.stringify(obj), function( data ) {
     console.log(data);
